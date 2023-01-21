@@ -1,0 +1,249 @@
+﻿@font-face {
+  font-family: IranYekanRegular;
+  src: url("../fonts/iranyekan_regular.ttf");
+}
+
+@font-face {
+  font-family: "IRAN Sans";
+  src: url("../fonts/iransans.ttf");
+}
+
+.v-list-group {
+  font-family: IranYekanRegular;
+}
+
+.v-breadcrumbs {
+  font-family: "IRAN Sans", serif;
+}
+
+.localization {
+  font-family: "IRAN Sans";
+}
+
+
+// Button
+.v-btn__content {
+  font-family: IranYekanRegular
+}
+
+
+// data table
+.v-data-footer__select {
+  font-family: "IRAN Sans";
+  font-weight: normal;
+  font-size: 1.3rem;
+}
+
+.v-data-table__empty-wrapper {
+  font-family: "IRAN Sans";
+  font-weight: bold;
+}
+
+th {
+  font-family: IranYekanRegular;
+  font-size: 1.2rem !important;
+}
+
+tr {
+  font-family: "IRAN Sans";
+}
+
+td {
+  font-size: 1.2rem !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: IranYekanRegular;
+  font-weight: bolder;
+}
+
+
+.v-card__title {
+  font-family: IranYekanRegular !important;
+  font-weight: bolder;
+}
+
+.headline {
+  font-family: "B Yekan" !important;
+}
+
+
+.v-text-field__slot .v-label {
+  font-family: IranYekanRegular;
+  text-align: right !important;
+}
+
+.v-text-field__slot {
+  font-family: "IRAN Sans";
+}
+
+.v-list-item__title {
+  font-family: IranYekanRegular !important;
+}
+
+.v-select__slot {
+  font-family: "IRAN Sans";
+}
+
+.v-select__slot .v-label {
+  font-family: IranYekanRegular;
+}
+
+.v-list-item__title {
+  font-family: "IRAN Sans";
+}
+
+.sqaure-btn {
+  min-width: 36px !important;
+  max-width: 36px !important;
+  width: 36px !important;
+}
+
+.v-tab {
+  font-family: IranYekanRegular;
+}
+
+label {
+  font-family: IranYekanRegular;
+  text-align: right !important;
+
+}
+
+.v-tooltip__content {
+  font-family: "IRAN Sans";
+}
+
+.iran-yekan-regular {
+  font-family: "IranYekanRegular" !important;
+}
+
+.iran-sans-mobile {
+  font-family: "IRAN Sans";
+}
+
+small {
+  font-family: "IRAN Sans";
+  font-size: 0.75rem;
+}
+
+.swal2-title {
+  direction: rtl;
+  font-family: "IRAN Sans";
+}
+
+.swal2-confirm {
+  font-family: IranYekanRegular, serif !important;
+}
+
+.v-expansion-panels {
+  font-family: "IRAN Sans", serif;
+}
+
+
+.v-stepper__label {
+  font-family: IranYekanRegular, serif;
+}
+
+.v-stepper__step__step {
+  font-family: "IRAN Sans", serif;
+}
+
+
+*::-webkit-scrollbar {
+  opacity: 0;
+  width: 12px; /* width of the entire scrollbar */
+  background-color: #F5F5F5;
+  //overflow-y: hidden;
+}
+
+*::-webkit-scrollbar {
+  opacity: 0;
+  width: 12px; /* width of the entire scrollbar */
+  background-color: #F5F5F5;
+  //overflow-y: hidden;
+  display: none; /* for Chrome, Safari, and Opera */
+}
+
+*::-webkit-scrollbar-track {
+  background-color: darkgrey;
+}
+
+*::-webkit-scrollbar-thumb {
+  border-radius: 0px;
+  -webkit-box-shadow: inset 0 0 6px #555;
+  background-color: #555;
+}
+
+.cke_editable {
+  font-family: "IRAN Sans", serif !important;
+}
+
+
+.v-list-item__subtitle {
+  font-family: "IRAN Sans";
+}
+
+
+.swal2-html-container {
+  font-family: "IRAN Sans";
+  direction: rtl;
+}
+
+.v-toolbar__title {
+  font-family: IranYekanRegular !important;
+}
+
+.v-data-footer__pagination {
+  font-family: "IRAN Sans";
+  font-size: 1.2rem;
+}
+
+.v-messages__message {
+  font-family: "IRAN Sans";
+}
+
+.card-section {
+  padding-top: 3px !important;
+  padding-bottom: 5px !important;
+  justify-content: center;
+}
+
+.card-section span {
+  font-size: 0.8rem;
+}
+
+
+.full-width {
+  width: 100%;
+}
+
+
+.v-input--switch {
+  margin-top: 0px !important;
+}
+
+.v-input--switch .v-input__control {
+  direction: ltr !important;
+}
+
+.v-input--switch .v-input__slot {
+  direction: ltr !important;
+}
+
+.v-input--switch .v-label {
+  direction: rtl !important;
+}
+
+.v-input--selection-controls__input {
+  direction: rtl !important;
+  margin-left: 0px !important;
+}
+
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
