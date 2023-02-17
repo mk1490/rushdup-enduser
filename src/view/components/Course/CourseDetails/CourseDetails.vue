@@ -66,6 +66,7 @@
       </div>
     </div>
     <course-details_-video-player_-modal
+        v-if="modal.visible"
         :visible.sync="modal.visible"
     ></course-details_-video-player_-modal>
   </v-container>
@@ -102,7 +103,7 @@ export default {
   data() {
     return {
       modal: {
-        visible: true,
+        visible: false,
       },
       model: {
         image: "https://iranbusinesscoach.com/wp-content/uploads/2020/09/cover-01-%D8%AF%D9%88%D8%B1%D9%87-%D9%BE%D8%A7%DB%8C%D9%87-%D8%A8%DB%8C%D8%B2%DB%8C%D9%86%D8%B3%E2%80%8C%DA%A9%D9%88%DA%86%DB%8C%D9%86%DA%AF-v3-1.jpg",
@@ -141,7 +142,8 @@ export default {
 
     },
     async itemDetailsClick(item) {
-      await this.$router.push('CourseDetailsVideo/' + item.id)
+      this.modal.visible = true;
+      // await this.$router.push('CourseDetailsVideo/' + item.id)
     }
   }
 }

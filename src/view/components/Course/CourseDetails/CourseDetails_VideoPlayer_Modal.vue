@@ -1,20 +1,30 @@
 ﻿<template>
   <v-dialog
       persistent
+      width="800"
       v-model="visible">
     <v-card>
       <v-card-title>
 
       </v-card-title>
       <v-card-text>
-        <video-player
+        <div class="d-flex justify-center">
+          <video-player
+              :options="options"
+          >
 
-            :options="options"
-        >
-
-        </video-player>
+          </video-player>
+        </div>
       </v-card-text>
-      <v-card-actions></v-card-actions>
+      <v-card-actions>
+        <v-btn
+            text
+            color="red"
+            @click="$emit('update:visible', false)"
+            block>
+          {{ $t('ui.close') }}
+        </v-btn>
+      </v-card-actions>
     </v-card>
   </v-dialog>
 </template>
@@ -32,6 +42,7 @@ export default {
     return {
       options: {
         height: 500,
+        width: 800,
         sources: [
           {
             type: 'video/mp4',
