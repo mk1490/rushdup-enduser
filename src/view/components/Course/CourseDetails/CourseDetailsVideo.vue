@@ -39,9 +39,9 @@
         </v-card>
       </div>
       <div class="col">
-<!--        <video-player-->
-<!--            :src="model.video"-->
-<!--        />-->
+        <!--        <video-player-->
+        <!--            :src="model.video"-->
+        <!--        />-->
       </div>
     </div>
   </v-container>
@@ -49,11 +49,10 @@
 
 <script>
 import videojs from 'video.js';
-import {VideoPlayer} from "@videojs-player/vue";
 
 export default {
   name: "CourseDetailsVideo",
-  components: {VideoPlayer},
+  components: {},
   data() {
     return {
       player: null,

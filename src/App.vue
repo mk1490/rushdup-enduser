@@ -15,8 +15,17 @@ import ProgressDialog from "@/view/widget/ProgressDialog";
 
 export default {
   async created() {
-    // Vue.prototype.showLoader();
+    Vue.prototype.showLoader();
+
+
+    const [err, data] = await this.to(this.http.get(`/initialize`));
+    if (!err) {
+      await this.$store.dispatch('initMenuItems', data.menuItems);
+    }
+
+
     Vue.prototype.deleteModal = this.$refs.delete;
+
     this.$store.subscribe(async (mutation) => {
       switch (mutation.type) {
         case 'LOGOUT':

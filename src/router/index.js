@@ -38,21 +38,36 @@ export const constantRoutes = [{
         meta: {
             title: 'route.myCourses', icon: 'mdi-book-education'
         },
-    }, {
-        path: 'CourseDetails/:id',
-        name: 'CourseDetails',
-        component: () => import('@/view/components/Course/CourseDetails/CourseDetails.vue'),
-        meta: {
-            title: 'route.myCourses', icon: 'mdi-book-education'
-        },
-    }, {
-        path: 'CourseDetailsVideo/:id',
-        name: 'CourseDetailsVideo',
-        component: () => import('@/view/components/Course/CourseDetails/CourseDetailsVideo.vue'),
-        meta: {
-            title: 'route.myCourses', icon: 'mdi-book-education'
-        },
-    },]
+    },
+        {
+            path: 'course-details/:slugOrId',
+            name: 'CourseDetails',
+            component: () => import('@/view/components/Course/CourseDetails/CourseDetails.vue'),
+            meta: {
+                title: 'route.myCourses', icon: 'mdi-book-education'
+            },
+        }, {
+            path: 'CourseDetailsVideo/:id',
+            name: 'CourseDetailsVideo',
+            component: () => import('@/view/components/Course/CourseDetails/CourseDetailsVideo.vue'),
+            meta: {
+                title: 'route.myCourses', icon: 'mdi-book-education'
+            },
+        }, {
+            path: 'explore',
+            name: 'AllCoursesExplore',
+            component: () => import('@/view/components/Course/AllCourses/CoursesList.vue'),
+            meta: {},
+            children: [
+                {
+                    path: 'course-details/:slug',
+                    name: 'CourseDetails',
+                    component: () => import('@/view/components/Course/CourseDetails/CourseDetailsVideo.vue'),
+                    hidden: true,
+                    meta: {}
+                }
+            ]
+        }]
 },];
 
 export default new Router({

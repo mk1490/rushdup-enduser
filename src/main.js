@@ -18,7 +18,7 @@ import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
 import lodash from 'lodash';
 import "@mdi/font/css/materialdesignicons.min.css";
-import VueVideoPlayer from '@videojs-player/vue'
+import VueVideoPlayer from 'vue-video-player'
 import 'video.js/dist/video-js.css'
 
 Vue.use(VueVideoPlayer);

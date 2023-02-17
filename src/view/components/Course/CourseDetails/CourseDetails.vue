@@ -2,41 +2,9 @@
   <v-container fluid>
     <div class="row">
       <div class="col-3">
-        <v-card
-            min-height="280"
-            class="pa-2 mt-4 mx-3"
-            outlined
-            elevation="7"
-            rounded
-            shaped>
-          <v-card-text class="pa-0 d-inline-block">
-            <div class="d-block">
-              <v-img
-                  :src="model.image">
-              </v-img>
-            </div>
-            <div class="d-block d-flex justify-center my-4">
-                <span class="d-flex">
-                  {{ model.title }}
-                </span>
-            </div>
-            <div class="d-block">
-              <p>{{ $t('myCourses.lessonCounts', {count: model.lessonCounts}) }}</p>
-            </div>
-            <div class="d-block">
-              <v-progress-linear
-                  dir="rtl"
-                  color="red"
-                  :height="10"
-                  :value="model.progress">
-                <template
-                    v-slot:default="{ value }">
-                  <strong>{{ Math.ceil(value) }} درصد</strong>
-                </template>
-              </v-progress-linear>
-            </div>
-          </v-card-text>
-        </v-card>
+        <course-details_-information-side
+            :data="model"
+        ></course-details_-information-side>
       </div>
       <div class="col">
         <v-card
@@ -53,7 +21,6 @@
                       class="mb-5">
                     <v-card-text class="row py-2">
                       <div class="col">
-                        <v-icon></v-icon>
                         <span>
                         {{ item.title }}
                       </span>
@@ -98,20 +65,52 @@
         </v-card>
       </div>
     </div>
+    <course-details_-video-player_-modal
+        :visible.sync="modal.visible"
+    ></course-details_-video-player_-modal>
   </v-container>
 </template>
 
 <script>
+import CourseDetails_InformationSide from "@/view/components/Course/CourseDetails/CourseDetails_InformationSide.vue";
+import CourseDetails_VideoPlayer_Modal
+  from "@/view/components/Course/CourseDetails/CourseDetails_VideoPlayer_Modal.vue";
+
 export default {
   name: "CourseDetails",
-  created() {
+  components: {CourseDetails_VideoPlayer_Modal, CourseDetails_InformationSide},
+  async created() {
+    const slugOrId = this.$route.params['slugOrId'];
+    const [err, data] = await this.to(this.http.get(`/course/CourseDetails/${slugOrId}`));
+    if (!err) {
+      this.model.title = data.title;
+      this.model.content = data.content;
+      this.model.studentCounts = data.studentCounts;
+      this.items[1].children = data.courseItems.map((f) => {
+        return {
+          title: f.title,
+          children: f['episodeItems'].map((f) => {
+            return {
+              id: f.id,
+              title: f.title,
+            }
+          })
+        }
+      })
+    }
   },
   data() {
     return {
+      modal: {
+        visible: true,
+      },
       model: {
         image: "https://iranbusinesscoach.com/wp-content/uploads/2020/09/cover-01-%D8%AF%D9%88%D8%B1%D9%87-%D9%BE%D8%A7%DB%8C%D9%87-%D8%A8%DB%8C%D8%B2%DB%8C%D9%86%D8%B3%E2%80%8C%DA%A9%D9%88%DA%86%DB%8C%D9%86%DA%AF-v3-1.jpg",
         title: null,
+        content: null,
+        price: 0,
         lessonCounts: 12,
+        studentCounts: 12,
         progress: 20,
       },
       items: [
@@ -129,10 +128,7 @@ export default {
           children: [
             {
               id: 1,
-              title: 'فصل اول',
-              children: [
-                {title: 'قسمت اول'}
-              ]
+              title: 'قسمت اول',
             }
           ]
         },
@@ -161,5 +157,11 @@ span {
 ::v-deep .v-expansion-panel-header {
   font-family: IranYekanRegular;
   font-size: 1.2rem !important;
+}
+
+.course__title {
+  font-family: IranYekanRegular;
+  font-weight: bold;
+  font-size: 1.8rem !important;
 }
 </style>

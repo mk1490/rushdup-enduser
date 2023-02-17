@@ -10,7 +10,6 @@
   "dependencies": {
     "@mdi/font": "^5.9.55",
     "@persian-tools/persian-tools": "^3.2.1",
-    "@videojs-player/vue": "^1.0.0",
     "await-to-js": "^3.0.0",
     "axios": "^0.26.1",
     "core-js": "^3.8.3",
@@ -22,6 +21,7 @@
     "vue-router": "^3.5.1",
     "vue-sweetalert2": "5.0.2",
     "vue-toast-notification": "^0.6.3",
+    "vue-video-player": "^5.0.2",
     "vuetify": "^2.6.0",
     "vuex": "^3.1.2"
   },
@@ -36,7 +36,7 @@
     "eslint-plugin-vue": "^8.0.3",
     "sass": "~1.32.0",
     "sass-loader": "^10.0.0",
-    "video.js": "^7.21.1",
+    "video.js": "^8.0.4",
     "vue-cli-plugin-vuetify": "~2.5.8",
     "vue-template-compiler": "^2.6.14",
     "vuetify-loader": "^1.7.0"

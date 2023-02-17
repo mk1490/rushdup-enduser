@@ -17,13 +17,16 @@
       <span class="iran-yekan-regular app-title mx-5 noselect">
         آموزشیار
       </span>
-
+      <v-btn
+          width="110"
+          href="#/explore"
+          color="primary"
+          outlined>
+        همه آموزش ها
+      </v-btn>
 
       <div
-          v-if="item.children"
-          v-for="item in menubarItems">
-
-
+          v-for="item in menuItems">
         <v-menu
             @click="navigateToRoute(item.target)"
             open-on-hover
@@ -39,16 +42,20 @@
                 v-bind="attrs"
                 v-on="on"
             >
+              <v-icon v-if="item.childrenItems && item.childrenItems.length > 0">
+                mdi-menu-down
+              </v-icon>
               {{ item.title }}
             </v-btn>
           </template>
 
-          <v-list v-if="item.children.length> 0">
+          <v-list v-if="item.childrenItems && item.childrenItems.length> 0">
             <v-list-item
-                v-for="(item, index) in item.children"
+                @click="navigateToRoute(childItem.target)"
+                v-for="(childItem, index) in item.childrenItems"
                 :key="index"
             >
-              <v-list-item-title>{{ item.title }}</v-list-item-title>
+              <v-list-item-title>{{ childItem.title }}</v-list-item-title>
             </v-list-item>
           </v-list>
         </v-menu>
@@ -72,6 +79,7 @@
             style="background-color:#E53935"
             rounded>
           {{ $t('ui.userAccount') }}
+          <v-icon>mdi-menu-down</v-icon>
         </v-btn>
       </template>
       <v-list>
@@ -112,6 +120,9 @@ import AppDateTime from "@/view/widget/AppDateTime";
 
 export default {
   name: 'TheLayoutToolbar',
+  created() {
+    console.log(this.menuItems)
+  },
   components: {
     AppDateTime,
     Breadcrumbs,
@@ -121,40 +132,12 @@ export default {
     Notification,
     Profile,
   },
-  data: () => ({
-    menubarItems: [
-      {
-        title: 'خانه',
-        target: '/',
-        children: [],
-      },
-      {
-        title: 'ویدئوها',
-        target: null,
-        children: [],
-      },
-      {
-        title: 'دوره ها',
-        target: null,
-        children: [
-          {
-            title: 'دوره ها',
-            target: null,
-            children: []
-          }
-        ],
-      },
-      {
-        title: 'سبد خرید',
-        target: null,
-        children: [],
-      },
-    ],
-  }),
+  data: () => ({}),
   computed: {
     ...mapGetters([
       'toolbarDense',
       'navbarShow',
+      'menuItems'
     ]),
     toggleNavbarIcon() {
       return this.navbarShow ? 'mdi-format-indent-decrease' : 'mdi-format-indent-increase';
@@ -165,7 +148,6 @@ export default {
       this.$store.dispatch('NavbarToggle');
     },
     async navigateToRoute(route) {
-      console.log(route)
       await this.$router.push(route);
     }
   },

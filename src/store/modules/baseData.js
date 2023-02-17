@@ -3,6 +3,7 @@ import i18n from '@/locale'
 
 const baseData = {
     state: {
+        menuItems: [],
         battalionItems: [], timeRangeItems: [{
             text: i18n.t('timeRangeItems.recent12Hour'), value: 'recent12Hour'
         }, {
@@ -19,16 +20,17 @@ const baseData = {
             text: i18n.t('discount.form.discountTypeItems.amountage'), value: 1
         },]
     }, getters: {
-        battalionItems: (state) => state.battalionItems,
-        timeRangeItems: (state) => state.timeRangeItems,
-        discountTypeItems: (state) => state.discountTypeItems,
+        menuItems: (state) => state.menuItems
     },
-
     mutations: {
-        SET_BATTALION_ITEMS: (state, payload) => {
-            state.battalionItems = payload;
+        SET_MENU_ITEMS: (state, payload) => {
+            state.menuItems = payload;
         }
-    }, actions: {},
+    }, actions: {
+        initMenuItems: async (context, payload) => {
+            context.commit('SET_MENU_ITEMS', payload);
+        }
+    },
 };
 
 export default baseData;
