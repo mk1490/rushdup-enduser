@@ -34,7 +34,7 @@
           {{ $t('ui.amoozeshyarCart') }}
         </v-card-title>
         <v-card-text>
-          <v-list>
+          <v-list v-if="cartItems.length > 0">
             <v-list-item
                 v-for="(item, index) in cartItems"
                 :key="index">
@@ -61,8 +61,15 @@
               </v-list-item-content>
             </v-list-item>
           </v-list>
+          <div
+              v-else
+              class="d-flex justify-center no_cart_item">
+            <span>
+              {{$t('cart.noItemsInYourCart')}}
+            </span>
+          </div>
         </v-card-text>
-        <v-card-actions>
+        <v-card-actions v-if="cartItems.length > 0">
           <v-spacer/>
           <v-btn
               href="#/cart"
@@ -99,5 +106,11 @@ export default {
   font-size: 20px;
   margin-bottom: 0px;
   margin-right: 16px;
+}
+
+.no_cart_item {
+  font-family: "IRAN Sans";
+  font-size: 1.4rem !important;
+  color: #f44336;
 }
 </style>

@@ -105,7 +105,7 @@ export default {
   computed: {
     ...mapGetters(['cartItems'])
   },
-  created() {
+  mounted() {
     console.log(this.cartItems, this.data['id'])
     console.log(this.cartItems.findIndex(x => x.id === this.data.id) !== -1)
     if (this.cartItems.findIndex(x => x.id === this.data.id) !== -1) {
@@ -117,6 +117,7 @@ export default {
       switch (this.purchaseStatus) {
         case 0:
           await this.$store.dispatch('addToCart', this.data);
+          this.purchaseStatus = 1;
           break;
         case 1:
           break;
@@ -128,9 +129,9 @@ export default {
         case 0 :
           return this.$t('course.addToCard');
         case 1:
-          return this.$t('course.completePurchaseFlow')
+          return this.$t('course.completePurchaseFlow');
         case 2:
-          return null;
+          return this.$t('course.startLearning');
       }
     }
   }

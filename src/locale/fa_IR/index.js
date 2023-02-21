@@ -3,10 +3,10 @@ import {
     course,
     discount,
     customerClub,
+    comment,
     cms,
     authorProfiles,
     paymentIPGs,
-    comments,
     teachersInbox,
     teachersActivePanels,
     accessPermissions,
@@ -15,7 +15,7 @@ import {
     myAccount,
     allCourses,
     cart,
-    
+
 } from './modules/indexModules'
 
 export default {
@@ -117,7 +117,7 @@ export default {
     cms: cms,
     authorProfiles: authorProfiles,
     paymentIPGs: paymentIPGs,
-    comments: comments,
+    comment: comment,
     teachersActivePanels: teachersActivePanels,
     teachersInbox: teachersInbox,
     accessPermissions: accessPermissions,

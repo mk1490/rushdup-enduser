@@ -10,6 +10,5 @@
     bankReceiptTitle: 'پرداخت از طریق کارت به کارت یا فیش بانکی',
     bankReceiptDescription: 'پرداخت از طریق کارت به کارت یا فیش بانکی',
     yourCartEmpty: 'سبد خرید شما خالی می‌باشد!',
-
-
+    noItemsInYourCart: 'هیچ دوره‌ای در سبد آموزشیار شما وجود ندارد!',
 }

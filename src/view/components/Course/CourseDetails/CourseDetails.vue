@@ -1,70 +1,78 @@
 ﻿<template>
-  <v-container fluid>
-    <div class="row">
-      <div class="col-3">
-        <course-details_-information-side
-            :data="model"
-        ></course-details_-information-side>
-      </div>
-      <div class="col">
-        <v-card
-            class="mt-4">
-          <v-card-text>
-            <v-card
-                class="ma-2"
-                elevation="5">
-              <v-card-text class="pt-9">
-                <div v-for="item in items">
-                  <v-card
-                      v-if="!item.children || item.children.length == 0"
-                      @click="certificateRequest"
-                      class="mb-5">
-                    <v-card-text class="row py-2">
-                      <div class="col">
+  <v-container
+      class="d-flex justify-center"
+      fluid>
+
+    <v-card
+        width="80%"
+        flat>
+      <div class="row">
+        <div class="col-3">
+          <course-details_-information-side
+              :data="model"
+          ></course-details_-information-side>
+        </div>
+        <div class="col">
+          <v-card
+              flat
+              class="mt-5"
+              elevation="5">
+            <v-card-text class="pt-9">
+              <div v-for="item in items">
+                <v-card
+                    v-if="!item.children || item.children.length == 0"
+                    @click="certificateRequest"
+                    class="mb-5">
+                  <v-card-text class="row py-2">
+                    <div class="col">
                         <span>
                         {{ item.title }}
                       </span>
-                      </div>
-                      <div
-                          v-if="item.hasButton"
-                          class="col-auto">
-                        <v-btn
-                            rounded
-                            small
-                            class="white--text"
-                            color="orange">
-                          {{ item.buttonTitle }}
-                        </v-btn>
-                      </div>
-                    </v-card-text>
-                  </v-card>
-                  <v-expansion-panels
-                      class="mb-5"
-                      v-if="item.children">
-                    <v-expansion-panel v-for="childItem in item.children">
-                      <v-expansion-panel-header
-                      >
-                        {{ childItem.title }}
-                      </v-expansion-panel-header>
-                      <v-expansion-panel-content>
-                        <v-list>
-                          <v-list-item
-                              :ripple="false"
-                              @click="itemDetailsClick(childItem)"
-                              v-for="item in childItem.children">
-                            {{ item.title }}
-                          </v-list-item>
-                        </v-list>
-                      </v-expansion-panel-content>
-                    </v-expansion-panel>
-                  </v-expansion-panels>
-                </div>
-              </v-card-text>
-            </v-card>
-          </v-card-text>
-        </v-card>
+                    </div>
+                    <div
+                        v-if="item.hasButton"
+                        class="col-auto">
+                      <v-btn
+                          rounded
+                          small
+                          class="white--text"
+                          color="orange">
+                        {{ item.buttonTitle }}
+                      </v-btn>
+                    </div>
+                  </v-card-text>
+                </v-card>
+                <v-expansion-panels
+                    class="mb-5"
+                    v-if="item.children">
+                  <v-expansion-panel v-for="childItem in item.children">
+                    <v-expansion-panel-header
+                    >
+                      {{ childItem.title }}
+                    </v-expansion-panel-header>
+                    <v-expansion-panel-content>
+                      <v-list>
+                        <v-list-item
+                            :ripple="false"
+                            @click="itemDetailsClick(childItem)"
+                            v-for="item in childItem.children">
+                          {{ item.title }}
+                        </v-list-item>
+                      </v-list>
+                    </v-expansion-panel-content>
+                  </v-expansion-panel>
+                </v-expansion-panels>
+              </div>
+            </v-card-text>
+          </v-card>
+        </div>
+        <div class="col-12">
+          <course-details-submit-comment>
+
+          </course-details-submit-comment>
+        </div>
       </div>
-    </div>
+    </v-card>
     <course-details_-video-player_-modal
         v-if="modal.visible"
         :visible.sync="modal.visible"
@@ -76,10 +84,11 @@
 import CourseDetails_InformationSide from "@/view/components/Course/CourseDetails/CourseDetails_InformationSide.vue";
 import CourseDetails_VideoPlayer_Modal
   from "@/view/components/Course/CourseDetails/CourseDetails_VideoPlayer_Modal.vue";
+import CourseDetailsSubmitComment from "@/view/components/Course/CourseDetails/CourseDetailsSubmitComment.vue";
 
 export default {
   name: "CourseDetails",
-  components: {CourseDetails_VideoPlayer_Modal, CourseDetails_InformationSide},
+  components: {CourseDetailsSubmitComment, CourseDetails_VideoPlayer_Modal, CourseDetails_InformationSide},
   async created() {
     const slugOrId = this.$route.params['slugOrId'];
     const [err, data] = await this.to(this.http.get(`/course/CourseDetails/${slugOrId}`));
