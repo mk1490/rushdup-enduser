@@ -20,7 +20,9 @@ import lodash from 'lodash';
 import "@mdi/font/css/materialdesignicons.min.css";
 import VueVideoPlayer from 'vue-video-player'
 import 'video.js/dist/video-js.css'
+import oidc from './plugins/o_auth'
 
+Vue.prototype.oidc = oidc;
 Vue.use(VueVideoPlayer);
 
 Vue.use(VueSweetalert2, {

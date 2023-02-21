@@ -14,6 +14,7 @@ const user = {
         }, submitDelete: -1,
         loading: false,
         isLogin: false,
+        cartCounts: 0,
     },
     getters: {
         id: (state) => state.id,
@@ -27,6 +28,7 @@ const user = {
         loading: (state) => state.loading,
         loginState: (state) => state.loginState,
         isLogin: (state) => state.isLogin,
+        cartCounts: (state) => state.cartCounts,
     },
     mutations: {
         SET_USER_INFO: (state, payload) => {
@@ -57,6 +59,9 @@ const user = {
         },
         REMOVE_PHOTO: (state) => {
             state.avatar = '';
+        },
+        LOGIN_STATE: (state) => {
+            state.isLogin = state;
         }
     },
     actions: {
@@ -104,6 +109,9 @@ const user = {
         },
         isAuth: async () => {
             return !!localStorage.getItem('Authorization');
+        },
+        setLoginState: async ({commit}, payload) => {
+            await commit('LOGIN_STATE', payload);
         }
     }
 }

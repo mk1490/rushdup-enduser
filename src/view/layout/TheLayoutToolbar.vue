@@ -6,14 +6,10 @@
       dark
       fixed
       flat>
-
-
     <div class="d-inline-flex align-center">
-
       <v-img
           src="@/assets/logo.png"
       />
-
       <span class="iran-yekan-regular app-title mx-5 noselect">
         آموزشیار
       </span>
@@ -23,6 +19,13 @@
           color="primary"
           outlined>
         همه آموزش ها
+      </v-btn>
+      <v-btn
+          width="110"
+          href="#/callback"
+          color="primary"
+          outlined>
+        کالبک
       </v-btn>
 
       <div
@@ -65,7 +68,39 @@
     </div>
     <v-spacer/>
 
+
+    <v-btn
+        elevation="0"
+        class="ml-3"
+        icon>
+      <v-badge
+          v-if="cartCounts > 0"
+          left
+          :content="cartCounts">
+        <v-icon
+            color="primary">
+          mdi-cart
+        </v-icon>
+      </v-badge>
+      <v-icon
+          v-if="cartCounts == 0"
+          color="primary">
+        mdi-cart
+      </v-icon>
+    </v-btn>
+
+
+    <v-btn
+        v-if="!isLogin"
+        @click="login"
+        elevation="5"
+        style="background-color:#E53935"
+        rounded>
+      {{ $t('ui.loginToAccount') }}
+    </v-btn>
+
     <v-menu
+        v-if="isLogin"
         open-on-hover
         bottom
         offset-y
@@ -99,7 +134,7 @@
         <v-list-item>
           <v-list-item-title>{{ $t('ui.myTests') }}</v-list-item-title>
         </v-list-item>
-        <v-list-item>
+        <v-list-item @click="handleLogout">
           <v-list-item-title>{{ $t('ui.accountLogout') }}</v-list-item-title>
         </v-list-item>
       </v-list>
@@ -137,7 +172,9 @@ export default {
     ...mapGetters([
       'toolbarDense',
       'navbarShow',
-      'menuItems'
+      'menuItems',
+      'isLogin',
+      'cartCounts'
     ]),
     toggleNavbarIcon() {
       return this.navbarShow ? 'mdi-format-indent-decrease' : 'mdi-format-indent-increase';
@@ -149,6 +186,19 @@ export default {
     },
     async navigateToRoute(route) {
       await this.$router.push(route);
+    },
+    async login() {
+      // this.oidc.signinRedirect({}).then(res => {
+      //   console.log(res)
+      // }).catch(e => {
+      //   console.log(e)
+      // });
+      this.oidc.login();
+    },
+    handleLogout() {
+      this.oidc.signoutRedirect().then(res => {
+        this.$store.dispatch('setLoginState', false)
+      })
     }
   },
 };
