@@ -59,6 +59,13 @@ const user = {
             localStorage.setItem('cart', JSON.stringify(items));
             state.cartItems = items;
         },
+        REMOVE_CART_ITEM: (state, index) => {
+            let items = state.cartItems;
+            items.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(items));
+            state.cartItems = items;
+        },
+
         INITIAL_CART_ITEMS: (state) => {
             let items = localStorage.getItem('cart');
             if (items) {
@@ -109,6 +116,13 @@ const user = {
         }, addToCart: async ({commit}, payload) => {
             await commit('ADD_TO_CART', payload);
         },
-    }
+        removeCartItem: async ({commit}, index) => {
+
+            const isConfirm = window.confirm('برای حذف این دوره از سبد اطمینان دارید؟')
+            if (isConfirm)
+                await commit('REMOVE_CART_ITEM', index);
+        },
+    },
+
 }
 export default user;

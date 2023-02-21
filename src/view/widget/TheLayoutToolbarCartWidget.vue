@@ -64,7 +64,9 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer/>
-          <v-btn color="primary">
+          <v-btn
+              href="#/cart"
+              color="primary">
             {{ $t('ui.seeEducationCard') }}
           </v-btn>
         </v-card-actions>

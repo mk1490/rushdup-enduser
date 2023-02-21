@@ -38,7 +38,14 @@ export const constantRoutes = [{
             meta: {
                 title: 'route.myCourses', icon: 'mdi-book-education'
             },
-        }, {
+        },
+        {
+            path: 'Cart',
+            name: 'Cart',
+            component: () => import('@/view/components/Cart/Cart.vue'),
+            meta: {},
+        },
+        {
             path: 'MyAccount',
             name: 'MyAccount',
             component: () => import('@/view/components/AccountInformation/MyAccount/MyAccount.vue'),

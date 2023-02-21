@@ -13,7 +13,9 @@ import {
     myCourses,
     accountInformation,
     myAccount,
-    allCourses
+    allCourses,
+    cart,
+    
 } from './modules/indexModules'
 
 export default {
@@ -123,4 +125,5 @@ export default {
     accountInformation: accountInformation,
     myAccount: myAccount,
     allCourses: allCourses,
+    cart: cart,
 };
