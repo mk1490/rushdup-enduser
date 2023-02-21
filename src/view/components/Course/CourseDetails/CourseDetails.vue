@@ -84,10 +84,12 @@ export default {
     const slugOrId = this.$route.params['slugOrId'];
     const [err, data] = await this.to(this.http.get(`/course/CourseDetails/${slugOrId}`));
     if (!err) {
+      console.log(data)
+      this.model.id = data.id;
       this.model.title = data.title;
       this.model.content = data.content;
       this.model.studentCounts = data.studentCounts;
-      this.items[1].children = data.courseItems.map((f) => {
+      this.items[0].children = data.courseItems.map((f) => {
         return {
           title: f.title,
           children: f['episodeItems'].map((f) => {
@@ -106,6 +108,7 @@ export default {
         visible: false,
       },
       model: {
+        id: null,
         image: "https://iranbusinesscoach.com/wp-content/uploads/2020/09/cover-01-%D8%AF%D9%88%D8%B1%D9%87-%D9%BE%D8%A7%DB%8C%D9%87-%D8%A8%DB%8C%D8%B2%DB%8C%D9%86%D8%B3%E2%80%8C%DA%A9%D9%88%DA%86%DB%8C%D9%86%DA%AF-v3-1.jpg",
         title: null,
         content: null,

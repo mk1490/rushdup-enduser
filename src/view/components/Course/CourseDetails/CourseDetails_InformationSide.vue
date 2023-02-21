@@ -48,11 +48,12 @@
       <div class="d-block mt-5">
         <div class="d-flex justify-center">
           <v-btn
+              @click="addToCartOrCompletePurchaseFlowOrViewCourse"
               height="50"
               block
               class="white--text"
               color="green">
-            {{ $t('course.addToCard') }}
+            {{ getCartButtonTitle() }}
           </v-btn>
         </div>
       </div>
@@ -86,10 +87,52 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
   name: "CourseDetails_InformationSide",
-  props:{
+  props: {
     data: Object
+  },
+  data() {
+    return {
+      // 0 به منزله عدم خرید
+      // 1 به منزله اضافه شده به سبد خرید
+      // 2 به منزله خریداری شده
+      purchaseStatus: 0,
+    }
+  },
+  computed: {
+    ...mapGetters(['cartItems'])
+  },
+  created() {
+    console.log(this.cartItems, this.data['id'])
+    console.log(this.cartItems.findIndex(x => x.id === this.data.id) !== -1)
+    if (this.cartItems.findIndex(x => x.id === this.data.id) !== -1) {
+      this.purchaseStatus = 1;
+    }
+  },
+  methods: {
+    async addToCartOrCompletePurchaseFlowOrViewCourse() {
+      switch (this.purchaseStatus) {
+        case 0:
+          await this.$store.dispatch('addToCart', this.data);
+          break;
+        case 1:
+          break;
+      }
+
+    },
+    getCartButtonTitle() {
+      switch (this.purchaseStatus) {
+        case 0 :
+          return this.$t('course.addToCard');
+        case 1:
+          return this.$t('course.completePurchaseFlow')
+        case 2:
+          return null;
+      }
+    }
   }
 }
 </script>

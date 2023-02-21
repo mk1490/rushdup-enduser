@@ -2,21 +2,10 @@ import Vue from 'vue';
 
 const user = {
     state: {
-        id: null,
-        name: '',
-        family: '',
-        avatar: '',
-        phoneNumber: '',
-        personnelCode: '',
-        roles: [],
-        deleteDialog: {
+        id: null, name: '', family: '', avatar: '', phoneNumber: '', personnelCode: '', roles: [], deleteDialog: {
             visible: false, index: 0,
-        }, submitDelete: -1,
-        loading: false,
-        isLogin: false,
-        cartCounts: 0,
-    },
-    getters: {
+        }, submitDelete: -1, loading: false, isLogin: false, cartItems: [],
+    }, getters: {
         id: (state) => state.id,
         name: (state) => state.name,
         family: (state) => state.family,
@@ -28,9 +17,8 @@ const user = {
         loading: (state) => state.loading,
         loginState: (state) => state.loginState,
         isLogin: (state) => state.isLogin,
-        cartCounts: (state) => state.cartCounts,
-    },
-    mutations: {
+        cartItems: (state) => state.cartItems,
+    }, mutations: {
         SET_USER_INFO: (state, payload) => {
             state.id = payload.id || null;
             state.name = payload.name || state.name;
@@ -39,14 +27,11 @@ const user = {
             state.phoneNumber = payload.phoneNumber || state.phoneNumber;
             state.personnelCode = payload.username || state.personnelCode;
             state.roles = payload.roles;
-        },
-        SET_PHOTO: (state, payload) => {
+        }, SET_PHOTO: (state, payload) => {
             state.avatar = payload;
-        },
-        SET_TOKEN: (state, token) => {
+        }, SET_TOKEN: (state, token) => {
             state.token = token;
-        },
-        SHOW_LOADING: (state, showLoading) => {
+        }, SHOW_LOADING: (state, showLoading) => {
             state.loading = showLoading;
         }, ALL_PREFERENCES: (state, payload) => {
             state.allPreferences = payload;
@@ -56,36 +41,49 @@ const user = {
         }, SUBMIT_DELETE: (state, index) => {
             state.submitDelete = index;
         }, LOGOUT: () => {
-        },
-        REMOVE_PHOTO: (state) => {
+        }, REMOVE_PHOTO: (state) => {
             state.avatar = '';
-        },
-        LOGIN_STATE: (state) => {
+        }, LOGIN_STATE: (state) => {
             state.isLogin = state;
-        }
-    },
-    actions: {
+        },
+        ADD_TO_CART: (state, payload) => {
+            let items = localStorage.getItem('cart');
+            if (items) {
+                items = JSON.parse(items);
+            } else {
+                items = [];
+            }
+            if (items.findIndex(x => x.id === payload.id) === -1) {
+                items.push(payload);
+            }
+            localStorage.setItem('cart', JSON.stringify(items));
+            state.cartItems = items;
+        },
+        INITIAL_CART_ITEMS: (state) => {
+            let items = localStorage.getItem('cart');
+            if (items) {
+                items = JSON.parse(items);
+            } else {
+                items = [];
+            }
+            state.cartItems = items;
+        },
+    }, actions: {
         showLoading: ({commit}) => {
             commit('SHOW_LOADING', true);
-        },
-        hideLoading: ({commit}) => {
+        }, hideLoading: ({commit}) => {
             commit('SHOW_LOADING', false);
-        },
-        allPreferences: async ({commit}, payload) => {
+        }, allPreferences: async ({commit}, payload) => {
             await commit('ALL_PREFERENCES', payload);
-        },
-        deleteDialog: async ({commit}, index) => {
+        }, deleteDialog: async ({commit}, index) => {
             await commit('DELETE_DIALOG', {
                 index: index, visible: true,
             });
-        },
-        submitDelete: async ({commit}, index) => {
+        }, submitDelete: async ({commit}, index) => {
             await commit('SUBMIT_DELETE', index);
-        },
-        logout: async ({commit}) => {
+        }, logout: async ({commit}) => {
             await commit('LOGOUT');
-        },
-        /*initProfile: async ({commit}) => {
+        }, /*initProfile: async ({commit}) => {
             let isAuthenticated = localStorage.getItem('Authorization');
             isAuthenticated = !!isAuthenticated;
             if (isAuthenticated == false)
@@ -100,19 +98,17 @@ const user = {
         // },*/
         setUserInfo: async ({commit}, payload) => {
             await commit('SET_USER_INFO', payload);
-        },
-        setPhoto: async ({commit}, payload) => {
+        }, setPhoto: async ({commit}, payload) => {
             await commit('SET_PHOTO', payload);
-        },
-        removePhoto: async ({commit}) => {
+        }, removePhoto: async ({commit}) => {
             await commit('REMOVE_PHOTO');
-        },
-        isAuth: async () => {
+        }, isAuth: async () => {
             return !!localStorage.getItem('Authorization');
-        },
-        setLoginState: async ({commit}, payload) => {
+        }, setLoginState: async ({commit}, payload) => {
             await commit('LOGIN_STATE', payload);
-        }
+        }, addToCart: async ({commit}, payload) => {
+            await commit('ADD_TO_CART', payload);
+        },
     }
 }
 export default user;

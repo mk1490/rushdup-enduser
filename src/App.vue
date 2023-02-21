@@ -16,6 +16,7 @@ import ProgressDialog from "@/view/widget/ProgressDialog";
 export default {
   async created() {
     Vue.prototype.showLoader();
+    await this.$store.commit('INITIAL_CART_ITEMS');
     const [err, data] = await this.to(this.http.get(`/initialize`));
     if (!err) {
       await this.$store.dispatch('initMenuItems', data.menuItems);

@@ -69,26 +69,9 @@
     <v-spacer/>
 
 
-    <v-btn
-        elevation="0"
-        class="ml-3"
-        icon>
-      <v-badge
-          v-if="cartCounts > 0"
-          left
-          :content="cartCounts">
-        <v-icon
-            color="primary">
-          mdi-cart
-        </v-icon>
-      </v-badge>
-      <v-icon
-          v-if="cartCounts == 0"
-          color="primary">
-        mdi-cart
-      </v-icon>
-    </v-btn>
+    <the-layout-toolbar-cart-widget :cart-items="cartItems">
 
+    </the-layout-toolbar-cart-widget>
 
     <v-btn
         v-if="!isLogin"
@@ -152,6 +135,7 @@ import Localization from '../widget/AppLocalization.vue';
 import Notification from '../widget/AppNotification.vue';
 import Profile from '../widget/AppProfile.vue';
 import AppDateTime from "@/view/widget/AppDateTime";
+import TheLayoutToolbarCartWidget from "@/view/widget/TheLayoutToolbarCartWidget.vue";
 
 export default {
   name: 'TheLayoutToolbar',
@@ -159,6 +143,7 @@ export default {
     console.log(this.menuItems)
   },
   components: {
+    TheLayoutToolbarCartWidget,
     AppDateTime,
     Breadcrumbs,
     ErrorLog,
@@ -173,8 +158,7 @@ export default {
       'toolbarDense',
       'navbarShow',
       'menuItems',
-      'isLogin',
-      'cartCounts'
+      'isLogin', 'cartItems'
     ]),
     toggleNavbarIcon() {
       return this.navbarShow ? 'mdi-format-indent-decrease' : 'mdi-format-indent-increase';
