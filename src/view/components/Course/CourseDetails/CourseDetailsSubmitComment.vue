@@ -4,11 +4,46 @@
       {{ $t('comment.title') }}
     </v-card-title>
     <v-card-text>
-      <v-textarea
-          outlined
-          :placeholder="$t('comment.writeYourComment')">
+      <div class="row">
+        <div class="col-md-4 col-sm-12">
+          <div class="row">
+            <div class="col-12">
+              <v-text-field
+                  :label="$t('comment.form.name')"
+                  outlined
+                  hide-details
+                  dense
+                  v-model="model.name"
+              ></v-text-field>
+            </div>
+            <div class="col-12">
+              <v-text-field
+                  :label="$t('comment.form.email')"
+                  outlined
+                  hide-details
+                  dense
+                  v-model="model.name"
+              ></v-text-field>
+            </div>
+            <div class="col-12">
+              <v-text-field
+                  :label="$t('comment.form.mobileNumber')"
+                  outlined
+                  hide-details
+                  dense
+                  v-model="model.name"
+              ></v-text-field>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <v-textarea
+              outlined
+              :placeholder="$t('comment.form.writeYourComment')">
 
-      </v-textarea>
+          </v-textarea>
+        </div>
+      </div>
     </v-card-text>
     <v-card-actions>
       <v-btn color="primary">
@@ -20,7 +55,16 @@
 
 <script>
 export default {
-  name: "CourseDetailsSubmitComment"
+  name: "CourseDetailsSubmitComment",
+  data() {
+    return {
+      model: {
+        name: null,
+        family: null,
+        mobileNumber: null,
+      }
+    }
+  }
 }
 </script>
 

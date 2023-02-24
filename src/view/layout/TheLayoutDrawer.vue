@@ -2,71 +2,17 @@
   <v-navigation-drawer
       dark
       fixed
-      style="background: #0e4b06"
-      class="darken-4"
+      style="background: #ffffff"
       app
       right
       :value="navbarShow"
-      :width="320"
+      width="80%"
       @input="stateNavbarShow">
-    <v-list>
-      <v-list-item class="px-2">
-        <v-list-item-content>
-          <v-list-item-title>
-            <h3>
-              {{ `${name} ${family}` }}
-            </h3>
-          </v-list-item-title>
-        </v-list-item-content>
-        <!--        <v-list-item-action>-->
-        <!--          <v-list-item-action-text class="text-h6">-->
-        <!--            <v-btn-->
-        <!--                @click="goToProfile"-->
-        <!--                small-->
-        <!--                class="darken-2"-->
-        <!--                color="yellow">-->
-        <!--              {{ $t('ui.profile') }}-->
-        <!--            </v-btn>-->
-        <!--          </v-list-item-action-text>-->
-        <!--        </v-list-item-action>-->
-      </v-list-item>
-    </v-list>
     <v-divider></v-divider>
-    <v-app-bar
-        v-if="navbarLogo"
-        :dense="toolbarDense"
-        dark
-    >
-      <v-toolbar-title class="text-center">
-        <v-avatar
-            size="32px"
-            tile
-        >
-          <img
-              src="img/icons/android-icon-36x36.png"
-              alt="VVA"
-          >
-        </v-avatar>
-        <span>{{ $t('toolbar.appname') }}</span>
-      </v-toolbar-title>
-    </v-app-bar>
     <the-layout-drawer-list
         v-if="drawerItemsVisible"
-        :dense="navbarDense"
-        :routes="navigationItems"
         :icon-show="true"
     />
-    <template v-slot:append>
-      <div class="pa-2">
-        <v-btn
-            @click="logout"
-            block
-            class="darken-2"
-            color="yellow">
-          {{ $t('ui.logout') }}
-        </v-btn>
-      </div>
-    </template>
   </v-navigation-drawer>
 </template>
 

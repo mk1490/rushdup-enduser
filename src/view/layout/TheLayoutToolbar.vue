@@ -2,33 +2,41 @@
   <v-app-bar
       app
       style="background: #fff"
-      class="darken-3 px-6"
+      class="darken-3"
       dark
       fixed
       flat>
     <div class="d-inline-flex align-center">
+      <v-btn
+          @click="toggleNavbar"
+          class="d-md-none d-sm-block"
+          icon
+          color="black"
+      >
+        <v-icon>
+          mdi-menu
+        </v-icon>
+      </v-btn>
       <v-img
           src="@/assets/logo.png"
       />
-      <span class="iran-yekan-regular app-title mx-5 noselect">
+      <span
+          @click="$router.push('/Home')"
+          class="iran-yekan-regular app-title mx-5 noselect">
         آموزشیار
       </span>
       <v-btn
+          class="d-none d-sm-block"
           width="110"
-          href="#/explore"
+          @click="navigateToRoute('/explore')"
           color="primary"
           outlined>
         همه آموزش ها
       </v-btn>
-      <v-btn
-          width="110"
-          href="#/callback"
-          color="primary"
-          outlined>
-        کالبک
-      </v-btn>
+
 
       <div
+          class="d-sm-none"
           v-for="item in menuItems">
         <v-menu
             @click="navigateToRoute(item.target)"
@@ -69,11 +77,14 @@
     <v-spacer/>
 
 
-    <the-layout-toolbar-cart-widget :cart-items="cartItems">
+    <the-layout-toolbar-cart-widget
+        class="d-none d-sm-block"
+        :cart-items="cartItems">
 
     </the-layout-toolbar-cart-widget>
 
     <v-btn
+        class="d-none d-sm-block"
         v-if="!isLogin"
         @click="login"
         elevation="5"
@@ -83,6 +94,7 @@
     </v-btn>
 
     <v-menu
+        class="d-sm-none d-md-block"
         v-if="isLogin"
         open-on-hover
         bottom
@@ -102,7 +114,7 @@
       </template>
       <v-list>
         <v-list-item
-            @click="navigateToRoute('MyCourses')"
+            @click="navigateToRoute('/MyCourses')"
         >
           <v-list-item-title>{{ $t('ui.myCourses') }}</v-list-item-title>
         </v-list-item>
@@ -169,7 +181,7 @@ export default {
       this.$store.dispatch('NavbarToggle');
     },
     async navigateToRoute(route) {
-      await this.$router.push(route);
+      await this.$router.replace(route);
     },
     async login() {
       // this.oidc.signinRedirect({}).then(res => {

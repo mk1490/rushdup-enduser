@@ -1,9 +1,9 @@
 ﻿<template>
   <v-card
       min-height="280"
-      class="pa-2 mt-4 mx-3"
+      class="pa-2 mt-4"
       outlined
-      elevation="7"
+      elevation="3"
       rounded
       shaped>
     <v-card-text class="pa-0 d-inline-block">
@@ -21,23 +21,23 @@
         <p>{{ $t('myCourses.lessonCounts', {count: data.lessonCounts}) }}</p>
       </div>
       <div class="d-block">
-        <v-progress-linear
-            dir="rtl"
-            color="red"
-            :height="10"
-            :value="data.progress">
-          <template
-              v-slot:default="{ value }">
-            <strong>{{ Math.ceil(value) }} درصد</strong>
-          </template>
-        </v-progress-linear>
+<!--        <v-progress-linear-->
+        <!--            dir="rtl"-->
+        <!--            color="red"-->
+        <!--            :height="10"-->
+        <!--            :value="data.progress">-->
+        <!--          <template-->
+        <!--              v-slot:default="{ value }">-->
+        <!--            <strong>{{ Math.ceil(value) }} درصد</strong>-->
+        <!--          </template>-->
+        <!--        </v-progress-linear>-->
       </div>
       <div class="d-block mt-5">
         <div class="row">
-          <div class="col d-inline-flex">
-                  <span>
-                    {{ data.price }}
-                  </span>
+          <div class="col d-inline-flex price">
+            <p>
+              {{ data.price }}
+            </p>
             <small>
               {{ $t('IRR') }}
             </small>
@@ -139,5 +139,8 @@ export default {
 </script>
 
 <style scoped>
-
+.price p {
+  font-family: "IRAN Sans";
+  font-size: 2rem !important;
+}
 </style>

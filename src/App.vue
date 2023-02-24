@@ -20,6 +20,7 @@ export default {
     const [err, data] = await this.to(this.http.get(`/initialize`));
     if (!err) {
       await this.$store.dispatch('initMenuItems', data.menuItems);
+      await this.$store.dispatch('initCategoryItems', data.categoryItems);
     }
     Vue.prototype.deleteModal = this.$refs.delete;
     this.$store.subscribe(async (mutation) => {

@@ -1,6 +1,7 @@
 <template>
   <div class="v-application--wrap">
     <the-layout-toolbar/>
+    <the-layout-drawer class="d-sm-none d-sm-block d-md-none"/>
     <the-layout-content/>
   </div>
 </template>

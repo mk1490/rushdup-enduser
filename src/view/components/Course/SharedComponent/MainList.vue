@@ -1,27 +1,29 @@
 ﻿<template>
-  <div class="d-inline-flex">
-    <div v-for="(item, index) in items">
+  <div class="d-flex flex-wrap justify-sm-center">
+    <div
+        v-for="(item, index) in items">
       <v-card
+          class="ma-3"
+          :href="'#/course-details/' + item['slug']"
           :height="360"
           :width="340">
         <v-responsive>
           <v-card-text class="pa-0">
             <div class="d-block">
               <v-img
-                  @click="itemClick(item)"
+                  :aspect-ratio="4/3"
                   :key="index"
                   :src="item.cover">
               </v-img>
             </div>
             <div
-                @click="itemClick(item)"
                 class="course__title mt-2 clickable">
-              <v-btn
+              <p
                   block
                   text
                   :href="`#/course-details/${item.slug}`">
                 {{ item.title }}
-              </v-btn>
+              </p>
             </div>
             <hr class="d-block"/>
             <div class="d-block pricing">
@@ -53,6 +55,7 @@ export default {
     items: Array,
   },
   data() {
+    return {}
   },
   methods: {
     itemClick(item) {

@@ -71,7 +71,8 @@ export const constantRoutes = [{
             meta: {
                 title: 'route.myCourses', icon: 'mdi-book-education'
             },
-        }, {
+        },
+        {
             path: 'explore',
             name: 'AllCoursesExplore',
             component: () => import('@/view/components/Course/AllCourses/CoursesList.vue'),
@@ -83,7 +84,15 @@ export const constantRoutes = [{
                 hidden: true,
                 meta: {}
             }]
-        }]
+        },
+        {
+            path: '/category/:slug',
+            name: 'Category',
+            component: () => import('@/view/components/Course/Category/CategoryLists.vue'),
+            meta: {},
+            children: []
+        },
+    ]
 },
 
 ];

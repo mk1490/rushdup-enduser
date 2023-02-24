@@ -4,6 +4,8 @@ import i18n from '@/locale'
 const baseData = {
     state: {
         menuItems: [],
+        categoryItems: [],
+        selectedCategory: null,
         battalionItems: [], timeRangeItems: [{
             text: i18n.t('timeRangeItems.recent12Hour'), value: 'recent12Hour'
         }, {
@@ -20,15 +22,30 @@ const baseData = {
             text: i18n.t('discount.form.discountTypeItems.amountage'), value: 1
         },]
     }, getters: {
-        menuItems: (state) => state.menuItems
+        menuItems: (state) => state.menuItems,
+        categoryItems: (state) => state.categoryItems,
+        selectedCategory: (state) => state.selectedCategory
     },
     mutations: {
         SET_MENU_ITEMS: (state, payload) => {
             state.menuItems = payload;
-        }
+        },
+        SET_CATEGORY_ITEMS: (state, payload) => {
+            state.categoryItems = payload;
+        },
+        SELECT_CATEGORY: (state, payload) => {
+            state.selectedCategory = payload;
+        },
     }, actions: {
         initMenuItems: async (context, payload) => {
             context.commit('SET_MENU_ITEMS', payload);
+        },
+        initCategoryItems: async (context, payload) => {
+            context.commit('SET_CATEGORY_ITEMS', payload);
+        },
+        setCategory: async (context, payload) => {
+            context.commit('SELECT_CATEGORY', payload);
+            context.commit('NAVBAR_STATE', false);
         }
     },
 };

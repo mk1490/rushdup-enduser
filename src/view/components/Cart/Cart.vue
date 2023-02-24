@@ -35,19 +35,9 @@
           </div>
         </div>
         <div
-            class="d-flex justify-center"
             v-else>
-          <div class="d-inline-block justify-center">
-            <v-img
-                src="@/assets/cartEmpty.png"
-                height="250">
-            </v-img>
-            <div class="d-flex justify-center">
-              <span class="cart__empty">
-              {{ $t('cart.yourCartEmpty') }}
-            </span>
-            </div>
-          </div>
+          <cart-empty>
+          </cart-empty>
         </div>
       </v-card-text>
     </v-card>
@@ -60,10 +50,11 @@ import SideTotalAmountAndPayButton from "@/view/components/Cart/Widgets/SideTota
 import SelectionPaymentTypes from "@/view/components/Cart/Widgets/SelectionPaymentTypes.vue";
 import ItemsList from "@/view/components/Cart/Widgets/ItemsList.vue";
 import {mapGetters} from "vuex";
+import CartEmpty from "@/view/components/Cart/Widgets/CartEmpty.vue";
 
 export default {
   name: "Cart",
-  components: {ItemsList, SelectionPaymentTypes, SideTotalAmountAndPayButton, DiscountCode},
+  components: {CartEmpty, ItemsList, SelectionPaymentTypes, SideTotalAmountAndPayButton, DiscountCode},
   data() {
     return {
       discountCode: null,
