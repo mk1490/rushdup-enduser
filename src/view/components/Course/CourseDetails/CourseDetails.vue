@@ -3,24 +3,37 @@
       class="d-flex justify-center"
       fluid>
     <v-card
+        color="transparent"
         width="80%"
         flat>
       <div class="row">
         <div class="col-md-12">
           <v-card
+              elevation="0"
               min-height="200"
-              color="#E64A19">
+              color="#FF7043">
             <v-card-text>
               <v-container>
-                <div class="d-inline-flex">
-                  <v-img
-                      :aspect-ratio="3/4"
-                      :src="serverAddress + model.cover">
-                  </v-img>
-                  <p class="summary__content">
-                    {{ model.content }}
-                  </p>
+                <div class="row">
+                  <div class="col-auto">
+                    <v-img
+                        :aspect-ratio="4/3"
+                        width="300"
+                        :src="model.cover">
+                    </v-img>
+                  </div>
+                  <div class="col">
+                    <div class="d-block">
+                      <h1 class="summary__title">{{ model.title }}</h1>
+                    </div>
+                    <div class="d-block">
+                      <p class="summary__content">
+                        {{ model.content }}
+                      </p>
+                    </div>
+                  </div>
                 </div>
+
               </v-container>
             </v-card-text>
           </v-card>
@@ -28,14 +41,18 @@
 
         <div class="col-md-3 col-sm-12">
           <course-details_-information-side
-              :data="model"
+              v-if="model.teacher"
+              :data="model.teacher"
           ></course-details_-information-side>
+          <teacher-information :data="model.teacher">
+
+          </teacher-information>
         </div>
         <div class="col">
-          <course-details_-episode-items
-              v-if="items.length > 0"
-              :items="items">
-          </course-details_-episode-items>
+          <!--          <course-details_-episode-items-->
+          <!--              v-if="items.length > 0"-->
+          <!--              :items="items">-->
+          <!--          </course-details_-episode-items>-->
         </div>
         <div class="col-md-12 col-sm-12">
           <course-details-submit-comment>
@@ -57,34 +74,41 @@ import CourseDetails_VideoPlayer_Modal
   from "@/view/components/Course/CourseDetails/CourseDetails_VideoPlayer_Modal.vue";
 import CourseDetailsSubmitComment from "@/view/components/Course/CourseDetails/CourseDetailsSubmitComment.vue";
 import CourseDetails_EpisodeItems from "@/view/components/Course/CourseDetails/CourseDetails_EpisodeItems.vue";
+import TeacherInformation from "@/view/components/Course/CourseDetails/Widgets/TeacherInformation.vue";
 
 export default {
   name: "CourseDetails",
   components: {
+    TeacherInformation,
     CourseDetails_EpisodeItems,
     CourseDetailsSubmitComment, CourseDetails_VideoPlayer_Modal, CourseDetails_InformationSide
   },
-  async created() {
+  async mounted() {
     const slugOrId = this.$route.params['slugOrId'];
     const [err, data] = await this.to(this.http.get(`/course/CourseDetails/${slugOrId}`));
     if (!err) {
       this.model.id = data.id;
       this.model.title = data.title;
       this.model.content = data.content;
-      this.model.cover = data.cover;
+      this.model.cover = this.model.cover = this.serverAddress + `/core/image/course/${this.model.id}`;
       this.model.studentCounts = data.studentCounts;
-      this.items = data.courseItems.map((f) => {
-        return {
-          title: f.title,
-          children: f['episodeItems'].map((f) => {
-            return {
-              id: f.id,
-              title: f.title,
-            }
-          })
-        }
-      })
+      this.model.teacher = data.teacher;
+      console.log(this.model.teacher)
+      // this.items = data.courseItems.map((f) => {
+      //   return {
+      //     title: f.title,
+      //     children: f['episodeItems'].map((f) => {
+      //       return {
+      //         id: f.id,
+      //         title: f.title,
+      //       }
+      //     })
+      //   }
+      // })
     }
+  },
+  created() {
+
   },
   data() {
     return {
@@ -98,6 +122,7 @@ export default {
         title: null,
         content: null,
         price: 0,
+        teacher: null,
         lessonCounts: 12,
         studentCounts: 12,
         progress: 20,
@@ -152,9 +177,22 @@ span {
   font-size: 1.8rem !important;
 }
 
+.summary__title {
+  font-family: IranYekanRegular !important;
+  color: white;
+  font-size: 1.3rem !important;
+  margin-right: 20px;
+}
+
 .summary__content {
   font-family: "IRAN Sans" !important;
+  font-size: 1.2rem !important;
+  margin-top: 8px;
   color: white;
-  font-size: 1.4rem !important;
+  margin-right: 20px;
+}
+
+::v-deep .v-image__image--cover {
+  border-radius: 18px !important;
 }
 </style>

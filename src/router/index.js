@@ -92,6 +92,14 @@ export const constantRoutes = [{
             meta: {},
             children: []
         },
+        {
+            path: '/teacherProfile/:slug',
+            name: 'Category',
+            component: () => import('@/view/components/Teacher/TeacherInformationProfile.vue'),
+            meta: {},
+            children: []
+        },
+
     ]
 },
 
@@ -99,6 +107,7 @@ export const constantRoutes = [{
 
 export default new Router({
     scrollBehavior: () => ({y: 0}), routes: constantRoutes,
+    mode: "history",
 });
 
 export const asyncRoutes = [{path: '*', redirect: '/error/404', hidden: true},];

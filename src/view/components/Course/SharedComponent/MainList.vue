@@ -4,7 +4,7 @@
         v-for="(item, index) in items">
       <v-card
           class="ma-3"
-          :href="'#/course-details/' + item['slug']"
+          :href="'/course-details/' + item['slug']"
           :height="360"
           :width="340">
         <v-responsive>

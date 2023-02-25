@@ -2,8 +2,7 @@
   <v-card
       min-height="280"
       class="pa-2 mt-4"
-      outlined
-      elevation="3"
+      elevation="0"
       rounded
       shaped>
     <v-card-text class="pa-0 d-inline-block">
@@ -21,7 +20,7 @@
         <p>{{ $t('myCourses.lessonCounts', {count: data.lessonCounts}) }}</p>
       </div>
       <div class="d-block">
-<!--        <v-progress-linear-->
+        <!--        <v-progress-linear-->
         <!--            dir="rtl"-->
         <!--            color="red"-->
         <!--            :height="10"-->
@@ -52,7 +51,7 @@
               height="50"
               block
               class="white--text"
-              color="green">
+              color="#3949AB">
             {{ getCartButtonTitle() }}
           </v-btn>
         </div>
@@ -88,9 +87,11 @@
 
 <script>
 import {mapGetters} from "vuex";
+import TeacherInformation from "@/view/components/Course/CourseDetails/Widgets/TeacherInformation.vue";
 
 export default {
   name: "CourseDetails_InformationSide",
+  components: {TeacherInformation},
   props: {
     data: Object
   },

@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app style="background-color: #F0F0F1">
     <router-view/>
     <delete-dialog
         ref="deleteDialog">

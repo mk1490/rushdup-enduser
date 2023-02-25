@@ -27,6 +27,11 @@ Vue.prototype.setMaxLength = (event) => {
 Vue.prototype.convertAmountToPlainAmountValue = (irrAmountValue) => {
     return Number.parseFloat(irrAmountValue.toString().replaceAll(',', ''));
 }
+Vue.prototype.getImageUrl = (suffix) => {
+    return
+    // Vue.prototype.serverAddress + 
+    '/api/' + suffix;
+}
 
 Vue.prototype.convertAmount = (event, vm, modelName) => {
     let stringValue = event;
