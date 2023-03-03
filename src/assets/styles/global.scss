@@ -257,3 +257,31 @@ small {
   font-weight: bold;
   font-size: 1.3rem !important;
 }
+
+
+.decorated {
+  overflow: hidden;
+  text-align: right;
+}
+
+.decorated > span {
+  position: relative;
+  display: inline-block;
+}
+
+.decorated > span:before, .decorated > span:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  border-bottom: 2px solid;
+  width: 100vw;
+  margin: 0 20px;
+}
+
+.decorated > span:before {
+  right: 100%;
+}
+
+.decorated > span:after {
+  left: 100%;
+}

@@ -1,36 +1,16 @@
 import route from './route';
-import {
-    course,
-    discount,
-    customerClub,
-    comment,
-    cms,
-    authorProfiles,
-    paymentIPGs,
-    teachersInbox,
-    teachersActivePanels,
-    accessPermissions,
-    myCourses,
-    accountInformation,
-    myAccount,
-    allCourses,
-    cart,
-    category,
-
-} from './modules/indexModules'
+import {teacherRequest} from './modules/indexModules'
 
 export default {
-    appName: "سامانه آموزشیار",
-    loginTitle: "پنل مدیریت سامانه آموزشیار",
-    IRR: 'ریال',
-    untitled: 'بدون عنوان',
-    changeFile: 'تغییر فایل',
-    removeFile: 'حذف فایل',
+    appName: "رشدآپ",
     route,
     table: {
         actions: 'عملیات'
     },
     ui: {
+        changeFile: 'تغییر فایل',
+        removeFile: 'حذف فایل',
+        IRR: 'ریال',
         row: 'ردیف',
         error: 'خطا!',
         cancel: 'لغو',
@@ -72,6 +52,7 @@ export default {
         accountInformation: 'اطلاعات حساب',
         saleCooperation: 'همکاری در فروش',
         myTests: 'تست‌های من',
+        searchCourseOrTeacher: 'جستجوی دوره / مدرس',
         accountLogout: 'خروج از حساب کاربری',
         noContentForVisible: 'محتوایی جهت نمایش وجود ندارد!',
         searchCourse: 'جستجوی دوره',
@@ -93,9 +74,6 @@ export default {
             changePasswordSuccess: 'تغییر کلمۀ عبور با موفقیت انجام شد!',
         },
     },
-    authentication: {
-        username: 'نام کاربری', password: 'کلمۀ عبور', login: 'ورود',
-    },
     errors: {
         fixErrorsMessage: 'لطفا خطاهای بوجود آمده را برطرف نمایید.',
         requiredThisField: 'تکمیل این فیلد اجباری است!',
@@ -105,31 +83,9 @@ export default {
         noConnectionToServer: 'دسترسی به سرور وجود ندارد!',
         serverError: 'خطای سمت سرور وجود دارد!'
     },
-    timeRangeItems: {
-        title: 'بازه زمانی',
-        recent12Hour: '12 ساعت أخیر',
-        recent3Days: '3 روز أخیر',
-        recent15Days: '15 روز أخیر',
-        recentMonth: 'یک ماه أخیر',
-        recent6Month: 'شش ماه أخیر',
-        customTimeRange: 'بازه زمانی دلخواه',
-        selectTime: 'انتخاب تاریخ',
-        noSelectedTimeError: 'تاریخی برای فیلتر کردن وارد نشده است!',
-    },
-    course: course,
-    discount: discount,
-    customerClub: customerClub,
-    cms: cms,
-    authorProfiles: authorProfiles,
-    paymentIPGs: paymentIPGs,
-    comment: comment,
-    teachersActivePanels: teachersActivePanels,
-    teachersInbox: teachersInbox,
-    accessPermissions: accessPermissions,
-    myCourses: myCourses,
-    accountInformation: accountInformation,
-    myAccount: myAccount,
-    allCourses: allCourses,
-    cart: cart,
-    category: category,
+    teacherRequest: teacherRequest,
+    upload: {
+        title: 'فایل ویدئویی خود را انختاب کنید',
+        description: 'حدأکثر حجم مجاز برای آپلود {mb} قابل قبول است.',
+    }
 };

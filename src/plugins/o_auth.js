@@ -14,7 +14,7 @@ import {OIDCClient} from '@plusauth/oidc-client-js'
 
 const mgr = new OIDCClient({
     issuer: 'https://localhost:44397',
-    client_id: 'Amoozeshyar_Admin',
+    client_id: 'Amoozeshyar_Enduser',
     redirect_uri: 'http://localhost:8080/callback',
     // post_logout_redirect_uri: 'http://localhost:8080/',
     response_mode: 'form_post',

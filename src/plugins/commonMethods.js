@@ -121,6 +121,9 @@ Vue.prototype.convertAmount = (event, vm, modelName) => {
         return total;
     }
 }
+Vue.prototype.navigateToRoute = async (target) => {
+    await Vue.prototype.$router.replace(target);
+}
 
 let isNumber = (event) => {
     event = digitsFaToEn(event)

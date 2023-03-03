@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
+// import('uikit/src/less/uikit.less')
 import vuetify from './plugins/vuetify'
 import router from './router';
 import store from './store';
@@ -21,6 +22,7 @@ import "@mdi/font/css/materialdesignicons.min.css";
 import VueVideoPlayer from 'vue-video-player'
 import 'video.js/dist/video-js.css'
 import oidc from './plugins/o_auth'
+
 
 Vue.prototype.oidc = oidc;
 Vue.use(VueVideoPlayer);

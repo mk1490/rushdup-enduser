@@ -99,6 +99,13 @@ export const constantRoutes = [{
             meta: {},
             children: []
         },
+        {
+            path: '/teacher-request',
+            name: 'teacher-request',
+            component: () => import('@/view/components/Teacher/TeacherRequestForm.vue'),
+            meta: {},
+            children: []
+        },
 
     ]
 },

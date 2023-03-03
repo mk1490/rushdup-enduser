@@ -1,139 +1,120 @@
 <template>
   <v-app-bar
       app
-      style="background: #fff"
+      style="background-color: #F5F5F5"
+      height="160"
       class="darken-3"
       dark
       fixed
       flat>
-    <div class="d-inline-flex align-center">
-      <v-btn
-          @click="toggleNavbar"
-          class="d-md-none d-sm-block"
-          icon
-          color="black"
-      >
-        <v-icon>
-          mdi-menu
-        </v-icon>
-      </v-btn>
-      <v-img
-          src="@/assets/logo.png"
-      />
-      <span
-          @click="$router.push('/Home')"
-          class="iran-yekan-regular app-title mx-5 noselect">
-        آموزشیار
-      </span>
-      <v-btn
-          class="d-none d-sm-block"
-          width="110"
-          @click="navigateToRoute('/explore')"
-          color="primary"
-          outlined>
-        همه آموزش ها
-      </v-btn>
-
-
-      <div
-          class="d-sm-none"
-          v-for="item in menuItems">
-        <v-menu
-            @click="navigateToRoute(item.target)"
-            open-on-hover
-            bottom
-            offset-y
-        >
-          <template v-slot:activator="{ on, attrs }">
-            <v-btn
-                @click="navigateToRoute(item.target)"
-                text
-                color="black"
-                dark
-                v-bind="attrs"
-                v-on="on"
-            >
-              <v-icon v-if="item.childrenItems && item.childrenItems.length > 0">
-                mdi-menu-down
-              </v-icon>
-              {{ item.title }}
-            </v-btn>
-          </template>
-
-          <v-list v-if="item.childrenItems && item.childrenItems.length> 0">
-            <v-list-item
-                @click="navigateToRoute(childItem.target)"
-                v-for="(childItem, index) in item.childrenItems"
-                :key="index"
-            >
-              <v-list-item-title>{{ childItem.title }}</v-list-item-title>
-            </v-list-item>
-          </v-list>
-        </v-menu>
+    <div class="row full-width">
+      <div class="col-12 pa-0 ma-0">
+        <div class="row">
+          <div class="col-auto">
+            <div class="d-inline-flex align-center">
+              <v-btn
+                  @click="toggleNavbar"
+                  class="d-md-none d-sm-block"
+                  icon
+                  color="black"
+              >
+                <v-icon>
+                  mdi-menu
+                </v-icon>
+              </v-btn>
+              <v-img
+                  width="70"
+                  src="@/assets/logo.png"/>
+              <p
+                  @click="$router.push('/Home')"
+                  class="iran-yekan-regular app-title mx-5 noselect">
+                رشدآپ
+              </p>
+            </div>
+          </div>
+          <div class="col">
+            <div class="d-flex justify-center">
+              <div style="width: 50%">
+                <v-autocomplete
+                    filled
+                    hide-no-data
+                    append-outer-icon="mdi-magnify"
+                    light
+                    :placeholder="$t('ui.searchCourseOrTeacher')">
+                </v-autocomplete>
+              </div>
+            </div>
+          </div>
+          <div class="col-auto">
+            <the-layout-toolbar-cart-widget
+                class="d-none d-sm-block"
+                :cart-items="cartItems"/>
+          </div>
+        </div>
       </div>
+      <div class="col-12 pa-0 ma-0">
+        <div class="row px-16">
+          <div class="col d-inline-flex">
+            <v-btn
+                class="d-none d-sm-block"
+                width="110"
+                @click="navigateToRoute('/explore')"
+                color="black"
+                text
+            >
+              همه آموزش ها
+            </v-btn>
+            <div
+                v-for="item in menuItems">
+              <v-menu
+                  @click="navigateToRoute(item.target)"
+                  open-on-hover
+                  bottom
+                  offset-y
+              >
+                <template v-slot:activator="{ on, attrs }">
+                  <v-btn
+                      @click="navigateToRoute(item.target)"
+                      text
+                      color="black"
+                      dark
+                      v-bind="attrs"
+                      v-on="on"
+                  >
+                    <v-icon v-if="item.childrenItems && item.childrenItems.length > 0">
+                      mdi-menu-down
+                    </v-icon>
+                    {{ item.title }}
+                  </v-btn>
+                </template>
 
-
+                <v-list v-if="item.childrenItems && item.childrenItems.length> 0">
+                  <v-list-item
+                      @click="navigateToRoute(childItem.target)"
+                      v-for="(childItem, index) in item.childrenItems"
+                      :key="index"
+                  >
+                    <v-list-item-title>{{ childItem.title }}</v-list-item-title>
+                  </v-list-item>
+                </v-list>
+              </v-menu>
+            </div>
+          </div>
+          <div class="col-auto">
+            <div class="d-inline-flex">
+              <v-btn
+                  href="/teacher-request"
+                  color="primary"
+                  light
+                  text>
+                درخواست تدریس
+              </v-btn>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <v-spacer/>
-
-
-    <the-layout-toolbar-cart-widget
-        class="d-none d-sm-block"
-        :cart-items="cartItems">
-
-    </the-layout-toolbar-cart-widget>
-
-    <v-btn
-        class="d-none d-sm-block"
-        v-if="!isLogin"
-        @click="login"
-        elevation="5"
-        style="background-color:#E53935"
-        rounded>
-      {{ $t('ui.loginToAccount') }}
-    </v-btn>
-
-    <v-menu
-        class="d-sm-none d-md-block"
-        v-if="isLogin"
-        open-on-hover
-        bottom
-        offset-y
-
-    >
-      <template v-slot:activator="{ on, attrs }">
-        <v-btn
-            v-bind="attrs"
-            v-on="on"
-            elevation="5"
-            style="background-color:#E53935"
-            rounded>
-          {{ $t('ui.userAccount') }}
-          <v-icon>mdi-menu-down</v-icon>
-        </v-btn>
-      </template>
-      <v-list>
-        <v-list-item
-            @click="navigateToRoute('/MyCourses')"
-        >
-          <v-list-item-title>{{ $t('ui.myCourses') }}</v-list-item-title>
-        </v-list-item>
-        <v-list-item
-            @click="navigateToRoute('/AccountInformation')"
-        >
-          <v-list-item-title>{{ $t('ui.accountInformation') }}</v-list-item-title>
-        </v-list-item>
-        <v-list-item>
-          <v-list-item-title>{{ $t('ui.saleCooperation') }}</v-list-item-title>
-        </v-list-item>
-        <v-list-item>
-          <v-list-item-title>{{ $t('ui.myTests') }}</v-list-item-title>
-        </v-list-item>
-        <v-list-item @click="handleLogout">
-          <v-list-item-title>{{ $t('ui.accountLogout') }}</v-list-item-title>
-        </v-list-item>
-      </v-list>
-    </v-menu>
+    <!--    <the-layout-toolbar-login-or-register-button/>-->
 
   </v-app-bar>
 </template>
@@ -148,6 +129,7 @@ import Notification from '../widget/AppNotification.vue';
 import Profile from '../widget/AppProfile.vue';
 import AppDateTime from "@/view/widget/AppDateTime";
 import TheLayoutToolbarCartWidget from "@/view/widget/TheLayoutToolbarCartWidget.vue";
+// import TheLayoutToolbarLoginOrRegisterButton from "@/view/widget/TheLayoutToolbarLoginOrRegisterButton.vue";
 
 export default {
   name: 'TheLayoutToolbar',
@@ -155,6 +137,7 @@ export default {
     console.log(this.menuItems)
   },
   components: {
+    // TheLayoutToolbarLoginOrRegisterButton,
     TheLayoutToolbarCartWidget,
     AppDateTime,
     Breadcrumbs,
@@ -170,7 +153,7 @@ export default {
       'toolbarDense',
       'navbarShow',
       'menuItems',
-      'isLogin', 'cartItems'
+      'cartItems',
     ]),
     toggleNavbarIcon() {
       return this.navbarShow ? 'mdi-format-indent-decrease' : 'mdi-format-indent-increase';
@@ -180,22 +163,6 @@ export default {
     toggleNavbar() {
       this.$store.dispatch('NavbarToggle');
     },
-    async navigateToRoute(route) {
-      await this.$router.replace(route);
-    },
-    async login() {
-      // this.oidc.signinRedirect({}).then(res => {
-      //   console.log(res)
-      // }).catch(e => {
-      //   console.log(e)
-      // });
-      this.oidc.login();
-    },
-    handleLogout() {
-      this.oidc.signoutRedirect().then(res => {
-        this.$store.dispatch('setLoginState', false)
-      })
-    }
   },
 };
 </script>

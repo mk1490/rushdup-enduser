@@ -65,7 +65,7 @@
               v-else
               class="d-flex justify-center no_cart_item">
             <span>
-              {{$t('cart.noItemsInYourCart')}}
+              {{ $t('cart.noItemsInYourCart') }}
             </span>
           </div>
         </v-card-text>
@@ -89,6 +89,11 @@ export default {
   name: "TheLayoutToolbarCartWidget",
   props: {
     cartItems: Array,
+  },
+  methods: {
+    async navigateToRoute(route) {
+      await this.$router.replace(route);
+    },
   }
 }
 </script>

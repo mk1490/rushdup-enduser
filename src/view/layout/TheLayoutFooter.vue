@@ -1,8 +1,41 @@
 <template>
-  <div class="ocean">
-    <div class="wave"></div>
-    <div class="wave"></div>
-    <div class="wave"></div>
+  <div class="footer-container">
+    <div class="d-block">
+      <div class="d-flex justify-center mt-8">
+        <h1>
+          محل قرارگیری لوگوی رشدآپ
+        </h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="px-6">
+          <h2 class="decorated">
+            <span>
+              دسترسی سریع
+            </span>
+          </h2>
+        </div>
+      </div>
+      <div class="col">
+        <div class="px-6">
+          <h2 class="decorated">
+            <span>
+              راه‌های ارتباطی
+            </span>
+          </h2>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="px-6">
+          <h6>
+            تمامی حقوق متعلق به رشدآپ می‌باشد.
+          </h6>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -34,6 +67,13 @@ html, body {
   margin: 0;
   min-height: 100%;
   background-color: #f2f2f2;
+}
+
+.footer-container {
+  width: 100%;
+  min-height: 300px !important;
+  background-color: #424242;
+  color: white;
 }
 
 /* waves */

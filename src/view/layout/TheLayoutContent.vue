@@ -5,7 +5,7 @@
         mode="out-in"
     >
       <keep-alive>
-        <v-container fluid class="container--fluid px-0">
+        <v-container fluid class="container--fluid">
           <router-view/>
         </v-container>
       </keep-alive>
@@ -19,3 +19,10 @@ export default {
   data: () => ({}),
 };
 </script>
+
+<style scoped>
+.container--fluid {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+</style>
