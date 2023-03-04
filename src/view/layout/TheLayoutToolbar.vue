@@ -5,10 +5,9 @@
       height="160"
       class="darken-3"
       dark
-      fixed
       flat>
     <div class="row full-width">
-      <div class="col-12 pa-0 ma-0">
+      <div class="col-12 pa-0 ma-0 px-10">
         <div class="row">
           <div class="col-auto">
             <div class="d-inline-flex align-center">
@@ -25,11 +24,11 @@
               <v-img
                   width="70"
                   src="@/assets/logo.png"/>
-              <p
+              <span
                   @click="$router.push('/Home')"
                   class="iran-yekan-regular app-title mx-5 noselect">
                 رشدآپ
-              </p>
+              </span>
             </div>
           </div>
           <div class="col">
@@ -45,10 +44,11 @@
               </div>
             </div>
           </div>
-          <div class="col-auto">
+          <div class="col-auto d-inline-flex">
             <the-layout-toolbar-cart-widget
                 class="d-none d-sm-block"
                 :cart-items="cartItems"/>
+            <login-button></login-button>
           </div>
         </div>
       </div>
@@ -109,13 +109,12 @@
                   text>
                 درخواست تدریس
               </v-btn>
+              <!--              <the-layout-toolbar-login-or-register-button></the-layout-toolbar-login-or-register-button>-->
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!--    <the-layout-toolbar-login-or-register-button/>-->
-
   </v-app-bar>
 </template>
 
@@ -129,7 +128,7 @@ import Notification from '../widget/AppNotification.vue';
 import Profile from '../widget/AppProfile.vue';
 import AppDateTime from "@/view/widget/AppDateTime";
 import TheLayoutToolbarCartWidget from "@/view/widget/TheLayoutToolbarCartWidget.vue";
-// import TheLayoutToolbarLoginOrRegisterButton from "@/view/widget/TheLayoutToolbarLoginOrRegisterButton.vue";
+import LoginButton from "@/view/widget/LoginButton.vue";
 
 export default {
   name: 'TheLayoutToolbar',
@@ -137,7 +136,7 @@ export default {
     console.log(this.menuItems)
   },
   components: {
-    // TheLayoutToolbarLoginOrRegisterButton,
+    LoginButton,
     TheLayoutToolbarCartWidget,
     AppDateTime,
     Breadcrumbs,

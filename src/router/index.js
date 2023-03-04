@@ -19,7 +19,7 @@ export const constantRoutes = [{
 
     },
         {
-            path: 'callback',
+            path: 'cb',
             name: 'AuthCallback',
             component: () => import('@/view/components/AuthCallback.vue'),
             meta: {

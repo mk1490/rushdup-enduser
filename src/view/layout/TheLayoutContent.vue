@@ -5,7 +5,7 @@
         mode="out-in"
     >
       <keep-alive>
-        <v-container fluid class="container--fluid">
+        <v-container fluid class="container--fluid gray__bg">
           <router-view/>
         </v-container>
       </keep-alive>
@@ -24,5 +24,9 @@ export default {
 .container--fluid {
   padding-left: 10%;
   padding-right: 10%;
+}
+
+.gray__bg {
+  background-color: #F5F5F5;
 }
 </style>

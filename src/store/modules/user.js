@@ -4,7 +4,9 @@ const user = {
     state: {
         id: null, name: '', family: '', avatar: '', phoneNumber: '', personnelCode: '', roles: [], deleteDialog: {
             visible: false, index: 0,
-        }, submitDelete: -1, loading: false, isLogin: false, cartItems: [],
+        }, submitDelete: -1, loading: false, 
+        isLogin: false,
+        cartItems: [],
     }, getters: {
         id: (state) => state.id,
         name: (state) => state.name,

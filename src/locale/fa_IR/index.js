@@ -1,5 +1,5 @@
 import route from './route';
-import {teacherRequest, allCourses, course} from './modules/indexModules'
+import {teacherRequest, allCourses, course, accountInformation, myCourses} from './modules/indexModules'
 
 export default {
     appName: "رشدآپ",
@@ -20,13 +20,13 @@ export default {
         see: 'مشاهده',
         select: 'انتخاب',
         submit: 'تأیید',
-        register: 'ثبت',
         search: 'جستجو',
         edit: 'ویرایش',
         delete: 'حذف',
-        loginToAccount: 'ورود به حساب کاربری',
+        loginOrRegister: 'ورود / ثبت نام',
         enterWordToSearch: 'کلمه‌ای را برای جستجو وارد نمایید',
         login: 'ورود',
+        register: 'ثبت نام',
         yes: 'بله',
         no: 'خیر',
         logout: 'خروج از حساب کاربری',
@@ -86,6 +86,8 @@ export default {
     teacherRequest: teacherRequest,
     allCourses: allCourses,
     course: course,
+    accountInformation,
+    myCourses,
     upload: {
         title: 'فایل ویدئویی خود را انختاب کنید',
         description: 'حدأکثر حجم مجاز برای آپلود {mb} قابل قبول است.',

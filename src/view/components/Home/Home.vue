@@ -109,8 +109,4 @@ h2 {
   font-weight: bolder;
   font-size: 2rem !important;
 }
-
-.gray__bg {
-  background-color: #F5F5F5;
-}
 </style>
