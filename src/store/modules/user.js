@@ -4,7 +4,7 @@ const user = {
     state: {
         id: null, name: '', family: '', avatar: '', phoneNumber: '', personnelCode: '', roles: [], deleteDialog: {
             visible: false, index: 0,
-        }, submitDelete: -1, loading: false, 
+        }, submitDelete: -1, loading: false,
         isLogin: false,
         cartItems: [],
     }, getters: {
@@ -45,8 +45,8 @@ const user = {
         }, LOGOUT: () => {
         }, REMOVE_PHOTO: (state) => {
             state.avatar = '';
-        }, LOGIN_STATE: (state) => {
-            state.isLogin = state;
+        }, LOGIN_STATE: (state, payload) => {
+            state.isLogin = payload;
         },
         ADD_TO_CART: (state, payload) => {
             let items = localStorage.getItem('cart');
@@ -67,7 +67,6 @@ const user = {
             localStorage.setItem('cart', JSON.stringify(items));
             state.cartItems = items;
         },
-
         INITIAL_CART_ITEMS: (state) => {
             let items = localStorage.getItem('cart');
             if (items) {

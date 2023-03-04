@@ -1,23 +1,18 @@
 ﻿<template>
   <div>
-    <v-skeleton-loader
-        v-if="loading == true"
-        min-width="50"
-        light
-        type="button">
-    </v-skeleton-loader>
     <div>
       <v-btn
-          class="d-none d-sm-block"
           v-if="!isLogin"
+          class="d-none d-sm-block"
           text
           light
-          @click="login">
+          @click="login()"
+      >
         {{ $t('ui.loginOrRegister') }}
       </v-btn>
       <v-menu
-          class="d-sm-none d-md-block"
           v-if="isLogin"
+          class="d-sm-none d-md-block"
           open-on-hover
           bottom
           offset-y>
@@ -34,9 +29,7 @@
                 :ripple="false"
                 text
                 light
-                class="text-right"
-            >
-
+                class="text-right">
               {{ $t('ui.userAccount') }}
               <v-icon>mdi-menu-down</v-icon>
             </v-btn>
@@ -60,7 +53,7 @@
           <v-list-item>
             <v-list-item-title>{{ $t('ui.myTests') }}</v-list-item-title>
           </v-list-item>
-          <v-list-item @click="handleLogout">
+          <v-list-item @click="logout">
             <v-list-item-title>{{ $t('ui.accountLogout') }}</v-list-item-title>
           </v-list-item>
         </v-list>
@@ -75,12 +68,19 @@ import {mapGetters} from "vuex";
 export default {
   name: "LoginButton",
   async created() {
-    const isLogin = await this.oidc.isLoggedIn();
-    await this.$store.commit('LOGIN_STATE', isLogin);
+    const loginState = await this.oidc.isLoggedIn();
+    // this.oidc.on((e) => {
+    //   console.log(e)
+    // })
+    console.log(loginState)
+    await this.$store.commit('LOGIN_STATE', loginState);
     this.loading = true;
   },
   computed: {
-    ...mapGetters(['isLogin', 'cartItems'])
+    ...mapGetters([
+      'cartItems',
+      'isLogin'
+    ])
   },
   data() {
     return {
@@ -93,7 +93,10 @@ export default {
     }, async navigateToRoute(route) {
       await this.$router.replace(route);
     },
-  }
+    async logout() {
+      await this.oidc.logout();
+    }
+  },
 }
 </script>
 

@@ -5,8 +5,7 @@
         class="mb-6"
     >
       <v-row
-          no-gutters
-      >
+          no-gutters>
         <v-col
             v-for="item in items"
             :key="item"

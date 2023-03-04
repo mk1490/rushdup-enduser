@@ -8,11 +8,12 @@ Vue.prototype.serverAddress = serverAddress;
 let lastRequest;
 Vue.prototype.baseUrl = serverAddress + '/enduser';
 axios.defaults.baseURL = Vue.prototype.baseUrl;
-axios.interceptors.request.use((req) => {
+axios.interceptors.request.use(async (req) => {
     if (req.loader !== false) {
         Vue.prototype.showLoader();
     }
-    req.headers.Authorization = 'Bearer ' + localStorage.getItem('Authorization');
+    const accessToken = await Vue.prototype.oidc.getAccessToken();
+    req.headers.Authorization = 'Bearer ' + accessToken;
     lastRequest = req;
     return req;
 });
