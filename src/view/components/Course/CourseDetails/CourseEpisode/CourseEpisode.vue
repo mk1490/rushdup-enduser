@@ -82,6 +82,15 @@
                   </div>
                   <div class="col-auto">
                   </div>
+                  <div
+                      v-for="item in commentItems"
+                      class="col-12">
+                    <course-episode-comment-item
+                        :title="getCommentSenderName(item)"
+                        :content="item.content">
+
+                    </course-episode-comment-item>
+                  </div>
                 </div>
               </div>
             </div>
@@ -93,15 +102,21 @@
 </template>
 
 <script>
+import CourseEpisodeCommentItem
+  from "@/view/components/Course/CourseDetails/CourseEpisode/course-episode-comment-item.vue";
+
 export default {
   name: "CourseEpisode",
+  components: {CourseEpisodeCommentItem},
   data() {
     return {
       currentCourseItemId: null,
       title: null,
       cover: null,
       episodeItems: [],
+      commentItems: [],
       model: {
+        postId: null,
         comment: null,
       }
     }
@@ -114,6 +129,7 @@ export default {
       this.cover = this.serverAddress + `/core/image/course/${data['courseId']}`;
       this.currentCourseItemId = data.id;
       this.episodeItems = data.episodeItems;
+      this.commentItems = data.commentItems;
     }
   },
   methods: {
@@ -125,7 +141,22 @@ export default {
       }
     },
     async submitComment() {
-
+      const [err, data] = await this.to(this.http.post(`/comment`, {
+        comment: this.model.comment,
+        postId: this.currentCourseItemId,
+        rate: 0,
+      }));
+      if (!err) {
+        this.model.comment = null;
+        this.$swal.fire({
+          icon: 'success',
+          text: 'دیدگاه شما با موفقیت ثبت شد!',
+        })
+      }
+    },
+    getCommentSenderName(item) {
+      const fullName = item.name == null ? '' : item.name + ' ' + item.family == null ? '' : item.family;
+      return fullName;
     }
   }
 }
