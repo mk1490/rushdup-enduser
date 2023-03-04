@@ -43,6 +43,9 @@ const baseData = {
         initCategoryItems: async (context, payload) => {
             context.commit('SET_CATEGORY_ITEMS', payload);
         },
+        initCartExistsItems: async (context, payload) => {
+            context.commit('SET_CART_EXISTS_ITEMS', payload);
+        },
         setCategory: async (context, payload) => {
             context.commit('SELECT_CATEGORY', payload);
             context.commit('NAVBAR_STATE', false);

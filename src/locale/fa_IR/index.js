@@ -1,5 +1,5 @@
 import route from './route';
-import {teacherRequest, allCourses, course, accountInformation, myCourses} from './modules/indexModules'
+import {teacherRequest, allCourses, course, accountInformation, myCourses, cart} from './modules/indexModules'
 
 export default {
     appName: "رشدآپ",
@@ -88,6 +88,7 @@ export default {
     course: course,
     accountInformation,
     myCourses,
+    cart,
     upload: {
         title: 'فایل ویدئویی خود را انختاب کنید',
         description: 'حدأکثر حجم مجاز برای آپلود {mb} قابل قبول است.',

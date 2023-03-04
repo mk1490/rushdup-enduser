@@ -64,6 +64,7 @@ export default {
         if (!err) {
           await this.$store.dispatch('initMenuItems', data.menuItems);
           await this.$store.dispatch('initCategoryItems', data.categoryItems);
+          await this.$store.dispatch('initCartExistsItems', data.cartItems);
         }
       }
     }

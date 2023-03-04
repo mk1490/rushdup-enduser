@@ -7,6 +7,7 @@ const user = {
         }, submitDelete: -1, loading: false,
         isLogin: false,
         cartItems: [],
+        cartExistItems: [],
     }, getters: {
         id: (state) => state.id,
         name: (state) => state.name,
@@ -20,6 +21,7 @@ const user = {
         loginState: (state) => state.loginState,
         isLogin: (state) => state.isLogin,
         cartItems: (state) => state.cartItems,
+        cartExistItems: (state) => state.cartExistItems,
     }, mutations: {
         SET_USER_INFO: (state, payload) => {
             state.id = payload.id || null;
@@ -75,6 +77,9 @@ const user = {
                 items = [];
             }
             state.cartItems = items;
+        },
+        SET_CART_EXISTS_ITEMS: (state, payload) => {
+            state.cartExistItems = payload;
         },
     }, actions: {
         showLoading: ({commit}) => {

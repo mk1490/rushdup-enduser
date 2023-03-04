@@ -47,7 +47,7 @@
           <div class="col-auto d-inline-flex">
             <the-layout-toolbar-cart-widget
                 class="d-none d-sm-block"
-                :cart-items="cartItems"/>
+                :cart-items="cartExistItems"/>
             <login-button></login-button>
           </div>
         </div>
@@ -152,7 +152,7 @@ export default {
       'toolbarDense',
       'navbarShow',
       'menuItems',
-      'cartItems',
+      'cartExistItems',
     ]),
     toggleNavbarIcon() {
       return this.navbarShow ? 'mdi-format-indent-decrease' : 'mdi-format-indent-increase';
