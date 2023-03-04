@@ -4,7 +4,6 @@
       fluid>
     <v-card
         color="transparent"
-        width="80%"
         flat>
       <div class="row">
         <div class="col-md-12">
@@ -12,7 +11,7 @@
               elevation="0"
               min-height="200"
               color="#FF7043">
-            <v-card-text>
+            <v-card-text class="pa-0">
               <v-container>
                 <div class="row">
                   <div class="col-auto">
@@ -33,26 +32,25 @@
                     </div>
                   </div>
                 </div>
-
               </v-container>
             </v-card-text>
           </v-card>
         </div>
-
         <div class="col-md-3 col-sm-12">
           <course-details_-information-side
               v-if="model.teacher"
               :data="model.teacher"
           ></course-details_-information-side>
-          <teacher-information :data="model.teacher">
+          <teacher-information
+              :data="model.teacher">
 
           </teacher-information>
         </div>
-        <div class="col">
-          <!--          <course-details_-episode-items-->
-          <!--              v-if="items.length > 0"-->
-          <!--              :items="items">-->
-          <!--          </course-details_-episode-items>-->
+        <div class="col-md-9">
+          <course-details_-episode-items
+              v-if="model.items.length > 0"
+              :items="model.items">
+          </course-details_-episode-items>
         </div>
         <div class="col-md-12 col-sm-12">
           <course-details-submit-comment>
@@ -93,7 +91,7 @@ export default {
       this.model.cover = this.model.cover = this.serverAddress + `/core/image/course/${this.model.id}`;
       this.model.studentCounts = data.studentCounts;
       this.model.teacher = data.teacher;
-      console.log(this.model.teacher)
+      this.model.items = data['courseItems'];
       // this.items = data.courseItems.map((f) => {
       //   return {
       //     title: f.title,

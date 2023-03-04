@@ -53,7 +53,7 @@
                     </p>
                   </div>
                   <div class="col-auto">
-                    <p class="price">{{ item.price + ' ' + $t('IRR') }}</p>
+                    <p class="price">{{ item.price + ' ' + $t('ui.IRR') }}</p>
                   </div>
                 </div>
 

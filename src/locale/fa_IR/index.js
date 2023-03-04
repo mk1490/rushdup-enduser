@@ -1,5 +1,5 @@
 import route from './route';
-import {teacherRequest} from './modules/indexModules'
+import {teacherRequest, allCourses, course} from './modules/indexModules'
 
 export default {
     appName: "رشدآپ",
@@ -84,6 +84,8 @@ export default {
         serverError: 'خطای سمت سرور وجود دارد!'
     },
     teacherRequest: teacherRequest,
+    allCourses: allCourses,
+    course: course,
     upload: {
         title: 'فایل ویدئویی خود را انختاب کنید',
         description: 'حدأکثر حجم مجاز برای آپلود {mb} قابل قبول است.',

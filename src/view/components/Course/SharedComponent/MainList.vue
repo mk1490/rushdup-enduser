@@ -34,7 +34,7 @@
                     {{ convertAmount(item.price, this) }}
                   </span>
                   <small>
-                    {{ $t('IRR') }}
+                    {{ $t('ui.IRR') }}
                   </small>
                 </div>
               </div>

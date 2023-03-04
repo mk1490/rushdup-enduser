@@ -64,7 +64,15 @@ export const constantRoutes = [{
             meta: {
                 title: 'route.myCourses', icon: 'mdi-book-education'
             },
-        }, {
+        },
+        {
+            path: 'course-details/:slugOrId/:courseGroupId',
+            name: 'CourseEpisode',
+            component: () => import('@/view/components/Course/CourseDetails/CourseEpisode/CourseEpisode.vue'),
+            hidden: true,
+            meta: {},
+        },
+        {
             path: 'CourseDetailsVideo/:id',
             name: 'CourseDetailsVideo',
             component: () => import('@/view/components/Course/CourseDetails/CourseDetailsVideo.vue'),

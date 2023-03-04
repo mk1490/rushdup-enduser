@@ -38,7 +38,7 @@
               {{ data.price }}
             </p>
             <small>
-              {{ $t('IRR') }}
+              {{ $t('ui.IRR') }}
             </small>
           </div>
           <div class="col-auto"></div>
