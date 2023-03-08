@@ -17,16 +17,21 @@
 <script>
 import {mapGetters} from "vuex";
 import MainList from "@/view/components/Course/SharedComponent/MainList.vue";
+import {category} from "@/locale/fa_IR/modules/cms";
 
 export default {
   name: "CategoryLists",
   components: {MainList},
+  async created() {
+    const categoryItems = this.$store.getters.categoryItems;
+    await this.$store.dispatch('setCategory', categoryItems[categoryItems.findIndex(x => x.slug === this.$route.params.slug)]);
+  },
   methods: {
     itemClick() {
 
     },
     async getData() {
-      const [err, data] = await this.to(this.http.get(`course/list?categoryIdOrIds=${this.selectedCategory.id}`));
+      const [err, data] = await this.to(this.http.get(`course/list?categoryIdOrIds=${this.selectedCategory.id || this.$store.getters.selectedCategory}`));
       if (!err) {
         this.mainListItems = data;
       }

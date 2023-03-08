@@ -55,15 +55,34 @@
       <div class="col-12 pa-0 ma-0">
         <div class="row px-16">
           <div class="col d-inline-flex">
-            <v-btn
-                class="d-none d-sm-block"
-                width="110"
-                @click="navigateToRoute('/explore')"
-                color="black"
-                text
-            >
-              همه آموزش ها
-            </v-btn>
+
+
+            <v-menu
+                bottom
+                offset-y
+                open-on-hover>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                    v-bind="attrs"
+                    v-on="on"
+                    :to="'/explore'"
+                    color="primary"
+                    light
+                    text>
+                  همه آموزش ها
+                </v-btn>
+              </template>
+              <v-list v-if="categoryItems.length > 0">
+                <v-list-item
+                    :to="'/category/' +item.slug"
+                    v-for="(item, index) in categoryItems"
+                    :key="index">
+                  <v-list-item-title>
+                    {{ item.name }}
+                  </v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
             <div
                 v-for="item in menuItems">
               <v-menu
@@ -74,7 +93,7 @@
               >
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn
-                      @click="navigateToRoute(item.target)"
+                      :to="getMenuTarget(item)"
                       text
                       color="black"
                       dark
@@ -103,7 +122,7 @@
           <div class="col-auto">
             <div class="d-inline-flex">
               <v-btn
-                  href="/teacher-request"
+                  :to="'/teacher-request'"
                   color="primary"
                   light
                   text>
@@ -152,6 +171,7 @@ export default {
       'toolbarDense',
       'navbarShow',
       'menuItems',
+      'categoryItems',
       'cartExistItems',
     ]),
     toggleNavbarIcon() {
@@ -162,6 +182,20 @@ export default {
     toggleNavbar() {
       this.$store.dispatch('NavbarToggle');
     },
+    getMenuTarget(item) {
+      if (item['targetType'] === 1) {
+        const targetExtrea = item['targetExtra'];
+        switch (targetExtrea) {
+          case 'Home':
+            return '/'
+            break;
+          default :
+            return '/' + targetExtrea;
+        }
+      } else {
+        return item['target'];
+      }
+    }
   },
 };
 </script>
