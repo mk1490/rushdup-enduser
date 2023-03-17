@@ -142,6 +142,16 @@ export const constantRoutes = [{
                 path: '/registerNewTicket',
                 name: 'RegisterNewTicket',
                 component: () => import('@/view/components/Profile/Tickets/RegisterNewTicket.vue'),
+            },
+            {
+                path: '/ticketDetails/:ticketId',
+                name: 'ticketDetails',
+                component: () => import('@/view/components/Profile/Tickets/TicketDetails.vue'),
+            },
+            {
+                path: '/wallet',
+                name: 'wallet',
+                component: () => import('@/view/components/Profile/Wallet.vue'),
             }
         ]
     },

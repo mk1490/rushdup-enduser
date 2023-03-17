@@ -32,6 +32,12 @@
           تیکت
         </v-list-item-title>
       </v-list-item>
+      <v-list-item
+          to="/wallet">
+        <v-list-item-title>
+          کیف پول
+        </v-list-item-title>
+      </v-list-item>
     </v-list>
   </div>
 </template>

@@ -160,7 +160,16 @@ export default {
       this.selectedFileName = file.name;
     },
     async sendToServer() {
-      const [err, data] = await this.to(this.http.post(``));
+      const fd = new FormData();
+      fd.append('subject', this.model.subject);
+      fd.append('content', this.model.content);
+      fd.append('department', this.model.department);
+      fd.append('importance', this.model.importance);
+      if (!!this.selectedFile) {
+        fd.append('attachment', this.selectedFile);
+      }
+
+      const [err, data] = await this.to(this.http.post(`ticket/create-ticket`, fd));
       if (!err) {
         await this.$router.push('/tickets');
       }

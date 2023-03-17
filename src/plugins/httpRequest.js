@@ -13,7 +13,10 @@ axios.interceptors.request.use(async (req) => {
         Vue.prototype.showLoader();
     }
     const accessToken = await Vue.prototype.oidc.getAccessToken();
-    req.headers.Authorization = 'Bearer ' + accessToken;
+    if (accessToken) {
+        localStorage.setItem('accessToken', accessToken)
+    }
+    req.headers.Authorization = 'Bearer ' + localStorage.getItem('accessToken');
     lastRequest = req;
     return req;
 });

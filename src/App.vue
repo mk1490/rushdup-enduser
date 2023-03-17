@@ -16,7 +16,7 @@ import ProgressDialog from "@/view/widget/ProgressDialog";
 export default {
   async beforeCreate() {
     // Generate random uuid for session.
-    this.$store.dispatch('initializeSessionId');
+    await this.$store.dispatch('initializeSessionId');
     const user = await this.oidc.getUser();
     if (user) {
       await this.$store.dispatch('setUserInfo', user);

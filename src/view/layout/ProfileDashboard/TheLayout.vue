@@ -14,7 +14,10 @@ import TheLayoutContent from "@/view/layout/ProfileDashboard/TheLayoutContent.vu
 
 export default {
   name: "TheLayout",
-  components: {TheLayoutContent, TheLayoutDrawer, TheLayoutToolbar}
+  components: {TheLayoutContent, TheLayoutDrawer, TheLayoutToolbar},
+  async created() {
+    // await this.oidc.login()
+  },
 }
 </script>
 

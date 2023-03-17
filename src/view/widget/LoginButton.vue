@@ -38,6 +38,11 @@
         </template>
         <v-list>
           <v-list-item
+              @click="navigateToRoute('/Profile')"
+          >
+            <v-list-item-title>داشبورد</v-list-item-title>
+          </v-list-item>
+          <v-list-item
               @click="navigateToRoute('/MyCourses')"
           >
             <v-list-item-title>{{ $t('ui.myCourses') }}</v-list-item-title>
