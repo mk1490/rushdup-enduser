@@ -47,7 +47,7 @@
           <div class="col-auto d-inline-flex">
             <the-layout-toolbar-cart-widget
                 class="d-none d-sm-block"
-                :cart-items="cartExistItems"/>
+                :cart-items="cartItems"/>
             <login-button></login-button>
           </div>
         </div>
@@ -172,6 +172,7 @@ export default {
       'navbarShow',
       'menuItems',
       'categoryItems',
+      'cartItems',
       'cartExistItems',
     ]),
     toggleNavbarIcon() {

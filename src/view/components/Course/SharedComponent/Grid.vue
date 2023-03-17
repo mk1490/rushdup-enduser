@@ -1,5 +1,5 @@
 ﻿<template>
-  <div class="d-flex flex-wrap justify-sm-center">
+  <div class="d-flex flex-wrap justify-right">
     <div
         v-for="(item, index) in items">
       <v-card
@@ -49,7 +49,7 @@
 
 <script>
 export default {
-  name: "MainList",
+  name: "Grid",
   emits: ['onItemClick'],
   props: {
     items: Array,

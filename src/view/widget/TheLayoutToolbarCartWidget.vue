@@ -72,7 +72,7 @@
         <v-card-actions v-if="cartItems.length > 0">
           <v-spacer/>
           <v-btn
-              href="#/cart"
+              :to="'/cart'"
               color="primary">
             {{ $t('ui.seeEducationCard') }}
           </v-btn>

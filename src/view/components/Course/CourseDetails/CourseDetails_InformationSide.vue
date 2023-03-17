@@ -86,14 +86,23 @@
 </template>
 
 <script>
-import {mapGetters} from "vuex";
+import {mapGetters, mapActions} from "vuex";
 import TeacherInformation from "@/view/components/Course/CourseDetails/Widgets/TeacherInformation.vue";
 
 export default {
   name: "CourseDetails_InformationSide",
   components: {TeacherInformation},
+  created() {
+    console.log(this.data)
+    if (this.data.isAddedToCart === true) {
+      this.purchaseStatus = 1;
+    } else if (this.data.isPurchased === true) {
+      this.purchaseStatus = 2;
+    }
+  },
   props: {
-    data: Object
+    id: String,
+    data: Object,
   },
   data() {
     return {
@@ -104,24 +113,22 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['cartItems'])
-  },
-  mounted() {
-    console.log(this.cartItems, this.data['id'])
-    console.log(this.cartItems.findIndex(x => x.id === this.data.id) !== -1)
-    if (this.cartItems.findIndex(x => x.id === this.data.id) !== -1) {
-      this.purchaseStatus = 1;
-    }
+    ...mapGetters(['cartExistItems', 'sessionId'])
   },
   methods: {
+    ...mapActions(['addToCart']),
     async addToCartOrCompletePurchaseFlowOrViewCourse() {
       switch (this.purchaseStatus) {
-        case 0:
-          await this.$store.dispatch('addToCart', this.data);
+        case 0: {
+          await this.addToCartServer();
+        }
           this.purchaseStatus = 1;
           break;
-        case 1:
+        case 1: {
+          await this.$router.push('/cart');
           break;
+        }
+
       }
 
     },
@@ -133,6 +140,23 @@ export default {
           return this.$t('course.completePurchaseFlow');
         case 2:
           return this.$t('course.startLearning');
+      }
+    },
+    async addToCartServer() {
+      console.log(this.data)
+      const [err] = await this.to(this.http.post(`cart/add-to-cart`, {
+        sessionId: this.sessionId,
+        courseId: this.id,
+      }));
+      if (!err) {
+        this.$toast.success('افزودن به سبد خرید با موفقیت انجام شد.')
+        await this.addToCart(this.data);
+      }
+    }
+  },
+  watch: {
+    'cartExistItems': {
+      handler() {
       }
     }
   }

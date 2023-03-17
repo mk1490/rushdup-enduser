@@ -47,10 +47,7 @@
           >
             <v-list-item-title>{{ $t('ui.accountInformation') }}</v-list-item-title>
           </v-list-item>
-          <v-list-item>
-            <v-list-item-title>{{ $t('ui.saleCooperation') }}</v-list-item-title>
-          </v-list-item>
-          <v-list-item>
+          <v-list-item @click="myTests">
             <v-list-item-title>{{ $t('ui.myTests') }}</v-list-item-title>
           </v-list-item>
           <v-list-item @click="logout">
@@ -72,7 +69,6 @@ export default {
     // this.oidc.on((e) => {
     //   console.log(e)
     // })
-    console.log(loginState)
     await this.$store.commit('LOGIN_STATE', loginState);
     this.loading = true;
   },
@@ -95,6 +91,12 @@ export default {
     },
     async logout() {
       await this.oidc.logout();
+    },
+    async myTests() {
+
+    },
+    async() {
+
     }
   },
 }

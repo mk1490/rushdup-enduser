@@ -121,6 +121,9 @@ Vue.prototype.convertAmount = (event, vm, modelName) => {
         return total;
     }
 }
+Vue.prototype.randomUUID = () => {
+    return Date.now().toString(36) + Math.random().toString(36).substring(2);
+}
 Vue.prototype.navigateToRoute = async (target) => {
     await Vue.prototype.$router.replace(target);
 }

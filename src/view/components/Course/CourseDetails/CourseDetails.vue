@@ -14,11 +14,13 @@
             <v-card-text class="pa-0">
               <v-container>
                 <div class="row">
-                  <div class="col-auto">
+                  <div
+                      v-if="model.cover != null"
+                      class="col-auto">
                     <v-img
                         :aspect-ratio="4/3"
                         width="300"
-                        :src="model.cover">
+                        :src="serverAddress +model.cover">
                     </v-img>
                   </div>
                   <div class="col">
@@ -38,8 +40,9 @@
         </div>
         <div class="col-md-3 col-sm-12">
           <course-details_-information-side
-              v-if="model.teacher"
-              :data="model.teacher"
+              :id="model.id"
+              v-if="model"
+              :data="model"
           ></course-details_-information-side>
           <teacher-information
               :data="model.teacher">
@@ -73,6 +76,7 @@ import CourseDetails_VideoPlayer_Modal
 import CourseDetailsSubmitComment from "@/view/components/Course/CourseDetails/CourseDetailsSubmitComment.vue";
 import CourseDetails_EpisodeItems from "@/view/components/Course/CourseDetails/CourseDetails_EpisodeItems.vue";
 import TeacherInformation from "@/view/components/Course/CourseDetails/Widgets/TeacherInformation.vue";
+import {mapGetters} from "vuex";
 
 export default {
   name: "CourseDetails",
@@ -81,16 +85,21 @@ export default {
     CourseDetails_EpisodeItems,
     CourseDetailsSubmitComment, CourseDetails_VideoPlayer_Modal, CourseDetails_InformationSide
   },
+  computed: {
+    ...mapGetters(['sessionId'])
+  },
   async mounted() {
     const slugOrId = this.$route.params['slugOrId'];
-    const [err, data] = await this.to(this.http.get(`/course/CourseDetails/${slugOrId}`));
+    const [err, data] = await this.to(this.http.get(`/course/CourseDetails/${slugOrId}?sessionId=${this.sessionId}`));
     if (!err) {
       this.model.id = data.id;
       this.model.title = data.title;
       this.model.content = data.content;
-      this.model.cover = this.model.cover = this.serverAddress + `/core/image/course/${this.model.id}`;
+      this.model.cover = data.cover
       this.model.studentCounts = data.studentCounts;
       this.model.teacher = data.teacher;
+      this.model.isAddedToCart = data.isAddedToCart;
+      this.model.isPurchased = data.isPurchased;
       this.model.items = data['courseItems'];
       // this.items = data.courseItems.map((f) => {
       //   return {
@@ -124,6 +133,8 @@ export default {
         lessonCounts: 12,
         studentCounts: 12,
         progress: 20,
+        isAddedToCart: false,
+        isPurchased: false,
         items: [
           // {
           //   targetType: 1,

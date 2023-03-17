@@ -8,13 +8,15 @@
   </v-app>
 </template>
 <script>
-import {mapGetters} from "vuex";
+import {mapActions, mapGetters} from "vuex";
 import Vue from 'vue';
 import DeleteDialog from "./view/widget/DeleteDialog";
 import ProgressDialog from "@/view/widget/ProgressDialog";
 
 export default {
   async beforeCreate() {
+    // Generate random uuid for session.
+    this.$store.dispatch('initializeSessionId');
     const user = await this.oidc.getUser();
     if (user) {
       await this.$store.dispatch('setUserInfo', user);
@@ -46,7 +48,7 @@ export default {
     });
   },
   computed: {
-    ...mapGetters(['loading', 'cartItems']),
+    ...mapGetters(['loading', 'cartItems', 'sessionId']),
   },
   data: () => ({}),
   watch: {
@@ -60,7 +62,7 @@ export default {
         this.cartItems.forEach(x => {
           fd.append('cartItemId', x.id);
         })
-        const [err, data] = await this.to(this.http.post(`/initialize`, fd));
+        const [err, data] = await this.to(this.http.post(`/initialize?sessionId=${this.sessionId}`, fd));
         if (!err) {
           await this.$store.dispatch('initMenuItems', data.menuItems);
           await this.$store.dispatch('initCategoryItems', data.categoryItems);
@@ -70,6 +72,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['initializeSessionId']),
     async logout() {
       localStorage.removeItem('Authorization');
       window.location.href = '/#/SignIn';

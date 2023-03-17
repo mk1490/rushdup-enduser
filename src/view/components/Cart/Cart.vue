@@ -16,7 +16,7 @@
                 </items-list>
               </div>
               <div class="col-12">
-                <selection-payment-types>
+                <selection-payment-types :payment-ipg-items="ipgItems">
 
                 </selection-payment-types>
               </div>
@@ -54,16 +54,25 @@ import CartEmpty from "@/view/components/Cart/Widgets/CartEmpty.vue";
 
 export default {
   name: "Cart",
+  async created() {
+    const [err, data] = await this.to(this.http.get(`cart/initialize?sessionId=${this.sessionId}`));
+    if (!err) {
+      this.ipgItems = data['activePaymentIpgs'];
+      this.totalAmount = data.totalAmount;
+      this.payableAmount = data.payableAmount;
+    }
+  },
   components: {CartEmpty, ItemsList, SelectionPaymentTypes, SideTotalAmountAndPayButton, DiscountCode},
   data() {
     return {
       discountCode: null,
       totalAmount: 0,
       payableAmount: 0,
+      ipgItems: [],
     }
   },
   computed: {
-    ...mapGetters(['cartItems'])
+    ...mapGetters(['cartItems', 'sessionId'])
   }
 }
 </script>

@@ -120,6 +120,8 @@ const user = {
         }, setLoginState: async ({commit}, payload) => {
             await commit('LOGIN_STATE', payload);
         }, addToCart: async ({commit}, payload) => {
+            
+            
             await commit('ADD_TO_CART', payload);
         },
         removeCartItem: async ({commit}, index) => {

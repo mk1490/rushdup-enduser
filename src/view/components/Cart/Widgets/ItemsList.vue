@@ -25,6 +25,7 @@
                 <div class="d-block">
                   <v-rating
                       small
+                      readonly
                       :length="5">
                   </v-rating>
                 </div>

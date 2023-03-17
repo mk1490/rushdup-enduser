@@ -52,23 +52,23 @@
         </v-expansion-panels>
       </div>
       <div class="col-md-9 col-sm-12">
-        <main-list
+        <grid
             @onItemClick="itemClick"
             :items="items.mainListItems">
-        </main-list>
+        </grid>
       </div>
     </div>
   </v-container>
 </template>
 
 <script>
-import MainList from "@/view/components/Course/SharedComponent/MainList.vue";
 import qs from "qs";
 import NoItemsForVisible from "@/view/components/Course/AllCourses/Widgets/NoItemsForVisible.vue";
+import Grid from "@/view/components/Course/SharedComponent/Grid.vue";
 
 export default {
   name: "CoursesList",
-  components: {NoItemsForVisible, MainList},
+  components: {Grid, NoItemsForVisible},
   async mounted() {
     {
       this.getData().then();
@@ -112,7 +112,7 @@ export default {
       const [err, data] = await this.to(this.http.get('/course/list?' + queryParams, {}));
       if (!err) {
         this.items.mainListItems = data.map(f => {
-          f.cover = f.cover !== null ? this.serverAddress + f.cover : '';
+          f.cover = f.cover !== null ? this.serverAddress + f.cover : null;
           return f;
         });
       }

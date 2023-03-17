@@ -76,7 +76,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 .layout-drawer {
   padding-bottom: 0px;
   padding-top: 0px;

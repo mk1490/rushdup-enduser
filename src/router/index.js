@@ -31,13 +31,6 @@ export const constantRoutes = [{
             meta: {
                 title: 'route.test', icon: 'mdi-book-education'
             },
-        }, {
-            path: 'MyCourses',
-            name: 'MyCourses',
-            component: () => import('@/view/components/Course/MyCourses/MyCourses.vue'),
-            meta: {
-                title: 'route.myCourses', icon: 'mdi-book-education'
-            },
         },
         {
             path: 'Cart',
@@ -114,10 +107,44 @@ export const constantRoutes = [{
             meta: {},
             children: []
         },
+    ],
 
-    ]
 },
-
+    {
+        path: '/profile',
+        name: 'profile',
+        component: () => import('@/view/layout/ProfileDashboard/TheLayout.vue'),
+        hidden: true,
+        meta: {},
+        children: [
+            {
+                path: '/dashboard',
+                name: 'dashboard',
+                component: () => import('@/view/components/Profile/Dashboard.vue'),
+                meta: {},
+            },
+            {
+                path: '/MyCourses',
+                name: 'MyCourses',
+                component: () => import('@/view/components/Course/MyCourses/MyCoursesTable.vue'),
+            },
+            {
+                path: '/Licenses',
+                name: 'Licenses',
+                component: () => import('@/view/components/Profile/MyLicenses.vue'),
+            },
+            {
+                path: '/tickets',
+                name: 'Tickets',
+                component: () => import('@/view/components/Profile/Tickets/SupportTicket.vue'),
+            },
+            {
+                path: '/registerNewTicket',
+                name: 'RegisterNewTicket',
+                component: () => import('@/view/components/Profile/Tickets/RegisterNewTicket.vue'),
+            }
+        ]
+    },
 ];
 
 export default new Router({

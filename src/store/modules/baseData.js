@@ -3,9 +3,11 @@ import i18n from '@/locale'
 
 const baseData = {
     state: {
+        sessionId: null,
         menuItems: [],
         categoryItems: [],
         selectedCategory: null,
+        profileNavbarShow: true,
         battalionItems: [], timeRangeItems: [{
             text: i18n.t('timeRangeItems.recent12Hour'), value: 'recent12Hour'
         }, {
@@ -24,7 +26,9 @@ const baseData = {
     }, getters: {
         menuItems: (state) => state.menuItems,
         categoryItems: (state) => state.categoryItems,
-        selectedCategory: (state) => state.selectedCategory
+        selectedCategory: (state) => state.selectedCategory,
+        sessionId: (state) => state.sessionId,
+        profileNavbarShow: (state) => state.profileNavbarShow
     },
     mutations: {
         SET_MENU_ITEMS: (state, payload) => {
@@ -49,6 +53,13 @@ const baseData = {
         setCategory: async (context, payload) => {
             context.commit('SELECT_CATEGORY', payload);
             context.commit('NAVBAR_STATE', false);
+        },
+        initializeSessionId: ({state}) => {
+            let id = sessionStorage.getItem('id');
+            if (!id) {
+                id = sessionStorage.setItem('id', Vue.prototype.randomUUID())
+            }
+            state.sessionId = id;
         }
     },
 };
