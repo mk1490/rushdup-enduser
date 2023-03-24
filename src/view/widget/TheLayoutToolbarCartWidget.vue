@@ -42,6 +42,7 @@
                 <div class="row">
                   <div class="col d-inline-flex align-center">
                     <v-btn
+                        @click="deleteItem(item)"
                         small
                         icon>
                       <v-icon color="red">
@@ -94,6 +95,13 @@ export default {
     async navigateToRoute(route) {
       await this.$router.replace(route);
     },
+    async deleteItem(item) {
+      console.log(item)
+      const [err, data] = await this.to(this.http.delete(``));
+      if (!err) {
+        this.cartItems.splice(this.cartItems.findIndex(x => x.id == item));
+      }
+    }
   }
 }
 </script>

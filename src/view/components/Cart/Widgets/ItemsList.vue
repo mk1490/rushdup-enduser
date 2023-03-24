@@ -1,7 +1,7 @@
 ﻿<template>
   <v-list>
     <v-list-item
-        v-for="(item, index) in cartItems">
+        v-for="(item, index) in courseItems">
       <v-list-item-content>
         <v-card
             flat
@@ -33,7 +33,7 @@
                   {{ item.title }}
                 </label>
                 <span class="price">
-                  {{ item.price + ' ' + $t('IRR') }} 
+                  {{ getComma(item.price) + ' ' + $t('ui.IRR') }} 
                 </span>
               </div>
             </div>
@@ -49,8 +49,8 @@ import {mapGetters} from "vuex";
 
 export default {
   name: "ItemsList",
-  computed: {
-    ...mapGetters(['cartItems'])
+  props:{
+    courseItems: Array,
   },
   methods: {
     removeFromCart(index) {

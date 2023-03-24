@@ -95,7 +95,8 @@ export default {
       this.model.id = data.id;
       this.model.title = data.title;
       this.model.content = data.content;
-      this.model.cover = data.cover
+      this.model.price = data.price;
+      this.model.cover = data.cover;
       this.model.studentCounts = data.studentCounts;
       this.model.teacher = data.teacher;
       this.model.isAddedToCart = data.isAddedToCart;

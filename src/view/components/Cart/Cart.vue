@@ -6,13 +6,13 @@
       </v-card-title>
       <v-card-text>
         <div
-            v-if="cartItems.length > 0"
+            v-if="courseItems.length > 0"
             class="row">
           <div class="col-9">
             <div class="row">
               <div class="col-12">
-                <items-list>
-
+                <items-list
+                    :course-items="courseItems">
                 </items-list>
               </div>
               <div class="col-12">
@@ -60,6 +60,7 @@ export default {
       this.ipgItems = data['activePaymentIpgs'];
       this.totalAmount = data.totalAmount;
       this.payableAmount = data.payableAmount;
+      this.courseItems = data.courseItems;
     }
   },
   components: {CartEmpty, ItemsList, SelectionPaymentTypes, SideTotalAmountAndPayButton, DiscountCode},
@@ -69,10 +70,11 @@ export default {
       totalAmount: 0,
       payableAmount: 0,
       ipgItems: [],
+      courseItems: [],
     }
   },
   computed: {
-    ...mapGetters(['cartItems', 'sessionId'])
+    ...mapGetters(['sessionId'])
   }
 }
 </script>

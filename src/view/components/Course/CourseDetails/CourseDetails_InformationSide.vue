@@ -33,12 +33,12 @@
       </div>
       <div class="d-block mt-5">
         <div class="row">
-          <div class="col d-inline-flex price">
+          <div class="col d-inline-flex price justify-center">
             <p>
-              {{ data.price }}
+              {{ getComma(data.price) }}
             </p>
-            <small>
-              {{ $t('ui.IRR') }}
+            <small class="mr-2">
+              {{ $t('IRR') }}
             </small>
           </div>
           <div class="col-auto"></div>
@@ -143,8 +143,7 @@ export default {
       }
     },
     async addToCartServer() {
-      console.log(this.data)
-      const [err] = await this.to(this.http.post(`cart/add-to-cart`, {
+      const [err] = await this.to(this.http.post(`cart/cart`, {
         sessionId: this.sessionId,
         courseId: this.id,
       }));
