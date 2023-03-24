@@ -152,6 +152,11 @@ export const constantRoutes = [{
                 path: '/wallet',
                 name: 'wallet',
                 component: () => import('@/view/components/Profile/Wallet.vue'),
+            },
+            {
+                path: '/transactions',
+                name: 'transactions',
+                component: () => import('@/view/components/Profile/Order/Order.vue'),
             }
         ]
     },

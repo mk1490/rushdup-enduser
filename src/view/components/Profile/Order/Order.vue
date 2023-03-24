@@ -22,8 +22,11 @@
 <script>
 export default {
   name: "Order",
-  created() {
-    
+  async created() {
+    const [err, data] = await this.to(this.http.get(`transactions`));
+    if (!err) {
+      this.table.contents = data;
+    }
   },
   data() {
     return {

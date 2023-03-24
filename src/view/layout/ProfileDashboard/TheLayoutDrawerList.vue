@@ -38,6 +38,12 @@
           کیف پول
         </v-list-item-title>
       </v-list-item>
+      <v-list-item
+          to="/transactions">
+        <v-list-item-title>
+          تراکنش و سفارشات
+        </v-list-item-title>
+      </v-list-item>
     </v-list>
   </div>
 </template>
