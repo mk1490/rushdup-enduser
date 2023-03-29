@@ -16,7 +16,10 @@
                 </items-list>
               </div>
               <div class="col-12">
-                <selection-payment-types :payment-ipg-items="ipgItems">
+                <selection-payment-types
+                    v-if="isLogin"
+                    :selected-payment.sync="selectedIpg"
+                    :payment-ipg-items="ipgItems">
 
                 </selection-payment-types>
               </div>
@@ -27,6 +30,7 @@
               <discount-code>
               </discount-code>
               <side-total-amount-and-pay-button
+                  :selected-ipg="selectedIpg"
                   class="mt-10"
                   :model="this">
 
@@ -66,6 +70,7 @@ export default {
   components: {CartEmpty, ItemsList, SelectionPaymentTypes, SideTotalAmountAndPayButton, DiscountCode},
   data() {
     return {
+      selectedIpg: {},
       discountCode: null,
       totalAmount: 0,
       payableAmount: 0,
@@ -74,7 +79,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['sessionId'])
+    ...mapGetters(['sessionId', 'isLogin'])
   }
 }
 </script>

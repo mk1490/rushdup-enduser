@@ -1,9 +1,10 @@
 ﻿import {LocalStorageStateStore, OIDCClient} from '@plusauth/oidc-client-js'
 
 const mgr = new OIDCClient({
-    issuer: 'https://localhost:44397',
-    client_id: 'Amoozeshyar_Enduser',
-    redirect_uri: 'http://localhost:8081/cb',
+    issuer: process.env.VUE_APP_OAUTH_ISSUER,
+    client_id: process.env.VUE_APP_OAUTH_CLIENT_ID,
+    redirect_uri: process.env.VUE_APP_OAUTH_REDIRECT_URI,
+    // silent_redirect_uri: 'http://localhost:8081/silent-renew.html',
     response_type: 'code',
     scope: 'Amoozeshyar address profile email phone roles',
     stateStore: new LocalStorageStateStore(),

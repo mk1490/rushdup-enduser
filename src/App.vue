@@ -17,9 +17,13 @@ export default {
   async beforeCreate() {
     // Generate random uuid for session.
     await this.$store.dispatch('initializeSessionId');
+    await this.oidc.initialize(true);
+    await this.oidc.silentLogin()
     const user = await this.oidc.getUser();
-    if (user) {
+    if (!!user) {
       await this.$store.dispatch('setUserInfo', user);
+    } else {
+ 
     }
   },
 

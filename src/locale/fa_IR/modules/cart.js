@@ -5,6 +5,7 @@
     totalAmount: 'قیمت کل',
     payableAmount: 'مبلغ قابل پرداخت',
     finalizePurchase: 'نهایی کردن خرید',
+    continuePayment: 'ادامه پرداخت',
     ipgPaymentTitle: 'پرداخت آنلاین با تمام کارت های بانکی',
     ipgPaymentDescription: 'لطفا درگاه پرداخت مورد نظر خود را از گزینه های روبرو انتخاب کنید',
     bankReceiptTitle: 'پرداخت از طریق کارت به کارت یا فیش بانکی',

@@ -18,26 +18,36 @@
         @click="paymentPrepare()"
         block
         color="primary">
-      {{ $t('cart.finalizePurchase') }}
+      {{ isLogin ? $t('cart.finalizePurchase') : $t('cart.continuePayment') }}
     </v-btn>
   </div>
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
   name: "SideTotalAmountAndPayButton",
   props: {
     model: Object,
     selectedIpg: Number,
   },
+  computed: {
+    ...mapGetters(['isLogin'])
+  },
   methods: {
     async paymentPrepare() {
-      const [err, data] = await this.to(this.http.post(`cart/initialize`, {
-        ipgProvider: this.selectedIpg,
-      }));
-      if (!err) {
-        
+      if (this.isLogin) {
+        const [err, data] = await this.to(this.http.post(`cart/initialize`, {
+          ipgProvider: this.selectedIpg,
+        }));
+        if (!err) {
+          window.location.href = data.url;
+        }
+      } else {
+        await this.oidc.login();
       }
+
     }
   }
 }

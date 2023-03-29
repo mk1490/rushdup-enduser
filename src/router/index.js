@@ -27,12 +27,6 @@ export const constantRoutes = [{
             },
         },
         {
-            path: 'Test', name: 'Test', component: () => import('@/view/components/Home/Test.vue'),
-            meta: {
-                title: 'route.test', icon: 'mdi-book-education'
-            },
-        },
-        {
             path: 'Cart',
             name: 'Cart',
             component: () => import('@/view/components/Cart/Cart.vue'),

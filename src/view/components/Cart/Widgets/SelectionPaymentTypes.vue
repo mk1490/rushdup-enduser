@@ -77,9 +77,7 @@
 <script>
 export default {
   name: "SelectionPaymentTypes",
-  props: {
-    paymentIpgItems: Array,
-  },
+  props: ['selectedPayment', 'paymentIpgItems'],
   created() {
     this.imageUrlProvider = this.serverAddress;
   },
@@ -87,12 +85,13 @@ export default {
     return {
       imageUrlProvider: null,
       selectedMethod: 1,
-      selectedPayment: null,
     }
   },
   methods: {
     selectIpg(item, index) {
       this.selectedPayment = item;
+      console.log(item.ipgProvider)
+      this.$emit('update:selectedPayment', item.ipgProvider);
     }
   }
 }
