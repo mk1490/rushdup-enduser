@@ -78,7 +78,7 @@
                     v-for="(item, index) in categoryItems"
                     :key="index">
                   <v-list-item-title>
-                    {{ item.name }}
+                    {{ item.title }}
                   </v-list-item-title>
                 </v-list-item>
               </v-list>

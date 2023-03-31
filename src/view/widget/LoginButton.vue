@@ -70,11 +70,6 @@ import {mapGetters} from "vuex";
 export default {
   name: "LoginButton",
   async created() {
-    const loginState = await this.oidc.isLoggedIn();
-    // this.oidc.on((e) => {
-    //   console.log(e)
-    // })
-    await this.$store.commit('LOGIN_STATE', loginState);
     this.loading = true;
   },
   computed: {
@@ -90,12 +85,10 @@ export default {
   },
   methods: {
     async login() {
-      await this.oidc.login();
     }, async navigateToRoute(route) {
       await this.$router.replace(route);
     },
     async logout() {
-      await this.oidc.logout();
     },
     async myTests() {
 

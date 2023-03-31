@@ -45,7 +45,6 @@ export default {
           window.location.href = data.url;
         }
       } else {
-        await this.oidc.login();
       }
 
     }

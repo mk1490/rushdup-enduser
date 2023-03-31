@@ -90,7 +90,7 @@ export default {
   },
   async mounted() {
     const slugOrId = this.$route.params['slugOrId'];
-    const [err, data] = await this.to(this.http.get(`/course/CourseDetails/${slugOrId}?sessionId=${this.sessionId}`));
+    const [err, data] = await this.to(this.http.get(`/course/course-details/${slugOrId}?sessionId=${this.sessionId}`));
     if (!err) {
       this.model.id = data.id;
       this.model.title = data.title;

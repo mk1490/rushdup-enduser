@@ -19,14 +19,6 @@ export const constantRoutes = [{
 
     },
         {
-            path: 'cb',
-            name: 'AuthCallback',
-            component: () => import('@/view/components/AuthCallback.vue'),
-            meta: {
-                title: 'route.test', icon: 'mdi-book-education'
-            },
-        },
-        {
             path: 'Cart',
             name: 'Cart',
             component: () => import('@/view/components/Cart/Cart.vue'),
@@ -101,6 +93,13 @@ export const constantRoutes = [{
             meta: {},
             children: []
         },
+        {
+            path: '/search',
+            name: 'Search',
+            component: () => import('@/view/components/Course/Search/Search.vue'),
+            meta: {},
+            children: []
+        },
     ],
 
 },
@@ -151,7 +150,8 @@ export const constantRoutes = [{
                 path: '/transactions',
                 name: 'transactions',
                 component: () => import('@/view/components/Profile/Order/Order.vue'),
-            }
+            },
+
         ]
     },
 ];

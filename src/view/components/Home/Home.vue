@@ -16,13 +16,19 @@
 
           <div class="d-flex search__bar align-center">
             <v-text-field
+                v-model="model.search"
+                item-value="id"
+                item-text="title"
                 rounded
+                :append-icon="null"
+                hide-no-data
                 filled
                 hide-details
                 placeholder="جستجوی آموزش در حوزه های مختلف"
             >
             </v-text-field>
             <v-btn
+                @click="applySearch"
                 rounded
                 height="52"
                 shaped
@@ -72,7 +78,37 @@ import Landing from "@/view/components/Home/Landing.vue";
 
 export default {
   name: "Home",
-  components: {Landing}
+  components: {Landing},
+  data() {
+    return {
+      search: {
+        find: null,
+      },
+      items: {
+        search: [],
+      },
+      model: {
+        search: null,
+      }
+    }
+  },
+  watch: {
+    'search.find': {
+      async handler(val) {
+        const [err, data] = await this.to(this.http.get(`/core/search-course?q=${val}`, {
+          loader: false
+        }));
+        if (!err) {
+          this.items.search = data;
+        }
+      }
+    }
+  },
+  methods: {
+    async applySearch() {
+      await this.$router.push(`/search?q=${this.model.search}`)
+    }
+  }
 }
 </script>
 

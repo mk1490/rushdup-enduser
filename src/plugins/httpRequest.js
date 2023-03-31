@@ -6,17 +6,16 @@ import Router from "@/router";
 const serverAddress = process.env.VUE_APP_SERVER_ADDRESS;
 Vue.prototype.serverAddress = serverAddress;
 let lastRequest;
-Vue.prototype.baseUrl = serverAddress + '/enduser';
+Vue.prototype.baseUrl = serverAddress + '/api/enduser';
 axios.defaults.baseURL = Vue.prototype.baseUrl;
 axios.interceptors.request.use(async (req) => {
     if (req.loader !== false) {
         Vue.prototype.showLoader();
     }
-    const accessToken = await Vue.prototype.oidc.getAccessToken();
-    if (accessToken) {
-        localStorage.setItem('accessToken', accessToken)
-    }
-    req.headers.Authorization = 'Bearer ' + localStorage.getItem('accessToken');
+    // if (accessToken) {
+    //     localStorage.setItem('accessToken', accessToken)
+    // }
+    // req.headers.Authorization = 'Bearer ' + localStorage.getItem('accessToken');
     lastRequest = req;
     return req;
 });

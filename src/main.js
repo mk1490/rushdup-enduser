@@ -11,20 +11,15 @@ import '@/plugins/httpRequest';
 import '@/plugins/commonMethods';
 import '@/plugins/toastMessageProvider';
 import {to} from 'await-to-js'
-// import mgr from '@/plugins/o_auth'
 import '@/router/permission'
 import VueToast from 'vue-toast-notification';
 import '@/assets/styles/vueToastTheme.scss';
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
-import lodash from 'lodash';
 import "@mdi/font/css/materialdesignicons.min.css";
 import VueVideoPlayer from 'vue-video-player'
 import 'video.js/dist/video-js.css'
-import oidc from './plugins/o_auth'
 
-
-Vue.prototype.oidc = oidc;
 Vue.use(VueVideoPlayer);
 
 Vue.use(VueSweetalert2, {
@@ -36,7 +31,6 @@ Vue.use(VueSweetalert2, {
 Vue.use(VueToast, {
     position: 'bottom-left'
 });
-// Vue.prototype.oAuth = mgr;
 Vue.prototype.to = to;
 Vue.config.productionTip = false
 Vue.prototype.showLoader = () => {

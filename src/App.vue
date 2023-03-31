@@ -17,14 +17,11 @@ export default {
   async beforeCreate() {
     // Generate random uuid for session.
     await this.$store.dispatch('initializeSessionId');
-    await this.oidc.initialize(true);
-    await this.oidc.silentLogin()
-    const user = await this.oidc.getUser();
-    if (!!user) {
-      await this.$store.dispatch('setUserInfo', user);
-    } else {
- 
-    }
+    // if (!!user) {
+    //   await this.$store.dispatch('setUserInfo', user);
+    // } else {
+
+    // }
   },
 
   async created() {
@@ -45,11 +42,7 @@ export default {
   components: {ProgressDialog, DeleteDialog},
   async mounted() {
     Vue.prototype.deleteModal = this.$refs.deleteDialog;
-    const isLogin = await this.oidc.isLoggedIn();
     await this.$store.commit('INITIAL_CART_ITEMS');
-    this.oidc.on('user_login', async (user) => {
-      await this.$store.commit('LOGIN_STATE', true);
-    });
   },
   computed: {
     ...mapGetters(['loading', 'cartItems', 'sessionId']),
@@ -66,7 +59,7 @@ export default {
         this.cartItems.forEach(x => {
           fd.append('cartItemId', x.id);
         })
-        const [err, data] = await this.to(this.http.post(`/initialize?sessionId=${this.sessionId}`, fd));
+        const [err, data] = await this.to(this.http.post(`/core/initialize?sessionId=${this.sessionId}`, fd));
         if (!err) {
           await this.$store.dispatch('initMenuItems', data.menuItems);
           await this.$store.dispatch('initCategoryItems', data.categoryItems);

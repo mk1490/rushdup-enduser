@@ -16,7 +16,6 @@ export default {
   name: "TheLayout",
   components: {TheLayoutContent, TheLayoutDrawer, TheLayoutToolbar},
   async created() {
-    // await this.oidc.login()
   },
 }
 </script>

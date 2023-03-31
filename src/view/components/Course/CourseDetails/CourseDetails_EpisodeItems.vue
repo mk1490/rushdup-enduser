@@ -21,7 +21,6 @@
                   <v-icon>mdi-play</v-icon>
                   <span>{{ item.title }}</span>
                 </div>
-
               </v-list-item>
             </v-list>
           </v-expansion-panel-content>
