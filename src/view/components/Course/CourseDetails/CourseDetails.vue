@@ -99,9 +99,9 @@ export default {
       this.model.cover = data.cover;
       this.model.studentCounts = data.studentCounts;
       this.model.teacher = data.teacher;
-      this.model.isAddedToCart = data.isAddedToCart;
-      this.model.isPurchased = data.isPurchased;
-      this.model.items = data['courseItems'];
+      // this.model.isAddedToCart = data.isAddedToCart;
+      // this.model.isPurchased = data.isPurchased;
+      this.model.items = data.courseItems;
       // this.items = data.courseItems.map((f) => {
       //   return {
       //     title: f.title,

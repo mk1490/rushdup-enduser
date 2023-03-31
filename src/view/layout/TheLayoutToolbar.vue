@@ -5,7 +5,8 @@
       height="160"
       class="darken-3"
       dark
-      flat>
+      fixed
+      fade-img-on-scroll>
     <div class="row full-width">
       <div class="col-12 pa-0 ma-0 px-10">
         <div class="row">

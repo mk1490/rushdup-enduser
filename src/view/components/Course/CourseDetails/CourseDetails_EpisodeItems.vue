@@ -39,7 +39,6 @@ export default {
   methods: {
     async itemDetailsClick(item) {
       const slug = this.$route.params['slugOrId'];
-      console.log(item.id)
       await this.$router.push({
         name: 'CourseEpisode',
         params: {
