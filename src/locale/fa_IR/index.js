@@ -103,5 +103,10 @@ export default {
     upload: {
         title: 'فایل ویدئویی خود را انختاب کنید',
         description: 'حدأکثر حجم مجاز برای آپلود {mb} قابل قبول است.',
+    },
+    authentication: {
+        username: 'نام کاربری',
+        password: 'کلمۀ عبور',
+        login: 'ورود',
     }
 };

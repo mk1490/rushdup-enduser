@@ -27,8 +27,6 @@ export default {
   async created() {
     Vue.prototype.showLoader();
     await this.$store.commit('INITIAL_CART_ITEMS');
-
-
     Vue.prototype.deleteModal = this.$refs.delete;
     this.$store.subscribe(async (mutation) => {
       switch (mutation.type) {
@@ -37,6 +35,10 @@ export default {
           break;
       }
     });
+    const [err, data] = await this.to(this.http.get(`${this.serverAddress}/api/auth/currentProfile`));
+    if (!err) {
+      this.$store.dispatch('setLoginState', true)
+    }
   },
   name: 'App',
   components: {ProgressDialog, DeleteDialog},

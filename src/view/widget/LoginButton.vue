@@ -85,6 +85,7 @@ export default {
   },
   methods: {
     async login() {
+      this.navigateToRoute('/login')
     }, async navigateToRoute(route) {
       await this.$router.replace(route);
     },

@@ -154,6 +154,13 @@ export const constantRoutes = [{
 
         ]
     },
+    {
+        path: '/Login',
+        name: 'Login',
+        component: () => import('@/view/components/Login.vue'),
+        meta: {},
+        children: []
+    },
 ];
 
 export default new Router({

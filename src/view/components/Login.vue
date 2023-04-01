@@ -15,7 +15,7 @@
     <v-container fluid class="container--fluid fill-height">
       <v-layout align-center justify-center>
         <div class="d-inline-block justify-center">
-          <h2 class="d-flex white--text">{{ $t('loginTitle') }}</h2>
+          <h2 class="d-flex white--text justify-center">{{ 'ورود به حساب کاربری' }}</h2>
           <div class="d-flex justify-center mt-8">
             <v-card class="elevation-3" width="380">
               <div class="justify-center text-center text-wrap px-4 py-3">
@@ -90,12 +90,11 @@ export default {
   },
   methods: {
     async login() {
-      const [err, data] = await this.to(this.http.post(`/auth/login`, this.model));
+      const [err, data] = await this.to(this.http.post(`${this.serverAddress}/api/auth/login`, this.model));
       if (!err) {
         localStorage.setItem('Authorization', data.access_token);
-        await this.$store.dispatch('SettingsPanelBtnToggle');
+        await this.$store.dispatch('setLoginState', true);
         await this.$router.push('/');
-        // await this.$store.dispatch('initProfile');
       }
     }
   }

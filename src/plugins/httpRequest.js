@@ -15,7 +15,7 @@ axios.interceptors.request.use(async (req) => {
     // if (accessToken) {
     //     localStorage.setItem('accessToken', accessToken)
     // }
-    // req.headers.Authorization = 'Bearer ' + localStorage.getItem('accessToken');
+    req.headers.Authorization = 'Bearer ' + localStorage.getItem('Authorization');
     lastRequest = req;
     return req;
 });
