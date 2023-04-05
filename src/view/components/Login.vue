@@ -90,7 +90,9 @@ export default {
   },
   methods: {
     async login() {
-      const [err, data] = await this.to(this.http.post(`${this.serverAddress}/api/auth/login`, this.model));
+      const payload = {...this.model};
+      payload.sessionId = this.$store.getters.sessionId;
+      const [err, data] = await this.to(this.http.post(`${this.serverAddress}/api/auth/login`, payload));
       if (!err) {
         localStorage.setItem('Authorization', data.access_token);
         await this.$store.dispatch('setLoginState', true);

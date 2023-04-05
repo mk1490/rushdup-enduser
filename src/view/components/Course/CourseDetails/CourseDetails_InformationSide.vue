@@ -143,7 +143,7 @@ export default {
       }
     },
     async addToCartServer() {
-      const [err] = await this.to(this.http.post(`cart/cart`, {
+      const [err] = await this.to(this.http.post(`/cart`, {
         sessionId: this.sessionId,
         courseId: this.id,
       }));

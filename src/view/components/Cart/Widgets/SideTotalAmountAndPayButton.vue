@@ -38,7 +38,7 @@ export default {
   methods: {
     async paymentPrepare() {
       if (this.isLogin) {
-        const [err, data] = await this.to(this.http.post(`cart/initialize`, {
+        const [err, data] = await this.to(this.http.post(`/cart/prepare-payment`, {
           ipgProvider: this.selectedIpg,
         }));
         if (!err) {

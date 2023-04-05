@@ -59,7 +59,12 @@ import CartEmpty from "@/view/components/Cart/Widgets/CartEmpty.vue";
 export default {
   name: "Cart",
   async created() {
-    const [err, data] = await this.to(this.http.get(`cart/initialize?sessionId=${this.sessionId}`));
+    let url = '/cart/initialize/';
+    if (this.isLogin) {
+      url += `?sessionId=${this.sessionId}`;
+    }
+
+    const [err, data] = await this.to(this.http.get(url));
     if (!err) {
       this.ipgItems = data['activePaymentIpgs'];
       this.totalAmount = data.totalAmount;
