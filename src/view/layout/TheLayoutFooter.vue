@@ -3,7 +3,7 @@
     <div class="d-block">
       <div class="d-flex justify-center mt-8">
         <h1>
-          محل قرارگیری لوگوی رشدآپ
+          رشدآپ
         </h1>
       </div>
     </div>
@@ -72,7 +72,7 @@ html, body {
 .footer-container {
   width: 100%;
   min-height: 300px !important;
-  background-color: #424242;
+  background-color: rgba(9, 155, 82, 0.66);
   color: white;
 }
 

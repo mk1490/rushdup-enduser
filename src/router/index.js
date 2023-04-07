@@ -151,6 +151,11 @@ export const constantRoutes = [{
                 name: 'transactions',
                 component: () => import('@/view/components/Profile/Order/Order.vue'),
             },
+            {
+                path: '/transaction/:transactionId',
+                name: 'transactions',
+                component: () => import('@/view/components/Profile/Order/OrderDetails.vue'),
+            },
 
         ]
     },

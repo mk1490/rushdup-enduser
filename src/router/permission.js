@@ -4,12 +4,12 @@ import vuex from '../store/index'
 
 let whiteList = ['/SignIn'];
 
-async function isAuth() {
+function isAuth() {
     return vuex.getters.isLogin;
 }
 
 router.beforeEach(async (toRoute, from, next) => {
-    const isAuthenticated = await isAuth();
+    const isAuthenticated = isAuth();
     if (isAuthenticated) {
         next();
     } else {

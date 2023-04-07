@@ -66,7 +66,7 @@ export default {
 
     const [err, data] = await this.to(this.http.get(url));
     if (!err) {
-      this.ipgItems = data['activePaymentIpgs'];
+      this.ipgItems = data['ipgItems'];
       this.totalAmount = data.totalAmount;
       this.payableAmount = data.payableAmount;
       this.courseItems = data.courseItems;

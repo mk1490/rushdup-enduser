@@ -36,7 +36,7 @@
                         :class="item === selectedPayment ? 'elevation-9' :''">
                       <div class="pa-2">
                         <v-img
-                            :src="`${imageUrlProvider}/core/payment-ipg-image?provider=${item.ipgProvider}`">
+                            :src="`${imageUrlProvider}${item.image}`">
 
                         </v-img>
                       </div>
@@ -90,8 +90,7 @@ export default {
   methods: {
     selectIpg(item, index) {
       this.selectedPayment = item;
-      console.log(item.ipgProvider)
-      this.$emit('update:selectedPayment', item.ipgProvider);
+      this.$emit('update:selectedPayment', item.provider);
     }
   }
 }

@@ -30,45 +30,56 @@ axios.interceptors.response.use(async (response) => {
     if (lastRequest.method.toString() === 'delete') {
         Vue.prototype.$toast.error(i18n.t('ui.deleteItemFailed'));
     }
-    try {
-        const status = error.response.status;
-        if (status === 401) {
+    const status = error.response.status;
+    const errorObject = error.response.data;
+    const statusCode = error.response.status;
+    console.log(errorObject, statusCode, status)
+    let message = null;
+    switch (status) {
+
+        case 400: {
+            message = errorObject.message;
+            break;
+        }
+        case 401: {
             localStorage.removeItem('Authorization');
             if (Router.currentRoute.fullPath !== '/SignIn') {
                 await Router.push('/SignIn');
             }
-        } else if (status === 403) {
+            break;
+        }
+        case 404: {
+            lastRequest.errorModal = false;
+            break;
+        }
+        case 500: {
+            message = i18n.t('errors.serverError');
+            break;
+        }
+
+        default: {
+            if (Array.isArray(errorObject.message)) {
+                errorObject.message.map((f) => {
+                    message += f + `<br>`;
+                });
+            } else {
+                message = errorObject.message;
+            }
             if (lastRequest.errorModal !== undefined && lastRequest.errorModal !== false) {
                 Vue.swal.fire({
-                    title: i18n.t('ui.error'), html: error.response.data.message, icon: 'error'
+                    title: i18n.t('ui.error'), html: message, icon: 'error'
                 });
             }
-        }
-    } catch (e) {
-        Vue.prototype.$swal.fire({
-            title: i18n.t('errors.noConnectionToServer'), icon: 'error',
-        })
-        return Promise.reject(e);
-    }
-    const errorObject = error.response.data;
-    const statusCode = error.response.status;
-    if (statusCode === 500) {
-        Vue.swal.fire(i18n.t('errors.serverError'), '', 'error');
-    } else if ((statusCode !== 403) && errorObject.message) {
-        let message = '';
-        if (Array.isArray(errorObject.message)) {
-            errorObject.message.map((f) => {
-                message += f + `<br>`;
-            });
-        } else {
-            message = errorObject.message;
-        }
-        if (lastRequest.errorModal !== undefined && lastRequest.errorModal !== false) {
-            Vue.swal.fire({
-                title: i18n.t('ui.error'), html: message, icon: 'error'
-            });
+            break;
         }
     }
+    if (lastRequest.errorModal != false) {
+        Vue.swal.fire({
+            title: i18n.t('ui.error'), html: message, icon: 'error'
+        });
+    }
+
+
     return Promise.reject(error);
 });
 Vue.prototype.http = axios;
