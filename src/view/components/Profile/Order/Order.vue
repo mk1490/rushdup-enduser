@@ -91,12 +91,16 @@ export default {
       switch (status) {
         case -1:
           return 'در انتظار پرداخت';
+        case 1:
+          return 'پرداخت شده';
       }
     },
     getStatusColor(status) {
       switch (status) {
         case -1:
           return 'red';
+        case 1:
+          return 'green';
       }
     }
   }

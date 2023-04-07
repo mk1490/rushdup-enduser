@@ -6,7 +6,14 @@
             :headers="table.headers"
             :items="table.contents">
 
+          <template v-slot:item.row="{ item }">
+            <div>{{ table.contents.indexOf(item) + 1 }}</div>
+          </template>
+          <template v-slot:item.getDate="{ item }">
+            <div>{{ getPersianTime(item.time) }}</div>
+          </template>
 
+          
         </v-data-table>
       </v-card-text>
     </v-card>
@@ -17,6 +24,12 @@
 <script>
 export default {
   name: "MyCoursesTable",
+  async created() {
+    const [err, data] = await this.to(this.http.get(`/profile/courses`));
+    if (!err) {
+      this.table.contents = data;
+    }
+  },
   data() {
     return {
       table: {

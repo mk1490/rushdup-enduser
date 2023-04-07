@@ -27,7 +27,28 @@
 
 <script>
 export default {
-  name: "Dashboard"
+  name: "Dashboard",
+  data() {
+    return {
+      table: {
+        lastOrders: {
+          headers: [],
+          contents: [],
+        },
+        lastCourses: {
+          headers: [],
+          contents: [],
+        }
+      }
+    }
+  },
+  async created() {
+    const [err, data] = await this.to(this.http.get(`/profile/dashboard`));
+    if (!err) {
+      this.table.lastCourses.contents = data.lastCourses;
+      this.table.lastOrders.contents = data.lastOrders;
+    }
+  }
 }
 </script>
 
