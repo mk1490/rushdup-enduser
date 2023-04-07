@@ -38,7 +38,7 @@
               {{ getComma(data.price) }}
             </p>
             <small class="mr-2">
-              {{ $t('IRR') }}
+              {{ $t('ui.IRR') }}
             </small>
           </div>
           <div class="col-auto"></div>
@@ -94,11 +94,7 @@ export default {
   components: {TeacherInformation},
   created() {
     console.log(this.data)
-    if (this.data.isAddedToCart === true) {
-      this.purchaseStatus = 1;
-    } else if (this.data.isPurchased === true) {
-      this.purchaseStatus = 2;
-    }
+    this.purchaseStatus = this.data.cartStatus;
   },
   props: {
     id: String,
@@ -119,12 +115,12 @@ export default {
     ...mapActions(['addToCart']),
     async addToCartOrCompletePurchaseFlowOrViewCourse() {
       switch (this.purchaseStatus) {
-        case 0: {
+        case -1: {
           await this.addToCartServer();
         }
-          this.purchaseStatus = 1;
+          this.purchaseStatus = 2;
           break;
-        case 1: {
+        case 2: {
           await this.$router.push('/cart');
           break;
         }
@@ -134,12 +130,12 @@ export default {
     },
     getCartButtonTitle() {
       switch (this.purchaseStatus) {
-        case 0 :
+        case -1:
           return this.$t('course.addToCard');
         case 1:
-          return this.$t('course.completePurchaseFlow');
-        case 2:
           return this.$t('course.startLearning');
+        case 2:
+          return this.$t('course.completePurchaseFlow');
       }
     },
     async addToCartServer() {

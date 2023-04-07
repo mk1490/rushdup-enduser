@@ -99,6 +99,7 @@ export default {
       this.model.cover = data.cover;
       this.model.studentCounts = data.studentCounts;
       this.model.teacher = data.teacher;
+      this.model.cartStatus = data.cartStatus;
       // this.model.isAddedToCart = data.isAddedToCart;
       // this.model.isPurchased = data.isPurchased;
       this.model.items = data.courseItems;
@@ -134,29 +135,8 @@ export default {
         lessonCounts: 12,
         studentCounts: 12,
         progress: 20,
-        isAddedToCart: false,
-        isPurchased: false,
-        items: [
-          // {
-          //   targetType: 1,
-          //   title: 'برای دریافت گواهینامه کلیک کنید',
-          //   hasButton: true,
-          //   buttonTitle: 'دریافت گواهینامه',
-          // },
-          // {
-          //   targetType: 1,
-          //   title: 'فصل اول',
-          //   hasButton: false,
-          //   buttonTitle: null,
-          //   children: [
-          //     {
-          //       id: 1,
-          //       title: 'قسمت اول',
-          //     }
-          //   ]
-          // },
-
-        ],
+        cartStatus: -1,
+        items: [],
       }
     }
   },
