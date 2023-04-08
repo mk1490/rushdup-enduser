@@ -15,7 +15,10 @@ axios.interceptors.request.use(async (req) => {
     // if (accessToken) {
     //     localStorage.setItem('accessToken', accessToken)
     // }
-    req.headers.Authorization = 'Bearer ' + localStorage.getItem('Authorization');
+    const authorization = localStorage.getItem('Authorization');
+    if (!!authorization) {
+        req.headers.Authorization = 'Bearer ' + authorization;
+    }
     lastRequest = req;
     return req;
 });
@@ -33,7 +36,6 @@ axios.interceptors.response.use(async (response) => {
     const status = error.response.status;
     const errorObject = error.response.data;
     const statusCode = error.response.status;
-    console.log(errorObject, statusCode, status)
     let message = null;
     switch (status) {
 

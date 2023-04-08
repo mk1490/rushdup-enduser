@@ -2,7 +2,7 @@
   <v-card
       flat
       class="mt-5"
-      elevation="5">
+      elevation="0">
     <v-card-text class="pt-9">
       <v-expansion-panels
           class="mb-5">
@@ -15,7 +15,7 @@
             <v-list>
               <v-list-item
                   :ripple="false"
-                  @click="itemDetailsClick(childItem)"
+                  @click="itemDetailsClick(item)"
                   v-for="item in childItem.episodeItems">
                 <div class="d-inline-flex">
                   <v-icon>mdi-play</v-icon>
@@ -36,16 +36,10 @@ export default {
   props: {
     items: Array,
   },
+  emits: ['clickCourseEpisode'],
   methods: {
     async itemDetailsClick(item) {
-      const slug = this.$route.params['slugOrId'];
-      await this.$router.push({
-        name: 'CourseEpisode',
-        params: {
-          slugOrId: slug,
-          courseGroupId: item.id,
-        }
-      })
+      this.$emit('clickCourseEpisode', item)
     }
   }
 }

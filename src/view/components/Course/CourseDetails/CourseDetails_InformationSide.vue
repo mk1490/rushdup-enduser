@@ -16,21 +16,6 @@
                   {{ data.title }}
                 </span>
       </div>
-      <div class="d-block">
-        <p>{{ $t('myCourses.lessonCounts', {count: data.lessonCounts}) }}</p>
-      </div>
-      <div class="d-block">
-        <!--        <v-progress-linear-->
-        <!--            dir="rtl"-->
-        <!--            color="red"-->
-        <!--            :height="10"-->
-        <!--            :value="data.progress">-->
-        <!--          <template-->
-        <!--              v-slot:default="{ value }">-->
-        <!--            <strong>{{ Math.ceil(value) }} درصد</strong>-->
-        <!--          </template>-->
-        <!--        </v-progress-linear>-->
-      </div>
       <div class="d-block mt-5">
         <div class="row">
           <div class="col d-inline-flex price justify-center">
@@ -56,10 +41,10 @@
           </v-btn>
         </div>
       </div>
-      <div class="d-block">
+      <div class="d-block mt-3">
         <v-simple-table>
           <template v-slot:default>
-            <thead>
+            <tbody>
             <tr>
               <th class="text-right">
                 {{ $t('course.studentCounts') + ':' }}
@@ -76,7 +61,16 @@
                 {{ data.studentCounts }}
               </td>
             </tr>
-            </thead>
+            <tr>
+              <th class="text-right">
+                {{ $t('course.lessonCounts') + ':' }}
+              </th>
+              <td class="text-left">
+                {{ data.lessonCounts }}
+              </td>
+            </tr>
+
+            </tbody>
           </template>
         </v-simple-table>
       </div>
@@ -92,10 +86,8 @@ import TeacherInformation from "@/view/components/Course/CourseDetails/Widgets/T
 export default {
   name: "CourseDetails_InformationSide",
   components: {TeacherInformation},
-  mounted() {
-    console.log(this.data)
-
-    console.log(this.purchaseStatus)
+  created() {
+    this.purchaseStatus = this.data.cartStatus;
   },
   props: {
     id: String,
@@ -115,6 +107,7 @@ export default {
       switch (this.purchaseStatus) {
         case -1: {
           await this.addToCartServer();
+          break;
         }
           this.purchaseStatus = 2;
           break;

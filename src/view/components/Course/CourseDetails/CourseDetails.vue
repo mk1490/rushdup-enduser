@@ -20,7 +20,7 @@
                     <v-img
                         :aspect-ratio="4/3"
                         width="300"
-                        :src="serverAddress +model.cover">
+                        :src="serverAddress + model.cover">
                     </v-img>
                   </div>
                   <div class="col">
@@ -51,12 +51,14 @@
         </div>
         <div class="col-md-9">
           <course-details_-episode-items
+              @clickCourseEpisode="onClickCourseEpisodeItem"
               v-if="model.items.length > 0"
               :items="model.items">
           </course-details_-episode-items>
         </div>
         <div class="col-md-12 col-sm-12">
-          <course-details-submit-comment :course-id="model.id">
+          <course-details-submit-comment
+              :course-id="model.id">
 
           </course-details-submit-comment>
         </div>
@@ -66,6 +68,18 @@
         v-if="modal.visible"
         :visible.sync="modal.visible"
     ></course-details_-video-player_-modal>
+
+
+    <v-snackbar
+        v-model="toastMessageVisible"
+        :timeout="5000"
+        color="red accent-2"
+    >
+      <div class="d-flex justify-center">
+        {{ toastMessageText }}
+      </div>
+    </v-snackbar>
+
   </v-container>
 </template>
 
@@ -100,20 +114,8 @@ export default {
       this.model.studentCounts = data.studentCounts;
       this.model.teacher = data.teacher;
       this.model.cartStatus = data.cartStatus;
-      // this.model.isAddedToCart = data.isAddedToCart;
-      // this.model.isPurchased = data.isPurchased;
+      this.model.lessonCounts = data.lessonCounts;
       this.model.items = data.courseItems;
-      // this.items = data.courseItems.map((f) => {
-      //   return {
-      //     title: f.title,
-      //     children: f['episodeItems'].map((f) => {
-      //       return {
-      //         id: f.id,
-      //         title: f.title,
-      //       }
-      //     })
-      //   }
-      // })
     }
   },
   created() {
@@ -121,6 +123,8 @@ export default {
   },
   data() {
     return {
+      toastMessageVisible: false,
+      toastMessageText: null,
       modal: {
         visible: false,
       },
@@ -132,7 +136,7 @@ export default {
         content: null,
         price: 0,
         teacher: null,
-        lessonCounts: 12,
+        lessonCounts: 0,
         studentCounts: 12,
         progress: 20,
         cartStatus: -1,
@@ -144,6 +148,22 @@ export default {
     async itemDetailsClick(item) {
       this.modal.visible = true;
       // await this.$router.push('CourseDetailsVideo/' + item.id)
+    },
+    async onClickCourseEpisodeItem(item) {
+      if (item.isLocked) {
+        this.toastMessageText = 'دسترسی به این قسمت تا زمان خرید دوره مقدور نیست.';
+        this.toastMessageVisible = true;
+        return
+      }
+
+      const slug = this.$route.params['slugOrId'];
+      await this.$router.push({
+        name: 'CourseEpisode',
+        params: {
+          slugOrId: slug,
+          courseGroupId: item.id,
+        }
+      })
     }
   }
 }
@@ -184,5 +204,9 @@ span {
 
 ::v-deep .v-image__image--cover {
   border-radius: 18px !important;
+}
+
+::v-deep .v-snack__content {
+  font-size: 18px !important;
 }
 </style>

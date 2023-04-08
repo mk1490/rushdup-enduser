@@ -2,5 +2,7 @@
     addToCard: 'افزودن به سبد خرید',
     completePurchaseFlow: 'تکمیل فرآیند خرید',
     startLearning: 'شروع یادگیری',
-    studentCounts: 'تعداد دانشجو', timeDuration: 'مدّت زمان',
+    studentCounts: 'تعداد دانشجو',
+    timeDuration: 'مدّت زمان',
+    lessonCounts: 'تعداد درس',
 }
