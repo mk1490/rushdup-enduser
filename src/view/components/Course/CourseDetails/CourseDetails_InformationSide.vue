@@ -92,9 +92,10 @@ import TeacherInformation from "@/view/components/Course/CourseDetails/Widgets/T
 export default {
   name: "CourseDetails_InformationSide",
   components: {TeacherInformation},
-  created() {
+  mounted() {
     console.log(this.data)
-    this.purchaseStatus = this.data.cartStatus;
+
+    console.log(this.purchaseStatus)
   },
   props: {
     id: String,
@@ -102,9 +103,6 @@ export default {
   },
   data() {
     return {
-      // 0 به منزله عدم خرید
-      // 1 به منزله اضافه شده به سبد خرید
-      // 2 به منزله خریداری شده
       purchaseStatus: 0,
     }
   },
@@ -152,6 +150,11 @@ export default {
   watch: {
     'cartExistItems': {
       handler() {
+      }
+    },
+    'data.cartStatus': {
+      handler() {
+        this.purchaseStatus = this.data.cartStatus;
       }
     }
   }

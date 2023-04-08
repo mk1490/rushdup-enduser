@@ -56,7 +56,7 @@
           </course-details_-episode-items>
         </div>
         <div class="col-md-12 col-sm-12">
-          <course-details-submit-comment>
+          <course-details-submit-comment :course-id="model.id">
 
           </course-details-submit-comment>
         </div>
