@@ -15,12 +15,33 @@
             <v-list>
               <v-list-item
                   :ripple="false"
-                  @click="itemDetailsClick(item)"
+
                   v-for="item in childItem.episodeItems">
-                <div class="d-inline-flex">
-                  <v-icon>mdi-play</v-icon>
-                  <span>{{ item.title }}</span>
-                </div>
+                <v-list-item-content
+                    @click="itemDetailsClick(item)">
+                  <div class="d-inline-flex">
+                    <v-icon>mdi-play</v-icon>
+                    <span>{{ item.title }}</span>
+                  </div>
+                </v-list-item-content>
+                <v-list-item-action>
+                  <v-tooltip
+                      color="green"
+                      bottom>
+                    <template v-slot:activator="{ on, attrs }">
+                      <v-btn
+                          v-bind="attrs"
+                          v-on="on"
+                          @click
+                          icon>
+                        <v-icon>
+                          mdi-format-list-checks
+                        </v-icon>
+                      </v-btn>
+                    </template>
+                    شرکت در آزمون
+                  </v-tooltip>
+                </v-list-item-action>
               </v-list-item>
             </v-list>
           </v-expansion-panel-content>

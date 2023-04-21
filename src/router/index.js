@@ -117,6 +117,11 @@ export const constantRoutes = [{
                 meta: {},
             },
             {
+                path: '/MyAccountInformation',
+                name: 'MyAccountInformation',
+                component: () => import('@/view/components/Profile/MyAccountInformation.vue'),
+            },
+            {
                 path: '/MyCourses',
                 name: 'MyCourses',
                 component: () => import('@/view/components/Course/MyCourses/MyCoursesTable.vue'),
