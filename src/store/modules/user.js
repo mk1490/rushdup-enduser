@@ -79,6 +79,9 @@ const user = {
             }
             state.cartItems = items;
         },
+        SET_CART_ITEMS: (state, payload) => {
+            state.cartItems = payload;
+        },
         SET_CART_EXISTS_ITEMS: (state, payload) => {
             state.cartExistItems = payload;
         },
@@ -124,10 +127,7 @@ const user = {
             await commit('ADD_TO_CART', payload);
         },
         removeCartItem: async ({commit}, index) => {
-
-            const isConfirm = window.confirm('برای حذف این دوره از سبد اطمینان دارید؟')
-            if (isConfirm)
-                await commit('REMOVE_CART_ITEM', index);
+            await commit('REMOVE_CART_ITEM', index);
         },
     },
 

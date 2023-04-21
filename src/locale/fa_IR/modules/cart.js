@@ -1,5 +1,5 @@
 ﻿module.exports = {
-    title: 'سبد آموزشیار',
+    title: 'سبد رشدآپ',
     hasDiscountCodeQuestion: 'دارای کد تخفیف می‌باشید؟',
     inputYourDiscountCode: 'کد تخفیف خود را وارد نمایید...',
     totalAmount: 'قیمت کل',
