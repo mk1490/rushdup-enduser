@@ -158,7 +158,7 @@ export default {
     },
     methods: {
         async onSelectProvince(selectedProvinceId) {
-            const [err, data] = await this.to(this.http.get(`${this.serverAddress}/api/core/get-cities-by-province-id/${selectedProvinceId}`, {loader: false}));
+            const [err, data] = await this.to(this.http.get(`${this.serverAddress}/core/get-cities-by-province-id/${selectedProvinceId}`, {loader: false}));
             if (!err) {
                 this.items.cities = data;
             }
