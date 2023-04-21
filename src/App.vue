@@ -35,7 +35,7 @@ export default {
                     break;
             }
         });
-        const [err, data] = await this.to(this.http.get(`${this.serverAddress}/api/auth/currentProfile`));
+        const [err, data] = await this.to(this.http.get(`${this.serverAddress}/auth/currentProfile`));
         if (!err) {
             await this.$store.dispatch('setLoginState', true);
             await this.$store.commit('SET_CART_ITEMS', data);
