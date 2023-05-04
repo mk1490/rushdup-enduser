@@ -8,6 +8,7 @@ const baseData = {
         categoryItems: [],
         selectedCategory: null,
         profileNavbarShow: true,
+        homeItems: [],
         battalionItems: [], timeRangeItems: [{
             text: i18n.t('timeRangeItems.recent12Hour'), value: 'recent12Hour'
         }, {
@@ -28,7 +29,8 @@ const baseData = {
         categoryItems: (state) => state.categoryItems,
         selectedCategory: (state) => state.selectedCategory,
         sessionId: (state) => state.sessionId,
-        profileNavbarShow: (state) => state.profileNavbarShow
+        profileNavbarShow: (state) => state.profileNavbarShow,
+        homeItems: (state) => state.homeItems
     },
     mutations: {
         SET_MENU_ITEMS: (state, payload) => {
@@ -40,6 +42,9 @@ const baseData = {
         SELECT_CATEGORY: (state, payload) => {
             state.selectedCategory = payload;
         },
+        SET_HOME_ITEMS: (state, payload) => {
+            state.homeItems = payload;
+        },
     }, actions: {
         initMenuItems: async (context, payload) => {
             context.commit('SET_MENU_ITEMS', payload);
@@ -49,6 +54,9 @@ const baseData = {
         },
         initCartExistsItems: async (context, payload) => {
             context.commit('SET_CART_EXISTS_ITEMS', payload);
+        },
+        initHomeItems: async (context, payload) => {
+            context.commit('SET_HOME_ITEMS', payload);
         },
         setCategory: async (context, payload) => {
             context.commit('SELECT_CATEGORY', payload);

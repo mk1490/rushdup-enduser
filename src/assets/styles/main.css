@@ -1,0 +1,14 @@
+@import './edumall/style.css';
+@import './edumall/style-dark.css';
+@import './edumall/style-rtl.css';
+@import './edumall/woocommerce.css';
+@import './global.scss';
+@import './background.scss';
+@import 'sweetalert2/dist/sweetalert2.min.css';
+@import "@mdi/font/css/materialdesignicons.min.css";
+@import '@/assets/styles/vueToastTheme.scss';
+@import '@/assets/fonts/rtl-fonts.css';
+
+@import "font-awesome/css/font-awesome.css";
+@import "@/assets/fonts/awesome/css/fontawesome-all.min.css";
+/*@import 'font-awesome/scss/font-awesome.scss';*/

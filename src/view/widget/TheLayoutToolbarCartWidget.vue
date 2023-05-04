@@ -1,86 +1,26 @@
 ﻿<template>
-    <div class="text-center">
-        <v-menu
-                min-width="500"
-                bottom
-                offset-y
-                right
-                open-on-hover>
-            <template v-slot:activator="{ on, attrs }">
-                <v-btn
-                        v-bind="attrs"
-                        v-on="on"
-                        elevation="0"
-                        class="ml-3"
-                        icon>
-                    <v-badge
-                            v-if="cartItems.length > 0"
-                            left
-                            :content="cartItems.length">
-                        <v-icon
-                                color="primary">
-                            mdi-cart
-                        </v-icon>
-                    </v-badge>
-                    <v-icon
-                            v-if="cartItems.length == 0"
-                            color="primary">
-                        mdi-cart
-                    </v-icon>
-                </v-btn>
-            </template>
-            <v-card>
-                <v-card-title>
-                    {{ $t('ui.amoozeshyarCart') }}
-                </v-card-title>
-                <v-card-text>
-                    <v-list v-if="cartItems.length > 0">
-                        <v-list-item
-                                v-for="(item, index) in cartItems"
-                                :key="index">
-                            <v-list-item-content>
-                                <div class="row">
-                                    <div class="col d-inline-flex align-center">
-                                        <v-btn
-                                                @click="removeCartItem(index)"
-                                                small
-                                                icon>
-                                            <v-icon color="red">
-                                                mdi-close
-                                            </v-icon>
-                                        </v-btn>
-                                        <p class="title">
-                                            {{ item.title }}
-                                        </p>
-                                    </div>
-                                    <div class="col-auto">
-                                        <p class="price">{{ getComma(item.price) + ' ' + $t('ui.IRR') }}</p>
-                                    </div>
-                                </div>
-
-
-                            </v-list-item-content>
-                        </v-list-item>
-                    </v-list>
-                    <div
-                            v-else
-                            class="d-flex justify-center no_cart_item">
-            <span>
-              {{ $t('cart.noItemsInYourCart') }}
+    <div id="mini-cart" class="mini-cart style-svg">
+        <a href="https://dana-team.com/products/edumall/cart/"
+           class="mini-cart__button header-icon"
+           title="سبد خرید خود را مشاهده کنید">
+            <span class="mini-cart-icon"
+                  data-count="0">
             </span>
-                    </div>
-                </v-card-text>
-                <v-card-actions v-if="cartItems.length > 0">
-                    <v-spacer/>
-                    <v-btn
-                            :to="'/cart'"
-                            color="primary">
-                        {{ $t('ui.seeEducationCard') }}
-                    </v-btn>
-                </v-card-actions>
-            </v-card>
-        </v-menu>
+        </a>
+        <div class="widget_shopping_cart_content">
+            <div class="woocommerce-mini-cart__empty-message">
+                <div class="empty-basket">
+                    <span class="fal fa-dolly-flatbed-empty"></span>
+                </div>
+                <p class="empty-message">سبد خرید شما خالی است</p>
+                <p class="return-to-shop">
+                    <a class="button wc-backward"
+                       href="https://dana-team.com/products/edumall/shop/">
+                        مرور فروشگاه </a>
+                </p>
+            </div>
 
+        </div>
     </div>
 
 </template>

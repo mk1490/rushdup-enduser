@@ -8,12 +8,17 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-brands-svg-icons": "^6.4.0",
+    "@fortawesome/free-regular-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@mdi/font": "^5.9.55",
     "@persian-tools/persian-tools": "^3.2.1",
     "@plusauth/oidc-client-js": "^1.1.2",
     "await-to-js": "^3.0.0",
     "axios": "^0.26.1",
     "core-js": "^3.8.3",
+    "font-awesome": "^4.7.0",
     "oidc-client": "^1.11.5",
     "path-browserify": "^1.0.1",
     "persian-date": "^1.1.0",

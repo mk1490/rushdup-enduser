@@ -1,7 +1,7 @@
 const packageJson = require('../package.json');
 
 module.exports = {
-    title: packageJson.title,
+    title: 'رشدآپ',
 
     /**
      * @type {String} '0.0.1'

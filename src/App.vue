@@ -62,13 +62,14 @@ export default {
                 this.cartItems.forEach(x => {
                     fd.append('cartItemId', x.id);
                 })
-                const [err, data] = await this.to(this.http.post(`/core/initialize?sessionId=${this.sessionId}`, fd, {
+                const [err, data] = await this.to(this.http.get(`/core/initialize?sessionId=${this.sessionId}`, fd, {
                     errorModal: false
                 }));
                 if (!err) {
                     await this.$store.dispatch('initMenuItems', data.menuItems);
                     await this.$store.dispatch('initCategoryItems', data.categoryItems);
                     await this.$store.dispatch('initCartExistsItems', data.cartItems);
+                    await this.$store.dispatch('initHomeItems', data.homeItems);
                 }
             }
         }

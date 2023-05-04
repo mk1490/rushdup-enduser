@@ -6,7 +6,8 @@ import Router from "@/router";
 const serverAddress = process.env.VUE_APP_SERVER_ADDRESS;
 Vue.prototype.serverAddress = serverAddress;
 let lastRequest;
-Vue.prototype.baseUrl = serverAddress + '/enduser';
+// Vue.prototype.baseUrl = serverAddress + +(process.env.NODE_ENV === 'development' ? '/api' : '') + '/enduser';
+Vue.prototype.baseUrl = serverAddress + '/api' + '/enduser';
 axios.defaults.baseURL = Vue.prototype.baseUrl;
 axios.interceptors.request.use(async (req) => {
     if (req.loader !== false) {
