@@ -26579,21 +26579,6 @@ figure.wp-block-image.alignright {
 .edumall-faqs .faq-read-more-btn .tm-button {
     color: var(--edumall-color-primary);
 }
-
-<
-/
-style >
-
-<
-style id
-
-=
-"edumall-style-inline-css"
-type
-
-=
-"text/css"
->
 :root {
     --edumall-typography-body-font-family: iranyekan;
     --edumall-typography-body-font-size: 14px;
@@ -26748,25 +26733,7 @@ mark, .primary-color.primary-color, .growl-close:hover, .link-transition-02, .ed
 .page-mobile-main-menu > .inner {
     background-color: #3f3a64
 }
-
-<
-/
-style >
-
-<
-style data-savepage-href
-
-=
-"https://dana-team.com/products/edumall/wp-content/themes/edumall/assets/libs/growl/css/jquery.growl.min.css"
-type
-
-=
-"text/css"
-media
-
-=
-"all"
-> #growls-bc, #growls-bl, #growls-br, #growls-cc, #growls-cl, #growls-cr, #growls-default, #growls-tc, #growls-tl, #growls-tr, .ontop {
+#growls-bc, #growls-bl, #growls-br, #growls-cc, #growls-cl, #growls-cr, #growls-default, #growls-tc, #growls-tl, #growls-tr, .ontop {
     z-index: 50000;
     position: fixed
 }
@@ -26895,25 +26862,7 @@ media
     font-size: 14px;
     line-height: 18px
 }
-
-<
-/
-style >
-
-<
-style data-savepage-href
-
-=
-"https://dana-team.com/products/edumall/wp-content/themes/edumall/woocommerce.css"
-type
-
-=
-"text/css"
-media
-
-=
-"all"
-> /**
+ /**
  * Dynamic Variables
  */
 .mini-cart .widget_shopping_cart_content, .widget_product_categories li a:before, .widget_product_categories li a:after, .edumall-wp-widget-product-layered-nav ul.show-display-check-list a:before, .edumall-wp-widget-product-layered-nav ul.show-display-check-list a:after, .edumall-wp-widget-product-layered-nav ul li.swatch-image img, .edumall-wp-widget-product-categories-layered-nav ul.show-display-check-list a:before, .edumall-wp-widget-product-categories-layered-nav ul.show-display-check-list a:after, .edumall-wp-widget-product-categories-layered-nav ul li.swatch-image img, .woocommerce .cats .cat-text, .woocommerce .cats .cat-count, .wc_payment_methods .payment_title .payment-title-name, .wc_payment_methods .payment_title .payment-title-icon, .single-product .woo-single-gallery .edumall-thumbs-swiper .swiper-slide img, .woocommerce-tabs .tabs li, .woocommerce-tabs .tabs li a, .woosw-popup.woosw-popup .woosw-popup-inner .woosw-popup-content .woosw-popup-content-top .woosw-popup-close, .woosw-popup.woosw-popup .woosw-continue, form.isw-swatches.isw-swatches--in-single .isw-swatch--isw_color .isw-term:before, form.isw-swatches.isw-swatches--in-single .isw-swatch--isw_text .isw-term, .desktop .edumall-product.style-grid .product-actions, .edumall-product .product.has-hover-thumbnail .thumbnail img, .edumall-product.hover-grayscale .thumbnail img {
@@ -41017,20 +40966,6 @@ body.elementor-page .elementor-widget-menu-anchor {
     object-fit: cover
 }
 
-<
-/
-style >
-
-<
-style id
-
-=
-"elementor-frontend-inline-css"
-type
-
-=
-"text/css"
->
 .elementor-kit-2492 {
     --e-global-color-primary: #6EC1E4;
     --e-global-color-secondary: #54595F;
@@ -69613,25 +69548,7 @@ table.tutor-table tr:last-child td:first-child {
 .tutor-dashboard-permalinks li.tutor-dashboard-menu-certificate-builder ::before {
     content: "\f110";
 }
-
-<
-/
-style >
-
-<
-style data-savepage-href
-
-=
-"https://dana-team.com/products/edumall/wp-content/themes/edumall-child/style.css"
-type
-
-=
-"text/css"
-media
-
-=
-"all"
-> /*
+/*
 Theme Name: اجومال فرزند
 Theme URI: https://www.zhaket.com/web/edumall-lms-education-wordpress-theme
 Author: Danapeyvast
@@ -69641,25 +69558,7 @@ Template: edumall
 Text Domain:  edumall-child
 Tags: editor-style, featured-images, microformats, post-formats, rtl-language-support, sticky-post, threaded-comments, translation-ready
 */
-
-<
-/
-style >
-
-<
-style data-savepage-href
-
-=
-"https://dana-team.com/products/edumall/wp-content/themes/edumall/events-manager.css"
-type
-
-=
-"text/css"
-media
-
-=
-"all"
-> .edumall-event.style-grid-02 .edumall-box {
+ .edumall-event.style-grid-02 .edumall-box {
     -webkit-transition: all .25s cubic-bezier(.645, .045, .355, 1);
     transition: all .25s cubic-bezier(.645, .045, .355, 1)
 }
@@ -70787,25 +70686,7 @@ media
         font-size: 22px
     }
 }
-
-<
-/
-style >
-
-<
-style data-savepage-href
-
-=
-"https://dana-team.com/products/edumall/wp-content/themes/edumall/style-rtl.css"
-type
-
-=
-"text/css"
-media
-
-=
-"all"
-> .rtl .edumall-wp-widget-course-filter li:after,
+ .rtl .edumall-wp-widget-course-filter li:after,
 .rtl .widget_product_categories li:after {
     content: "";
     display: table;

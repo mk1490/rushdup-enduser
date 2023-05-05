@@ -2,6 +2,7 @@
 @import './edumall/style-dark.css';
 @import './edumall/style-rtl.css';
 @import './edumall/woocommerce.css';
+@import './edumall/tutor-lms.css';
 @import './global.scss';
 @import './background.scss';
 @import 'sweetalert2/dist/sweetalert2.min.css';

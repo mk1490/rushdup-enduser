@@ -60,6 +60,22 @@ export const constantRoutes = [{
             },
         },
         {
+            path: '/cd',
+            name: 'cd',
+            component: () => import('@/view/components/Course/Course.vue'),
+            meta: {
+                title: 'route.myCourses', icon: 'mdi-book-education'
+            },
+        },
+        {
+            path: '/cl',
+            name: 'cl',
+            component: () => import('@/view/components/Course/CourseList/CourseList.vue'),
+            meta: {
+                title: 'route.myCourses', icon: 'mdi-book-education'
+            },
+        },
+        {
             path: 'explore',
             name: 'AllCoursesExplore',
             component: () => import('@/view/components/Course/AllCourses/CoursesList.vue'),

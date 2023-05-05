@@ -16,7 +16,8 @@ import VueVideoPlayer from 'vue-video-player'
 import "@/assets/styles/main.css";
 
 import "font-awesome/scss/font-awesome.scss";
-
+import jQuery from 'jquery'
+Vue.prototype.jQuery = jQuery
 Vue.use(VueVideoPlayer);
 
 Vue.use(VueSweetalert2, {
@@ -55,5 +56,5 @@ Vue.prototype.showDelete = async (index) => {
 }
 
 new Vue({
-    vuetify, router, store, i18n, render: h => h(App)
+    vuetify, router, store, i18n, render: h => h(App),
 }).$mount('#app')
