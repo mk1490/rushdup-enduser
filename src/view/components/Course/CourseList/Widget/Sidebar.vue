@@ -7,10 +7,8 @@
                     <p class="widget-title heading">فیلتر بر اساس دسته بندی</p>
                     <ul class=" filter-checkbox-list show-display-list show-items-count-on">
                         <li
-                                v-bind:key="item.id"
                                 v-for="(item,index) in categories"
-                                :class="!!categories[index].selected ? 'chosen' : ''"
-                        >
+                                :class="!!categories[index].selected ? 'chosen' : ''">
                             <a @click="toggleCategoryItem(item, index)">
                                 {{ item.title }}
                                 <span class="count">
@@ -75,7 +73,8 @@ export default {
     },
     methods: {
         toggleCategoryItem(item, index) {
-            this.categories[index].selected = !this.categories[index].selected;
+            item.selected = !item.selected;
+            this.categories[index] = item;
             this.categories = Object.assign([], this.categories)
             this.$emit('onCategoriesChange', this.categories.filter(f => !!f.selected))
         }

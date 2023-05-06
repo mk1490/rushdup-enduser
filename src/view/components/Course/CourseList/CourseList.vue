@@ -5,7 +5,9 @@
             <sidebar
                     @onCategoriesChange="filterCategory($event)"
                     :category-items="categoryItems"></sidebar>
-            <main-content></main-content>
+            <main-content :items="items">
+
+            </main-content>
         </div>
     </div>
 </template>
@@ -22,13 +24,27 @@ export default {
         ...mapGetters(['categoryItems'])
     },
     mounted() {
-        // let recaptchaScript = document.createElement('script')
-        // recaptchaScript.setAttribute('src', 'src/assets/js/main.min.js')
-        // document.head.appendChild(recaptchaScript)
+    },
+    data() {
+        return {
+            items: [],
+            selectedCategories: [],
+        }
     },
     methods: {
-        filterCategory(data) {
-            console.log(data)
+        async filterCategory(data) {
+            this.selectedCategories = data;
+            await this.fetchData();
+        },
+        async fetchData() {
+            const queryParams = new URLSearchParams();
+            this.selectedCategories.map((f) => {
+                queryParams.append('categoryIdOrIds', f.id);
+            })
+            const [err, data] = await this.to(this.http.get(`/course/list?${queryParams}`));
+            if (!err) {
+                this.items = data;
+            }
         }
     }
 }

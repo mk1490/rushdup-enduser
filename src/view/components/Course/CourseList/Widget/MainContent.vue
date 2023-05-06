@@ -25,7 +25,6 @@
                 </div>
             </div>
 
-
             <div class="row">
                 <div class="col-12">
                     <v-list>
@@ -132,7 +131,10 @@
 // import '@/assets/js/main.min'
 
 export default {
-    name: "MainContent"
+    name: "MainContent",
+    props: {
+        items: Array,
+    }
 }
 </script>
 
