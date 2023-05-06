@@ -2,7 +2,9 @@
     <div class="container">
 
         <div class="row" style="margin-top: 60px">
-            <sidebar></sidebar>
+            <sidebar
+                    @onCategoriesChange="filterCategory($event)"
+                    :category-items="categoryItems"></sidebar>
             <main-content></main-content>
         </div>
     </div>
@@ -11,14 +13,23 @@
 <script>
 import Sidebar from "@/view/components/Course/CourseList/Widget/Sidebar.vue";
 import MainContent from "@/view/components/Course/CourseList/Widget/MainContent.vue";
+import {mapGetters} from "vuex";
 
 export default {
     name: "CourseList",
     components: {MainContent, Sidebar},
+    computed: {
+        ...mapGetters(['categoryItems'])
+    },
     mounted() {
         // let recaptchaScript = document.createElement('script')
         // recaptchaScript.setAttribute('src', 'src/assets/js/main.min.js')
         // document.head.appendChild(recaptchaScript)
+    },
+    methods: {
+        filterCategory(data) {
+            console.log(data)
+        }
     }
 }
 </script>
