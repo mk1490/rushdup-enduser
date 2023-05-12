@@ -23,7 +23,8 @@ export default {
     computed: {
         ...mapGetters(['categoryItems'])
     },
-    mounted() {
+    async created() {
+        await this.fetchData();
     },
     data() {
         return {

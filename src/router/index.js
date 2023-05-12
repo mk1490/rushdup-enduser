@@ -9,15 +9,26 @@ Vue.use(Router);
 export const constantRoutes = [{
     path: '*', hidden: true, redirect: 'Home',
 }, {
-
-    path: '/', name: 'Root', component: Layout, meta: {
-        noCache: true, affix: true, title: 'route.Management'
-    }, children: [{
-        path: '', name: 'Home', component: () => import('@/view/components/Home/Home.vue'), meta: {
-            title: 'route.courses', icon: 'mdi-book-education'
+    path: '/',
+    alias: '',
+    name: 'Root',
+    component: Layout,
+    meta: {
+        noCache: true,
+        affix: true,
+        title: 'route.Management'
+    }, children: [
+        {
+            path: 'home',
+            name: 'Home',
+            redirect: ''
         },
+        {
+            path: '', name: 'Home', component: () => import('@/view/components/Home/Home.vue'), meta: {
+                title: 'route.home',
+            },
 
-    },
+        },
         {
             path: 'Cart',
             name: 'Cart',
@@ -60,7 +71,7 @@ export const constantRoutes = [{
             },
         },
         {
-            path: '/cd',
+            path: '/cd/:courseSlug',
             name: 'cd',
             component: () => import('@/view/components/Course/Course.vue'),
             meta: {
@@ -69,10 +80,11 @@ export const constantRoutes = [{
         },
         {
             path: '/cl',
+            alias: '/cl/:categorySlug',
             name: 'cl',
             component: () => import('@/view/components/Course/CourseList/CourseList.vue'),
             meta: {
-                title: 'route.myCourses', icon: 'mdi-book-education'
+                title: 'route.courses'
             },
         },
         {

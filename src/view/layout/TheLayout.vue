@@ -15,7 +15,7 @@
 
 <script>
 import TheLayoutDrawer from './TheLayoutDrawer.vue';
-import TheLayoutToolbar from './TheLayoutToolbar.vue';
+import TheLayoutToolbar from './TheLayoutToolbar/TheLayoutToolbar.vue';
 import TheLayoutContent from './TheLayoutContent.vue';
 import TheLayoutFab from './TheLayoutFab.vue';
 import TheLayoutToTopFab from './TheLayoutToTopFab.vue';

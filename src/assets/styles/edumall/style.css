@@ -4483,13 +4483,15 @@ dd {
     color: #9b9b9b;
 }
 
-input[type="email"],
-input[type="number"],
-input[type="password"],
-input[type="search"],
-input[type="tel"],
-input[type="text"],
-input[type="url"] {
+
+
+.edumall-input input[type="email"],
+.edumall-input input[type="number"],
+.edumall-input input[type="password"],
+.edumall-input input[type="search"],
+.edumall-input input[type="tel"],
+.edumall-input input[type="text"],
+.edumall-input input[type="url"]{
     width: 100%;
     outline: none;
     border: 1px solid #f5f5f5;
@@ -4715,7 +4717,7 @@ input[type="radio"]:checked:after {
 
 .button,
 .wc-forward,
-button,
+button .edumall-button,
 input[type="button"],
 input[type="reset"],
 input[type="submit"] {
@@ -4970,9 +4972,9 @@ input[type="text"],
 input[type="url"],
 select,
 textarea {
-    color: var(--edumall-color-form-text);
-    border-color: var(--edumall-color-form-border);
-    background-color: var(--edumall-color-form-background);
+    /*color: var(--edumall-color-form-text);*/
+    /*border-color: var(--edumall-color-form-border);*/
+    /*background-color: var(--edumall-color-form-background);*/
 }
 
 input[type="email"]:focus,
@@ -4984,9 +4986,9 @@ input[type="text"]:focus,
 input[type="url"]:focus,
 select:focus,
 textarea:focus {
-    color: var(--edumall-color-form-focus-text);
-    border-color: var(--edumall-color-form-focus-border);
-    background-color: var(--edumall-color-form-focus-background);
+    /*color: var(--edumall-color-form-focus-text);*/
+    /*border-color: var(--edumall-color-form-focus-border);*/
+    /*background-color: var(--edumall-color-form-focus-background);*/
 }
 
 .screen-reader-text {
@@ -15368,8 +15370,8 @@ body.search .search-page-search-form {
 .page-sidebar.style-02 input[type="url"],
 .page-sidebar.style-02 select,
 .page-sidebar.style-02 textarea {
-    background-color: #fff;
-    border-color: #fff;
+    /*background-color: #fff;*/
+    /*border-color: #fff;*/
 }
 
 .page-sidebar.style-02 input[type="email"]:focus,
@@ -15381,9 +15383,9 @@ body.search .search-page-search-form {
 .page-sidebar.style-02 input[type="url"]:focus,
 .page-sidebar.style-02 select:focus,
 .page-sidebar.style-02 textarea:focus {
-    color: var(--edumall-color-heading);
-    border-color: var(--edumall-color-primary);
-    background-color: #fff;
+    /*color: var(--edumall-color-heading);*/
+    /*border-color: var(--edumall-color-primary);*/
+    /*background-color: #fff;*/
 }
 
 .page-sidebar.style-03 .widget {
@@ -26579,6 +26581,7 @@ figure.wp-block-image.alignright {
 .edumall-faqs .faq-read-more-btn .tm-button {
     color: var(--edumall-color-primary);
 }
+
 :root {
     --edumall-typography-body-font-family: iranyekan;
     --edumall-typography-body-font-size: 14px;
@@ -26733,6 +26736,7 @@ mark, .primary-color.primary-color, .growl-close:hover, .link-transition-02, .ed
 .page-mobile-main-menu > .inner {
     background-color: #3f3a64
 }
+
 #growls-bc, #growls-bl, #growls-br, #growls-cc, #growls-cl, #growls-cr, #growls-default, #growls-tc, #growls-tl, #growls-tr, .ontop {
     z-index: 50000;
     position: fixed
@@ -26862,9 +26866,10 @@ mark, .primary-color.primary-color, .growl-close:hover, .link-transition-02, .ed
     font-size: 14px;
     line-height: 18px
 }
- /**
- * Dynamic Variables
- */
+
+/**
+* Dynamic Variables
+*/
 .mini-cart .widget_shopping_cart_content, .widget_product_categories li a:before, .widget_product_categories li a:after, .edumall-wp-widget-product-layered-nav ul.show-display-check-list a:before, .edumall-wp-widget-product-layered-nav ul.show-display-check-list a:after, .edumall-wp-widget-product-layered-nav ul li.swatch-image img, .edumall-wp-widget-product-categories-layered-nav ul.show-display-check-list a:before, .edumall-wp-widget-product-categories-layered-nav ul.show-display-check-list a:after, .edumall-wp-widget-product-categories-layered-nav ul li.swatch-image img, .woocommerce .cats .cat-text, .woocommerce .cats .cat-count, .wc_payment_methods .payment_title .payment-title-name, .wc_payment_methods .payment_title .payment-title-icon, .single-product .woo-single-gallery .edumall-thumbs-swiper .swiper-slide img, .woocommerce-tabs .tabs li, .woocommerce-tabs .tabs li a, .woosw-popup.woosw-popup .woosw-popup-inner .woosw-popup-content .woosw-popup-content-top .woosw-popup-close, .woosw-popup.woosw-popup .woosw-continue, form.isw-swatches.isw-swatches--in-single .isw-swatch--isw_color .isw-term:before, form.isw-swatches.isw-swatches--in-single .isw-swatch--isw_text .isw-term, .desktop .edumall-product.style-grid .product-actions, .edumall-product .product.has-hover-thumbnail .thumbnail img, .edumall-product.hover-grayscale .thumbnail img {
     transition: all 0.25s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
@@ -33863,6 +33868,7 @@ media
         width: 100%
     }
 }
+
 @charset "UTF-8";
 .dialog-widget-content {
     background-color: #fff;
@@ -69548,6 +69554,7 @@ table.tutor-table tr:last-child td:first-child {
 .tutor-dashboard-permalinks li.tutor-dashboard-menu-certificate-builder ::before {
     content: "\f110";
 }
+
 /*
 Theme Name: اجومال فرزند
 Theme URI: https://www.zhaket.com/web/edumall-lms-education-wordpress-theme
@@ -69558,7 +69565,7 @@ Template: edumall
 Text Domain:  edumall-child
 Tags: editor-style, featured-images, microformats, post-formats, rtl-language-support, sticky-post, threaded-comments, translation-ready
 */
- .edumall-event.style-grid-02 .edumall-box {
+.edumall-event.style-grid-02 .edumall-box {
     -webkit-transition: all .25s cubic-bezier(.645, .045, .355, 1);
     transition: all .25s cubic-bezier(.645, .045, .355, 1)
 }
@@ -70686,7 +70693,8 @@ Tags: editor-style, featured-images, microformats, post-formats, rtl-language-su
         font-size: 22px
     }
 }
- .rtl .edumall-wp-widget-course-filter li:after,
+
+.rtl .edumall-wp-widget-course-filter li:after,
 .rtl .widget_product_categories li:after {
     content: "";
     display: table;
@@ -74779,6 +74787,7 @@ a.tutor-btn.tutor-btn-primary.tutor-btn-block.tutor-mb-20.tutor-btn-view-certifi
 h1, h2, h3, h4, h5, h6, a, p, div {
     font-family: 'iranyekan' !important;
 }
+
 @font-face {
     font-family: iranyekan;
     font-style: normal;
@@ -74952,7 +74961,15 @@ h1, h2, h3, h4, h5, h6, a, p, div {
     src: /*savepage-url=pinar/ttf/Pinar-FD.ttf*/ url() format('truetype'), /*savepage-url=pinar/woff/Pinar-FD.woff*/ url() format('woff'), /*savepage-url=pinar/woff2/Pinar-FD.woff2*/ url() format('woff2')
 }
 
-button, input[type="button"], input[type="reset"], input[type="submit"], .wp-block-button__link, .button, .wc-forward, .button.button-alt:hover, .elementor-button, .single_add_to_cart_button, a.tutor-button, .tutor-button, a.tutor-btn, .tutor-btn, .tutor-button.tutor-success {
+button,
+input[type="button"],
+input[type="reset"],
+input[type="submit"],
+.wp-block-button__link,
+.button,
+.wc-forward,
+.button.button-alt:hover,
+.elementor-button, .single_add_to_cart_button, a.tutor-button, .tutor-button, a.tutor-btn, .tutor-btn, .tutor-button.tutor-success {
     color: #fff;
     border-color: #0071dc;
     background-color: #0071dc;
@@ -74962,7 +74979,23 @@ button, input[type="button"], input[type="reset"], input[type="submit"], .wp-blo
     color: #0071dc;
 }
 
-button:hover, input[type="button"]:hover, input[type="reset"]:hover, input[type="submit"]:hover, .wp-block-button__link:hover, .button:hover, .button:focus, .button-alt, .wc-forward:hover, .wc-forward:focus, .elementor-button:hover, .single_add_to_cart_button:hover, a.tutor-button:hover, .tutor-button:hover, a.tutor-btn:hover, .tutor-btn:hover, .tutor-button.tutor-success:hover {
+button:hover .edumall-button,
+input[type="button"]:hover .edumall-button,
+input[type="reset"]:hover .edumall-button,
+input[type="submit"]:hover .edumall-buttonH,
+.wp-block-button__link:hover,
+.button:hover,
+.button:focus,
+.button-alt,
+.wc-forward:hover,
+.wc-forward:focus,
+.elementor-button:hover,
+.single_add_to_cart_button:hover,
+a.tutor-button:hover,
+.tutor-button:hover,
+a.tutor-btn:hover,
+.tutor-btn:hover,
+.tutor-button.tutor-success:hover {
     color: #031f42;
     border-color: #ffc221;
     background-color: #ffc221;

@@ -1,25 +1,59 @@
 ﻿<template>
-  <div id="page-breadcrumb" class="page-breadcrumb">
-    <div class="page-breadcrumb-inner container">
-      <ul class="insight_core_breadcrumb">
-        <li class="level-1 top"><a href="https://dana-team.com/products/edumall/">خانه</a></li>
-        <li class="level-2 sub"><a
-            href="https://dana-team.com/products/edumall/courses/">دوره‌های آموزشی</a></li>
-        <li class="level-3 sub"><a
-            href="https://dana-team.com/products/edumall/course-category/data-science/">علوم
-          داده</a></li>
-        <li class="level-4 sub"><a
-            href="https://dana-team.com/products/edumall/course-category/data-modeling/">مدل
-          سازی داده ها</a></li>
-        <li class="level-5 sub tail current"><span>تسلط بر اصول مدل سازی داده ها</span></li>
-      </ul>
+    <div v-if="!isHome">
+        <div class="page-title-bar-bg"></div>
+        <div
+                class="page-breadcrumb">
+            <div class="page-breadcrumb-inner container">
+                <ul class="insight_core_breadcrumb">
+                    <!--                <li class="level-1 top">-->
+                    <!--                    <a-->
+                    <!--                            href="/"-->
+                    <!--                            to="home">خانه</a>-->
+                    <!--                </li>-->
+
+                    <li
+                            v-for="(item, index) in items"
+                            :class="`level-${index + 2} ${(index+ 1) === items.length? 'current' : 'sub'}`">
+                        <a
+                                :href="item.target"
+                                :to="item.target">
+                            {{ item.title }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
 export default {
-  name: "AppBreadcrumb"
+    name: "AppBreadcrumb",
+    data() {
+        return {
+            isHome: false,
+            items: [],
+        }
+    },
+    mounted() {
+        const route = this.$route;
+        console.log(route.name)
+        this.isHome = route.name === 'Home';
+        this.items.push({
+            title: 'خانه',
+            target: '/',
+        })
+        this.items.push({
+            title: this.getTitle(this.$t(route.meta['title'])),
+            target: route.path,
+        })
+    },
+    methods: {
+        getTitle(titleKey) {
+            return this.$t(titleKey);
+        }
+    }
+
 }
 </script>
 

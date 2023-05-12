@@ -77,6 +77,7 @@ const user = {
             } else {
                 items = [];
             }
+            console.log(items)
             state.cartItems = items;
         },
         SET_CART_ITEMS: (state, payload) => {

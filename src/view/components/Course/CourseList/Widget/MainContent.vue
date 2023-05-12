@@ -28,8 +28,9 @@
             <div class="row">
                 <div class="col-12">
                     <v-list>
-                        <v-list-item>
+                        <v-list-item v-for="item in items">
                             <v-card
+                                    :to="`/cd/${item.slug}`"
                                     flat
                                     style="width: 100%">
                                 <v-card-text style="padding: 0px">
@@ -40,17 +41,21 @@
                                                     :aspect-ratio="1.58/1"
                                                     src="https://dana-team.com/products/edumall/wp-content/uploads/2020/06/course-thumbnail-03-1-480x304.jpg"
                                                     width="320"/>
-                                            <div class="course-loop-badges">
+                                            <div
+                                                    v-if="item.isFree"
+                                                    class="course-loop-badges">
                                                 <div class="tutor-course-badge free">رایگان</div>
                                             </div>
                                         </div>
                                         <div style="flex-grow: 1;margin-right: 30px">
                                             <div class="course-loop-category">
-                                                <a href="https://dana-team.com/products/edumall/course-category/fitness/">تناسب
-                                                    اندام</a>
+                                                <a
+                                                        v-for="categoryItem in item.categories">
+                                                    {{ categoryItem }}
+                                                </a>
                                             </div>
                                             <h2 class="course-loop-title course-loop-title-collapse-2-rows">
-                                                <a>مروری بر ورزش</a>
+                                                <a>{{ item.title }}</a>
                                             </h2>
                                             <div class="course-loop-meta style-02">
                                                 <div class="course-loop-meta-list">
@@ -59,40 +64,43 @@
                                                             <span class="meta-label-icon far fa-clock"></span>
                                                         </div>
                                                         <div class="meta-value">
-                                                            18 ساعت
+                                                            0 ساعت
                                                         </div>
                                                     </div>
 
-                                                    <div class="course-loop-meta-item course-loop-meta-level">
-                                                        <div class="meta-label">
-                                                            <span class="meta-label-icon far fa-sliders-h"></span>
-                                                        </div>
-                                                        <div class="meta-value">
-                                                            مبتدی
-                                                        </div>
-                                                    </div>
+                                                    <!--                                                    <div class="course-loop-meta-item course-loop-meta-level">-->
+                                                    <!--                                                        <div class="meta-label">-->
+                                                    <!--                                                            <span class="meta-label-icon far fa-sliders-h"></span>-->
+                                                    <!--                                                        </div>-->
+                                                    <!--                                                        <div class="meta-value">-->
+                                                    <!--                                                            مبتدی-->
+                                                    <!--                                                        </div>-->
+                                                    <!--                                                    </div>-->
                                                 </div>
                                             </div>
                                             <div class="course-loop-excerpt course-loop-excerpt-collapse-2-rows">
-                                                <p>زبان آموزانی که نمای کلی ورزش را کامل می کنند …</p></div>
+                                                <p>{{ item.content }}</p></div>
                                             <div class="course-loop-footer">
                                                 <div class="course-loop-price">
                                                     <div class="tutor-price course-free">
-                                                        رایگان
+                                                        {{ item.isFree ? 'رایگان' : item.price + $t('ui.IRR') }}
                                                     </div>
                                                 </div>
 
                                             </div>
 
                                             <div class="course-loop-buttons">
-                                                <div class="course-loop-enrolled-button cart-notification">
-                                                    <div class="tm-button-wrapper"><a
-                                                            class="tm-button style-flat tm-button-xs">
-                                                        <div class="button-content-wrapper">
-                                                            <span class="button-text">ثبت نام کنید</span>
-
-                                                        </div>
-                                                    </a></div>
+                                                <div
+                                                        @click="addToCartOrCompletePurchaseFlowOrViewCourse(item)"
+                                                        class="course-loop-enrolled-button cart-notification">
+                                                    <div
+                                                            class="tm-button-wrapper">
+                                                        <a
+                                                                class="tutor-btn tutor-btn-outline-primary tutor-btn-md tutor-btn-block product_type_simple add_to_cart_button tutor-open-login-modal">
+                                                            <span class="tutor-icon-cart-line tutor-mr-8"></span>
+                                                            <span class="cart-text">افزودن به سبد خرید</span>
+                                                        </a>
+                                                    </div>
                                                 </div>
                                                 <div class="mr-2 tm-button-wrapper course-loop-wishlist-button hint--bounce hint--top hint--primary"
                                                      aria-label="افزودن به علاقه مندی ها">
@@ -103,7 +111,8 @@
                                                             <span class="button-icon">
                                                                 <i class="far fa-heart"></i></span>
                                                         </div>
-                                                    </a></div>
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -130,10 +139,51 @@
 <script>
 // import '@/assets/js/main.min'
 
+import {mapActions, mapGetters} from "vuex";
+
 export default {
     name: "MainContent",
     props: {
         items: Array,
+    },
+    computed: {
+        ...mapGetters(['sessionId', 'cartItems'])
+    },
+    data() {
+        return {
+            purchaseStatus: -1,
+        }
+    },
+    methods: {
+        ...mapActions(['addToCart']),
+        async addToCartOrCompletePurchaseFlowOrViewCourse(item) {
+            switch (this.purchaseStatus) {
+                case -1: {
+                    const [err, data] = await this.to(this.http.post(`/cart`, {
+                        sessionId: this.sessionId,
+                        courseId: item.id,
+                    }));
+                    if (!err) {
+                        this.$toast.success('افزودن به سبد خرید با موفقیت انجام شد.')
+                        this.purchaseStatus = 2;
+                        await this.addToCart(item);
+                    }
+                }
+                    break;
+                case 2: {
+                    await this.$router.push('/cart');
+                    break;
+                }
+
+            }
+        },
+    },
+    watch: {
+        'cartItems': {
+            handler(val) {
+                console.log(val)
+            }
+        }
     }
 }
 </script>

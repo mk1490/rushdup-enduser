@@ -1,4 +1,5 @@
 export default {
+    home: 'خانه',
     dashboard: 'داشبورد',
     Management: 'مدیریت',
     UsersManagement: 'کاربران',

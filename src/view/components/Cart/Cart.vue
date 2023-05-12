@@ -63,7 +63,6 @@ export default {
         if (this.isLogin) {
             url += `?sessionId=${this.sessionId}`;
         }
-
         const [err, data] = await this.to(this.http.get(url));
         if (!err) {
             this.ipgItems = data['ipgItems'];

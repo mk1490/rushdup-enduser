@@ -428,11 +428,16 @@
                                                    value="null">
                                             <div class="loading-spinner" area-hidden="true"></div>
                                             <div class="tutor-ratio tutor-ratio-16x9">
-                                                <iframe width="100%" height="100%"
-                                                        src="https://www.youtube.com/embed/Q4SZdTp7Yis"
-                                                        title="YouTube video player" frameborder="0"
-                                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                                        allowfullscreen></iframe>
+                                                <div class="r1_iframe_embed">
+                                                    <iframe src="https://player.arvancloud.ir/index.html?config=https://matink1490.arvanvod.ir/LgZYRMK5NB/oXZyE7WQPe/origin_config.json&skin=shaka"
+                                                            style="width: 100%;border:0 #ffffff none;"
+                                                            name="ForBiggerFun"
+                                                            frameborder="0"
+                                                            allow="accelerometer; autoplay; encrypted-media; gyroscope"
+                                                            allowFullScreen="true"
+                                                            webkitallowfullscreen="true"
+                                                            mozallowfullscreen="true"></iframe>
+                                                </div>
                                             </div>
                                         </div>
 
@@ -519,21 +524,14 @@
                                     <div class="tutor-single-add-to-cart-box open-popup-login ">
 
                                         <div class="tutor-course-purchase-box">
-                                            <form class="cart"
-                                                  action="https://dana-team.com/products/edumall/courses/mastering-data-modeling-fundamentals/"
-                                                  method="post" enctype='multipart/form-data'>
-
-
-                                                <div class="cart-notification"
-                                                     data-notification="{&quot;image&quot;:&quot;https:\/\/dana-team.com\/products\/edumall\/wp-content\/uploads\/2020\/11\/course-thumbnail-22-1-80x80.jpg&quot;,&quot;title&quot;:&quot;\u062a\u0633\u0644\u0637 \u0628\u0631 \u0627\u0635\u0648\u0644 \u0645\u062f\u0644 \u0633\u0627\u0632\u06cc \u062f\u0627\u062f\u0647 \u0647\u0627&quot;}">
-                                                    <button type="submit" name="add-to-cart" value="2004"
-                                                            class="single_add_to_cart_button ajax_add_to_cart tutor-button alt">
-                                                        <i class="far fa-shopping-cart"></i>
-                                                        افزودن به سبد خرید
-                                                    </button>
-                                                </div>
-
-                                            </form>
+                                            <div class="cart-notification">
+                                                <button
+                                                    @click="addToCart"
+                                                        class="single_add_to_cart_button ajax_add_to_cart tutor-button alt">
+                                                    <i class="far fa-shopping-cart"></i>
+                                                    افزودن به سبد خرید
+                                                </button>
+                                            </div>
                                         </div>
 
                                     </div>
@@ -743,7 +741,22 @@ import AppTitleBar from "@/view/widget/AppTitleBar.vue";
 
 export default {
     name: "Course",
-    components: {AppTitleBar}
+    components: {AppTitleBar},
+    data() {
+        return {
+            model: {
+                title: null,
+            }
+        }
+    },
+    async created() {
+        const courseSlug = this.$route.params.courseSlug;
+        const [err, data] = await this.to(this.http.get(`/course/course-details/${courseSlug}`));
+        if (!err) {
+            this.model.title = data.title;
+        }
+
+    }
 }
 </script>
 
