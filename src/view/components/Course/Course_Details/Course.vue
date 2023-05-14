@@ -2,7 +2,7 @@
 
     <div class="single-course-01">
         <div
-                class="tutor-wrap post-1990 courses type-courses status-publish has-post-thumbnail hentry course-language-russian course-category-data-modeling course-tag-big-data course-tag-data-analysis course-tag-data course-tag-data-modeling course-paid course-purchasable on-sale">
+                :class="'tutor-wrap post-1990 courses type-courses status-publish has-post-thumbnail hentry course-language-russian course-category-data-modeling course-tag-big-data course-tag-data-analysis course-tag-data course-tag-data-modeling course-paid course-purchasable '  + (model.hasDiscount == true? 'on-sale' : '')">
             <div class="tutor-full-width-course-top tutor-course-top-info course-top-info-light">
                 <div class="container">
                     <div class="row">
@@ -128,28 +128,34 @@
                                                     <span
                                                             class="woocommerce-Price-amount amount">
                                                         <bdi>
-                                                            ۴۶,۰۰۰&nbsp;
-                                                            <span class="woocommerce-Price-currencySymbol">تومان</span>
+                                                            {{
+                                                            model.courseIsFree ? 'رایگان' : getComma(model.deducatedPrice)
+                                                            }}
+                                                            <span
+                                                                    v-if="!model.courseIsFree"
+                                                                    class="woocommerce-Price-currencySymbol">
+                                                                ریال
+                                                            </span>
                                                         </bdi>
                                                     </span>
                                                 </ins>
-                                                <del><span
-                                                        class="woocommerce-Price-amount amount"><bdi>۷۶,۰۰۰&nbsp;<span
-                                                        class="woocommerce-Price-currencySymbol">تومان</span></bdi></span>
+                                                <del
+                                                        v-if="model.hasDiscount"
+                                                ><span
+                                                        class="woocommerce-Price-amount amount"><bdi>
+
+                                                    {{
+                                                    getComma(model.price)
+                                                    }}&nbsp;<span
+                                                        class="woocommerce-Price-currencySymbol">ریال</span></bdi></span>
                                                 </del>
                                             </p>
                                         </div>
-                                        <span class="course-price-badge onsale">39% تخفیف</span>
+                                        <span class="course-price-badge onsale">{{ calculateDedcuationValue() }}</span>
                                     </div>
 
                                     <div class="tutor-single-course-meta tutor-meta-top">
 
-                                        <div class="tutor-course-level">
-													<span class="meta-label">
-														<i class="meta-icon far fa-sliders-h"></i>
-														سطح </span>
-                                            <div class="meta-value">مبتدی</div>
-                                        </div>
 
                                         <div class="tutor-course-duration">
 													<span class="meta-label">
@@ -159,14 +165,14 @@
                                         </div>
 
                                         <div class="tutor-course-lesson-count">
-													<span class="meta-label">
-														<i class="meta-icon far fa-play-circle"></i>
-														تعداد درس </span>
+													                      <span class="meta-label">
+														                        <i class="meta-icon far fa-play-circle"></i>
+														                    تعداد درس
+                                                </span>
                                             <div class="meta-value">
                                                 1 درس
                                             </div>
                                         </div>
-
                                         <div class="tutor-course-categories">
 													<span class="meta-label">
 														<i class="meta-icon far fa-tag"></i>
@@ -178,30 +184,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="tutor-course-language">
-													<span class="meta-label">
-														<i class="meta-icon far fa-globe"></i>
-														زبان </span>
-                                            <div class="meta-value">
-                                                روسی
-                                            </div>
-                                        </div>
-
                                     </div>
-
-
-                                    <div
-                                            class="tutor-single-course-segment  tutor-course-material-includes-wrap">
-                                        <h4 class="tutor-segment-title">موارد ارائه شده</h4>
-                                        <div class="tutor-course-target-audience-content">
-                                            <ul
-                                                    class="tutor-course-target-audience-items tutor-custom-list-style">
-                                                <li>فیلم</li>
-                                                <li>جزوات</li>
-                                            </ul>
-                                        </div>
-                                    </div>
-
 
                                     <div class="tutor-single-add-to-cart-box open-popup-login ">
 
@@ -223,10 +206,7 @@
                                             class="tm-button style-flat tm-button-nm edumall-course-wishlist-btn wishlist-button-01 open-popup-login"
                                             href="javascript:void(0);">
                                         <div class="button-content-wrapper">
-
-
                                             <span class="button-text">افزودن به علاقه مندی ها</span>
-
                                         </div>
                                     </a></div>
 
@@ -240,138 +220,15 @@
                                             class="tutor-valign-middle tutor-icon-brand-linkedin"></i> </a>
                                     </div>
 
-                                </div> <!-- tutor-price-preview-box -->
+                                </div>
 
-
-                                <categories :items="model.courseCategories">
+                                <categories
+                                        :items="model.courseCategories">
                                 </categories>
 
-                                <div class="widget edumall-wp-widget-courses">
-                                    <p class="widget-title heading">دوره های مرتبط</p>
-                                    <div class="edumall-courses edumall-animation-zoom-in">
-                                        <div
-                                                class="course-item edumall-box post-2091 courses type-courses status-publish has-post-thumbnail hentry course-language-german course-category-career-development course-category-business course-tag-database course-tag-data course-tag-manager course-tag-managemen course-paid course-purchasable on-sale">
-                                            <div class="course-thumbnail edumall-image">
-                                                <div class="tutor-course-badge onsale">-38%</div>
-                                                <a
-                                                        href="https://dana-team.com/products/edumall/courses/oracle-database-administration-for-beginners/">
-                                                    <img
-                                                            alt="course-thumbnail-34" width="120"/> </a>
-                                            </div>
-                                            <div class="course-info">
+                                <!--                                <related-courses>-->
 
-                                                <div class="course-category">
-                                                    <a
-                                                            href="https://dana-team.com/products/edumall/course-category/career-development/">توسعه
-                                                        شغلی</a>
-                                                </div>
-
-                                                <h5 class="course-title course-loop-title-collapse-2-rows">
-                                                    <a
-                                                            href="https://dana-team.com/products/edumall/courses/oracle-database-administration-for-beginners/">اداره
-                                                        پایگاه داده اوراکل برای مبتدیان</a>
-                                                </h5>
-
-                                                <div class="course-loop-price">
-                                                    <div class="tutor-price">
-                                                        <div class="price">
-                                                            <p class="price">
-                                                                <ins><span
-                                                                        class="woocommerce-Price-amount amount"><bdi>۲۸,۰۰۰&nbsp;<span
-                                                                        class="woocommerce-Price-currencySymbol">تومان</span></bdi></span>
-                                                                </ins>
-                                                                <del><span
-                                                                        class="woocommerce-Price-amount amount"><bdi>۴۵,۰۰۰&nbsp;<span
-                                                                        class="woocommerce-Price-currencySymbol">تومان</span></bdi></span>
-                                                                </del>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div
-                                                class="course-item edumall-box post-2040 courses type-courses status-publish has-post-thumbnail hentry course-language-german course-category-artificial-intelligence course-tag-data course-tag-computer course-tag-ai course-paid course-purchasable on-sale">
-                                            <div class="course-thumbnail edumall-image">
-                                                <div class="tutor-course-badge onsale">-24%</div>
-                                                <a
-                                                        href="https://dana-team.com/products/edumall/courses/artificial-intelligence-machine-learning/">
-                                                    <img
-                                                            alt="course-thumbnail-26" width="120"/> </a>
-                                            </div>
-                                            <div class="course-info">
-
-                                                <div class="course-category">
-                                                    <a
-                                                            href="https://dana-team.com/products/edumall/course-category/artificial-intelligence/">هوش
-                                                        مصنوعی</a>
-                                                </div>
-
-                                                <h5 class="course-title course-loop-title-collapse-2-rows">
-                                                    <a
-                                                            href="https://dana-team.com/products/edumall/courses/artificial-intelligence-machine-learning/">هوش
-                                                        مصنوعی و یادگیری ماشین</a>
-                                                </h5>
-
-                                                <div class="course-loop-price">
-                                                    <div class="tutor-price">
-                                                        <div class="price">
-                                                            <p class="price">
-                                                                <ins>
-                                                                    <span
-                                                                            class="woocommerce-Price-amount amount"><bdi>۲۵,۰۰۰&nbsp;<span
-                                                                            class="woocommerce-Price-currencySymbol">تومان</span></bdi></span>
-                                                                </ins>
-                                                                <del>
-                                                                    <span
-                                                                            class="woocommerce-Price-amount amount"><bdi>۳۳,۰۰۰&nbsp;<span
-                                                                            class="woocommerce-Price-currencySymbol">تومان</span></bdi></span>
-                                                                </del>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div
-                                                class="course-item edumall-box post-2016 courses type-courses status-publish has-post-thumbnail hentry course-language-italian course-category-machine-learning course-tag-data course-tag-science course-tag-computer course-paid course-purchasable on-sale">
-                                            <div class="course-thumbnail edumall-image">
-
-                                                <a
-                                                        href="https://dana-team.com/products/edumall/courses/introduction-to-machine-learning-for-data-science/">
-                                                    <img
-                                                            alt="course-thumbnail-25" width="120"/> </a>
-                                            </div>
-                                            <div class="course-info">
-
-                                                <div class="course-category">
-                                                    <a
-                                                            href="https://dana-team.com/products/edumall/course-category/machine-learning/">فراگیری
-                                                        ماشین</a>
-                                                </div>
-
-                                                <h5 class="course-title course-loop-title-collapse-2-rows">
-                                                    <a
-                                                            href="https://dana-team.com/products/edumall/courses/introduction-to-machine-learning-for-data-science/">مقدمه
-                                                        ای بر یادگیری ماشین برای علوم داده</a>
-                                                </h5>
-
-                                                <div class="course-loop-price">
-                                                    <div class="tutor-price">
-                                                        <div class="price">
-                                                            <p class="price">
-                                                                <ins><span
-                                                                        class="woocommerce-Price-amount amount"><bdi>۶۵,۰۰۰&nbsp;<span
-                                                                        class="woocommerce-Price-currencySymbol">تومان</span></bdi></span>
-                                                                </ins>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <!--                                </related-courses>-->
                             </div>
                         </div>
                     </div>
@@ -392,10 +249,12 @@ import Requirements from "@/view/components/Course/Course_Details/Widget/Require
 import Teachers from "@/view/components/Course/Course_Details/Widget/Teachers.vue";
 import Comment from "@/view/components/Course/Course_Details/Widget/Comment.vue";
 import Categories from "@/view/components/Course/Course_Details/Widget/Categories.vue";
+import RelatedCourses from "@/view/components/Course/Course_Details/Widget/Sidebar/RelatedCourses.vue";
 
 export default {
     name: "Course",
     components: {
+        RelatedCourses,
         Categories,
         Comment, Teachers, Requirements, AudienceItems, Benefits, Content, Tags, PreQuisites, AppTitleBar
     },
@@ -404,9 +263,15 @@ export default {
             model: {
                 title: null,
                 studentCounts: 0,
+                deducatedPrice: 0,
+                price: 0,
+                deducationType: 0,
+                deducationValue: 0,
                 teacherAvatar: null,
                 teacherName: null,
                 courseCategories: [],
+                courseIsFree: false,
+                hasDiscount: false,
             }
         }
     },
@@ -416,6 +281,12 @@ export default {
         if (!err) {
             this.model.title = data.title;
             this.model.studentCounts = data.studentCounts;
+            this.model.deducatedPrice = data.deducatedPrice;
+            this.model.price = data.price;
+            this.model.deducationType = data.deducationType;
+            this.model.deducationValue = data.deducationValue;
+            this.model.courseIsFree = data.courseIsFree;
+            this.model.hasDiscount = data.hasDiscount;
             const teacher = data.teacher;
             if (teacher != null) {
                 this.model.teacherAvatar = teacher.avatar;
@@ -424,6 +295,16 @@ export default {
             document.title = `${this.model.title} - رشدآپ`;
         }
 
+    },
+    methods: {
+        calculateDedcuationValue() {
+            const deducationType = this.model.deducationType;
+            if (deducationType == 2) {
+                return this.getComma(this.model.deducationValue) + ' ' + 'ريال تخفیف'
+            } else if (deducationType == 1) {
+                return this.model.deducationValue + ' ' + '% تخفیف'
+            }
+        }
     }
 }
 </script>
