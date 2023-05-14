@@ -89,6 +89,9 @@ Vue.prototype.getPersianTime = (time, format) => {
 Vue.prototype.removeComma = (amount) => {
     return amount.toString().replaceAll(',', '');
 }
+Vue.prototype.getPublicUrl = (item) => {
+    return Vue.prototype.serverAddress + '/api' + item;
+}
 Vue.prototype.test = () => {
     console.log("TEST")
 }

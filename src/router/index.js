@@ -73,7 +73,7 @@ export const constantRoutes = [{
         {
             path: '/cd/:courseSlug',
             name: 'cd',
-            component: () => import('@/view/components/Course/Course.vue'),
+            component: () => import('@/view/components/Course/Course_Details/Course.vue'),
             meta: {
                 title: 'route.myCourses', icon: 'mdi-book-education'
             },
