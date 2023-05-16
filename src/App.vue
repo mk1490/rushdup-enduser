@@ -12,7 +12,6 @@ import {mapActions, mapGetters} from "vuex";
 import Vue from 'vue';
 import DeleteDialog from "./view/widget/DeleteDialog";
 import ProgressDialog from "@/view/widget/ProgressDialog";
-import jQuery from 'jquery'
 
 export default {
     async beforeCreate() {

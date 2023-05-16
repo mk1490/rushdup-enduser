@@ -9,11 +9,6 @@
       </v-card-title>
       <v-card-text>
         <div class="d-flex justify-center">
-          <video-player
-              :options="options"
-          >
-
-          </video-player>
         </div>
       </v-card-text>
       <v-card-actions>
@@ -30,7 +25,6 @@
 </template>
 
 <script>
-import {videoPlayer} from "vue-video-player/src";
 
 export default {
   name: "CourseDetails_VideoPlayer_Modal",

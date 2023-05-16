@@ -48,8 +48,6 @@
 </template>
 
 <script>
-import videojs from 'video.js';
-
 export default {
   name: "CourseDetailsVideo",
   components: {},

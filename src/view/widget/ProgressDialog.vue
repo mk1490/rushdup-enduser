@@ -4,8 +4,6 @@
       class="overlay--container">
     <div
         class="overlay"
-        opacity="0.9"
-        light :z-index="999"
     >
       <v-progress-circular
           indeterminate

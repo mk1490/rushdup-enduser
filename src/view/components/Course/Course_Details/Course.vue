@@ -151,7 +151,10 @@
                                                 </del>
                                             </p>
                                         </div>
-                                        <span class="course-price-badge onsale">{{ calculateDedcuationValue() }}</span>
+                                        <span :class="'course-price-badge '  + (model.hasDiscount ? 'onsale': '')">
+                                            {{
+                                            calculateDedcuationValue()
+                                            }}</span>
                                     </div>
 
                                     <div class="tutor-single-course-meta tutor-meta-top">

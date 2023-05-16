@@ -12,13 +12,7 @@ import {to} from 'await-to-js'
 import '@/router/permission'
 import VueToast from 'vue-toast-notification';
 import VueSweetalert2 from 'vue-sweetalert2';
-import VueVideoPlayer from 'vue-video-player'
-import "@/assets/styles/main.css";
-
-import "font-awesome/scss/font-awesome.scss";
-import jQuery from 'jquery'
-Vue.prototype.jQuery = jQuery
-Vue.use(VueVideoPlayer);
+import "@/assets/styles/main.scss";
 
 Vue.use(VueSweetalert2, {
     confirmButtonColor: '#41b882',

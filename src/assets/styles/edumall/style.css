@@ -359,7 +359,6 @@ input[type="checkbox"]:after {
     font-variant: normal;
     text-rendering: auto;
     line-height: 1;
-    font-family: ;
 }
 
 .ui-datepicker .ui-datepicker-next,
@@ -10283,125 +10282,6 @@ html .row:before {
     }
 }
 
-@media (min-width: 768px) {
-    .grid-sm-1 {
-        -ms-grid-columns: (1fr) [ 1 ];
-        grid-template-columns: repeat(1, 1fr);
-    }
-
-    .grid-sm-2 {
-        -ms-grid-columns: (1fr) [ 2 ];
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .grid-sm-3 {
-        -ms-grid-columns: (1fr) [ 3 ];
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .grid-sm-4 {
-        -ms-grid-columns: (1fr) [ 4 ];
-        grid-template-columns: repeat(4, 1fr);
-    }
-
-    .grid-sm-5 {
-        -ms-grid-columns: (1fr) [ 5 ];
-        grid-template-columns: repeat(5, 1fr);
-    }
-
-    .grid-sm-6 {
-        -ms-grid-columns: (1fr) [ 6 ];
-        grid-template-columns: repeat(6, 1fr);
-    }
-
-    .grid-sm-normal-gutter {
-        grid-column-gap: 30px;
-    }
-
-    .grid-sm-large-gutter {
-        grid-column-gap: 60px;
-    }
-}
-
-@media (min-width: 992px) {
-    .grid-md-1 {
-        -ms-grid-columns: (1fr) [ 1 ];
-        grid-template-columns: repeat(1, 1fr);
-    }
-
-    .grid-md-2 {
-        -ms-grid-columns: (1fr) [ 2 ];
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .grid-md-3 {
-        -ms-grid-columns: (1fr) [ 3 ];
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .grid-md-4 {
-        -ms-grid-columns: (1fr) [ 4 ];
-        grid-template-columns: repeat(4, 1fr);
-    }
-
-    .grid-md-5 {
-        -ms-grid-columns: (1fr) [ 5 ];
-        grid-template-columns: repeat(5, 1fr);
-    }
-
-    .grid-md-6 {
-        -ms-grid-columns: (1fr) [ 6 ];
-        grid-template-columns: repeat(6, 1fr);
-    }
-
-    .grid-md-normal-gutter {
-        grid-column-gap: 30px;
-    }
-
-    .grid-md-large-gutter {
-        grid-column-gap: 60px;
-    }
-}
-
-@media (min-width: 1200px) {
-    .grid-lg-1 {
-        -ms-grid-columns: (1fr) [ 1 ];
-        grid-template-columns: repeat(1, 1fr);
-    }
-
-    .grid-lg-2 {
-        -ms-grid-columns: (1fr) [ 2 ];
-        grid-template-columns: repeat(2, 1fr);
-    }
-
-    .grid-lg-3 {
-        -ms-grid-columns: (1fr) [ 3 ];
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .grid-lg-4 {
-        -ms-grid-columns: (1fr) [ 4 ];
-        grid-template-columns: repeat(4, 1fr);
-    }
-
-    .grid-lg-5 {
-        -ms-grid-columns: (1fr) [ 5 ];
-        grid-template-columns: repeat(5, 1fr);
-    }
-
-    .grid-lg-6 {
-        -ms-grid-columns: (1fr) [ 6 ];
-        grid-template-columns: repeat(6, 1fr);
-    }
-
-    .grid-lg-normal-gutter {
-        grid-column-gap: 30px;
-    }
-
-    .grid-lg-large-gutter {
-        grid-column-gap: 60px;
-    }
-}
 
 .page-loading {
     position: fixed;
@@ -13895,7 +13775,6 @@ body.elementor-page.page-has-no-sidebar .page-content {
 .blog-nav-links .nav-list {
     display: -ms-grid;
     display: grid;
-    -ms-grid-columns: (1fr) [ 2 ];
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 30px;
 }
@@ -14086,7 +13965,6 @@ body.elementor-page.page-has-no-sidebar .page-content {
     margin-top: 55px;
     display: -ms-grid;
     display: grid;
-    -ms-grid-columns: (1fr) [ 2 ];
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 66px 30px;
 }
@@ -14177,7 +14055,6 @@ body.elementor-page.page-has-no-sidebar .page-content {
 .portfolio-nav-links.style-01 .nav-list {
     display: -ms-grid;
     display: grid;
-    -ms-grid-columns: (1fr) [ 2 ];
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 40px 30px;
 }
@@ -15097,21 +14974,18 @@ body.elementor-page.page-has-no-sidebar .page-content {
 }
 
 .tm-grid-portfolio-main .modern-grid {
-    -ms-grid-columns: (1fr) [ 3 ];
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 30px;
 }
 
 @media (max-width: 1199px) {
     .tm-grid-portfolio-main .modern-grid {
-        -ms-grid-columns: (1fr) [ 2 ];
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 767px) {
     .tm-grid-portfolio-main .modern-grid {
-        -ms-grid-columns: (1fr) [ 1 ];
         grid-template-columns: repeat(1, 1fr);
     }
 }
@@ -15827,10 +15701,6 @@ body.search .search-page-search-form {
     margin-top: 7px;
 }
 
-.fal,
-.far {
-    font-family: ;
-}
 
 .elementor-widget-wrap .elementor-element.elementor-widget__width-auto,
 .elementor-widget-wrap .elementor-element.elementor-widget__width-initial {
@@ -16501,7 +16371,6 @@ body:not(.elementor-editor-active)
 .lazy-grid {
     display: -ms-grid;
     display: grid;
-    -ms-grid-columns: (1fr) [ 3 ];
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 30px;
 }
@@ -20280,7 +20149,6 @@ input[type="submit"] {
 .edumall-blog-one-left-featured .edumall-grid {
     display: -ms-grid;
     display: grid;
-    -ms-grid-columns: (1fr) [ 4 ];
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 30px;
 }
@@ -20488,7 +20356,6 @@ input[type="submit"] {
 
 @media (max-width: 1024px) {
     .edumall-blog-zigzag .edumall-grid {
-        -ms-grid-columns: (1fr) [ 2 ];
         grid-template-columns: repeat(2, 1fr);
         -webkit-box-pack: normal;
         -webkit-justify-content: normal;
@@ -20516,7 +20383,6 @@ input[type="submit"] {
     }
 
     .edumall-blog-one-left-featured .edumall-grid {
-        -ms-grid-columns: (1fr) [ 2 ];
         grid-template-columns: repeat(2, 1fr);
     }
 }
@@ -21987,8 +21853,6 @@ input[type="submit"] {
     mask-repeat: no-repeat;
     -webkit-mask-size: contain;
     mask-size: contain;
-    -webkit-mask-image: /*savepage-url=assets/svg/headline-underline-zigzag.svg*/ url();
-    mask-image: /*savepage-url=assets/svg/headline-underline-zigzag.svg*/ url();
 }
 
 .edumall-link-animate-border .heading-primary a:hover mark:before {
@@ -23992,7 +23856,6 @@ body:not(.elementor-editor-active)
     .edumall-event-grid.style-alternate-grid .modern-grid {
         display: -ms-grid;
         display: grid;
-        -ms-grid-columns: (1fr) [ 2 ];
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 70px 30px;
     }
@@ -26985,8 +26848,6 @@ mark, .primary-color.primary-color, .growl-close:hover, .link-transition-02, .ed
 /* Woocommerce Styles */
 @font-face {
     font-family: WooCommerce;
-    src: /*savepage-url=assets/fonts/woocommerce/WooCommerce.eot*/ url();
-    src: /*savepage-url=assets/fonts/woocommerce/WooCommerce.eot?#iefix*/ url() format("embedded-opentype"), /*savepage-url=assets/fonts/woocommerce/WooCommerce.woff*/ url() format("woff"), /*savepage-url=assets/fonts/woocommerce/WooCommerce.ttf*/ url() format("truetype"), /*savepage-url=assets/fonts/woocommerce/WooCommerce.svg#star*/ url() format("svg");
     font-weight: 400;
     font-style: normal;
 }
@@ -30760,26 +30621,7 @@ form.isw-swatches.isw-swatches--in-single .isw-swatch--isw_text .isw-term.isw-di
 .wc-block-price-filter .wc-block-price-filter__controls .wc-block-price-filter__amount {
     min-height: 40px;
 }
-
-/*# sourceMappingURL=assets/scss/sourcemap/woocommerce.css.map */
-<
-/
-style >
-
-<
-style data-savepage-href
-
-=
-"https://dana-team.com/products/edumall/wp-content/themes/edumall/assets/libs/magnific-popup/magnific-popup.min.css"
-type
-
-=
-"text/css"
-media
-
-=
-"all"
-> .mfp-bg {
+.mfp-bg {
     top: 0;
     left: 0;
     width: 100%;
@@ -31211,48 +31053,7 @@ img.mfp-img {
         padding-right: 6px
     }
 }
-
-<
-/
-style >
-
-<
-link rel
-
-=
-"stylesheet"
-id
-
-=
-"persian-elementor-font-css"
-href
-
-=
-"https://c204025.parspack.net/c204025/persian-elementor/font.css"
-type
-
-=
-"text/css"
-media
-
-=
-"all"
->
-
-<
-style data-savepage-href
-
-=
-"https://dana-team.com/products/edumall/wp-content/plugins/persian-elementor/assets/css/front-rtl.css"
-type
-
-=
-"text/css"
-media
-
-=
-"all"
-> .flatpickr-month {
+.flatpickr-month {
     height: 34px !important;
 }
 
@@ -31275,37 +31076,10 @@ media
 pre.highlight-height {
     direction: ltr;
 }
-
-<
-/
-style >
-
-<
-style data-savepage-href
-
-=
-"https://dana-team.com/products/edumall/wp-content/plugins/persian-elementor/includes/library/icons/efaicons/style.css"
-type
-
-=
-"text/css"
-media
-
-=
-"all"
->
-
 @font-face {
     font-family: 'efaicons';
-    src: /*savepage-url=fonts/efaicons.eot*/ url();
-    src: /*savepage-url=fonts/efaicons.eot?#iefix*/ url() format('embedded-opentype'),
-        /*savepage-url=fonts/efaicons.woff2*/ url() format('woff2'),
-        /*savepage-url=fonts/efaicons.ttf*/ url() format('truetype'),
-        /*savepage-url=fonts/efaicons.woff*/ url() format('woff'),
-        /*savepage-url=fonts/efaicons.svg?#efaicons*/ url() format('svg');
     font-weight: normal;
     font-style: normal;
-    /*savepage-font-display=block*/
 }
 
 [class^="efa-"], [class*=" efa-"] {
@@ -31483,30 +31257,8 @@ media
 .efa-Afzal-toos:before {
     content: "\ea13";
 }
-
-<
-/
-style >
-
-<
-style data-savepage-href
-
-=
-"https://dana-team.com/products/edumall/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min.css"
-type
-
-=
-"text/css"
-media
-
-=
-"all"
-> /*! elementor-icons - v5.15.0 - 30-01-2022 */
-
 @font-face {
     font-family: eicons;
-    src: /*savepage-url=../fonts/eicons.eot?5.15.0*/ url();
-    src: /*savepage-url=../fonts/eicons.eot?5.15.0#iefix*/ url() format("embedded-opentype"), /*savepage-url=../fonts/eicons.woff2?5.15.0*/ url() format("woff2"), /*savepage-url=../fonts/eicons.woff?5.15.0*/ url() format("woff"), /*savepage-url=../fonts/eicons.ttf?5.15.0*/ url() format("truetype"), /*savepage-url=../fonts/eicons.svg?5.15.0#eicon*/ url() format("svg");
     font-weight: 400;
     font-style: normal
 }
@@ -33294,31 +33046,13 @@ media
 }
 
 .eicon-eye:before {
-    content: '\e8ac'
+    content: '\e8ac';
 }
 
 .eicon-elementor-square:before {
-    content: '\e813'
+    content: '\e813';
 }
-
-<
-/
-style >
-
-<
-style data-savepage-href
-
-=
-"https://dana-team.com/products/edumall/wp-content/plugins/elementor/assets/css/frontend-legacy-rtl.min.css"
-type
-
-=
-"text/css"
-media
-
-=
-"all"
-> /*! elementor - v3.6.7 - 03-07-2022 */
+/*! elementor - v3.6.7 - 03-07-2022 */
 .elementor-bc-flex-widget .elementor-section-content-top > .elementor-container > .elementor-row > .elementor-column > .elementor-column-wrap {
     -webkit-box-align: start;
     -ms-flex-align: start;
@@ -40999,8 +40733,6 @@ body.elementor-page .elementor-widget-menu-anchor {
     --widgets-spacing: 20px;
 }
 
-{
-}
 h1.entry-title {
     display: var(--page-title-display);
 }
@@ -55067,7 +54799,6 @@ ol.elementor-toc__list-wrapper .elementor-toc__list-item-text-wrapper:before {
 .elementor-scrolling-tracker {
     --scrolling-track-default-progress-color: #61ce70;
     --scrolling-track-default-color: #eee;
-    --scrolling-track-precentage-default-color: $ black
 }
 
 .elementor-scrolling-tracker-horizontal {
@@ -58819,8 +58550,6 @@ table.tutor-ui-table .td-statement-info .tutor-badge-label {
 
 @font-face {
     font-family: 'Edumallicon';
-    src: /*savepage-url=assets/fonts/edumi/Edumall.eot?9ajmsy*/ url();
-    src: /*savepage-url=assets/fonts/edumi/Edumall.eot?9ajmsy#iefix*/ url() format("embedded-opentype"), /*savepage-url=assets/fonts/edumi/Edumall.ttf?9ajmsy*/ url() format("truetype"), /*savepage-url=assets/fonts/edumi/Edumall.woff?9ajmsy*/ url() format("woff"), /*savepage-url=assets/fonts/edumi/Edumall.svg?9ajmsy#Edumall*/ url() format("svg");
     font-weight: normal;
     font-style: normal;
     /*savepage-font-display=block*/
@@ -74256,7 +73985,6 @@ table.course-single-gradebooks th {
     padding: 0 27px 27px;
     display: -ms-grid;
     display: grid;
-    -ms-grid-columns: (1fr) [ 2 ];
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 20px
 }
@@ -74792,135 +74520,102 @@ h1, h2, h3, h4, h5, h6, a, p, div {
     font-family: iranyekan;
     font-style: normal;
     font-weight: 300;
-    src: url();
 }
 
 @font-face {
     font-family: iranyekan;
     font-style: normal;
     font-weight: 100;
-    src: /*savepage-url=iranyekan/eot/iranyekanwebthinfanum.eot*/ url();
-    src: /*savepage-url=iranyekan/eot/iranyekanwebthinfanum.eot?#iefix*/ url() format('embedded-opentype'), /*savepage-url=iranyekan/woff/iranyekanwebthinfanum.woff*/ url() format('woff'), /*savepage-url=iranyekan/ttf/iranyekanwebthinfanum.ttf*/ url() format('truetype')
 }
 
 @font-face {
     font-family: iranyekan;
     font-style: normal;
     font-weight: 800;
-    src: /*savepage-url=iranyekan/eot/iranyekanwebextraboldfanum.eot*/ url();
-    src: /*savepage-url=iranyekan/eot/iranyekanwebextraboldfanum.eot?#iefix*/ url() format('embedded-opentype'), /*savepage-url=iranyekan/woff/iranyekanwebextraboldfanum.woff*/ url() format('woff'), /*savepage-url=iranyekan/ttf/iranyekanwebextraboldfanum.ttf*/ url() format('truetype')
 }
 
 @font-face {
     font-family: iranyekan;
     font-style: normal;
     font-weight: 900;
-    src: /*savepage-url=iranyekan/eot/iranyekanwebblackfanum.eot*/ url();
-    src: /*savepage-url=iranyekan/eot/iranyekanwebblackfanum.eot?#iefix*/ url() format('embedded-opentype'), /*savepage-url=iranyekan/woff/iranyekanwebblackfanum.woff*/ url() format('woff'), /*savepage-url=iranyekan/ttf/iranyekanwebblackfanum.ttf*/ url() format('truetype')
 }
 
 @font-face {
     font-family: iransans;
     font-style: normal;
     font-weight: 100;
-    src: /*savepage-url=iransans/woff/IRANSansX-Thin.woff*/ url() format('woff'),
-        /*savepage-url=iransans/woff2/IRANSansX-Thin.woff2*/ url() format('woff2');
 }
 
 @font-face {
     font-family: iransans;
     font-style: normal;
     font-weight: 200;
-    src: /*savepage-url=iransans/woff/IRANSansX-UltraLight.woff*/ url() format('woff'),
-        /*savepage-url=iransans/woff2/IRANSansX-UltraLight.woff2*/ url() format('woff2');
 }
 
 @font-face {
     font-family: iransans;
     font-style: normal;
     font-weight: 300;
-    src: /*savepage-url=iransans/woff/IRANSansX-Light.woff*/ url() format('woff'),
-        /*savepage-url=iransans/woff2/IRANSansX-Light.woff2*/ url() format('woff2');
 }
 
 @font-face {
     font-family: iransans;
     font-style: normal;
     font-weight: 500;
-    src: /*savepage-url=iransans/woff/IRANSansX-Medium.woff*/ url() format('woff'),
-        /*savepage-url=iransans/woff2/IRANSansX-Medium.woff2*/ url() format('woff2');
 }
 
 @font-face {
     font-family: iransans;
     font-style: normal;
     font-weight: 600;
-    src: /*savepage-url=iransans/woff/IRANSansX-DemiBold.woff*/ url() format('woff'),
-        /*savepage-url=iransans/woff2/IRANSansX-DemiBold.woff2*/ url() format('woff2');
 }
 
 @font-face {
     font-family: iransans;
     font-style: normal;
     font-weight: 800;
-    src: /*savepage-url=iransans/woff/IRANSansX-ExtraBold.woff*/ url() format('woff'),
-        /*savepage-url=iransans/woff2/IRANSansX-ExtraBold.woff2*/ url() format('woff2');
 }
 
 @font-face {
     font-family: iransans;
     font-style: normal;
     font-weight: 900;
-    src: /*savepage-url=iransans/woff/IRANSansX-Black.woff*/ url() format('woff'),
-        /*savepage-url=iransans/woff2/IRANSansX-Black.woff2*/ url() format('woff2');
 }
 
 @font-face {
     font-family: iransans;
     font-style: normal;
     font-weight: bold;
-    src: /*savepage-url=iransans/woff/IRANSansX-Bold.woff*/ url() format('woff'),
-        /*savepage-url=iransans/woff2/IRANSansX-Bold.woff2*/ url() format('woff2');
 }
 
 @font-face {
     font-family: iransans;
     font-style: normal;
     font-weight: normal;
-    src: /*savepage-url=iransans/woff/IRANSansX-Regular.woff*/ url() format('woff'),
-        /*savepage-url=iransans/woff2/IRANSansX-Regular.woff2*/ url() format('woff2');
 }
 
 
 @font-face {
     font-family: Kalameh;
     /*savepage-font-display=swap*/
-    src: /*savepage-url=kalameh/eot/KalamehWeb_thin.eot*/ url();
-    src: /*savepage-url=kalameh/eot/KalamehWeb_thin.eot?#iefix*/ url() format('embedded-opentype'), /*savepage-url=kalameh/woff2/KalamehWeb_thin.woff2*/ url() format('woff2'), /*savepage-url=kalameh/woff/KalamehWeb_thin.woff*/ url() format('woff'), /*savepage-url=kalameh/ttf/KalamehWeb_thin.ttf*/ url() format('truetype');
     font-weight: 100
 }
 
 @font-face {
     font-family: Kalameh;
     /*savepage-font-display=swap*/
-    src: /*savepage-url=kalameh/eot/KalamehWeb_Regular.eot*/ url();
-    src: /*savepage-url=kalameh/eot/KalamehWeb_Regular.eot?#iefix*/ url() format('embedded-opentype'), /*savepage-url=kalameh/woff2/KalamehWeb_Regular.woff2*/ url() format('woff2'), /*savepage-url=kalameh/woff/KalamehWeb_Regular.woff*/ url() format('woff'), /*savepage-url=kalameh/ttf/KalamehWeb_Regular.ttf*/ url() format('truetype');
     font-weight: 400
 }
 
 @font-face {
     font-family: Kalameh;
     /*savepage-font-display=swap*/
-    src: /*savepage-url=kalameh/eot/KalamehWeb_Bold.eot*/ url();
-    src: /*savepage-url=kalameh/eot/KalamehWeb_Bold.eot?#iefix*/ url() format('embedded-opentype'), /*savepage-url=kalameh/woff2/KalamehWeb_Bold.woff2*/ url() format('woff2'), /*savepage-url=kalameh/woff/KalamehWeb_Bold.woff*/ url() format('woff'), /*savepage-url=kalameh/ttf/KalamehWeb_Bold.ttf*/ url() format('truetype');
     font-weight: 700
 }
 
 @font-face {
     font-family: Kalameh;
     /*savepage-font-display=swap*/
-    src: /*savepage-url=kalameh/eot/KalamehWeb_Black.eot*/ url();
-    src: /*savepage-url=kalameh/eot/KalamehWeb_Black.eot?#iefix*/ url() format('embedded-opentype'), /*savepage-url=kalameh/woff2/KalamehWeb_Black.woff2*/ url() format('woff2'), /*savepage-url=kalameh/woff/KalamehWeb_Black.woff*/ url() format('woff'), /*savepage-url=kalameh/ttf/KalamehWeb_Black.ttf*/ url() format('truetype');
     font-weight: 900
 }
 
@@ -74928,37 +74623,30 @@ h1, h2, h3, h4, h5, h6, a, p, div {
     font-family: peyda;
     font-style: normal;
     font-weight: 700;
-    src: /*savepage-url=peyda/eot/PeydaWeb-Bold.eot*/ url();
-    src: /*savepage-url=peyda/eot/PeydaWeb-Bold.eot?#iefix*/ url() format('embedded-opentype'), /*savepage-url=peyda/woff/PeydaWeb-Bold.woff*/ url() format('woff'), /*savepage-url=peyda/woff2/PeydaWeb-Bold.woff2*/ url() format('woff2')
 }
 
 @font-face {
     font-family: peyda;
     font-style: normal;
     font-weight: 400;
-    src: /*savepage-url=peyda/eot/PeydaWeb-Regular.eot*/ url();
-    src: /*savepage-url=peyda/eot/PeydaWeb-Regular.eot?#iefix*/ url() format('embedded-opentype'), /*savepage-url=peyda/woff/PeydaWeb-Regular.woff*/ url() format('woff'), /*savepage-url=peyda/woff2/PeydaWeb-Regular.woff2*/ url() format('woff2')
 }
 
 @font-face {
     font-family: pinards1;
     font-style: normal;
     font-weight: 400;
-    src: /*savepage-url=pinar/ttf/Pinar-DS1-FD.ttf*/ url() format('truetype'), /*savepage-url=pinar/woff/Pinar-DS1-FD.woff*/ url() format('woff'), /*savepage-url=pinar/woff2/Pinar-DS1-FD.woff2*/ url() format('woff2')
 }
 
 @font-face {
     font-family: pinards2;
     font-style: normal;
     font-weight: 400;
-    src: /*savepage-url=pinar/ttf/Pinar-DS2-FD.ttf*/ url() format('truetype'), /*savepage-url=pinar/woff/Pinar-DS2-FD.woff*/ url() format('woff'), /*savepage-url=pinar/woff2/Pinar-DS2-FD.woff2*/ url() format('woff2')
 }
 
 @font-face {
     font-family: pinarfd;
     font-style: normal;
     font-weight: 400;
-    src: /*savepage-url=pinar/ttf/Pinar-FD.ttf*/ url() format('truetype'), /*savepage-url=pinar/woff/Pinar-FD.woff*/ url() format('woff'), /*savepage-url=pinar/woff2/Pinar-FD.woff2*/ url() format('woff2')
 }
 
 button,
@@ -77304,7 +76992,6 @@ a.tutor-btn:hover,
 }
 
 .edumall-dark-scheme .page-title-bar-01 .page-title-bar-bg {
-    background-image: /*savepage-url=https://themes.mr-alidoosti.ir/edumall-demo/wp-content/themes/edumall/assets/images/dark-scheme/title-bar-01-bg.jpg*/ url();
     background-color: #021630;
     background-repeat: no-repeat;
     background-position: center center;
@@ -77644,7 +77331,6 @@ a.tutor-btn:hover,
 }
 
 .page-title-bar-06 .page-title-bar-bg {
-    background-image: /*savepage-url=https://themes.mr-alidoosti.ir/edumall-demo/wp-content/themes/edumall/assets/images/title-bar-06-bg.jpg*/ url();
     background-color: #f2f2f2;
     background-repeat: no-repeat;
     background-position: center right;
@@ -77696,7 +77382,6 @@ a.tutor-btn:hover,
 }
 
 .edumall-dark-scheme .page-title-bar-06 .page-title-bar-bg {
-    background-image: /*savepage-url=https://themes.mr-alidoosti.ir/edumall-demo/wp-content/themes/edumall/assets/images/dark-scheme/title-bar-06-bg.jpg*/ url();
     background-color: #021630;
     background-repeat: no-repeat;
     background-position: center center;
@@ -77769,7 +77454,6 @@ a.tutor-btn:hover,
 }
 
 .page-title-bar-08 .page-title-bar-bg {
-    background-image: /*savepage-url=https://themes.mr-alidoosti.ir/edumall-demo/wp-content/uploads/2020/12/title-bar-08-bg-e1609231874298.png*/ url();
     background-color: #F8F8F8;
     background-repeat: no-repeat;
     background-position: left bottom;
@@ -77819,7 +77503,6 @@ a.tutor-btn:hover,
 }
 
 .edumall-dark-scheme .page-title-bar-08 .page-title-bar-bg {
-    background-image: /*savepage-url=https://themes.mr-alidoosti.ir/edumall-demo/wp-content/themes/edumall/assets/images/title-bar-08-bg.png*/ url();
     background-color: #021630;
     background-repeat: no-repeat;
     background-position: bottom right;
