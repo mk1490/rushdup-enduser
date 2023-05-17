@@ -38,7 +38,7 @@ export default {
         const [err, data] = await this.to(this.http.get(`${this.serverAddress}/api/auth/currentProfile`));
         if (!err) {
             await this.$store.dispatch('setLoginState', true);
-            await this.$store.commit('SET_CART_ITEMS', data);
+            await this.$store.commit('SET_CART_ITEMS', data.cartItems);
         }
     },
     name: 'App',

@@ -70,6 +70,9 @@ const baseData = {
                 id = sessionStorage.setItem('id', Vue.prototype.randomUUID())
             }
             state.sessionId = id;
+        },
+        setPageTitle({state}, pageTitle){
+            state.pageTitle = pageTitle;
         }
     },
 };

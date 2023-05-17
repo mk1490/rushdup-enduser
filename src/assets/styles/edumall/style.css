@@ -4489,7 +4489,7 @@ dd {
 .edumall-input input[type="password"],
 .edumall-input input[type="search"],
 .edumall-input input[type="tel"],
-.edumall-input input[type="text"],
+.edumall-input,
 .edumall-input input[type="url"]{
     width: 100%;
     outline: none;
@@ -20389,7 +20389,6 @@ input[type="submit"] {
 
 @media (max-width: 767px) {
     .edumall-blog-zigzag .edumall-grid {
-        -ms-grid-columns: (1fr) [ 1 ];
         grid-template-columns: repeat(1, 1fr);
     }
 
@@ -20425,7 +20424,6 @@ input[type="submit"] {
     }
 
     .edumall-blog-one-left-featured .featured-post {
-        -ms-grid-column: span 1;
         grid-column: span 1;
     }
 
@@ -77680,6 +77678,7 @@ button, input[type="button"], input[type="reset"], input[type="submit"], .wp-blo
     font-size: 15px;
     letter-spacing: 0em;
     text-transform: none;
+    color: #ffffff;
 }
 
 input[type='text'], input[type='email'], input[type='url'], input[type='password'], input[type='search'], input[type='number'], input[type='tel'], select, textarea, .select2-container.select2-container--default .select2-selection--single, .select2-container.select2-container--default .select2-selection--single .select2-selection__rendered, .select2-container.select2-container--default .select2-search--dropdown .select2-search__field, .elementor-field-group .elementor-field-textual {

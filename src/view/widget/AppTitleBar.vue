@@ -1,5 +1,5 @@
 ﻿<template>
-    <div id="page-title-bar" class="page-title-bar page-title-bar-04">
+    <div id="page-title-bar" class="page-title-bar page-title-bar-01">
         <div class="page-title-bar-inner">
             <app-breadcrumb></app-breadcrumb>
             <div
