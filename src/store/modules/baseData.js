@@ -9,6 +9,7 @@ const baseData = {
         selectedCategory: null,
         profileNavbarShow: true,
         homeItems: [],
+        pageTitle: null,
         battalionItems: [], timeRangeItems: [{
             text: i18n.t('timeRangeItems.recent12Hour'), value: 'recent12Hour'
         }, {
@@ -30,7 +31,8 @@ const baseData = {
         selectedCategory: (state) => state.selectedCategory,
         sessionId: (state) => state.sessionId,
         profileNavbarShow: (state) => state.profileNavbarShow,
-        homeItems: (state) => state.homeItems
+        homeItems: (state) => state.homeItems,
+        pageTitle: (state) => state.pageTitle
     },
     mutations: {
         SET_MENU_ITEMS: (state, payload) => {

@@ -1,9 +1,6 @@
 ﻿<template>
     <v-container>
         <v-card>
-            <v-card-title>
-                {{ $t('cart.title') }}
-            </v-card-title>
             <v-card-text>
                 <div
                         v-if="courseItems.length > 0"
@@ -33,7 +30,6 @@
                                     :selected-ipg="selectedIpg"
                                     class="mt-10"
                                     :model="this">
-
                             </side-total-amount-and-pay-button>
                         </div>
                     </div>
@@ -58,6 +54,9 @@ import CartEmpty from "@/view/components/Cart/Widgets/CartEmpty.vue";
 
 export default {
     name: "Cart",
+    mounted() {
+        this.$store.dispatch('setPageTitle', this.$t('cart.title'))
+    },
     async created() {
         let url = '/cart/initialize/';
         if (this.isLogin) {

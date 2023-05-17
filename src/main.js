@@ -13,7 +13,8 @@ import '@/router/permission'
 import VueToast from 'vue-toast-notification';
 import VueSweetalert2 from 'vue-sweetalert2';
 import "@/assets/styles/main.scss";
-
+import jQuery from 'jquery';
+Vue.prototype.jQuery = jQuery
 Vue.use(VueSweetalert2, {
     confirmButtonColor: '#41b882',
     cancelButtonColor: '#ff7674',

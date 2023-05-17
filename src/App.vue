@@ -35,7 +35,7 @@ export default {
                     break;
             }
         });
-        const [err, data] = await this.to(this.http.get(`${this.serverAddress}/auth/currentProfile`));
+        const [err, data] = await this.to(this.http.get(`${this.serverAddress}/api/auth/currentProfile`));
         if (!err) {
             await this.$store.dispatch('setLoginState', true);
             await this.$store.commit('SET_CART_ITEMS', data);
@@ -83,3 +83,8 @@ export default {
     }
 };
 </script>
+<style>
+.swal2-container {
+    z-index: 9999999 !important;
+}
+</style>

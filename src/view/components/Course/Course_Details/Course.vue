@@ -253,6 +253,7 @@ import Teachers from "@/view/components/Course/Course_Details/Widget/Teachers.vu
 import Comment from "@/view/components/Course/Course_Details/Widget/Comment.vue";
 import Categories from "@/view/components/Course/Course_Details/Widget/Categories.vue";
 import RelatedCourses from "@/view/components/Course/Course_Details/Widget/Sidebar/RelatedCourses.vue";
+import cart from '@/view/components/Cart/cart'
 
 export default {
     name: "Course",
@@ -261,6 +262,8 @@ export default {
         Categories,
         Comment, Teachers, Requirements, AudienceItems, Benefits, Content, Tags, PreQuisites, AppTitleBar
     },
+    mixins: [cart],
+
     data() {
         return {
             model: {
@@ -275,13 +278,19 @@ export default {
                 courseCategories: [],
                 courseIsFree: false,
                 hasDiscount: false,
+                purchaseStatus: -1,
+                slug: null,
             }
         }
+    },
+    mounted() {
+
     },
     async created() {
         const courseSlug = this.$route.params.courseSlug;
         const [err, data] = await this.to(this.http.get(`/course/course-details/${courseSlug}`));
         if (!err) {
+            this.model.id = data.id;
             this.model.title = data.title;
             this.model.studentCounts = data.studentCounts;
             this.model.deducatedPrice = data.deducatedPrice;
@@ -290,6 +299,8 @@ export default {
             this.model.deducationValue = data.deducationValue;
             this.model.courseIsFree = data.courseIsFree;
             this.model.hasDiscount = data.hasDiscount;
+            this.model.purchaseStatus = data.cartStatus;
+            this.model.slug = data.slug;
             const teacher = data.teacher;
             if (teacher != null) {
                 this.model.teacherAvatar = teacher.avatar;
@@ -307,6 +318,9 @@ export default {
             } else if (deducationType == 1) {
                 return this.model.deducationValue + ' ' + '% تخفیف'
             }
+        },
+        async addToCart() {
+            await this.addToCartOrCompletePurchaseFlowOrViewCourse(this.model.purchaseStatus, this.model.id, this.model)
         }
     }
 }

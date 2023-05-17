@@ -1,7 +1,7 @@
 ﻿<template>
 
     <div id="mini-cart" class="mini-cart style-normal">
-        <a href="https://dana-team.com/products/edumall/cart/"
+        <a href="/Cart"
            class="mini-cart__button header-icon"
            title="سبد خرید خود را مشاهده کنید" style="opacity: 1;">
             <span class="mini-cart-icon" :data-count="cartItems.length"></span>
@@ -31,8 +31,7 @@
                             class="remove remove_from_cart_button"
                             data-product_sku="">×</a>
                     <div class="product-thumbnail">
-                        <a
-                                href="https://dana-team.com/products/edumall/courses/mastering-data-modeling-fundamentals/">
+                        <a>
                             <img width="150" height="150"
                                  class="attachment-thumbnail size-thumbnail"
                                  alt="" decoding="async" loading="lazy"
@@ -41,29 +40,35 @@
 
                     <div class="product-caption">
                         <h3 class="product-name">
-                            <a href="https://dana-team.com/products/edumall/courses/mastering-data-modeling-fundamentals/"
+                            <a :href="`/cd/${cartItem.slug}`"
                                class="link-in-title">
-                                {{ cartItem.title}}
+                                {{ cartItem.title }}
                             </a>
                         </h3>
-                        <span class="quantity">1 × <span
-                                class="woocommerce-Price-amount amount"><bdi>۴۶,۰۰۰&nbsp;<span
-                                class="woocommerce-Price-currencySymbol">تومان</span></bdi></span></span>
+                        <span class="quantity">
+                            <bdi>{{ cartItem.deducatedPrice == 0 ? 'رایگان' : getComma(cartItem.deducatedPrice) }}&nbsp;
+                            <span
+                                    v-if="cartItem.deducatedPrice !== 0"
+                                    class="woocommerce-Price-currencySymbol">{{ $t('ui.IRR') }}</span>
+                        </bdi>
+                        </span>
                     </div>
                 </li>
             </ul>
 
             <div
-                v-if="cartItems.length > 0"
-                class="cart-footer">
+                    v-if="cartItems.length > 0"
+                    class="cart-footer">
                 <div class="woocommerce-mini-cart__total total">
                     <strong>جمع:</strong> <span
-                        class="woocommerce-Price-amount amount"><bdi>۴۶,۰۰۰&nbsp;<span
-                        class="woocommerce-Price-currencySymbol">تومان</span></bdi></span>
+                        class="woocommerce-Price-amount amount"><bdi>{{ getComma(totalAmount) }}&nbsp;<span
+                        class="woocommerce-Price-currencySymbol">{{ $t('ui.IRR') }}</span></bdi></span>
                 </div>
 
                 <div class="woocommerce-mini-cart__buttons buttons">
-                    <a class="button wc-forward">مشاهده سبد خرید</a>
+                    <a
+                            href="/Cart"
+                            class="button wc-forward">مشاهده سبد خرید</a>
                     <a class="button checkout wc-forward">تسویه حساب</a>
                 </div>
             </div>
@@ -81,14 +86,20 @@ import {mapGetters} from "vuex";
 export default {
     name: "TheLayoutToolbarCartWidget",
     computed: {
-        ...mapGetters(['cartItems'])
+        ...mapGetters(['cartItems']),
+        totalAmount() {
+            let total = 0;
+            this.cartItems.map(f => {
+                total += f.deducatedPrice
+            })
+            return total;
+        }
     },
     methods: {
         async navigateToRoute(route) {
             await this.$router.replace(route);
         },
         async removeCartItem(index) {
-            console.log(this.cartItems[index])
             const isConfirm = window.confirm('برای حذف این دوره از سبد اطمینان دارید؟')
             if (isConfirm) {
                 const [err, data] = await this.http.delete(`/cart/${this.cartItems[index].id}`);
@@ -98,7 +109,7 @@ export default {
                 }
             }
         }
-    }
+    },
 }
 </script>
 

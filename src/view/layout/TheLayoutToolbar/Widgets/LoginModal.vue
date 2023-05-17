@@ -78,7 +78,7 @@ import PasswordTextField from "@/view/widget/CustomViews/PasswordTextField.vue";
 
 export default {
     name: "LoginModal",
-    emits: ['registerClick', 'lostPasswordClick'],
+    emits: ['registerClick', 'lostPasswordClick', 'onLoginSuccess'],
     props: {
         visible: Boolean
     },
@@ -100,9 +100,14 @@ export default {
     },
     methods: {
         async login() {
-            const [err, data] = await this.to(this.http.post(``));
+            const [err, data] = await this.to(this.http.post(`${this.serverAddress}/api/auth/login`, {
+                username: this.model.username,
+                password: this.model.password,
+                sessionId: this.$store.getters.sessionId
+            }));
             if (!err) {
-
+                localStorage.setItem('Authorization', data.access_token)
+                this.$emit('onLoginSuccess')
             }
         }
     }

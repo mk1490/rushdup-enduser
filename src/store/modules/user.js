@@ -61,7 +61,6 @@ const user = {
                 items.push(payload);
             }
             localStorage.setItem('cart', JSON.stringify(items));
-            console.log('Add to cart', items, 'cart')
             state.cartItems = items;
         },
         REMOVE_CART_ITEM: (state, index) => {
@@ -77,7 +76,6 @@ const user = {
             } else {
                 items = [];
             }
-            console.log(items)
             state.cartItems = items;
         },
         SET_CART_ITEMS: (state, payload) => {
@@ -124,7 +122,7 @@ const user = {
             return !!localStorage.getItem('Authorization');
         }, setLoginState: async ({commit}, payload) => {
             await commit('LOGIN_STATE', payload);
-        }, addToCart: async ({commit}, payload) => {
+        }, addToCartLocally: async ({commit}, payload) => {
             await commit('ADD_TO_CART', payload);
         },
         removeCartItem: async ({commit}, index) => {

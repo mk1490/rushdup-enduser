@@ -30,7 +30,7 @@ export const constantRoutes = [{
 
         },
         {
-            path: 'Cart',
+            path: '/Cart',
             name: 'Cart',
             component: () => import('@/view/components/Cart/Cart.vue'),
             meta: {},
