@@ -401,6 +401,23 @@ export default {
     name: "Home",
     components: {SuggestionsByCategory, Landing},
     async created() {
+        const action = this.$route.query.action;
+        if (!!action) {
+            switch (action) {
+                case 'verifyAccount': {
+                    const [err, data] = await this.to(this.http.get(`/user/verifyUser?token=${this.$route.query.at}`));
+                    this.$router.push('/')
+                    if (!err) {
+                        this.$swal.fire({
+                            icon: 'success',
+                            text: 'فعال‌سازی حساب کاربری شما با موفقیت انجام شد!'
+                        });
+
+                    }
+                    break;
+                }
+            }
+        }
     },
     data() {
         return {
