@@ -98,7 +98,7 @@
                                                         <a
                                                                 class="tutor-btn tutor-btn-outline-primary tutor-btn-md tutor-btn-block product_type_simple add_to_cart_button tutor-open-login-modal">
                                                             <span class="tutor-icon-cart-line tutor-mr-8"></span>
-                                                            <span class="cart-text">افزودن به سبد خرید</span>
+                                                            <span class="cart-text" style="color:white">افزودن به سبد خرید</span>
                                                         </a>
                                                     </div>
                                                 </div>

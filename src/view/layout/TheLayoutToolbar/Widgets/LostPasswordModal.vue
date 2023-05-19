@@ -52,7 +52,7 @@ import PasswordTextField from "@/view/widget/CustomViews/PasswordTextField.vue";
 export default {
     name: "LostPasswordModal",
     components: {PasswordTextField},
-    emits: ['loginClick'],
+    emits: ['loginClick', 'resetSended'],
     props: {
         visible: Boolean
     },
@@ -79,6 +79,8 @@ export default {
                 this.$swal.fire({
                     icon: 'success',
                     text: `درخواست بازنشانی کلمۀ عبور به پست الکترونیک ${data.email} ارسال گردید.`
+                }).then(res=>{
+                    this.$emit('resetSended')
                 })
             }
         }

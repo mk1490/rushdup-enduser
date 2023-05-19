@@ -64,6 +64,7 @@
         </login-modal>
         <lost-password-modal
                 @loginClick="openLoginModal"
+                @resetSended="resetSended()"
                 :visible.sync="modal.lostPassword.visible">
         </lost-password-modal>
     </div>
@@ -111,6 +112,9 @@ export default {
         },
         loginSuccess() {
             this.modal.login = false;
+        },
+        resetSended() {
+            this.modal.lostPassword.visible = false;
         }
     }
 }

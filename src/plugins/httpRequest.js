@@ -47,6 +47,7 @@ axios.interceptors.response.use(async (response) => {
         case 401: {
             if (error === 'Unauthorized') {
                 localStorage.removeItem('Authorization');
+                lastRequest.errorModal = false;
             } else {
                 message = errorObject.content;
             }
