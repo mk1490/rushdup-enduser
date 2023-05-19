@@ -21,6 +21,7 @@
                             <div class="row">
                                 <div class="col-12">
                                     <v-text-field
+                                            dir="ltr"
                                             label="نام کاربری یا ایمیل"
                                             v-model="model.username"
                                             hide-details
@@ -59,7 +60,6 @@ export default {
         return {
             model: {
                 username: null,
-                password: null,
             }
         }
     },
@@ -72,7 +72,15 @@ export default {
     },
     methods: {
         async sendDataToServer() {
-
+            const [err, data] = await this.to(this.http.post(`/user/lostPassword`, {
+                usernameOrEmail: this.model.username
+            }));
+            if (!err) {
+                this.$swal.fire({
+                    icon: 'success',
+                    text: `درخواست بازنشانی کلمۀ عبور به پست الکترونیک ${data.email} ارسال گردید.`
+                })
+            }
         }
     }
 }

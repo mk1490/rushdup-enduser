@@ -45,10 +45,11 @@ axios.interceptors.response.use(async (response) => {
             break;
         }
         case 401: {
-            localStorage.removeItem('Authorization');
-            // if (Router.currentRoute.fullPath !== '/SignIn') {
-            //     await Router.push('/SignIn');
-            // }
+            if (error === 'Unauthorized') {
+                localStorage.removeItem('Authorization');
+            } else {
+                message = errorObject.content;
+            }
             break;
         }
         case 404: {

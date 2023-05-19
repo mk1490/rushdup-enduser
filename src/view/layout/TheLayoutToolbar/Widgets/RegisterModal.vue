@@ -128,7 +128,7 @@ export default {
     },
     methods: {
         async register() {
-            const [err, data] = await this.to(this.http.post(`/user`, {
+            const [err, data] = await this.to(this.http.post(`/user/register`, {
                 name: this.model.name,
                 family: this.model.family,
                 username: this.model.username,

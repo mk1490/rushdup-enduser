@@ -1,6 +1,6 @@
 <template>
     <header id="page-header"
-            class="page-header header-01 header-dark nav-links-hover-style-01 header-sticky-dark-logo headroom headroom--not-bottom headroom--pinned headroom--top">
+            :class="'page-header header-01 header-dark nav-links-hover-style-01 header-sticky-dark-logo headroom headroom--not-bottom headroom--pinned headroom--top ' + (headerIsOpen ? 'header-more-tools-opened': '')">
         <!--            class="page-header header-01 header-dark nav-links-hover-style-01 header-sticky-dark-logo headroom headroom&#45;&#45;not-bottom headroom&#45;&#45;not-top headroom&#45;&#45;unpinned">-->
         <div class="page-header-place-holder"></div>
         <div id="page-header-inner" class="page-header-inner" data-sticky="1">
@@ -128,7 +128,9 @@
                                 </div>
                             </div>
 
-                            <div id="page-open-components" class="header-icon page-open-components">
+                            <div
+                                    @click="headerToggle"
+                                    id="page-open-components" class="header-icon page-open-components">
                                 <div class="inner">
                                     <div class="circle circle-one"></div>
                                     <div class="circle circle-two"></div>
@@ -145,10 +147,6 @@
 </template>
 
 
-<script type='text/javascript' src='../public/main.min.js'
-        id='edumall-script-js'>
-
-</script>
 <script>
 import {mapGetters} from 'vuex';
 import Breadcrumbs from '../../widget/AppBreadcrumbs.vue';
@@ -193,7 +191,9 @@ export default {
         Notification,
         Profile,
     },
-    data: () => ({}),
+    data: () => ({
+        headerIsOpen: false
+    }),
     computed: {
         ...mapGetters([
             'toolbarDense',
@@ -224,6 +224,9 @@ export default {
             } else {
                 return item['target'];
             }
+        },
+        headerToggle() {
+            this.headerIsOpen = !this.headerIsOpen;
         }
     },
 };
