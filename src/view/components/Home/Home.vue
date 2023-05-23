@@ -385,7 +385,7 @@
                     </div>
                 </section>
                 <suggestions-by-category></suggestions-by-category>
-
+                <carousel></carousel>
 
             </div>
         </div>
@@ -396,10 +396,11 @@
 import Landing from "@/view/components/Home/Landing.vue";
 import {mapGetters} from "vuex";
 import SuggestionsByCategory from "@/view/components/Home/Widgets/SuggestionsByCategory/SuggestionsByCategory.vue";
+import Carousel from "@/view/components/Home/Widgets/SuggestionsByCategory/Carousel.vue";
 
 export default {
     name: "Home",
-    components: {SuggestionsByCategory, Landing},
+    components: {Carousel, SuggestionsByCategory, Landing},
     async created() {
         const action = this.$route.query.action;
         if (!!action) {

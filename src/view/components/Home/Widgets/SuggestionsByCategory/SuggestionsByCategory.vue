@@ -1,56 +1,49 @@
 <template>
     <section
-            class="elementor-section elementor-top-section elementor-element elementor-element-0001 elementor-section-boxed elementor-section-gap-beside-yes elementor-section-height-default elementor-section-height-default elementor-section-column-vertical-align-stretch"
-            data-id="acad05a" data-element_type="section"
-            data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
-        <div class="elementor-container elementor-column-gap-extended">
-            <div class="elementor-row">
-                <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-8401348">
-                    <div class="elementor-column-wrap elementor-element-populated">
-                        <div class="elementor-widget-wrap">
-                            <div class="elementor-element elementor-element-8cc2b06 edumall-modern-heading-style-01 elementor-widget elementor-widget-tm-heading animated edumallFadeInUp"
-                                 data-id="8cc2b06" data-element_type="widget"
-                                 data-settings="{&quot;_animation&quot;:&quot;edumallFadeInUp&quot;}"
-                                 data-widget_type="tm-heading.default">
-                                <div class="elementor-widget-container">
-                                    <div class="tm-modern-heading">
-                                        <div class="heading-primary-wrap">
-                                            <h3 class="heading-primary elementor-heading-title">پیشنهادات
-                                                <mark> موضوعی</mark>
-                                            </h3>
+            class="elementor-section elementor-top-section elementor-element elementor-element-0001 elementor-section-boxed elementor-section-gap-beside-yes elementor-section-height-default elementor-section-height-default elementor-section-column-vertical-align-stretch">
+        <template v-for="item in homeItems">
+            <div
+                    v-if="item.type == 0"
+                    class="elementor-container elementor-column-gap-extended">
+                <div class="elementor-row">
+                    <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-8401348">
+                        <div class="elementor-column-wrap elementor-element-populated">
+                            <div class="elementor-widget-wrap">
+                                <div class="elementor-element elementor-element-8cc2b06 edumall-modern-heading-style-01 elementor-widget elementor-widget-tm-heading animated edumallFadeInUp">
+                                    <div class="elementor-widget-container">
+                                        <div class="tm-modern-heading">
+                                            <div class="heading-primary-wrap">
+                                                <h3 class="heading-primary elementor-heading-title">پیشنهادات
+                                                    <mark> موضوعی</mark>
+                                                </h3>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="elementor-element elementor-element-0001 elementor-widget elementor-widget-tm-course-category-cards animated edumallFadeInUp"
-                                 data-id="aa8acf0" data-element_type="widget"
-                                 data-settings="{&quot;_animation&quot;:&quot;edumallFadeInUp&quot;}"
-                                 data-widget_type="tm-course-category-cards.default">
-                                <div class="elementor-widget-container">
-                                    <div class="edumall-grid-wrapper edumall-course-category-cards style-02"
-                                         data-grid="{&quot;type&quot;:&quot;grid&quot;,&quot;columns&quot;:4,&quot;columnsTablet&quot;:2,&quot;columnsMobile&quot;:1,&quot;gutter&quot;:30,&quot;gutterTablet&quot;:20,&quot;gutterMobile&quot;:15}"
-                                         data-active-columns="4">
-                                        <div class="edumall-grid lazy-grid loaded"
-                                             style="position: relative;padding-bottom: 40px">
-                                            <div class="grid-sizer" style="width: 330px;"></div>
-                                            <div class="grid-item animate"
-                                                 style="margin-top: 0px; width: 330px; margin-bottom: 30px; position: absolute; right: 0%; top: 0px; height: 94px;">
-                                                <a class="edumall-box"
-                                                   href="https://dana-team.com/products/edumall/course-category/art-design/">
-                                                    <div class="category-icon">
-
-                                                        <img
-                                                                height="32"
-                                                                width="32" src="" alt=""/>
-                                                    </div>
-                                                    <div class="category-info">
-                                                        <h6 class="category-name">طراحی هنری</h6>
-
-                                                        <div class="category-description">
-                                                            خلق هنر بکر
+                                <div class="elementor-element elementor-element-0001 elementor-widget elementor-widget-tm-course-category-cards animated edumallFadeInUp">
+                                    <div class="elementor-widget-container">
+                                        <div class="edumall-grid-wrapper edumall-course-category-cards style-02">
+                                            <div class="loaded row"
+                                            >
+                                                <div
+                                                        v-for="gridButtonItem in item.children"
+                                                        class="grid-item animate col-sm-12 col-md-3 col-lg-3">
+                                                    <a class="edumall-box"
+                                                       :href="gridButtonItem.url">
+                                                        <div class="category-icon">
+                                                            <img
+                                                                    height="80"
+                                                                    width="80"
+                                                                    :src="getImageUrl(gridButtonItem.image)"/>
                                                         </div>
-                                                    </div>
-                                                </a>
+                                                        <div class="category-info">
+                                                            <h6 class="category-name">{{ gridButtonItem.title }}</h6>
+<!--                                                            <div class="category-description">-->
+<!--                                                                خلق هنر بکر-->
+<!--                                                            </div>-->
+                                                        </div>
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -60,14 +53,21 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </template>
     </section>
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
     name: "SuggestionsByCategory",
-
+    computed: {
+        ...mapGetters(['homeItems']),
+    },
+    created() {
+        console.log(this.homeItems)
+    },
 }
 </script>
 

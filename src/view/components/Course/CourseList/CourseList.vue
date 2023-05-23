@@ -5,8 +5,8 @@
             <sidebar
                     @onCategoriesChange="filterCategory($event)"
                     :category-items="categoryItems"></sidebar>
-            <main-content :items="items">
-
+            <main-content
+                :items="items">
             </main-content>
         </div>
     </div>
@@ -25,6 +25,7 @@ export default {
     },
     async created() {
         await this.fetchData();
+        this.$store.dispatch('pushBreadcrumb', {title: this.$store.getters.pageTitle, path: 'cl'})
     },
     data() {
         return {

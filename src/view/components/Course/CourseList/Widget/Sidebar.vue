@@ -12,7 +12,7 @@
                             <a @click="toggleCategoryItem(item, index)">
                                 {{ item.title }}
                                 <span class="count">
-                                    (0)
+                                    ({{ item.count }})
                                 </span>
                             </a>
                         </li>

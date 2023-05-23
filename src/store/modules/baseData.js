@@ -10,6 +10,7 @@ const baseData = {
         profileNavbarShow: true,
         homeItems: [],
         pageTitle: null,
+        breadCrumb: [],
         battalionItems: [], timeRangeItems: [{
             text: i18n.t('timeRangeItems.recent12Hour'), value: 'recent12Hour'
         }, {
@@ -71,8 +72,14 @@ const baseData = {
             }
             state.sessionId = id;
         },
-        setPageTitle({state}, pageTitle){
+        setPageTitle({state}, pageTitle) {
             state.pageTitle = pageTitle;
+        },
+        clearBreadcrumb({state}, payload) {
+            state.breadCrumb = []
+        },
+        pushBreadcrumb({state}, payload) {
+            state.breadCrumb.push(payload);
         }
     },
 };

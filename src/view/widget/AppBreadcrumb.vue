@@ -15,8 +15,8 @@
                             v-for="(item, index) in items"
                             :class="`level-${index + 2} ${(index+ 1) === items.length? 'current' : 'sub'}`">
                         <a
-                                :href="item.target"
-                                :to="item.target">
+                                :href="item.path"
+                                :to="item.path">
                             {{ item.title }}
                         </a>
                     </li>
@@ -35,17 +35,28 @@ export default {
             items: [],
         }
     },
+    created() {
+        this.$store.subscribeAction((action, state) => {
+
+            switch (action.type) {
+                case 'pushBreadcrumb': {
+                    this.items.push(action.payload)
+                    break;
+                }
+            }
+
+        })
+    },
     mounted() {
         const route = this.$route;
-        console.log(route.name)
         this.isHome = route.name === 'Home';
         this.items.push({
             title: 'خانه',
-            target: '/',
+            path: '/',
         })
         this.items.push({
             title: this.getTitle(this.$t(route.meta['title'])),
-            target: route.path,
+            path: route.path,
         })
     },
     methods: {

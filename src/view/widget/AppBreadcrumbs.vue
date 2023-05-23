@@ -56,17 +56,12 @@ export default {
       return toPath(params);
     },
     handleLink(item) {
-      console.groupCollapsed('handleLink');
       const { redirect, path } = item;
-      console.log(`redirect=${redirect}, path=${path}`);
       if (redirect) {
-        console.log('redirect');
         this.$router.push(redirect);
-        console.groupEnd();
         return;
       }
       this.$router.push(this.pathCompile(path));
-      console.groupEnd();
     },
   },
 };
