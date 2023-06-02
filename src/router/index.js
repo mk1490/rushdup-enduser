@@ -15,7 +15,8 @@ export const constantRoutes = [
     },
     {
         path: '*', hidden: true, redirect: 'Home',
-    }, {
+    },
+    {
         path: '/',
         alias: '',
         name: 'Root',
@@ -35,6 +36,13 @@ export const constantRoutes = [
                     title: 'route.home',
                 },
 
+            },
+            {
+                path: '/search', name: 'Search',
+                component: () => import('@/view/components/Search/Search.vue'),
+                meta: {
+                    title: 'route.search',
+                },
             },
             {
                 path: '/Cart',

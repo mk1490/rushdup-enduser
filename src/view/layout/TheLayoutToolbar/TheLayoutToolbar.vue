@@ -67,17 +67,21 @@
                                 <div class="header-right-inner-content">
 
                                     <div class="header-search-form">
-                                        <div role="search" class="search-form">
+                                        <form
+                                                v-on:submit="submitFormForSearch"
+                                                class="search-form">
                                             <label>
                                                 <span class="screen-reader-text">جستجو برای:</span>
-                                                <input type="search" class="search-field" placeholder="جستجو"/>
+                                                <input type="search" class="search-field" placeholder="جستجو" value=""
+                                                       title="جستجو برای:">
                                             </label>
                                             <button type="submit" class="search-submit">
                                                 <span class="search-btn-icon fas fa-search"></span>
                                                 <span class="search-btn-text">
-															جستجو </span>
+                                                    جستجو
+                                                </span>
                                             </button>
-                                        </div>
+                                        </form>
                                     </div>
 
                                     <div class="navigation page-navigation">
@@ -258,6 +262,15 @@ export default {
 
                 childMenuItem.style.display = 'none';
             }, 200)
+        },
+        submitFormForSearch(event) {
+            event.preventDefault();
+            const searchValue = event.srcElement[0].value;
+            const targetRoute = `/search`;
+            if (this.$route.path === targetRoute) {
+                this.$router.push('/')
+            }
+            this.$router.push(`${targetRoute}?q=${searchValue}`);
         }
     },
 };
@@ -544,6 +557,35 @@ export default {
     .elementor-2387 .elementor-element.elementor-element-ba0abd1 {
         width: 52.67%;
     }
+}
+
+.search-field {
+    color: #9B9B9B;
+    border-color: #F2F2F2;
+    background: #F2F2F2;
+    width: 380px !important;
+}
+
+.search-field:focus {
+    color: #333;
+    border-color: #0071dc;
+    background: #fff;
+}
+
+.header-04.header-dark .search-field {
+    color: #80868d !important;
+    border-color: #19222d !important;
+    background: #19222d !important;
+}
+
+.header-04.header-dark .search-field:focus {
+    color: #fff;
+    border-color: #fff;
+    background: #19222d;
+}
+
+.search-submit {
+    color: #0071dc !important;
 }
 
 </style>
