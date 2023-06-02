@@ -84,7 +84,7 @@
                                         </form>
                                     </div>
 
-                                    <div class="navigation page-navigation">
+                                    <div class="navigation page-navigation d-none d-md-block">
                                         <nav class="menu menu--primary">
                                             <ul class="menu__container sm sm-simple sm-rtl">
                                                 <li
@@ -93,7 +93,7 @@
                                                         @mouseenter="mouseEnter($event, menuIndex)"
                                                         @mouseleave="mouseLeave($event, menuIndex)"
                                                         :class="`menu-item menu-item-type-custom menu-item-object-custom menu-item level-1 ${menuItem.childrenItems.length > 0 ? 'menu-item-has-children' : ''}` ">
-                                                    <a href="#"
+                                                    <a :href="menuItem.targetExtra"
                                                        onclick="return true"
                                                        class="has-submenu" aria-expanded="true">
                                                         <div class="menu-item-wrap">
@@ -113,7 +113,7 @@
                                                             style="width: auto; top: auto; z-index: 10001; min-width: 10em; max-width: 20em;">
                                                         <li
                                                                 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-236">
-                                                            <a :href="childItem.target"
+                                                            <a :href="childItem.targetExtra"
                                                                onclick="return true">
                                                                 <div class="menu-item-wrap"><span
                                                                         class="menu-item-title">{{
@@ -135,17 +135,16 @@
                                     </the-layout-toolbar-user-button>
                                 </div>
                             </div>
-
-                            <div id="page-open-mobile-menu" class="header-icon page-open-mobile-menu">
+                            <div
+                                    class="header-icon page-open-mobile-menu"
+                                    @click="toggleNavbar">
                                 <div class="burger-icon">
                                     <span class="burger-icon-top"></span>
                                     <span class="burger-icon-bottom"></span>
                                 </div>
                             </div>
-
-                            <div
-                                    @click="headerToggle"
-                                    id="page-open-components" class="header-icon page-open-components">
+                            <div class="header-icon page-open-components"
+                                 @click="headerToggle">
                                 <div class="inner">
                                     <div class="circle circle-one"></div>
                                     <div class="circle circle-two"></div>
@@ -223,9 +222,6 @@ export default {
         },
     },
     methods: {
-        toggleNavbar() {
-            this.$store.dispatch('NavbarToggle');
-        },
         getMenuTarget(item) {
             if (item['targetType'] === 1) {
                 const targetExtrea = item['targetExtra'];
@@ -239,6 +235,10 @@ export default {
             } else {
                 return item['target'];
             }
+        },
+        toggleNavbar() {
+            const mainLayoutWrapper = document.getElementById('main-layout-wrapper');
+            mainLayoutWrapper.classList.add('page-mobile-menu-opened');
         },
         headerToggle() {
             this.headerIsOpen = !this.headerIsOpen;
@@ -588,4 +588,9 @@ export default {
     color: #0071dc !important;
 }
 
+.page-open-mobile-menu .burger-icon {
+    position: relative;
+    width: 24px;
+    height: 20px;
+}
 </style>

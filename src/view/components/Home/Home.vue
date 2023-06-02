@@ -3,6 +3,95 @@
             class="elementor elementor-437">
         <div class="elementor-inner">
             <div class="elementor-section-wrap">
+
+                <section
+                        class="elementor-section elementor-top-section elementor-element elementor-element-a26c369 elementor-section-content-middle elementor-section-boxed elementor-section-gap-beside-yes elementor-section-height-default elementor-section-height-default elementor-section-column-vertical-align-stretch"
+                        data-id="a26c369" data-element_type="section"
+                        data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+                    <div class="elementor-container elementor-column-gap-extended">
+                        <div class="elementor-row">
+                            <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-df408e3"
+                                 data-id="df408e3" data-element_type="column">
+                                <div class="elementor-column-wrap elementor-element-populated">
+                                    <div class="elementor-widget-wrap">
+                                        <div class="elementor-element elementor-element-5994c37 elementor-widget elementor-widget-tm-heading animated edumallFadeInUp"
+                                             data-id="5994c37" data-element_type="widget"
+                                             data-settings="{&quot;_animation&quot;:&quot;edumallFadeInUp&quot;}"
+                                             data-widget_type="tm-heading.default">
+                                            <div class="elementor-widget-container">
+                                                <div class="tm-modern-heading">
+
+                                                    <div class="heading-primary-wrap">
+                                                        <h4 class="heading-primary elementor-heading-title">برای آینده
+                                                            بهتر</h4></div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="elementor-element elementor-element-6647290 edumall-modern-heading-style-02 elementor-widget elementor-widget-tm-heading animated edumallFadeInUp"
+                                             data-id="6647290" data-element_type="widget"
+                                             data-settings="{&quot;_animation&quot;:&quot;edumallFadeInUp&quot;}"
+                                             data-widget_type="tm-heading.default">
+                                            <div class="elementor-widget-container">
+                                                <div class="tm-modern-heading">
+
+                                                    <div class="heading-primary-wrap">
+                                                        <h2 class="heading-primary elementor-heading-title">یک تجربه
+                                                            یادگیری
+                                                            <mark> باورنکردنی</mark>
+                                                            بسازید
+                                                        </h2>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="elementor-element elementor-element-f1feac2 elementor-tablet-align-center elementor-widget elementor-widget-tm-button animated edumallFadeInUp"
+                                             data-id="f1feac2" data-element_type="widget"
+                                             data-settings="{&quot;_animation&quot;:&quot;edumallFadeInUp&quot;}"
+                                             data-widget_type="tm-button.default">
+                                            <div class="elementor-widget-container">
+                                                <div class="tm-button-wrapper">
+                                                    <a href="https://dana-team.com/products/edumall/courses/"
+                                                       class="tm-button-link tm-button style-flat tm-button-xl"
+                                                       role="button">
+                                                        <div class="button-content-wrapper">
+
+                                                            <span class="button-text">دوره ها را پیدا کنید</span>
+
+                                                        </div>
+
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="elementor-column elementor-col-50 elementor-top-column elementor-element elementor-element-e1f6b6e animated edumallFadeInUp"
+                                 data-id="e1f6b6e" data-element_type="column"
+                                 data-settings="{&quot;animation&quot;:&quot;edumallFadeInUp&quot;}">
+                                <div class="elementor-column-wrap elementor-element-populated">
+                                    <div class="elementor-widget-wrap">
+                                        <section
+                                                class="elementor-section elementor-inner-section elementor-element elementor-element-8e05edb elementor-section-boxed elementor-section-gap-beside-yes elementor-section-height-default elementor-section-height-default elementor-section-column-vertical-align-stretch"
+                                                data-id="8e05edb" data-element_type="section"
+                                                data-settings="{&quot;background_background&quot;:&quot;classic&quot;}">
+                                            <div class="elementor-container elementor-column-gap-extended">
+                                                <div class="elementor-row">
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+
                 <section
                         class="elementor-section elementor-top-section elementor-element elementor-element-af8ff11 elementor-section-full_width elementor-section-stretched elementor-section-gap-beside-yes elementor-section-height-default elementor-section-height-default elementor-section-column-vertical-align-stretch"
                 >
@@ -1852,4 +1941,52 @@ body.rtl .elementor-437 .elementor-element.elementor-element-c3a0611 {
         width: 100%;
     }
 }
+
+
+.elementor-element.elementor-element-a26c369:not(.elementor-motion-effects-element-type-background), .elementor-element.elementor-element-a26c369 > .elementor-motion-effects-container > .elementor-motion-effects-layer {
+    background-color: #020101;
+    background-image: url(https://dana-team.com/products/edumall/wp-content/uploads/2020/09/home-education-center-hero-bg-1.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.elementor-element.elementor-element-a26c369 > .elementor-container > .elementor-row {
+    align-items: stretch;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.elementor-element.elementor-element-a26c369 > .elementor-container > .elementor-row > .elementor-column > .elementor-column-wrap > .elementor-widget-wrap {
+    align-content: center;
+    align-items: center;
+}
+
+.elementor-element.elementor-element-a26c369:not(.elementor-motion-effects-element-type-background),
+.elementor-element.elementor-element-a26c369 > .elementor-motion-effects-container > .elementor-motion-effects-layer {
+    background-color: #020101;
+    background-image: url("https://dana-team.com/products/edumall/wp-content/uploads/2020/09/home-education-center-hero-bg-1.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.elementor-element.elementor-element-a26c369 {
+    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+    padding: 167px 0px 160px 0px;
+}
+
+
 </style>

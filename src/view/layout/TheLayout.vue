@@ -1,12 +1,17 @@
 <template>
   <!--  <div class="rtl page-template-default page woocommerce-js desktop desktop-menu">-->
-    <div class="bp-nouveau rtl courses-template-default single single-courses postid-1990 wp-embed-responsive theme-edumall tutor-lms woocommerce-no-js desktop desktop-menu edumall-light-scheme mobile-menu-push-to-right woocommerce header-sticky-both wide page-has-sidebar title-bar-04 single-course-01 elementor-default elementor-kit-2492 no-js">
+    <div
+            id="main-layout-wrapper"
+            class="bp-nouveau rtl courses-template-default single single-courses postid-1990 wp-embed-responsive theme-edumall tutor-lms woocommerce-no-js desktop edumall-light-scheme mobile-menu-push-to-right woocommerce header-sticky-both wide page-has-sidebar title-bar-04 single-course-01 elementor-default elementor-kit-2492 no-js">
         <div class="content-wrapper">
             <the-layout-toolbar/>
             <app-title-bar></app-title-bar>
             <the-layout-content></the-layout-content>
             <the-layout-footer/>
         </div>
+
+        <the-layout-scroll-to-top></the-layout-scroll-to-top>
+        <the-layout-mobile-menu></the-layout-mobile-menu>
         <!--    <the-layout-drawer class="d-sm-none d-sm-block d-md-none"/>-->
 
 
@@ -21,6 +26,8 @@ import TheLayoutFab from './TheLayoutFab.vue';
 import TheLayoutToTopFab from './TheLayoutToTopFab.vue';
 import TheLayoutFooter from './TheLayoutFooter.vue';
 import AppTitleBar from "@/view/widget/AppTitleBar.vue";
+import TheLayoutMobileMenu from "@/view/layout/TheLayoutMobileMenu.vue";
+import TheLayoutScrollToTop from "@/view/layout/TheLayoutScrollToTop.vue";
 
 export default {
     async created() {
@@ -28,8 +35,17 @@ export default {
             // window.location.href = '/#/SignIn';
         }
     },
+    mounted() {
+        this.prepareMenuOrDesktopMenuStyle();
+        window.onresize = () => {
+            this.prepareMenuOrDesktopMenuStyle();
+        }
+    },
+
     name: 'TheLayout',
     components: {
+        TheLayoutScrollToTop,
+        TheLayoutMobileMenu,
         AppTitleBar,
         TheLayoutDrawer,
         TheLayoutToolbar,
@@ -39,5 +55,25 @@ export default {
         TheLayoutFooter,
     },
     data: () => ({}),
+    methods: {
+        prepareMenuOrDesktopMenuStyle() {
+
+            const isMobile = ((window.innerWidth <= 800) && (window.innerHeight <= 600));
+            const mainLayoutWrapper = document.getElementById('main-layout-wrapper');
+
+            if (isMobile) {
+                mainLayoutWrapper.classList.remove('desktop-menu')
+                mainLayoutWrapper.classList.remove('dashboard-nav-fixed')
+                mainLayoutWrapper.classList.add('mobile-menu')
+            } else {
+                mainLayoutWrapper.classList.add('desktop-menu')
+                mainLayoutWrapper.classList.add('dashboard-nav-fixed')
+                mainLayoutWrapper.classList.remove('mobile-menu')
+            }
+
+
+        },
+    }
+
 };
 </script>
