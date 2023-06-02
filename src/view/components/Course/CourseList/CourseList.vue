@@ -6,7 +6,7 @@
                     @onCategoriesChange="filterCategory($event)"
                     :category-items="categoryItems"></sidebar>
             <main-content
-                :items="items">
+                    :items="items">
             </main-content>
         </div>
     </div>
@@ -45,7 +45,10 @@ export default {
             })
             const [err, data] = await this.to(this.http.get(`/course/list?${queryParams}`));
             if (!err) {
-                this.items = data;
+                this.items = data.map(f => {
+                    f.cover = f.cover !== null ? this.serverAddress + '/api/public' + f.cover : null;
+                    return f;
+                });
             }
         }
     }

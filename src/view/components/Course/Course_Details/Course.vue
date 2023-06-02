@@ -28,10 +28,11 @@
 
                                     <div class="lead-meta-item meta-instructor">
                                         <div class="lead-meta-label">
-                                            <img alt=""
-                                                 :src="getPublicUrl(model.teacherAvatar)"
-                                                 class="avatar avatar-32 photo" height="32" width="32"
-                                                 loading="lazy" decoding="async"/>
+                                            <img
+                                                    v-if="!!model.teacherAvatar"
+                                                    :src="getPublicUrl(model.teacherAvatar)"
+                                                    class="avatar avatar-32 photo" height="32" width="32"
+                                                    loading="lazy" decoding="async"/>
                                         </div>
                                         <div class="lead-meta-value instructor-name">{{ model.teacherName }}</div>
                                     </div>
@@ -151,7 +152,9 @@
                                                 </del>
                                             </p>
                                         </div>
-                                        <span :class="'course-price-badge '  + (model.hasDiscount ? 'onsale': '')">
+                                        <span
+                                                v-if="model.hasDiscount"
+                                                :class="'course-price-badge '  + (model.hasDiscount ? 'onsale': '')">
                                             {{
                                             calculateDedcuationValue()
                                             }}</span>
@@ -303,7 +306,9 @@ export default {
             this.model.slug = data.slug;
             const teacher = data.teacher;
             if (teacher != null) {
-                this.model.teacherAvatar = teacher.avatar;
+                if (!!teacher.avatar) {
+                    this.model.teacherAvatar = teacher.avatar;
+                }
                 this.model.teacherName = teacher.fullName;
             }
             document.title = `${this.model.title} - رشدآپ`;

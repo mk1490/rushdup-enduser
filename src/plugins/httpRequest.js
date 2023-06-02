@@ -1,7 +1,6 @@
 ﻿import Vue from 'vue';
 import axios from "axios";
 import i18n from '@/locale'; // Internationalization
-import Router from "@/router";
 
 const serverAddress = process.env.VUE_APP_SERVER_ADDRESS;
 Vue.prototype.serverAddress = serverAddress;
@@ -17,6 +16,8 @@ axios.interceptors.request.use(async (req) => {
     //     localStorage.setItem('accessToken', accessToken)
     // }
     const authorization = localStorage.getItem('Authorization');
+
+
     if (!!authorization) {
         req.headers.Authorization = 'Bearer ' + authorization;
     }

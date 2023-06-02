@@ -84,26 +84,37 @@
                                         <nav class="menu menu--primary">
                                             <ul class="menu__container sm sm-simple sm-rtl">
                                                 <li
-                                                        class="menu-item menu-item-type-custom menu-item-object-custom menu-item-has-children menu-item level-1">
+                                                        v-for="(menuItem, menuIndex) in menuItems"
+                                                        :id="'menu_'+menuIndex"
+                                                        @mouseenter="mouseEnter($event, menuIndex)"
+                                                        @mouseleave="mouseLeave($event, menuIndex)"
+                                                        :class="`menu-item menu-item-type-custom menu-item-object-custom menu-item level-1 ${menuItem.childrenItems.length > 0 ? 'menu-item-has-children' : ''}` ">
                                                     <a href="#"
                                                        onclick="return true"
-                                                       class="has-submenu">
+                                                       class="has-submenu" aria-expanded="true">
                                                         <div class="menu-item-wrap">
-                                                            <span class="menu-item-title">دوره ها</span>
+                                                            <span class="menu-item-title">{{ menuItem.title }}</span>
                                                             <span
+                                                                    v-if="menuItem.childrenItems.length > 0"
                                                                     class="toggle-sub-menu">
                                                         </span>
                                                         </div>
-                                                        <span
-                                                                class="sub-arrow"></span>
+                                                        <span class="sub-arrow"></span>
                                                     </a>
-                                                    <ul class="sub-menu children simple-menu">
+                                                    <ul
+                                                            v-if="menuItem.childrenItems.length > 0"
+                                                            v-for="(childItem,childIndex) in menuItem.childrenItems"
+                                                            :id="'childMenu_' +menuIndex"
+                                                            class="sub-menu children simple-menu" aria-expanded="false"
+                                                            style="width: auto; top: auto; z-index: 10001; min-width: 10em; max-width: 20em;">
                                                         <li
                                                                 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-236">
-                                                            <a href="https://dana-team.com/products/edumall/courses/?course_archive_preset=01"
+                                                            <a :href="childItem.target"
                                                                onclick="return true">
                                                                 <div class="menu-item-wrap"><span
-                                                                        class="menu-item-title">طرحبندی شبکه ای اولیه</span>
+                                                                        class="menu-item-title">{{
+                                                                    childItem.title
+                                                                    }}</span>
                                                                 </div>
                                                             </a>
                                                         </li>
@@ -227,6 +238,26 @@ export default {
         },
         headerToggle() {
             this.headerIsOpen = !this.headerIsOpen;
+        },
+        mouseEnter(event, menuIndex) {
+            const menuItemElement = document.getElementById(event.target.id);
+            const childMenuItem = document.getElementById(`childMenu_${menuIndex}`);
+            childMenuItem.style.display = 'block';
+            childMenuItem.classList.remove('hide-animation');
+            childMenuItem.classList.add('show-animation');
+            setTimeout(() => {
+                childMenuItem.classList.remove('show-animation');
+            }, 1000)
+        },
+        mouseLeave(event, menuIndex) {
+            const childMenuItem = document.getElementById(`childMenu_${menuIndex}`);
+            childMenuItem.classList.remove('show-animation');
+            childMenuItem.classList.add('hide-animation');
+            setTimeout(() => {
+
+
+                childMenuItem.style.display = 'none';
+            }, 200)
         }
     },
 };

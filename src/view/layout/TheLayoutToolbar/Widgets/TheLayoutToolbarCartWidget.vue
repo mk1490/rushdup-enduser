@@ -4,11 +4,11 @@
         <a href="/Cart"
            class="mini-cart__button header-icon"
            title="سبد خرید خود را مشاهده کنید" style="opacity: 1;">
-            <span class="mini-cart-icon" :data-count="cartItems.length"></span>
+            <span class="mini-cart-icon" :data-count="cartExistItems.length"></span>
         </a>
         <div class="widget_shopping_cart_content" style="opacity: 1;">
             <div
-                    v-if="cartItems.length === 0"
+                    v-if="cartExistItems.length === 0"
                     class="woocommerce-mini-cart__empty-message">
                 <div class="empty-basket">
                     <span class="fal fa-dolly-flatbed-empty"></span>
@@ -21,10 +21,10 @@
                 </p>
             </div>
             <ul
-                    v-if="cartItems.length > 0"
+                    v-if="cartExistItems.length > 0"
                     class="woocommerce-mini-cart cart_list product_list_widget">
                 <li
-                        v-for="(cartItem, cartIndex) in cartItems"
+                        v-for="(cartItem, cartIndex) in cartExistItems"
                         class="woocommerce-mini-cart-item mini_cart_item">
                     <a
                             @click="removeCartItem(cartIndex)"
@@ -57,7 +57,7 @@
             </ul>
 
             <div
-                    v-if="cartItems.length > 0"
+                    v-if="cartExistItems.length > 0"
                     class="cart-footer">
                 <div class="woocommerce-mini-cart__total total">
                     <strong>جمع:</strong> <span
@@ -86,10 +86,10 @@ import {mapGetters} from "vuex";
 export default {
     name: "TheLayoutToolbarCartWidget",
     computed: {
-        ...mapGetters(['cartItems']),
+        ...mapGetters(['cartExistItems']),
         totalAmount() {
             let total = 0;
-            this.cartItems.map(f => {
+            this.cartExistItems.map(f => {
                 total += f.deducatedPrice
             })
             return total;
@@ -102,9 +102,9 @@ export default {
         async removeCartItem(index) {
             const isConfirm = window.confirm('برای حذف این دوره از سبد اطمینان دارید؟')
             if (isConfirm) {
-                const [err, data] = await this.http.delete(`/cart/${this.cartItems[index].id}`);
+                const [err, data] = await this.http.delete(`/cart/${this.cartExistItems[index].id}`);
                 if (!err) {
-                    this.cartItems.splice(index, 1);
+                    this.cartExistItems.splice(index, 1);
                     this.$store.dispatch('removeCartItem', index);
                 }
             }

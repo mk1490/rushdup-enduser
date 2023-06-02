@@ -1,26 +1,23 @@
 ﻿<template>
     <v-container>
         <div class="woocommerce">
-            <div class="woocommerce-notices-wrapper"></div>
-            <form class="woocommerce-cart-form" action="https://dana-team.com/products/edumall/cart/" method="post">
-
-
+            <div v-if="courseItems.length > 0">
+                <div class="woocommerce-notices-wrapper"></div>
                 <div class="woocommerce-cart-form-wrapper">
                     <table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents"
                            cellspacing="0">
                         <thead>
                         <tr>
                             <th class="product-thumbnail">محصول</th>
-                            <th class="product-name">&nbsp;</th>
+                            <th class="product-name">عنوان دوره</th>
                             <th class="product-price">قیمت</th>
-                            <th class="product-subtotal">جمع جزء</th>
-                            <th class="product-remove">&nbsp;</th>
+                            <th class="product-remove">غملیات</th>
                         </tr>
                         </thead>
                         <tbody>
 
                         <tr
-                                v-for="item in courseItems"
+                                v-for="(item, index) in courseItems"
                                 class="woocommerce-cart-form__cart-item cart_item">
                             <td class="product-thumbnail">
                                 <a href="https://dana-team.com/products/edumall/courses/mastering-data-modeling-fundamentals/">
@@ -46,14 +43,9 @@
                             <td class="product-price" data-title="قیمت">
                                 <span class="woocommerce-Price-amount amount"><bdi>۴۶,۰۰۰&nbsp;<span
                                         class="woocommerce-Price-currencySymbol">تومان</span></bdi></span></td>
-                            <td class="product-subtotal" data-title="جمع جزء">
-                                <label>مجموع:</label>
-                                <span class="woocommerce-Price-amount amount"><bdi>۴۶,۰۰۰&nbsp;<span
-                                        class="woocommerce-Price-currencySymbol">تومان</span></bdi></span></td>
-
                             <td class="product-remove">
                                 <a
-                                        @click="removeItem(item)"
+                                        @click="removeItem(item, index)"
                                         class="tm-button style-bottom-line" title="حذف این مورد">
                                     <div class="button-content-wrapper"><span class="button-text">حذف</span></div>
                                 </a></td>
@@ -62,30 +54,20 @@
                         </tbody>
                     </table>
                 </div>
-
                 <div class="row actions">
                     <div class="col-md-6">
-                        <div class="tm-button-wrapper btn-continue-shopping"><a
-                                class="tm-button style-flat tm-button-nm button-grey"
-                                href="https://dana-team.com/products/edumall/shop/">
-                            <div class="button-content-wrapper">
+                        <div class="tm-button-wrapper btn-empty-cart">
+                            <a
+                                    @click="removeAllCartItems"
+                                    class="tm-button style-text tm-button-nm icon-left">
+                                <div class="button-content-wrapper">
 
+                                    <span class="button-icon"><i class="fal fa-times"></i></span>
 
-                                <span class="button-text">ادامه خرید</span>
+                                    <span class="button-text">پاک کردن سبدخرید</span>
 
-                            </div>
-                        </a></div>
-                        <div class="tm-button-wrapper btn-empty-cart"><a
-                                class="tm-button style-text tm-button-nm icon-left"
-                                href="https://dana-team.com/products/edumall/cart/?empty-cart">
-                            <div class="button-content-wrapper">
-
-                                <span class="button-icon"><i class="fal fa-times"></i></span>
-
-                                <span class="button-text">پاک کردن سبدخرید</span>
-
-                            </div>
-                        </a></div>
+                                </div>
+                            </a></div>
                     </div>
                     <div class="col-md-6">
                         <div class="actions-buttons">
@@ -99,8 +81,6 @@
 
                     </div>
                 </div>
-
-
                 <div class="cart-collaterals-wrap">
                     <div class="row">
                         <div class="col-md-4">
@@ -171,7 +151,21 @@
                         </div>
                     </div>
                 </div>
-            </form>
+            </div>
+
+
+            <div
+                    v-if="courseItems.length == 0"
+                    class="empty-cart-messages">
+                <div class="empty-cart-icon">
+                    <img
+                            width="250px"
+                            height="238px"
+                            src="@/assets/images/cart-icon.svg"/>
+                </div>
+                <h2 class="empty-cart-heading">سبد خرید شما در حال حاضر خالی است.</h2>
+                <p class="empty-cart-text">شما می توانید تمام محصولات موجود را چک کرده و مقداری در فروشگاه بخرید.</p>
+            </div>
 
         </div>
     </v-container>
@@ -192,8 +186,8 @@ export default {
     },
     async created() {
         let url = '/cart/initialize/';
-        if (this.isLogin) {
-            url += `?sessionId=${this.sessionId}`;
+        if (!this.isLogin) {
+            url += `?=${this.sessionId}`;
         }
         const [err, data] = await this.to(this.http.get(url));
         if (!err) {
@@ -218,8 +212,17 @@ export default {
         ...mapGetters(['sessionId', 'isLogin'])
     },
     methods: {
-        async removeItem(item) {
-
+        async removeItem(item, index) {
+            const [err, data] = await this.to(this.http.delete(`/cart/${item.id}?sessionId=${this.$store.getters.sessionId}`));
+            if (!err) {
+                this.courseItems.splice(index, 1);
+            }
+        },
+        async removeAllCartItems(item, index) {
+            const [err, data] = await this.to(this.http.delete(`/cart/deleteAll?sessionId=${this.$store.getters.sessionId}`));
+            if (!err) {
+                this.courseItems.splice(index, 1);
+            }
         }
     }
 }
@@ -251,5 +254,13 @@ export default {
 
 .woocommerce-cart-form .checkout-button {
     width: 100%;
+}
+
+.empty-cart-messages {
+    text-align: center;
+}
+
+.empty-cart-heading {
+    margin-top: 50px;
 }
 </style>

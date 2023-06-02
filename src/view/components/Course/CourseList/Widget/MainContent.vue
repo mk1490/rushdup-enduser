@@ -39,7 +39,7 @@
                                             <v-img
                                                     style="border-radius: 8px"
                                                     :aspect-ratio="1.58/1"
-                                                    src="https://dana-team.com/products/edumall/wp-content/uploads/2020/06/course-thumbnail-03-1-480x304.jpg"
+                                                    :src="item.cover"
                                                     width="320"/>
                                             <div
                                                     v-if="item.isFree"
