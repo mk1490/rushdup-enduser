@@ -73,15 +73,18 @@
                                 </content>
 
 
-                                <benefits>
+                                <benefits
+                                        v-if="model.learningGoalItems.length > 0"
+                                        :items="model.learningGoalItems">
                                 </benefits>
 
 
                                 <audience-items>
                                 </audience-items>
 
-
-                                <requirements>
+                                <requirements
+                                        v-if="model.preRequirementItems.length > 0"
+                                        :items="model.preRequirementItems">
                                 </requirements>
 
                                 <teachers>
@@ -283,6 +286,8 @@ export default {
                 hasDiscount: false,
                 purchaseStatus: -1,
                 slug: null,
+                learningGoalItems: [],
+                preRequirementItems: [],
             }
         }
     },
@@ -304,6 +309,8 @@ export default {
             this.model.hasDiscount = data.hasDiscount;
             this.model.purchaseStatus = data.cartStatus;
             this.model.slug = data.slug;
+            this.model.learningGoalItems = data.learningGoalItems;
+            this.model.preRequirementItems = data.preRequirementItems;
             const teacher = data.teacher;
             if (teacher != null) {
                 if (!!teacher.avatar) {
