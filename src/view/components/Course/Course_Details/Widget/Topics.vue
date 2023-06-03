@@ -11,97 +11,49 @@
         </div>
         <div class="tutor-course-topics-contents">
             <div
-                    class="tutor-course-topic tutor-topics-in-single-lesson tutor-active">
-                <div class="tutor-course-title">
-                    <h4>
-                        <i class="tutor-icon-plus"></i>
-                        پس زمینه IT
+                    :id="`tutor_item_${index}`"
+                    v-for="(item, index) in items"
+                    class="tutor-course-topic tutor-topics-in-single-lesson">
+                <div
+                        class="tutor-course-title has-summery">
+                    <h4 @click="toggleChildrenItems(index)">
+                        <i
+                                @click="toggleChildrenItems(index)"
+                                class="tutor-icon-plus"></i>
+                        {{ item.title }}
+                        <span
+                                @click="toggleSummery(index)"
+                                class="topic-toggle-description toggle-information-icon">
+                            <i class="fas fa-info"></i></span>
                     </h4>
                 </div>
-
-                <div class="tutor-course-lessons">
-
-                    <div class="tutor-course-lesson">
-                        <h5>
-																<span class="lesson-preview-title"><i
-                                        class='far fa-file-edit'></i>تکالیف</span><span
-                                class="lesson-preview-icon"><i
-                                class="far fa-lock-alt"></i></span>
-                        </h5>
-                    </div>
-
-
-                    <div class="tutor-course-lesson">
-                        <h5>
-																<span class="lesson-preview-title"><i
-                                        class='far fa-question-circle'></i>اولین
-																	مسابقه</span><span class="lesson-preview-icon"><i
-                                class="far fa-lock-alt"></i></span>
-                        </h5>
-                    </div>
-
-                </div>
-            </div>
-            <div class="tutor-course-topic tutor-topics-in-single-lesson">
-                <div class="tutor-course-title">
-                    <h4>
-                        <i class="tutor-icon-plus"></i>
-                        مفاهیم کلیدی
-                    </h4>
+                <div
+                        :id="`summery_${index}`"
+                        class="tutor-topics-summery">
+                    {{ item.summary }}
                 </div>
 
-                <div class="tutor-course-lessons" style="display: none;">
 
-                    <div class="tutor-course-lesson">
+                <div
+                        :id="`lessons_${index}`"
+                        class="tutor-course-lessons">
+
+
+                    <div
+                            v-for="episodeItem in item.episodeItems"
+                            class="tutor-course-lesson">
                         <h5>
-																<span class="lesson-preview-title"><i
-                                        class='far fa-file-edit'></i>تکالیف
-																	دوم</span><span class="lesson-preview-icon"><i
-                                class="far fa-lock-alt"></i></span>
+																<span class="lesson-preview-title">
+                                    <i class='far fa-file-edit'></i>
+                                    {{ episodeItem.title }}
+                                </span>
+                            <span
+                                    v-if="episodeItem.isLocked"
+                                    class="lesson-preview-icon">
+                                <i class="far fa-lock-alt"></i>
+                            </span>
                         </h5>
                     </div>
-
-                </div>
-            </div>
-            <div class="tutor-course-topic tutor-topics-in-single-lesson">
-                <div class="tutor-course-title">
-                    <h4>
-                        <i class="tutor-icon-plus"></i>
-                        اصول را اعمال کنید
-                    </h4>
-                </div>
-
-                <div class="tutor-course-lessons" style="display: none;">
-
-                    <div class="tutor-course-lesson">
-                        <h5>
-																<span class="lesson-preview-title"><i
-                                        class='far fa-file-alt'></i>درس
-																	نهایی</span><span class="lesson-preview-icon"><i
-                                class="far fa-lock-alt"></i></span>
-                        </h5>
-                    </div>
-
-
-                    <div class="tutor-course-lesson">
-                        <h5>
-																<span class="lesson-preview-title"><i
-                                        class='far fa-file-edit'></i>تکالیف</span><span
-                                class="lesson-preview-icon"><i
-                                class="far fa-lock-alt"></i></span>
-                        </h5>
-                    </div>
-
-
-                    <div class="tutor-course-lesson">
-                        <h5>
-																<span class="lesson-preview-title"><i
-                                        class='far fa-question-circle'></i>مسابقه
-																	نهایی</span><span class="lesson-preview-icon"><i
-                                class="far fa-lock-alt"></i></span>
-                        </h5>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -110,7 +62,32 @@
 
 <script>
 export default {
-    name: "Topics"
+    name: "Topics",
+    props: {
+        items: Array
+    },
+    methods: {
+        toggleSummery(index) {
+            const summeryElement = document.getElementById(`summery_${index}`);
+            if (summeryElement.style.display === 'block') {
+                summeryElement.style.display = 'none';
+            } else {
+                summeryElement.style.display = 'block';
+            }
+        },
+        toggleChildrenItems(index) {
+            const summeryElement = document.getElementById(`lessons_${index}`);
+            const tutorItem = document.getElementById(`tutor_item_${index}`);
+            if (summeryElement.style.display === 'block') {
+                summeryElement.style.display = 'none';
+                tutorItem.classList.remove('tutor-active')
+            } else {
+                summeryElement.style.display = 'block';
+                tutorItem.classList.add('tutor-active');
+            }
+        }
+    }
+
 }
 </script>
 

@@ -69,30 +69,42 @@
 
                                 <!--                              TODO  <pre-quisites></pre-quisites>-->
 
-                                <content>
-                                </content>
+                                <Content>
+                                </Content>
 
 
-                                <benefits
+                                <Benefits
                                         v-if="model.learningGoalItems.length > 0"
                                         :items="model.learningGoalItems">
-                                </benefits>
+                                </Benefits>
 
 
-                                <audience-items>
-                                </audience-items>
+                                <AudienceItems>
+                                </AudienceItems>
 
-                                <requirements
+                                <Requirements
                                         v-if="model.preRequirementItems.length > 0"
                                         :items="model.preRequirementItems">
-                                </requirements>
+                                </Requirements>
 
-                                <teachers>
 
-                                </teachers>
+                                <Topics
+                                        v-if="model.courseItems.length > 0"
+                                        :items="model.courseItems">
+                                </Topics>
 
-                                <comment>
-                                </comment>
+
+                                <Teachers
+                                        :teacher-title="model.teacherName"
+                                        :teacher-avatar="model.teacherAvatar"
+                                        :teacher-teaching-count="0"
+                                        :teacher-comments-count="0"
+                                        :teacher-students-count="0">
+
+                                </Teachers>
+
+                                <Comment>
+                                </Comment>
 
 
                             </div>
@@ -260,10 +272,12 @@ import Comment from "@/view/components/Course/Course_Details/Widget/Comment.vue"
 import Categories from "@/view/components/Course/Course_Details/Widget/Categories.vue";
 import RelatedCourses from "@/view/components/Course/Course_Details/Widget/Sidebar/RelatedCourses.vue";
 import cart from '@/view/components/Cart/cart'
+import Topics from "@/view/components/Course/Course_Details/Widget/Topics.vue";
 
 export default {
     name: "Course",
     components: {
+        Topics,
         RelatedCourses,
         Categories,
         Comment, Teachers, Requirements, AudienceItems, Benefits, Content, Tags, PreQuisites, AppTitleBar
@@ -288,6 +302,7 @@ export default {
                 slug: null,
                 learningGoalItems: [],
                 preRequirementItems: [],
+                courseItems: [],
             }
         }
     },
@@ -311,6 +326,7 @@ export default {
             this.model.slug = data.slug;
             this.model.learningGoalItems = data.learningGoalItems;
             this.model.preRequirementItems = data.preRequirementItems;
+            this.model.courseItems = data.courseItems;
             const teacher = data.teacher;
             if (teacher != null) {
                 if (!!teacher.avatar) {
