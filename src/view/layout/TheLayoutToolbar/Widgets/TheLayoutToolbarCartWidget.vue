@@ -16,7 +16,7 @@
                 <p class="empty-message">سبد خرید شما خالی است</p>
                 <p class="return-to-shop">
                     <a class="button wc-backward"
-                       href="https://dana-team.com/products/edumall/shop/">
+                       href="#">
                         مرور فروشگاه </a>
                 </p>
             </div>
@@ -46,9 +46,11 @@
                             </a>
                         </h3>
                         <span class="quantity">
-                            <bdi>{{ cartItem.deducatedPrice == 0 ? 'رایگان' : getComma(cartItem.deducatedPrice) }}&nbsp;
+                            <bdi>{{
+                                cartItem.financial.deducatedPrice == 0 ? 'رایگان' : getComma(cartItem.financial.deducatedPrice)
+                                }}&nbsp;
                             <span
-                                    v-if="cartItem.deducatedPrice !== 0"
+                                    v-if="cartItem.financial.deducatedPrice !== 0"
                                     class="woocommerce-Price-currencySymbol">{{ $t('ui.IRR') }}</span>
                         </bdi>
                         </span>
@@ -60,15 +62,16 @@
                     v-if="cartExistItems.length > 0"
                     class="cart-footer">
                 <div class="woocommerce-mini-cart__total total">
-                    <strong>جمع:</strong> <span
-                        class="woocommerce-Price-amount amount"><bdi>{{ getComma(totalAmount) }}&nbsp;<span
-                        class="woocommerce-Price-currencySymbol">{{ $t('ui.IRR') }}</span></bdi></span>
+                    <strong>جمع:</strong>
+                    <span class="woocommerce-Price-amount amount">
+                        <bdi>{{ getComma(totalAmount) }}&nbsp;
+                            <span class="woocommerce-Price-currencySymbol">{{ $t('ui.IRR') }}</span>
+                        </bdi>
+                    </span>
                 </div>
 
                 <div class="woocommerce-mini-cart__buttons buttons">
-                    <a
-                            href="/Cart"
-                            class="button wc-forward">مشاهده سبد خرید</a>
+                    <a href="/Cart" class="button wc-forward">مشاهده سبد خرید</a>
                     <a class="button checkout wc-forward">تسویه حساب</a>
                 </div>
             </div>
@@ -90,7 +93,7 @@ export default {
         totalAmount() {
             let total = 0;
             this.cartExistItems.map(f => {
-                total += f.deducatedPrice
+                total += f.financial.deducatedPrice
             })
             return total;
         }

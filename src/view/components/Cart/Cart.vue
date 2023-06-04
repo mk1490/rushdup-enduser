@@ -4,14 +4,13 @@
             <div v-if="courseItems.length > 0">
                 <div class="woocommerce-notices-wrapper"></div>
                 <div class="woocommerce-cart-form-wrapper">
-                    <table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents"
-                           cellspacing="0">
+                    <table class="shop_table shop_table_responsive cart woocommerce-cart-form__contents">
                         <thead>
                         <tr>
                             <th class="product-thumbnail">محصول</th>
                             <th class="product-name">عنوان دوره</th>
                             <th class="product-price">قیمت</th>
-                            <th class="product-remove">غملیات</th>
+                            <th class="product-remove">عملیات</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -19,30 +18,36 @@
                         <tr
                                 v-for="(item, index) in courseItems"
                                 class="woocommerce-cart-form__cart-item cart_item">
+
+
                             <td class="product-thumbnail">
-                                <a href="https://dana-team.com/products/edumall/courses/mastering-data-modeling-fundamentals/">
+                                <a :href="`/cd/${item.slug}`">
                                     <img
+                                            v-if="!!item.image"
                                             width="150"
                                             height="150"
-                                            src="https://dana-team.com/products/edumall/wp-content/uploads/2020/11/course-thumbnail-22-1-150x150.jpg"
                                             class="attachment-thumbnail size-thumbnail wp-post-image"
-                                            srcset="https://dana-team.com/products/edumall/wp-content/uploads/2020/11/course-thumbnail-22-1-150x150.jpg 150w, https://dana-team.com/products/edumall/wp-content/uploads/2020/11/course-thumbnail-22-1-100x100.jpg 100w, https://dana-team.com/products/edumall/wp-content/uploads/2020/11/course-thumbnail-22-1-600x600.jpg 600w, https://dana-team.com/products/edumall/wp-content/uploads/2020/11/course-thumbnail-22-1-96x96.jpg 96w"
-                                            sizes="(max-width: 150px) 100vw, 150px">
+                                            sizes="(max-width: 150px) 100vw, 150px"
+                                            :src="getPublicUrl(item.image)">
                                 </a>
                             </td>
 
                             <td class="product-name">
                                 <h6 class="product-title">
-                                    <a
-                                            href="https://dana-team.com/products/edumall/courses/mastering-data-modeling-fundamentals/">
+                                    <a href="#">
                                         {{ item.title }}
                                     </a>
                                 </h6>
                             </td>
 
                             <td class="product-price" data-title="قیمت">
-                                <span class="woocommerce-Price-amount amount"><bdi>۴۶,۰۰۰&nbsp;<span
-                                        class="woocommerce-Price-currencySymbol">تومان</span></bdi></span></td>
+                                <span class="woocommerce-Price-amount amount">
+                                    <bdi>
+                                    {{ getComma(item.financial.deducatedPrice) }}
+                                    &nbsp;<span class="woocommerce-Price-currencySymbol">ریال</span>
+                                    </bdi>
+                                </span>
+                            </td>
                             <td class="product-remove">
                                 <a
                                         @click="removeItem(item, index)"
@@ -139,7 +144,8 @@
                                         </table>
 
                                         <div class="wc-proceed-to-checkout">
-                                            <a href="https://dana-team.com/products/edumall/checkout/"
+                                            <a
+                                                @click=""
                                                class="checkout-button button alt wc-forward">
                                                 تسویه حساب</a>
                                         </div>

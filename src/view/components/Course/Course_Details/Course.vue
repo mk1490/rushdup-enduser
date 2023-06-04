@@ -322,7 +322,7 @@ export default {
             this.model.deducationValue = data.financial.deducationValue;
             this.model.courseIsFree = data.financial.courseIsFree;
             this.model.hasDiscount = data.financial.hasDiscount;
-            this.model.purchaseStatus = data.cartStatus;
+            this.model.purchaseStatus = data.financial.cartStatus;
             this.model.slug = data.slug;
             this.model.learningGoalItems = data.learningGoalItems;
             this.model.preRequirementItems = data.preRequirementItems;
@@ -348,6 +348,7 @@ export default {
             }
         },
         async addToCart() {
+            console.log(this.model)
             await this.addToCartOrCompletePurchaseFlowOrViewCourse(this.model.purchaseStatus, this.model.id, this.model)
         }
     }

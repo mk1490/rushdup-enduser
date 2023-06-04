@@ -10,7 +10,6 @@ export default {
         async addToCartOrCompletePurchaseFlowOrViewCourse(purchaseStatus, courseId, model) {
             switch (purchaseStatus) {
                 case -1: {
-                    console.log(this.sessionId)
                     const [err, data] = await Vue.prototype.to(Vue.prototype.http.post(`/cart`, {
                         sessionId: this.sessionId,
                         courseId: courseId,
