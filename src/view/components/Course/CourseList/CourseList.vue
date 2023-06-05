@@ -10,13 +10,15 @@
                     :items="items">
             </main-content>
 
-            <v-pagination
-                    @previous="previousClick"
-                    @next="nextClick"
-                    @input="onSelectNumber"
-                    :length="pagesLengthCalculate()"
-                    :value="selectedPage" circle>
-            </v-pagination>
+            <div class="d-flex justify-center" style="width: 100%">
+                <v-pagination
+                        @previous="previousClick"
+                        @next="nextClick"
+                        @input="onSelectNumber"
+                        :length="pagesLengthCalculate()"
+                        :value="selectedPage" circle>
+                </v-pagination>
+            </div>
         </div>
     </div>
 </template>
@@ -74,6 +76,8 @@ export default {
             console.log('previous click')
         },
         async onSelectNumber(event) {
+            if (event == this.selectedPage)
+                return;
             this.selectedPage = event;
             await this.fetchData();
         },
