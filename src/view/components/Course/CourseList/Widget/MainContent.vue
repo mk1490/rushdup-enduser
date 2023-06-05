@@ -3,7 +3,7 @@
         <div class="archive-filter-bars row row-xs-center">
             <div class="archive-filter-bar archive-filter-bar-left col-md-6">
                 <div class="archive-result-count">
-                    ما <span class="count">51</span> دوره برای شما پیدا کردیم
+                    ما <span class="count">{{ totalCounts }}</span> دوره برای شما پیدا کردیم
                 </div>
             </div>
 
@@ -127,10 +127,7 @@
                     </v-list>
                 </div>
             </div>
-
-
         </div>
-
 
     </div>
 
@@ -143,8 +140,10 @@ import {mapActions, mapGetters} from "vuex";
 
 export default {
     name: "MainContent",
+    emits: ['onPreviousClick', 'onNextClick'],
     props: {
         items: Array,
+        totalCounts: Number,
     },
     computed: {
         ...mapGetters(['sessionId', 'cartItems'])

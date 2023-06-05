@@ -6,8 +6,17 @@
                     @onCategoriesChange="filterCategory($event)"
                     :category-items="categoryItems"></sidebar>
             <main-content
+                    :totalCounts="totalCounts"
                     :items="items">
             </main-content>
+
+            <v-pagination
+                    @previous="previousClick"
+                    @next="nextClick"
+                    @input="onSelectNumber"
+                    :length="pagesLengthCalculate()"
+                    :value="selectedPage" circle>
+            </v-pagination>
         </div>
     </div>
 </template>
@@ -29,6 +38,9 @@ export default {
     },
     data() {
         return {
+            selectedPage: 1,
+            totalCounts: 0,
+            itemsPerPage: 0,
             items: [],
             selectedCategories: [],
         }
@@ -42,14 +54,31 @@ export default {
             const queryParams = new URLSearchParams();
             this.selectedCategories.map((f) => {
                 queryParams.append('categoryIdOrIds', f.id);
-            })
+            });
+            queryParams.append('offset', (this.selectedPage - 1) * this.itemsPerPage)
             const [err, data] = await this.to(this.http.get(`/course/list?${queryParams}`));
             if (!err) {
-                this.items = data.map(f => {
+                window.scrollTo({top: 0, behavior: 'smooth'});
+                this.totalCounts = data.totalCounts;
+                this.itemsPerPage = data.itemsPerPage;
+                this.items = data.items.map(f => {
                     f.cover = f.cover !== null ? this.serverAddress + '/api/public' + f.cover : null;
                     return f;
                 });
             }
+        },
+        nextClick() {
+            console.log('next click')
+        },
+        previousClick() {
+            console.log('previous click')
+        },
+        async onSelectNumber(event) {
+            this.selectedPage = event;
+            await this.fetchData();
+        },
+        pagesLengthCalculate() {
+            return Math.ceil(this.totalCounts / this.itemsPerPage);
         }
     }
 }

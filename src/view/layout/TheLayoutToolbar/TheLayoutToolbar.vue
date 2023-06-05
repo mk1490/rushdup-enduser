@@ -43,19 +43,24 @@
                                         class="cat-item">
                                     <a :href="`/cl/${categoryItem.slug}`">
                                         {{ categoryItem.title }}
-                                        <!--                                        <span class="toggle-sub-menu"></span>-->
+                                        <span
+                                                v-if="categoryItem.children.length > 0"
+                                                class="toggle-sub-menu"></span>
                                     </a>
-
-                                    <!--                                    <ul class="children sub-categories">-->
-                                    <!--                                        <li class="cat-item">-->
-                                    <!--                                            <a>-->
-                                    <!--                                                همه مطالب بازاریابی </a>-->
-                                    <!--                                        </li>-->
-                                    <!--                                        <li data-id="191" class="cat-item has-children">-->
-                                    <!--                                            <a>بازاریابی از طریق رسانه های اجتماعی <span class="toggle-sub-menu"></span>-->
-                                    <!--                                            </a>-->
-                                    <!--                                        </li>-->
-                                    <!--                                    </ul>-->
+                                    <ul
+                                            v-if="categoryItem.children"
+                                            v-for="childItem in categoryItem.children"
+                                            class="children sub-categories">
+                                        <li data-id="191" class="cat-item">
+                                            <a>
+                                                {{ childItem.title }}
+                                                <span
+                                                        v-if="childItem.children.length > 0"
+                                                        class="toggle-sub-menu">
+                                                </span>
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
                             </ul>
                         </nav>
