@@ -7,7 +7,9 @@
                     :category-items="categoryItems"></sidebar>
             <main-content
                     :totalCounts="totalCounts"
-                    :items="items">
+                    :items="items"
+                    @viewSelectionChange="fetchData($event)"
+            >
             </main-content>
 
             <div class="d-flex justify-center" style="width: 100%">
@@ -52,12 +54,13 @@ export default {
             this.selectedCategories = data;
             await this.fetchData();
         },
-        async fetchData() {
+        async fetchData(event) {
             const queryParams = new URLSearchParams();
             this.selectedCategories.map((f) => {
                 queryParams.append('categoryIdOrIds', f.id);
             });
-            queryParams.append('offset', (this.selectedPage - 1) * this.itemsPerPage)
+            queryParams.append('offset', (this.selectedPage - 1) * this.itemsPerPage);
+            queryParams.append('viewType', event);
             const [err, data] = await this.to(this.http.get(`/course/list?${queryParams}`));
             if (!err) {
                 window.scrollTo({top: 0, behavior: 'smooth'});
