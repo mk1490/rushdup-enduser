@@ -80,12 +80,41 @@
                                 <div class="tutor-price">
                                     <div class="price">
                                         <p class="price">
-                                            <ins><span class="woocommerce-Price-amount amount"><bdi>۳۹,۰۰۰&nbsp;<span
-                                                    class="woocommerce-Price-currencySymbol">تومان</span></bdi></span>
-                                            </ins>
-                                            <del><span class="woocommerce-Price-amount amount"><bdi>۵۹,۰۰۰&nbsp;<span
-                                                    class="woocommerce-Price-currencySymbol">تومان</span></bdi></span>
-                                            </del>
+
+
+                                            <template v-if="!item.courseIsFree">
+
+                                                <template v-if="item.deducatedPrice != item.price">
+                                                    <ins>
+                                                <span class="woocommerce-Price-amount amount"><bdi>{{
+                                                    getComma(item.deducatedPrice)
+                                                    }}&nbsp;
+                                                    <span class="woocommerce-Price-currencySymbol">
+                                                        {{ $t('ui.IRR') }}
+                                                    </span></bdi></span>
+                                                    </ins>
+                                                    <del>
+                                                <span class="woocommerce-Price-amount amount"><bdi>
+                                                    {{ getComma(item.price) }}
+                                                    &nbsp;<span
+                                                        class="woocommerce-Price-currencySymbol">{{
+                                                    $t('ui.IRR')
+                                                    }}</span></bdi></span>
+                                                    </del>
+                                                </template>
+                                                <template v-else>
+                                                    <bdi>
+                                                        {{ getComma(item.deducatedPrice) }}
+                                                        <span class="woocommerce-Price-currencySymbol">{{
+                                                            $t('ui.IRR')
+                                                            }}</span>
+                                                    </bdi>
+                                                </template>
+
+                                            </template>
+                                            <template v-else>
+                                                رایگان
+                                            </template>
                                         </p>
                                     </div>
                                 </div>
@@ -427,5 +456,9 @@ export default {
     border-radius: 5px;
     display: flex;
     flex-direction: column
+}
+
+.on-sale ins .amount {
+    color: #d31819;
 }
 </style>
