@@ -52,7 +52,7 @@
                                             v-for="childItem in categoryItem.children"
                                             class="children sub-categories">
                                         <li data-id="191" class="cat-item">
-                                            <a>
+                                            <a :href="`/cl/${childItem.slug}`">
                                                 {{ childItem.title }}
                                                 <span
                                                         v-if="childItem.children.length > 0"
