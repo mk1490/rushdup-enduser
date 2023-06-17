@@ -3,12 +3,17 @@
          id="single-course-ratings">
         <h4 class="tutor-segment-title">اساتید دوره</h4>
         <div class="single-instructor-wrap">
-            <div class="instructor-avatar">
+            <div
+                    v-if="!!teacherAvatar"
+                    class="instructor-avatar">
                 <a href="#">
                     <img
-                            alt=""
-                            class="avatar avatar-240 photo" height="240" width="240"
-                            loading="lazy" decoding="async"/> </a>
+                            :src="getPublicUrl(teacherAvatar)"
+                            class="avatar avatar-240 photo"
+                            height="240"
+                            width="240"
+                            alt=""/>
+                </a>
             </div>
             <div class="tutor-instructor-info">
                 <h3 class="instructor-name">

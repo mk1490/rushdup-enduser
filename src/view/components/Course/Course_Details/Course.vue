@@ -12,11 +12,13 @@
 
                                     <div class="tutor-course-badges-wrap">
 
-                                        <!--                                    <div class="tutor-course-badges">-->
-                                        <!--                                        <div class="tutor-course-badge onsale">-39%</div>-->
-                                        <!--                                    </div>-->
-                                        <div class="tutor-course-header-categories">
-                                            <a href="#">مدل سازی داده ها</a>
+                                        <div class="tutor-course-badges">
+                                            <div class="tutor-course-badge onsale">-39%</div>
+                                        </div>
+                                        <div
+                                                v-if="!!model.subject"
+                                                class="tutor-course-header-categories">
+                                            <a :href="model.subject.slug">{{ model.subject.title }}</a>
                                         </div>
                                     </div>
 
@@ -197,13 +199,15 @@
                                                 </div>
                                             </div>
                                             <div class="tutor-course-categories">
-													<span class="meta-label">
-														<i class="meta-icon far fa-tag"></i>
-														موضوع </span>
+                                                <span class="meta-label">
+                                                    <i class="meta-icon far fa-tag"></i>
+                                                    موضوع
+                                                </span>
                                                 <div class="meta-value">
                                                     <a
-                                                            href="https://dana-team.com/products/edumall/course-category/data-modeling/">مدل
-                                                        سازی داده ها</a>
+                                                            :href="model.subject.slug">
+                                                        {{ model.subject.title }}
+                                                    </a>
                                                 </div>
                                             </div>
 
@@ -321,6 +325,7 @@ export default {
                 courseIsFree: false,
                 hasDiscount: false,
                 purchaseStatus: -1,
+                subject: null,
                 slug: null,
                 learningGoalItems: [],
                 preRequirementItems: [],
@@ -346,6 +351,7 @@ export default {
             this.model.courseIsFree = data.financial.courseIsFree;
             this.model.hasDiscount = data.financial.hasDiscount;
             this.model.purchaseStatus = data.financial.cartStatus;
+            this.model.subject = data.subject;
             this.model.slug = data.slug;
             this.model.learningGoalItems = data.learningGoalItems;
             this.model.preRequirementItems = data.preRequirementItems;
