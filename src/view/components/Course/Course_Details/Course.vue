@@ -123,7 +123,8 @@
                                                 <div class="loading-spinner" area-hidden="true"></div>
                                                 <div class="tutor-ratio tutor-ratio-16x9">
                                                     <div class="r1_iframe_embed">
-                                                        <iframe src="https://player.arvancloud.ir/index.html?config=https://matink1490.arvanvod.ir/LgZYRMK5NB/oXZyE7WQPe/origin_config.json&skin=shaka"
+                                                        <iframe
+                                                                :src="`https://player.arvancloud.ir/index.html?config=${model.demoVideoUrl}&skin=shaka`"
                                                                 style="width: 100%;border:0 #ffffff none;"
                                                                 name="ForBiggerFun"
                                                                 frameborder="0"
@@ -312,6 +313,7 @@ export default {
                 deducatedPrice: 0,
                 price: 0,
                 deducationType: 0,
+                demoVideoUrl: 0,
                 deducationValue: 0,
                 teacherAvatar: null,
                 teacherName: null,
@@ -337,6 +339,7 @@ export default {
             this.model.title = data.title;
             this.model.studentCounts = data.studentCounts;
             this.model.deducatedPrice = data.financial.deducatedPrice;
+            this.model.demoVideoUrl = data.demoVideoUrl;
             this.model.price = data.financial.price;
             this.model.deducationType = data.financial.deducationType;
             this.model.deducationValue = data.financial.deducationValue;

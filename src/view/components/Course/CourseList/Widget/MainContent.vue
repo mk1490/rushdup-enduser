@@ -56,7 +56,7 @@
                                 <a :href="`/cd/${item.slug}`">
                                     <v-img
                                             :aspect-ratio="30/19"
-                                            src="https://dana-team.com/products/edumall/wp-content/uploads/2020/11/course-thumbnail-11-1-480x304.jpg"/>
+                                            :src="item.cover"/>
                                 </a>
                             </div>
                             <div class="course-loop-badges">

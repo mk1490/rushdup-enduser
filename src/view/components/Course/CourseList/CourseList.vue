@@ -73,7 +73,7 @@ export default {
                 this.totalCounts = data.totalCounts;
                 this.itemsPerPage = data.itemsPerPage;
                 this.items = data.items.map(f => {
-                    f.cover = f.cover !== null ? this.serverAddress + '/api/public' + f.cover : null;
+                    f.cover = f.cover !== null ? this.serverAddress + '/api' + f.cover : null;
                     return f;
                 });
             }
