@@ -334,7 +334,6 @@ export default {
         const [err, data] = await this.to(this.http.get(`/course/course-details/${courseSlug}`));
         if (!err) {
             this.model.id = data.id;
-            console.log(this.model.id)
             this.model.title = data.title;
             this.model.studentCounts = data.studentCounts;
             this.model.deducatedPrice = data.financial.deducatedPrice;

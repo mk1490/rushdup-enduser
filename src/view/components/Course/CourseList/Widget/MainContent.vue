@@ -42,7 +42,7 @@
             <!--     Grid view       -->
 
             <div class="edumall-main-post edumall-grid-wrapper edumall-courses edumall-animation-zoom-in style-grid-01"
-                 style="display: flex; flex-wrap: wrap"
+                 style="display: flex; flex-wrap: wrap;width: 100%"
                  v-if="viewSelectionType == 1">
                 <div
                         :id="'grid_' + index"
@@ -53,7 +53,7 @@
                             class="course-loop-wrapper edumall-box edumall-tooltip">
                         <div class="tutor-course-header">
                             <div class="course-thumbnail edumall-image">
-                                <a href="https://dana-team.com/products/edumall/courses/the-creative-journey-of-branding/">
+                                <a :href="`/cd/${item.slug}`">
                                     <v-img
                                             :aspect-ratio="30/19"
                                             src="https://dana-team.com/products/edumall/wp-content/uploads/2020/11/course-thumbnail-11-1-480x304.jpg"/>

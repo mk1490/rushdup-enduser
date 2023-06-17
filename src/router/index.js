@@ -95,7 +95,7 @@ export const constantRoutes = [
                 },
             },
             {
-                path: '/cl',
+                path: '/cl/:categorySlug/',
                 alias: '/cl/:categorySlug',
                 name: 'cl',
                 component: () => import('@/view/components/Course/CourseList/CourseList.vue'),
