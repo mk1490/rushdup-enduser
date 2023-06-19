@@ -151,13 +151,30 @@
                 hidden="hidden"
                 ref="filePicker"
                 type="file" accept=".png,.jpg,.jpeg">
+
+        <div class="tutor-form-group tutor-profile-form-btn-wrap form-submit-wrap">
+            <button
+                    @click="updateProfileAndSendDataToServer"
+                    class="tutor-button tutor-profile-settings-save">
+                بروزرسانی پروفایل
+            </button>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
     name: "Profile",
-    mounted() {
+    async created() {
+        const [err, data] = await this.to(this.http.get(`/profile/information`));
+        if (!err) {
+            this.model.name = data.personalInformation.name;
+            this.model.family = data.personalInformation.family;
+            this.model.jobTitle = data.personalInformation.jobTitle;
+            this.model.phoneNumber = data.personalInformation.phoneNumber;
+        }
+    },
+    async mounted() {
         this.setAvatarToDefault();
         this.setCoverToDefault();
     },
@@ -228,6 +245,12 @@ export default {
         },
         setDeleteAvatarButtonVisibilityState(state) {
             document.getElementById('delete-button').style.display = state == true ? 'block' : 'none';
+        },
+        async updateProfileAndSendDataToServer() {
+            const [err, data] = await this.to(this.http.put(`/information`,));
+            if (!err) {
+
+            }
         }
 
     },

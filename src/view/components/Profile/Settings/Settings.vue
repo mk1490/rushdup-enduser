@@ -7,26 +7,22 @@
                 <ul>
                     <li
                             v-for="item in tabs"
-                            class="active">
-                        <a href="https://dana-team.com/products/edumall/dashboard/settings">{{ item.title }}</a>
+                            :class="`${item.active == true? 'active': ''}`">
+                        <router-link :to="item.to">{{ item.title }}</router-link>
                     </li>
                 </ul>
             </div>
         </div>
         <div class="tutor-dashboard-content-inner">
-
-
             <div class="dashboard-settings-form dashboard-settings-profile-form">
-                <profile></profile>
-                <div class="tutor-form-group tutor-profile-form-btn-wrap form-submit-wrap">
-                    <button
+                <profile
+                        v-if="selectedTab == 0">
+                </profile>
+                <change-password
+                        v-if="selectedTab == 1"
+                >
+                </change-password>
 
-                        @click="updateProfileAndSendDataToServer"
-                            type="submit" name="tutor_register_student_btn"
-                            class="tutor-button tutor-profile-settings-save">
-                        بروزرسانی پروفایل
-                    </button>
-                </div>
             </div>
         </div>
     </div>
@@ -34,23 +30,26 @@
 
 <script>
 import Profile from "@/view/components/Profile/Settings/Tabs/Profile.vue";
+import ChangePassword from "@/view/components/Profile/Settings/Tabs/ChangePassword.vue";
 
 export default {
     name: "Settings",
-    components: {Profile},
+    components: {ChangePassword, Profile},
     created() {
-        this.tabs.push({title: 'پروفایل', to: ''})
-        this.tabs.push({title: 'تغییر کلمۀ عبور', to: 'changePassword'})
+        this.tabs.push({title: 'پروفایل', to: '/settings'})
+        this.tabs.push({title: 'تغییر کلمۀ عبور', to: '/settings/changePassword'})
+        this.checkRouteActiveTab();
     },
     data() {
         return {
             tabs: [],
+            selectedTab: 0,
         }
     },
     methods: {
         checkRouteActiveTab() {
             const index = this.tabs.findIndex(x => x.to == this.$route.path);
-            this.changeView(index);
+            this.selectedTab = index;
             this.tabs = this.tabs.map((f, i) => {
                 if (index == i) {
                     f.active = true;
@@ -60,12 +59,6 @@ export default {
                 return f;
             })
         },
-        async updateProfileAndSendDataToServer(){
-            const [err, data] = await this.to(this.http.put(``));
-            if (!err){
-
-            }
-        }
     },
     watch: {
         '$route': {
