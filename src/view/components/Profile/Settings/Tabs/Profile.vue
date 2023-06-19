@@ -79,19 +79,18 @@
                         <p>آپلود تصویر نمایه شما.</p>
                         <div id="tutor_profile_cover_photo_editor">
                             <input id="tutor_photo_dialogue_box" type="file" accept=".png,.jpg,.jpeg">
-                            <div id="tutor_cover_area"
-                                 data-fallback="https://dana-team.com/products/edumall/wp-content/plugins/tutor/assets/images/cover-photo.jpg"
-                                 style="background-image:url(https://dana-team.com/products/edumall/wp-content/plugins/tutor/assets/images/cover-photo.jpg)">
-						            <span class="tutor_cover_deleter">
+                            <div id="tutor_cover_area">
+						            <span
+                                @click="deleteCoverPhoto"
+                                class="tutor_cover_deleter">
 						                <i class="far fa-trash-alt"></i>
 						            </span>
-                                <div
-
-                                        class="tutor_overlay">
-                                    <button class="tutor_cover_uploader" type="button">
-                                        <i class="far fa-camera"></i>&nbsp;
-                                        <span>
-                                                آپلود تصویر کاور                                            </span>
+                                <div class="tutor_overlay">
+                                    <button
+                                            @click="openFilePicker('cover')"
+                                            class="tutor_cover_uploader" type="button">
+                                        <i class="far fa-camera"></i>
+                                        <span>آپلود تصویر کاور</span>
                                     </button>
                                 </div>
                             </div>
@@ -160,6 +159,7 @@ export default {
     name: "Profile",
     mounted() {
         this.setAvatarToDefault();
+        this.setCoverToDefault();
     },
     methods: {
         togglePopup() {
@@ -184,18 +184,29 @@ export default {
                 this.hidePopup();
             }
         },
+        async deleteCoverPhoto() {
+            const [err] = await this.to(this.http.delete(`/profile/cover`));
+            if (!err) {
+                this.setCoverToDefault();
+            }
+        },
         async filePicked(event) {
             const file = event.target.files[0];
             this.hidePopup();
             const fileReader = new FileReader();
             fileReader.readAsDataURL(file);
             fileReader.onload = () => {
-                this.avatar = fileReader.result;
-                this.setAvatarPhoto(fileReader.result);
+                const base64Result = fileReader.result;
+                if (this.uploadTarget == 'avatar') {
+                    this.setAvatarPhoto(base64Result);
+                } else {
+                    this.setCoverPhoto(fileReader.result);
+                }
             }
+
             const formData = new FormData();
-            formData.append('file', file)
-            const [err, data] = await this.to(this.http.put(`/profile/update-avatar`, formData));
+            formData.append('file', file);
+            const [err, data] = await this.to(this.http.put(`/profile/${this.uploadTarget == 'avatar' ? 'update-avatar' : 'update-cover'}`, formData));
             if (!err) {
 
             }
@@ -205,9 +216,15 @@ export default {
             document.getElementById('tutor_profile_area').style.backgroundImage = `url(${src})`
             this.setDeleteAvatarButtonVisibilityState(true);
         },
+        setCoverPhoto(src) {
+            document.getElementById('tutor_cover_area').style.backgroundImage = `url(${src})`
+        },
         setAvatarToDefault() {
             this.setAvatarPhoto(`'${require('@/assets/images/avatar.png')}'`);
             this.setDeleteAvatarButtonVisibilityState(false);
+        },
+        setCoverToDefault() {
+            this.setCoverPhoto(`'${require('@/assets/images/cover-photo.jpg')}'`);
         },
         setDeleteAvatarButtonVisibilityState(state) {
             document.getElementById('delete-button').style.display = state == true ? 'block' : 'none';
