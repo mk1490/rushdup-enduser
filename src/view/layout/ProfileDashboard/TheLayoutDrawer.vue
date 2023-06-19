@@ -1,17 +1,7 @@
 ﻿<template>
-  <v-navigation-drawer
-      dark
-      fixed
-      style="background: #fff"
-      app
-      right
-      absolute
-      :value="profileNavbarShow"
-      width="300">
     <the-layout-drawer-list>
 
     </the-layout-drawer-list>
-  </v-navigation-drawer>
 </template>
 
 <script>

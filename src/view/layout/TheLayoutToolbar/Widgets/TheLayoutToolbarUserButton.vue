@@ -34,7 +34,8 @@
                     class="tm-button-wrapper">
                 <a
                         class="tm-button style-bottom-line-alt tm-button-sm"
-                        href="https://dana-team.com/products/edumall/dashboard/">
+                        href="javascript:void(0)"
+                        @click="toDashboard()">
                     <div class="button-content-wrapper">
                         <span class="button-text">داشبورد</span>
                     </div>
@@ -115,6 +116,11 @@ export default {
         },
         resetSended() {
             this.modal.lostPassword.visible = false;
+        },
+        toDashboard() {
+            this.$router.push({
+                name: 'dashboard'
+            })
         }
     }
 }

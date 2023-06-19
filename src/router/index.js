@@ -161,6 +161,18 @@ export const constantRoutes = [
                 meta: {},
             },
             {
+                path: '/myProfile',
+                name: 'myProfile',
+                component: () => import('@/view/components/Profile/MyProfile.vue'),
+                meta: {},
+            },
+            {
+                path: '/enrolledCourses/:tab?',
+                name: 'enrolledCourses',
+                component: () => import('@/view/components/Profile/EnrolledCourses.vue'),
+                meta: {},
+            },
+            {
                 path: '/MyAccountInformation',
                 name: 'MyAccountInformation',
                 component: () => import('@/view/components/Profile/MyAccountInformation.vue'),

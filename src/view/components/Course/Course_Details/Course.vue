@@ -71,7 +71,7 @@
 
                                     <!--                              TODO  <pre-quisites></pre-quisites>-->
 
-                                    <Content>
+                                    <Content :tags="model.labels">
                                     </Content>
 
 
@@ -250,6 +250,7 @@
                                     </div>
 
                                     <categories
+                                            v-if="model.courseCategories.length > 0"
                                             :items="model.courseCategories">
                                     </categories>
 
@@ -330,6 +331,7 @@ export default {
                 learningGoalItems: [],
                 preRequirementItems: [],
                 courseItems: [],
+                labels: [],
             }
         }
     },
@@ -353,8 +355,10 @@ export default {
             this.model.purchaseStatus = data.financial.cartStatus;
             this.model.subject = data.subject;
             this.model.slug = data.slug;
+            this.model.courseCategories = data.categories;
             this.model.learningGoalItems = data.learningGoalItems;
             this.model.preRequirementItems = data.preRequirementItems;
+            this.model.labels = data.labels;
             this.model.courseItems = data.courseItems;
             const teacher = data.teacher;
             if (teacher != null) {
@@ -382,11 +386,15 @@ export default {
         async showModal() {
             if (!this.isLogin) {
                 this.$swal.fire({
+                    icon: 'error',
                     title: 'خطای ورود به سیستم!',
                     text: 'جهت ثبت دیدگاه جدید، ورود و احراز هویت به سیستم الزامی است!',
+                    allowOutsideClick: false,
                 });
+            } else {
+                this.modal.visible = true;
             }
-            this.modal.visible = true;
+
         }
     }
 }

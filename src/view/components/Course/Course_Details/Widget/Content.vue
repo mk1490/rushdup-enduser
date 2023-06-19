@@ -3,11 +3,8 @@
         <h4 class="tutor-segment-title">درباره این دوره</h4>
 
         <div class="tutor-course-content-content">
-
-
             <div v-html="content"></div>
-            <tags></tags>
-
+            <tags :items="tags"></tags>
         </div>
     </div>
 </template>
@@ -20,6 +17,7 @@ export default {
     components: {Tags},
     props: {
         content: String,
+        tags: Array,
     }
 }
 </script>

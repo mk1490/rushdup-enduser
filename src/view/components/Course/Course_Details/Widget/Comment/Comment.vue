@@ -6,7 +6,7 @@
             <div class="tm-button-wrapper">
                 <a
                     class="tm-button style-flat tm-button-nm btn-write-course-review open-popup-login"
-                    href="javascript:void(0)">
+                    @click="showCommentModal()">
                 <div class="button-content-wrapper">
 
 

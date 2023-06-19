@@ -1,65 +1,74 @@
 ﻿<template>
-    <div class="d-inline-block full-width">
-        <v-list
-                light
-                subheader
-                two-line
-                class="layout-drawer">
-            <v-list-item
-                    to="/dashboard">
-                <v-list-item-title>
-                    سفارشات أخیر
-                </v-list-item-title>
-            </v-list-item>
+    <div id="tutor-dashboard-left-menu" class="tutor-dashboard-left-menu">
+        <div id="dashboard-nav-wrapper" class="dashboard-nav-wrapper">
+            <div class="dashboard-nav-header">
+                <div class="dashboard-header-toggle-menu dashboard-header-close-menu">
+                    <span class="fal fa-times"></span>
+                </div>
+                <div class="branding">
+                    <div class="branding-logo-wrap">
+                        <a>
+                            <img
+                                    src="../../../assets/logo.png"
+                                    class="branding-logo dark-logo">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="dashboard-nav-content">
+                <div class="dashboard-nav-content-inner ps-container ps-theme-default ps-active-y">
+                    <ul class="tutor-dashboard-permalinks">
+                        <li
+                                v-for="item in items"
+                                :class="`tutor-dashboard-menu-${item.icon} ${!!item.active? 'active': ''}` ">
+                            <router-link :to="item.to">
+                                {{ item.title }}
+                            </router-link>
 
-            <v-divider></v-divider>
-            <v-subheader>بخش کاربری</v-subheader>
-            <v-list-item
-                    to="/MyAccountInformation">
-                <v-list-item-title>
-                    اطلاعات کاربری
-                </v-list-item-title>
-            </v-list-item>
-            <v-list-item
-                    to="/MyCourses">
-                <v-list-item-title>
-                    دوره های من
-                </v-list-item-title>
-            </v-list-item>
-            <v-list-item
-                    to="/Licenses">
-                <v-list-item-title>
-                    گواهینامه های صادره
-                </v-list-item-title>
-            </v-list-item>
-            <v-list-item
-                    to="/tickets">
-                <v-list-item-title>
-                    تیکت
-                </v-list-item-title>
-            </v-list-item>
-            <v-list-item
-                    to="/wallet">
-                <v-list-item-title>
-                    کیف پول
-                </v-list-item-title>
-            </v-list-item>
-            <v-list-item
-                    to="/transactions">
-                <v-list-item-title>
-                    تراکنش و سفارشات
-                </v-list-item-title>
-            </v-list-item>
-        </v-list>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
 <script>
 export default {
     name: "TheLayoutDrawerList",
+    created() {
+        this.items.push({title: 'پیشخوان', icon: 'index', to: '/dashboard'});
+        this.items.push({title: 'پروفایل من', icon: 'my-profile', to: '/myProfile'});
+        this.items.push({title: 'دوره‌های ثبت‌نام شده', icon: 'enrolled-courses', to: '/enrolledCourses'});
+        this.checkActiveRoute();
+    },
+    data() {
+        return {
+            items: []
+        }
+    },
     methods: {
         async navigateToRoute(route) {
             await this.$router.push(route);
+        },
+        checkActiveRoute() {
+            const index = this.items.findIndex(x => x.to == '/' + this.$route.path.split('/')[1]);
+            this.items = this.items.map((f, i) => {
+                if (index == i) {
+                    f.active = true;
+                } else {
+                    f.active = false;
+                }
+                return f;
+            });
+        }
+
+    },
+    watch: {
+        '$route': {
+            handler(val) {
+                this.checkActiveRoute();
+            }
         }
     }
 }

@@ -4,7 +4,7 @@
         <p class="widget-title heading">دسته های دوره</p>
         <ul class="course-categories">
             <li class="cat-item cat-item-156" v-for="item in items">
-                <a :href="item.url">{{ item.title }}</a>
+                <a :href="item.slug">{{ item.title }}</a>
             </li>
         </ul>
     </div>
