@@ -14,7 +14,15 @@
                 </ul>
             </div>
 
-            <div class="dashboard-enrolled-courses edumall-animation-zoom-in">
+
+            <div v-if="tempViewItems.length == 0">
+                <div class="dashboard-no-content-found">
+                    شما در حال حاضر در هیچ دوره ای ثبت نام نکرده اید.
+                </div>
+            </div>
+            <div
+                    v-else
+                    class="dashboard-enrolled-courses edumall-animation-zoom-in">
                 <a href="https://dana-team.com/products/edumall/courses/%d8%af%d9%88%d8%b1%d9%87-%d8%a2%d9%85%d9%88%d8%b2%d8%b4-%d9%85%d9%84%d8%b2%d9%88%d9%85%d8%a7%d8%aa-adobe-illustrator-cc/"
                    class="edumall-box link-secret tutor-mycourse-wrap tutor-mycourse-203">
                     <div class="edumall-image tutor-mycourse-thumbnail">
@@ -54,9 +62,11 @@ export default {
     data() {
         return {
             tabs: [],
+            tempViewItems: [],
+            items: [],
         }
     },
-    created() {
+    async created() {
         this.tabs.push({
             title: 'همۀ دوره ها',
             to: '/enrolledCourses'
@@ -70,6 +80,10 @@ export default {
             to: '/enrolledCourses/completed-courses'
         });
         this.checkRouteActiveTab();
+        const [err, data] = await this.to(this.http.get(`/profile/courses`));
+        if (!err) {
+            this.items = data;
+        }
     },
     methods: {
         checkRouteActiveTab() {
@@ -85,7 +99,20 @@ export default {
             })
         },
         changeView(index) {
-            
+            switch (index) {
+                case 1: {
+                    this.tempViewItems = this.items;
+                    break;
+                }
+                case 2: {
+                    this.tempViewItems = this.items.filter(x => x.status == 1);
+                    break;
+                }
+                case 3: {
+                    this.tempViewItems = this.items.filter(x => x.status == 0);
+                    break;
+                }
+            }
         }
     },
     watch: {

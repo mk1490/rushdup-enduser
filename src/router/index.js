@@ -173,6 +173,12 @@ export const constantRoutes = [
                 meta: {},
             },
             {
+                path: '/settings/:tab?',
+                name: 'settings',
+                component: () => import('@/view/components/Profile/Settings/Settings.vue'),
+                meta: {},
+            },
+            {
                 path: '/MyAccountInformation',
                 name: 'MyAccountInformation',
                 component: () => import('@/view/components/Profile/MyAccountInformation.vue'),
