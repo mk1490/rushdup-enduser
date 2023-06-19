@@ -8,7 +8,7 @@
                         تاریخ ثبت نام
                     </div>
                     <div class="content">
-                        <p>د 11 اردیبهشت 1402, 11:22:30 ق.ظ</p>
+                        <p>________</p>
                     </div>
                 </div>
                 <div class="dashboard-profile-info-item profile-first-name">
@@ -16,7 +16,7 @@
                         نام
                     </div>
                     <div class="content">
-                        <p>متین</p>
+                        <p>{{ model.name }}</p>
                     </div>
                 </div>
                 <div class="dashboard-profile-info-item profile-last-name">
@@ -24,7 +24,7 @@
                         نام خانوادگی
                     </div>
                     <div class="content">
-                        <p>________</p>
+                        <p>{{ model.family }}</p>
                     </div>
                 </div>
                 <div class="dashboard-profile-info-item profile-username">
@@ -32,7 +32,7 @@
                         نام کاربری
                     </div>
                     <div class="content">
-                        <p>matink1490</p>
+                        <p>{{ model.username }}</p>
                     </div>
                 </div>
                 <div class="dashboard-profile-info-item profile-email">
@@ -40,7 +40,7 @@
                         ایمیل
                     </div>
                     <div class="content">
-                        <p>matink1490@gmail.com</p>
+                        <p>{{ model.email }}</p>
                     </div>
                 </div>
                 <div class="dashboard-profile-info-item profile-phone-number">
@@ -48,7 +48,7 @@
                         شماره تلفن
                     </div>
                     <div class="content">
-                        <p>________</p>
+                        <p>{{ model.phoneNumber }}</p>
                     </div>
                 </div>
                 <div class="dashboard-profile-info-item profile-job-title">
@@ -56,7 +56,7 @@
                         عنوان شغل
                     </div>
                     <div class="content">
-                        <p>________</p>
+                        <p>{{ model.jobTitle }}</p>
                     </div>
                 </div>
                 <div class="dashboard-profile-info-item profile-bio">
@@ -64,7 +64,7 @@
                         بیوگرافی
                     </div>
                     <div class="content">
-                        <p>________</p>
+                        <p>{{ model.bio }}</p>
                     </div>
                 </div>
             </div>
@@ -77,7 +77,30 @@
 
 <script>
 export default {
-    name: "MyProfile"
+    name: "MyProfile",
+    data() {
+        return {
+            model: {
+                name: null,
+                family: null,
+                jobTitle: null,
+                phoneNumber: null,
+                bio: null,
+                nationalityCode: null,
+                sex: null,
+            }
+        }
+    },
+    async created() {
+        const [err, data] = await this.to(this.http.get(`/profile/information`));
+        if (!err) {
+            this.model.name = data.personalInformation.name;
+            this.model.family = data.personalInformation.family;
+            this.model.jobTitle = data.personalInformation.jobTitle;
+            this.model.phoneNumber = data.personalInformation.phoneNumber;
+            this.model.nationalityCode = data.personalInformation.nationalityCode;
+        }
+    }
 }
 </script>
 
