@@ -1,8 +1,7 @@
 ﻿<template>
   <v-dialog
-      persistent
-      width="800"
-      v-model="visible">
+      :persistent="true"
+      width="800">
     <v-card>
       <v-card-title>
 

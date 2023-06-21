@@ -1,27 +1,27 @@
 <template>
-  <v-row dense>
-    <v-col
-      v-for="(item, index) in themes"
-      :key="index"
-      :cols="cols"
-      :class="['text-center', {'elevation-5 pa-2': themeIndex === index}]"
-      @click.stop="toggleTheme(index)"
-    >
-      <div
-        v-for="(color, title) in item.light"
-        :key="title"
-        class="white--text"
-        :style="{background: color}"
-      >
-        {{ title }}
-      </div>
-    </v-col>
-  </v-row>
+<!--  <v-row dense>-->
+<!--    <v-col-->
+<!--      v-for="(item, index) in themes"-->
+<!--      :key="index"-->
+<!--      :cols="cols"-->
+<!--      :class="['text-center', {'elevation-5 pa-2': themeIndex === index}]"-->
+<!--      @click.stop="toggleTheme(index)"-->
+<!--    >-->
+<!--      <div-->
+<!--        v-for="(color, title) in item.light"-->
+<!--        :key="title"-->
+<!--        class="white&#45;&#45;text"-->
+<!--        :style="{background: color}"-->
+<!--      >-->
+<!--        {{ title }}-->
+<!--      </div>-->
+<!--    </v-col>-->
+<!--  </v-row>-->
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
-import themes from '@/plugins/vuetifyThemes';
+// import themes from '@/plugins/vuetifyThemes';
 
 export default {
   name: 'AppTheme',
@@ -32,7 +32,7 @@ export default {
     },
   },
   data: () => ({
-    themes,
+    // themes,
   }),
   computed: {
     ...mapGetters([

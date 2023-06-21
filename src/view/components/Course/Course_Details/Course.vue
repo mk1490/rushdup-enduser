@@ -198,15 +198,19 @@
                                                     1 درس
                                                 </div>
                                             </div>
-                                            <div class="tutor-course-categories">
+
+
+                                            <div
+                                                    v-if="!!model.subjectTitle"
+                                                    class="tutor-course-categories">
                                                 <span class="meta-label">
                                                     <i class="meta-icon far fa-tag"></i>
                                                     موضوع
                                                 </span>
                                                 <div class="meta-value">
                                                     <a
-                                                            :href="model.subject.slug">
-                                                        {{ model.subject.title }}
+                                                            :href="model.subjectSlug">
+                                                        {{ model.subjectTitle }}
                                                     </a>
                                                 </div>
                                             </div>
@@ -326,7 +330,8 @@ export default {
                 courseIsFree: false,
                 hasDiscount: false,
                 purchaseStatus: -1,
-                subject: null,
+                subjectTitle: null,
+                subjectSlug: null,
                 slug: null,
                 learningGoalItems: [],
                 preRequirementItems: [],
@@ -353,7 +358,11 @@ export default {
             this.model.courseIsFree = data.financial.courseIsFree;
             this.model.hasDiscount = data.financial.hasDiscount;
             this.model.purchaseStatus = data.financial.cartStatus;
-            this.model.subject = data.subject;
+            if (!!data.subject) {
+                this.model.subjectTitle = data.subject.title;
+                this.model.subjectSlug = data.subject.slug;
+            }
+
             this.model.slug = data.slug;
             this.model.courseCategories = data.categories;
             this.model.learningGoalItems = data.learningGoalItems;

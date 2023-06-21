@@ -1,20 +1,17 @@
 import Vue from 'vue';
-import Router from 'vue-router';
+import {createRouter, createWebHistory} from 'vue-router';
 
 import Layout from '../view/layout/TheLayout.vue';
 
-Vue.use(Router);
-
-
 export const constantRoutes = [
+    {
+        path: '/:catchAll(.*)', hidden: true, redirect: 'Home',
+    },
     {
         path: '/lostPassword',
         name: 'LostPassword',
         component: () => import('@/view/components/AccountInformation/MyAccount/ChangePassword.vue'),
         meta: {},
-    },
-    {
-        path: '*', hidden: true, redirect: 'Home',
     },
     {
         path: '/',
@@ -235,9 +232,10 @@ export const constantRoutes = [
     },
 ];
 
-export default new Router({
+export default createRouter({
     scrollBehavior: () => ({y: 0}), routes: constantRoutes,
     mode: "history",
+    history: createWebHistory(),
 });
 
 export const asyncRoutes = [{path: '*', redirect: '/error/404', hidden: true},];

@@ -1,8 +1,7 @@
 <template>
     <v-dialog
             class="edumall-popup"
-            width="470"
-            v-model="visible">
+            width="470">
         <v-card style="padding-left: 50px; padding-right: 50px">
             <v-card-title class="d-flex" style="place-content: center">
                 <h3 style="margin-bottom: 8px;">رمز عبور خود را فراموش کرده اید؟</h3>
@@ -79,7 +78,7 @@ export default {
                 this.$swal.fire({
                     icon: 'success',
                     text: `درخواست بازنشانی کلمۀ عبور به پست الکترونیک ${data.email} ارسال گردید.`
-                }).then(res=>{
+                }).then(res => {
                     this.$emit('resetSended')
                 })
             }

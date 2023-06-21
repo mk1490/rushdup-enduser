@@ -1,8 +1,7 @@
 <template>
     <v-dialog
             class="edumall-popup"
-            width="470"
-            v-model="visible">
+            width="470">
         <v-card>
             <v-card-title class="d-flex" style="place-content: center">
                 <h3 style="margin-bottom: 8px;">ثبت نام</h3>

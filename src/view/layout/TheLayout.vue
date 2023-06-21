@@ -5,7 +5,9 @@
             class="bp-nouveau rtl courses-template-default single single-courses postid-1990 wp-embed-responsive theme-edumall tutor-lms woocommerce-no-js desktop edumall-light-scheme mobile-menu-push-to-right woocommerce header-sticky-both wide page-has-sidebar title-bar-04 single-course-01 elementor-default elementor-kit-2492 no-js">
         <div class="content-wrapper">
             <the-layout-toolbar/>
-            <app-title-bar></app-title-bar>
+            <app-title-bar
+                    v-if="!!pageTitle"
+            ></app-title-bar>
             <the-layout-content></the-layout-content>
             <the-layout-footer/>
         </div>
@@ -28,6 +30,7 @@ import TheLayoutFooter from './TheLayoutFooter.vue';
 import AppTitleBar from "@/view/widget/AppTitleBar.vue";
 import TheLayoutMobileMenu from "@/view/layout/TheLayoutMobileMenu.vue";
 import TheLayoutScrollToTop from "@/view/layout/TheLayoutScrollToTop.vue";
+import {mapGetters} from "vuex";
 
 export default {
     async created() {
@@ -55,6 +58,9 @@ export default {
         TheLayoutFooter,
     },
     data: () => ({}),
+    computed: {
+        ...mapGetters(['pageTitle'])
+    },
     methods: {
         prepareMenuOrDesktopMenuStyle() {
 

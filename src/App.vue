@@ -9,7 +9,6 @@
 </template>
 <script>
 import {mapActions, mapGetters} from "vuex";
-import Vue from 'vue';
 import DeleteDialog from "./view/widget/DeleteDialog";
 import ProgressDialog from "@/view/widget/ProgressDialog";
 
@@ -25,9 +24,9 @@ export default {
     },
 
     async created() {
-        Vue.prototype.showLoader();
+        // Vue.prototype.showLoader();
         await this.$store.commit('INITIAL_CART_ITEMS');
-        Vue.prototype.deleteModal = this.$refs.delete;
+        // Vue.prototype.deleteModal = this.$refs.delete;
         this.$store.subscribe(async (mutation) => {
             switch (mutation.type) {
                 case 'LOGOUT':
@@ -35,16 +34,16 @@ export default {
                     break;
             }
         });
-        const [err, data] = await this.to(this.http.get(`${this.serverAddress}/api/auth/currentProfile`));
-        if (!err) {
-            await this.$store.dispatch('setLoginState', true);
-            await this.$store.commit('SET_CART_ITEMS', data.cartItems);
-        }
+        // const [err, data] = await this.to(this.http.get(`${this.serverAddress}/api/auth/currentProfile`));
+        // if (!err) {
+        //     await this.$store.dispatch('setLoginState', true);
+        //     await this.$store.commit('SET_CART_ITEMS', data.cartItems);
+        // }
     },
     name: 'App',
     components: {ProgressDialog, DeleteDialog},
     async mounted() {
-        Vue.prototype.deleteModal = this.$refs.deleteDialog;
+        // Vue.prototype.deleteModal = this.$refs.deleteDialog;
         await this.$store.commit('INITIAL_CART_ITEMS');
     },
     computed: {
@@ -62,15 +61,15 @@ export default {
                 this.cartItems.forEach(x => {
                     fd.append('cartItemId', x.id);
                 })
-                const [err, data] = await this.to(this.http.get(`/core/initialize?sessionId=${this.sessionId}`, fd, {
-                    errorModal: false
-                }));
-                if (!err) {
-                    await this.$store.dispatch('initMenuItems', data.menuItems);
-                    await this.$store.dispatch('initCategoryItems', data.categoryItems);
-                    await this.$store.dispatch('initCartExistsItems', data.cartItems);
-                    await this.$store.dispatch('initHomeItems', data.homeItems);
-                }
+                // const [err, data] = await this.to(this.http.get(`/core/initialize?sessionId=${this.sessionId}`, fd, {
+                //     errorModal: false
+                // }));
+                // if (!err) {
+                //     await this.$store.dispatch('initMenuItems', data.menuItems);
+                //     await this.$store.dispatch('initCategoryItems', data.categoryItems);
+                //     await this.$store.dispatch('initCartExistsItems', data.cartItems);
+                //     await this.$store.dispatch('initHomeItems', data.homeItems);
+                // }
             }
         }
     },

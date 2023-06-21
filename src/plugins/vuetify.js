@@ -1,30 +1,34 @@
-import Vue from 'vue';
-import Vuetify from 'vuetify/lib/framework';
-import themes from './vuetifyThemes';
-import i18n from '@/locale/index';
-import locales from '@/locale/vuetify';
-import {settings} from '@/config';
+import {createVuetify} from "vuetify";
+import 'vuetify/styles';
+import * as components from 'vuetify/components'
+import * as directives from 'vuetify/directives'
+import {locales} from "@/locale";
 
-Vue.use(Vuetify);
-const vuetify = new Vuetify({
-    rtl: true,
+const vuetify = createVuetify({
+    components,
+    directives,
     theme: {
         options: {
             customProperties: true,
         },
-        dark: false,
-        themes: themes[0],
+        // dark: false,
     },
     icons: {
         iconfont: 'mdi',
     },
+    locale:{
+        locale: 'fa',
+        fallback: 'fa',
+        messages:{...locales}
+    },
     lang: {
-        locales,
-        current: settings.locale,
-        t: (key, ...params) => i18n.t(key, params),
+        // locales,
+        // current: settings.locale,
+        // t: (key, ...params) => i18n.t(key, params),
     },
 })
 
+/*
 export async function setVuetifyTheme(index) {
     if (vuetify.framework.theme.themes !== themes[index]) {
         console.log(`[Vuetify] Change theme to "${index}"`);
@@ -34,7 +38,7 @@ export async function setVuetifyTheme(index) {
         console.warn(`[Vuetify] "${index}" is current theme `);
     }
 }
-
+*/
 /**
  * Set the mode to dark/light for the Vuetify class object.
  *
@@ -42,7 +46,7 @@ export async function setVuetifyTheme(index) {
  */
 export async function setVuetifyThemeDark(dark) {
     console.log(`[Vuetify] Change theme to "${dark ? 'dark' : 'light'}"`);
-    vuetify.framework.theme.dark = dark;
+    // vuetify.framework.theme.dark = dark;
 }
 
 

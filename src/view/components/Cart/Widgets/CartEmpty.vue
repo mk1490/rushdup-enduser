@@ -1,7 +1,6 @@
 ﻿<template>
     <div
-            class="d-flex justify-center"
-            v-else>
+            class="d-flex justify-center">
         <div class="d-inline-block justify-center">
             <v-img
                     src="@/assets/cartEmpty.png"

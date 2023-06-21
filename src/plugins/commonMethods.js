@@ -1,37 +1,37 @@
-﻿import Vue from 'vue';
+﻿import {getCurrentInstance} from 'vue';
 import {addCommas, digitsEnToFa, digitsFaToEn, removeCommas} from "@persian-tools/persian-tools";
 import * as persianDate from 'persian-date';
 
-
-Vue.prototype.getComma = (number) => {
+const app = getCurrentInstance();
+app.appContext.config.globalProperties.getComma = (number) => {
     return addCommas(number);
 }
-Vue.prototype.removeComma = (number) => {
+app.appContext.config.globalProperties.removeComma = (number) => {
     return removeCommas(number);
 }
-Vue.prototype.enToFa = (number) => {
+app.appContext.config.globalProperties.enToFa = (number) => {
     return digitsEnToFa(number);
 }
-Vue.prototype.faToEn = (number) => {
+app.appContext.config.globalProperties.faToEn = (number) => {
     return digitsFaToEn(number);
 }
-Vue.prototype.isNumber = (event) => {
+app.appContext.config.globalProperties.isNumber = (event) => {
     return isNumber(event);
 }
-Vue.prototype.setMaxLength = (event) => {
+app.appContext.config.globalProperties.setMaxLength = (event) => {
     if (isNaN(Number.parseInt(event.key))) {
         return;
     }
     if (event.target.value.replaceAll(',', '').length >= event.target.getAttribute('length')) event.preventDefault();
 }
-Vue.prototype.convertAmountToPlainAmountValue = (irrAmountValue) => {
+app.appContext.config.globalProperties.convertAmountToPlainAmountValue = (irrAmountValue) => {
     return Number.parseFloat(irrAmountValue.toString().replaceAll(',', ''));
 }
-Vue.prototype.getImageUrl = (suffix) => {
-    return Vue.prototype.serverAddress + '/api' + suffix;
+app.appContext.config.globalProperties.getImageUrl = (suffix) => {
+    return app.appContext.config.globalProperties.serverAddress + '/api' + suffix;
 }
 
-Vue.prototype.convertAmount = (event, vm, modelName) => {
+app.appContext.config.globalProperties.convertAmount = (event, vm, modelName) => {
     let stringValue = event;
     if (typeof stringValue === 'string') {
         stringValue = stringValue.replaceAll(',', '');
@@ -54,7 +54,7 @@ Vue.prototype.convertAmount = (event, vm, modelName) => {
 }
 
 
-Vue.prototype.base64toBlob = (base64Data, contentType) => {
+app.appContext.config.globalProperties.base64toBlob = (base64Data, contentType) => {
     contentType = contentType || '';
     var sliceSize = 1024;
     var byteCharacters = atob(base64Data);
@@ -75,7 +75,7 @@ Vue.prototype.base64toBlob = (base64Data, contentType) => {
     return new Blob(byteArrays, {type: contentType});
 }
 
-Vue.prototype.getPersianTime = (time, format) => {
+app.appContext.config.globalProperties.getPersianTime = (time, format) => {
     if (!format) {
         format = 'dddd DD MMMM YYYY - HH:mm';
     }
@@ -84,24 +84,24 @@ Vue.prototype.getPersianTime = (time, format) => {
     date.setMinutes(date.getMinutes());
     return new persianDate(date).format(format);
 }
-Vue.prototype.removeComma = (amount) => {
+app.appContext.config.globalProperties.removeComma = (amount) => {
     return amount.toString().replaceAll(',', '');
 }
-Vue.prototype.getPublicUrl = (item) => {
-    return Vue.prototype.serverAddress + '/api' + item;
+app.appContext.config.globalProperties.getPublicUrl = (item) => {
+    return app.appContext.config.globalProperties.serverAddress + '/api' + item;
 }
-Vue.prototype.test = () => {
+app.appContext.config.globalProperties.test = () => {
     console.log("TEST")
 }
 
-Vue.prototype.randomColor = () => {
+app.appContext.config.globalProperties.randomColor = () => {
     return '#' + Math.random().toString(16).substr(-6);
 }
-Vue.prototype.regexPatterns = {
+app.appContext.config.globalProperties.regexPatterns = {
     username: /^[a-zA-Z0-9]([._-](?![._-])|[a-zA-Z0-9]){1,18}[a-zA-Z0-9]$/,
 }
 
-Vue.prototype.convertAmount = (event, vm, modelName) => {
+app.appContext.config.globalProperties.convertAmount = (event, vm, modelName) => {
     let stringValue = event;
     if (typeof stringValue === 'string') {
         stringValue = stringValue.replaceAll(',', '');
@@ -122,11 +122,11 @@ Vue.prototype.convertAmount = (event, vm, modelName) => {
         return total;
     }
 }
-Vue.prototype.randomUUID = () => {
+app.appContext.config.globalProperties.randomUUID = () => {
     return Date.now().toString(36) + Math.random().toString(36).substring(2);
 }
-Vue.prototype.navigateToRoute = async (target) => {
-    await Vue.prototype.$router.replace(target);
+app.appContext.config.globalProperties.navigateToRoute = async (target) => {
+    await app.appContext.config.globalProperties.$router.replace(target);
 }
 
 let isNumber = (event) => {

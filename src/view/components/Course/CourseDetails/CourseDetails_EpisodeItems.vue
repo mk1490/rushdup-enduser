@@ -30,9 +30,6 @@
                       bottom>
                     <template v-slot:activator="{ on, attrs }">
                       <v-btn
-                          v-bind="attrs"
-                          v-on="on"
-                          @click
                           icon>
                         <v-icon>
                           mdi-format-list-checks

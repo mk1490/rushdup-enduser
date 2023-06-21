@@ -1,8 +1,6 @@
 <template>
     <v-dialog
-            width="500"
-            persistent
-            v-model="visible">
+            width="500">
         <v-card>
             <v-card-title>
                 <div class="d-flex justify-center">
