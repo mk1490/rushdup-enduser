@@ -82,6 +82,7 @@ const user = {
             state.cartItems = payload;
         },
         SET_CART_EXISTS_ITEMS: (state, payload) => {
+            console.log("SET_CART_EXISTS_ITEMS", payload)
             state.cartExistItems = payload;
         },
     }, actions: {

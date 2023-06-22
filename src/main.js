@@ -1,4 +1,4 @@
-import {createApp} from 'vue'
+import {createApp, getCurrentInstance} from 'vue'
 import App from './App.vue'
 import vuetify from './plugins/vuetify'
 import router from './router';
@@ -12,6 +12,7 @@ import "@/assets/styles/main.scss";
 // import jQuery from 'jquery';
 // Vue.prototype.jQuery = jQuery
 import VueCarousel from 'vue-carousel';
+import axios from '@/plugins/httpRequest';
 // Vue.use(VueCarousel);
 // Vue.use(VueSweetalert2, {
 //     confirmButtonColor: '#41b882',
@@ -48,13 +49,22 @@ import VueCarousel from 'vue-carousel';
 //     return await store.dispatch('deleteDialog', index);
 // }
 
-// import axios from '@/plugins/httpRequest';
-// import '@/plugins/commonMethods';
-// import '@/plugins/toastMessageProvider';
 
+
+// import '@/plugins/toastMessageProvider';
+const serverAddress = process.env.VUE_APP_SERVER_ADDRESS;
 const app = createApp(App)
     .use(vuetify)
     .use(store)
     .use(router)
     .use(locale);
+app.config.globalProperties.serverAddress = serverAddress;
+app.config.globalProperties.baseUrl = serverAddress + '/api' + '/enduser';
+app.config.globalProperties.to = to;
+app.config.globalProperties.$globalVar = 'globalVar'
+app.config.globalProperties.http = axios;
+app.config.globalProperties.http.defaults.baseURL = app.config.globalProperties.baseUrl;
+
+
+
 app.mount('#app');

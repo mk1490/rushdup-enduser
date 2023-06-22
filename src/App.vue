@@ -8,11 +8,16 @@
     </v-app>
 </template>
 <script>
+import {getCurrentInstance} from 'vue'
 import {mapActions, mapGetters} from "vuex";
 import DeleteDialog from "./view/widget/DeleteDialog";
 import ProgressDialog from "@/view/widget/ProgressDialog";
+import common from '@/plugins/commonMethods';
 
 export default {
+    setup() {
+        common.init(getCurrentInstance())
+    },
     async beforeCreate() {
         // Generate random uuid for session.
         await this.$store.dispatch('initializeSessionId');
@@ -34,11 +39,11 @@ export default {
                     break;
             }
         });
-        // const [err, data] = await this.to(this.http.get(`${this.serverAddress}/api/auth/currentProfile`));
-        // if (!err) {
-        //     await this.$store.dispatch('setLoginState', true);
-        //     await this.$store.commit('SET_CART_ITEMS', data.cartItems);
-        // }
+        const [err, data] = await this.to(this.http.get(`${this.serverAddress}/api/auth/currentProfile`));
+        if (!err) {
+            await this.$store.dispatch('setLoginState', true);
+            await this.$store.commit('SET_CART_ITEMS', data.cartItems);
+        }
     },
     name: 'App',
     components: {ProgressDialog, DeleteDialog},
@@ -61,15 +66,16 @@ export default {
                 this.cartItems.forEach(x => {
                     fd.append('cartItemId', x.id);
                 })
-                // const [err, data] = await this.to(this.http.get(`/core/initialize?sessionId=${this.sessionId}`, fd, {
-                //     errorModal: false
-                // }));
-                // if (!err) {
-                //     await this.$store.dispatch('initMenuItems', data.menuItems);
-                //     await this.$store.dispatch('initCategoryItems', data.categoryItems);
-                //     await this.$store.dispatch('initCartExistsItems', data.cartItems);
-                //     await this.$store.dispatch('initHomeItems', data.homeItems);
-                // }
+                const [err, data] = await this.to(this.http.get(`/core/initialize?sessionId=${this.sessionId}`, fd, {
+                    errorModal: false
+                }));
+                if (!err) {
+
+                    await this.$store.dispatch('initMenuItems', data.menuItems);
+                    await this.$store.dispatch('initCategoryItems', data.categoryItems);
+                    await this.$store.dispatch('initCartExistsItems', data.cartItems);
+                    await this.$store.dispatch('initHomeItems', data.homeItems);
+                }
             }
         }
     },
