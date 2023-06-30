@@ -296,9 +296,12 @@ import cart from '@/view/components/Cart/cart'
 import Topics from "@/view/components/Course/Course_Details/Widget/Topics.vue";
 import CommentModal from "@/view/components/Course/Course_Details/Widget/Comment/CommentModal.vue";
 import {mapGetters} from "vuex";
+import {inject} from "vue";
 
 export default {
     name: "Course",
+    setup() {
+    },
     components: {
         CommentModal,
         Topics,
@@ -389,12 +392,11 @@ export default {
             }
         },
         async addToCart() {
-            console.log(this.model)
             await this.addToCartOrCompletePurchaseFlowOrViewCourse(this.model.purchaseStatus, this.model.id, this.model)
         },
         async showModal() {
             if (!this.isLogin) {
-                this.$swal.fire({
+                this.$swal({
                     icon: 'error',
                     title: 'خطای ورود به سیستم!',
                     text: 'جهت ثبت دیدگاه جدید، ورود و احراز هویت به سیستم الزامی است!',

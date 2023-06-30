@@ -75,7 +75,10 @@
                                 </a>
                             </h2>
                             <div class="course-loop-excerpt course-loop-excerpt-collapse-2-rows">
-                                <p>{{ item.shortDescription }}</p></div>
+                                <div v-html="item['shortDescription']">
+                                </div>
+                                <!--                                <p>{{ item.shortDescription }}</p>-->
+                            </div>
                             <div class="course-loop-price">
                                 <div class="tutor-price">
                                     <div class="price">

@@ -504,7 +504,7 @@ export default {
                     const [err, data] = await this.to(this.http.get(`/user/verifyUser?token=${this.$route.query.at}`));
                     this.$router.push('/')
                     if (!err) {
-                        this.$swal.fire({
+                        this.$swal({
                             icon: 'success',
                             text: 'فعال‌سازی حساب کاربری شما با موفقیت انجام شد!'
                         });

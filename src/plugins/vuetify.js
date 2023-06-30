@@ -3,6 +3,7 @@ import 'vuetify/styles';
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import {locales} from "@/locale";
+import {settings} from "@/config";
 
 const vuetify = createVuetify({
     components,
@@ -16,15 +17,15 @@ const vuetify = createVuetify({
     icons: {
         iconfont: 'mdi',
     },
-    locale:{
+    locale: {
         locale: 'fa',
         fallback: 'fa',
-        messages:{...locales}
+        messages: {...locales}
     },
     lang: {
-        // locales,
-        // current: settings.locale,
-        // t: (key, ...params) => i18n.t(key, params),
+        locales,
+        current: settings.locale,
+        t: (key, ...params) => i18n.t(key, params),
     },
 })
 

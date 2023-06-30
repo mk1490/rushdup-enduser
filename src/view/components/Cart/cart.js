@@ -1,4 +1,3 @@
-import Vue from 'vue'
 import {mapActions, mapGetters, mapMutations} from 'vuex'
 
 export default {
@@ -10,13 +9,13 @@ export default {
         async addToCartOrCompletePurchaseFlowOrViewCourse(purchaseStatus, courseId, model) {
             switch (purchaseStatus) {
                 case -1: {
-                    const [err, data] = await Vue.prototype.to(Vue.prototype.http.post(`/cart`, {
+                    const [err, data] = await this.to(this.http.post(`/cart`, {
                         sessionId: this.sessionId,
                         courseId: courseId,
                     }));
                     if (!err) {
-                        Vue.prototype.$toast.success('افزودن به سبد خرید با موفقیت انجام شد.')
-                        Vue.prototype.purchaseStatus = 2;
+                        this.$toast.success('افزودن به سبد خرید با موفقیت انجام شد.')
+                        this.purchaseStatus = 2;
                         await this.ADD_TO_CART(model);
                     }
                 }

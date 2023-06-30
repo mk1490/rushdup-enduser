@@ -6,7 +6,7 @@ import {to} from 'await-to-js'
 import '@/router/permission';
 import locale from '@/locale';
 import store from './store';
-import VueToast from 'vue-toast-notification';
+import ToastPlugin from 'vue-toast-notification';
 import VueSweetalert2 from 'vue-sweetalert2';
 import "@/assets/styles/main.scss";
 // import jQuery from 'jquery';
@@ -19,9 +19,6 @@ import axios from '@/plugins/httpRequest';
 //     cancelButtonColor: '#ff7674',
 // confirmButtonText: i18n.t('ui.submit'),
 // cancelButtonText: i18n.t('ui.cancel')
-// });
-// Vue.use(VueToast, {
-//     position: 'bottom-left'
 // });
 // Vue.prototype.to = to;
 // Vue.config.productionTip = false
@@ -50,13 +47,17 @@ import axios from '@/plugins/httpRequest';
 // }
 
 
-
 // import '@/plugins/toastMessageProvider';
 const serverAddress = process.env.VUE_APP_SERVER_ADDRESS;
+
 const app = createApp(App)
+    .use(VueSweetalert2)
     .use(vuetify)
     .use(store)
     .use(router)
+    .use(ToastPlugin, {
+        position: 'bottom-left'
+    })
     .use(locale);
 app.config.globalProperties.serverAddress = serverAddress;
 app.config.globalProperties.baseUrl = serverAddress + '/api' + '/enduser';
@@ -64,7 +65,7 @@ app.config.globalProperties.to = to;
 app.config.globalProperties.$globalVar = 'globalVar'
 app.config.globalProperties.http = axios;
 app.config.globalProperties.http.defaults.baseURL = app.config.globalProperties.baseUrl;
-
+window.Swal = app.config.globalProperties.$swal;
 
 
 app.mount('#app');
