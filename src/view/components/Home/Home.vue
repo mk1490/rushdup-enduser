@@ -473,7 +473,7 @@
                 <!--                        </div>-->
                 <!--                    </div>-->
                 <!--                </section>-->
-                <suggestions-by-category></suggestions-by-category>
+                <!--                <suggestions-by-category></suggestions-by-category>-->
                 <carousel></carousel>
 
             </div>

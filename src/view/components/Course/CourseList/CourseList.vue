@@ -70,6 +70,7 @@ export default {
             const [err, data] = await this.to(this.http.get(`/course/list?${queryParams}`));
             if (!err) {
                 window.scrollTo({top: 0, behavior: 'smooth'});
+                await this.$store.dispatch('setPageTitle', data.title);
                 this.totalCounts = data.totalCounts;
                 this.itemsPerPage = data.itemsPerPage;
                 this.items = data.items.map(f => {

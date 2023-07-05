@@ -1,6 +1,7 @@
 ﻿<template>
     <div v-if="!isHome">
-        <div class="page-title-bar-bg"></div>
+        <div class="page-title-bar-bg">
+        </div>
         <div
                 class="page-breadcrumb">
             <div class="page-breadcrumb-inner container">

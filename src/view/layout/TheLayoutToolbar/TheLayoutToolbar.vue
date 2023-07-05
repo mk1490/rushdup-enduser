@@ -1,7 +1,6 @@
 <template>
     <header id="page-header"
             :class="'page-header header-01 header-dark nav-links-hover-style-01 header-sticky-dark-logo headroom headroom--not-bottom headroom--pinned headroom--top ' + (headerIsOpen ? 'header-more-tools-opened': '')">
-        <!--            class="page-header header-01 header-dark nav-links-hover-style-01 header-sticky-dark-logo headroom headroom&#45;&#45;not-bottom headroom&#45;&#45;not-top headroom&#45;&#45;unpinned">-->
         <div class="page-header-place-holder"></div>
         <div id="page-header-inner" class="page-header-inner" data-sticky="1">
             <div class="container">
@@ -249,24 +248,25 @@ export default {
             this.headerIsOpen = !this.headerIsOpen;
         },
         mouseEnter(event, menuIndex) {
-            const menuItemElement = document.getElementById(event.target.id);
             const childMenuItem = document.getElementById(`childMenu_${menuIndex}`);
-            childMenuItem.style.display = 'block';
-            childMenuItem.classList.remove('hide-animation');
-            childMenuItem.classList.add('show-animation');
-            setTimeout(() => {
-                childMenuItem.classList.remove('show-animation');
-            }, 1000)
+            if (!!childMenuItem) {
+                childMenuItem.style.display = 'block';
+                childMenuItem.classList.remove('hide-animation');
+                childMenuItem.classList.add('show-animation');
+                setTimeout(() => {
+                    childMenuItem.classList.remove('show-animation');
+                }, 1000)
+            }
         },
         mouseLeave(event, menuIndex) {
             const childMenuItem = document.getElementById(`childMenu_${menuIndex}`);
-            childMenuItem.classList.remove('show-animation');
-            childMenuItem.classList.add('hide-animation');
-            setTimeout(() => {
-
-
-                childMenuItem.style.display = 'none';
-            }, 200)
+            if (!!childMenuItem) {
+                childMenuItem.classList.remove('show-animation');
+                childMenuItem.classList.add('hide-animation');
+                setTimeout(() => {
+                    childMenuItem.style.display = 'none';
+                }, 200)
+            }
         },
         submitFormForSearch(event) {
             event.preventDefault();
@@ -597,5 +597,9 @@ export default {
     position: relative;
     width: 24px;
     height: 20px;
+}
+
+::v-deep .button-content-wrapper {
+    color: #696969 !important;
 }
 </style>
