@@ -28,9 +28,7 @@ export default {
         // }
     },
     async created() {
-        // Vue.prototype.showLoader();
         await this.$store.commit('INITIAL_CART_ITEMS');
-        // Vue.prototype.deleteModal = this.$refs.delete;
         this.$store.subscribe(async (mutation) => {
             switch (mutation.type) {
                 case 'LOGOUT':

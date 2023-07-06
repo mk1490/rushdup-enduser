@@ -3,7 +3,7 @@ import {addCommas, digitsEnToFa, digitsFaToEn, removeCommas} from "@persian-tool
 import * as persianDate from 'persian-date';
 
 export default {
-    init: (instance)=>{
+    init: (instance) => {
         instance.appContext.config.globalProperties.getComma = (number) => {
             return addCommas(number);
         }
@@ -128,6 +128,12 @@ export default {
         }
         instance.appContext.config.globalProperties.navigateToRoute = async (target) => {
             await instance.appContext.config.globalProperties.$router.replace(target);
+        }
+        instance.appContext.config.globalProperties.showLoader = () => {
+            instance.appContext.config.globalProperties.$store.dispatch('setLoadingState', true).then();
+        }
+        instance.appContext.config.globalProperties.hideLoader = () => {
+            instance.appContext.config.globalProperties.$store.dispatch('setLoadingState', false).then();
         }
     }
 }

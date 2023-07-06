@@ -9,6 +9,7 @@ const baseData = {
         pageTitle: null,
         breadCrumb: [],
         battalionItems: [],
+        loading: false,
         // timeRangeItems: [{
         //     text: i18n.t('timeRangeItems.recent12Hour'), value: 'recent12Hour'
         // }, {
@@ -31,7 +32,8 @@ const baseData = {
         sessionId: (state) => state.sessionId,
         profileNavbarShow: (state) => state.profileNavbarShow,
         homeItems: (state) => state.homeItems,
-        pageTitle: (state) => state.pageTitle
+        pageTitle: (state) => state.pageTitle,
+        loading: (state) => state.loading,
     },
     mutations: {
         SET_MENU_ITEMS: (state, payload) => {
@@ -45,6 +47,9 @@ const baseData = {
         },
         SET_HOME_ITEMS: (state, payload) => {
             state.homeItems = payload;
+        },
+        SHOW_LOADING: (state, showLoading) => {
+            state.loading = showLoading;
         },
     }, actions: {
         initMenuItems: async (context, payload) => {
@@ -78,7 +83,10 @@ const baseData = {
         },
         pushBreadcrumb({state}, payload) {
             state.breadCrumb.push(payload);
-        }
+        },
+        setLoadingState: ({commit}, payload) => {
+            commit('SHOW_LOADING', payload);
+        },
     },
 };
 

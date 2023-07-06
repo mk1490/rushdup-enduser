@@ -6,7 +6,7 @@ import app from '@/main'
 let lastRequest;
 axios.interceptors.request.use(async (req) => {
     if (req.loader !== false) {
-        // app.appContext.config.globalProperties.showLoader();
+        app.config.globalProperties.showLoader();
     }
     // if (accessToken) {
     //     localStorage.setItem('accessToken', accessToken)
@@ -27,7 +27,7 @@ axios.interceptors.response.use(async (response) => {
     // }
     return response.data;
 }, async error => {
-    // Vue.prototype.hideLoader();
+    app.config.globalProperties.hideLoader();
     // if (lastRequest.method.toString() === 'delete') {
     // Vue.prototype.$toast.error(i18n.t('ui.deleteItemFailed'));
     // }
@@ -75,7 +75,7 @@ axios.interceptors.response.use(async (response) => {
         }
     }
     if (lastRequest.errorModal != false) {
-        getCurrentInstance().appContext.app.$swal.fire({
+        app.config.globalProperties.$swal.fire({
             title: i18n.t('ui.error'), html: message, icon: 'error'
         });
     }
