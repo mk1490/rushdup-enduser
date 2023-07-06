@@ -71,8 +71,14 @@
                 </div>
 
                 <div class="woocommerce-mini-cart__buttons buttons">
-                    <a href="/Cart" class="button wc-forward">مشاهده سبد خرید</a>
-                    <a class="button checkout wc-forward">تسویه حساب</a>
+                    <router-link to="Cart">
+                        <a class="button wc-forward">مشاهده سبد خرید</a>
+                    </router-link>
+
+                    <router-link to="Cart">
+                        <a class="button checkout wc-forward">تسویه حساب</a>
+                    </router-link>
+
                 </div>
             </div>
 
