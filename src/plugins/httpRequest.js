@@ -21,7 +21,7 @@ axios.interceptors.request.use(async (req) => {
     return req;
 });
 axios.interceptors.response.use(async (response) => {
-    // Vue.prototype.hideLoader();
+    app.config.globalProperties.hideLoader();
     // if (lastRequest.method.toString() === 'delete') {
     // Vue.prototype.$toast.success(i18n.t('ui.deleteItemSuccess'));
     // }

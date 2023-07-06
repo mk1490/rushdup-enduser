@@ -1,3 +1,5 @@
+import app from '@/main'
+
 const baseData = {
     state: {
         sessionId: null,
@@ -71,7 +73,9 @@ const baseData = {
         initializeSessionId: ({state}) => {
             let id = sessionStorage.getItem('id');
             if (!id) {
-                // id = sessionStorage.setItem('id', Vue.prototype.randomUUID())
+                id = app.config.globalProperties.randomUUID();
+                sessionStorage.setItem('id', id);
+                console.log('id', id)
             }
             state.sessionId = id;
         },

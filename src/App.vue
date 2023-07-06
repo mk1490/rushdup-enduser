@@ -19,13 +19,6 @@ export default {
 
     },
     async beforeCreate() {
-        // Generate random uuid for session.
-        await this.$store.dispatch('initializeSessionId');
-        // if (!!user) {
-        //   await this.$store.dispatch('setUserInfo', user);
-        // } else {
-
-        // }
     },
     async created() {
         await this.$store.commit('INITIAL_CART_ITEMS');
@@ -46,6 +39,7 @@ export default {
     components: {ProgressDialog, DeleteDialog},
     async mounted() {
         common.init(getCurrentInstance());
+        await this.$store.dispatch('initializeSessionId');
         // Vue.prototype.deleteModal = this.$refs.deleteDialog;
         await this.$store.commit('INITIAL_CART_ITEMS');
     },
