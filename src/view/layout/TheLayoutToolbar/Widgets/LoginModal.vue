@@ -1,37 +1,37 @@
 <template>
     <v-dialog
-
-            class="edumall-popup"
+            :model-value="visible"
+            @update:modelValue="$emit('update:visible', $event)"
             width="470">
         <v-card>
             <v-card-title class="d-flex" style="place-content: center">
-                <h3 style="margin-bottom: 8px;">ثبت نام</h3>
+                <h3 style="margin-bottom: 8px;">ورود به حساب کاربری</h3>
             </v-card-title>
             <v-card-text style="padding-left: 50px; padding-right: 50px">
                 <p class="d-block text-center">
                     هنوز حسابی نداری؟
-                    <a href="javascript:void(0)"
-                       @click="$emit('registerClick')"
-                       class="open-popup-register link-transition-02"> به صورت رایگان ثبت نام
+                    <a
+                            @click="$emit('registerClick')"
+                            class="open-popup-register link-transition-02"> به صورت رایگان ثبت نام
                         کنید</a>
                 </p>
                 <div style="margin-top: 40px">
                     <div class="popup-content-body">
                         <div class="edumall-register-form">
                             <div class="row">
-                                <div class="col-12">
+                                <div class="col-md-12">
                                     <v-text-field
                                             label="نام کاربری یا ایمیل"
                                             v-model="model.username"
                                             hide-details
-                                            outlined
+                                            dir="ltr"
                                     >
                                     </v-text-field>
                                 </div>
-                                <div class="col-12">
+                                <div class="col-md-12" style="margin-top: 20px">
                                     <password-text-field
                                             label="کلمۀ عبور"
-                                            v-model="model.password"
+                                            v-model.sync="model.password"
                                             hide-details
                                             outlined>
                                     </password-text-field>
@@ -50,7 +50,6 @@
                                     <div class="forgot-password">
                                         <a
                                                 @click="$emit('lostPasswordClick')"
-                                                href="javascript:void(0)"
                                                 class="open-popup-lost-password forgot-password-link link-transition-02">رمز
                                             عبور خود را فراموش کرده اید؟</a>
                                     </div>
