@@ -68,5 +68,5 @@ app.config.globalProperties.http = axios;
 app.config.globalProperties.http.defaults.baseURL = app.config.globalProperties.baseUrl;
 window.Swal = app.config.globalProperties.$swal;
 
-
 app.mount('#app');
+export default app;

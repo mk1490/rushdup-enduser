@@ -1,10 +1,12 @@
 <template>
     <v-dialog
-            class="edumall-popup"
+            :model-value="visible"
+            :close-on-back="true"
+            @update:model-value="$emit('update:visible', $event)"
             width="470">
         <v-card style="padding-left: 50px; padding-right: 50px">
             <v-card-title class="d-flex" style="place-content: center">
-                <h3 style="margin-bottom: 8px;">رمز عبور خود را فراموش کرده اید؟</h3>
+                <h3 class="card-title">رمز عبور خود را فراموش کرده اید؟</h3>
             </v-card-title>
             <v-card-text>
                 <p class="d-block text-center">
@@ -18,7 +20,7 @@
                     <div class="popup-content-body">
                         <div class="edumall-register-form">
                             <div class="row">
-                                <div class="col-12">
+                                <div class="col-md-12">
                                     <v-text-field
                                             dir="ltr"
                                             label="نام کاربری یا ایمیل"
@@ -89,4 +91,9 @@ export default {
 
 <style scoped>
 
+.card-title {
+    margin-top: 8px;
+    text-wrap: initial;
+    text-align: center;
+}
 </style>

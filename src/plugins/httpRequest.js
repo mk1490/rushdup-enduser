@@ -1,6 +1,8 @@
 ﻿import {getCurrentInstance, provide} from 'vue';
 import axios from "axios";
 import i18n from '@/locale'; // Internationalization
+import app from '@/main'
+
 let lastRequest;
 axios.interceptors.request.use(async (req) => {
     if (req.loader !== false) {
@@ -72,11 +74,11 @@ axios.interceptors.response.use(async (response) => {
             break;
         }
     }
-    // if (lastRequest.errorModal != false) {
-    //     Vue.swal.fire({
-    //         title: i18n.t('ui.error'), html: message, icon: 'error'
-    //     });
-    // }
+    if (lastRequest.errorModal != false) {
+        getCurrentInstance().appContext.app.$swal.fire({
+            title: i18n.t('ui.error'), html: message, icon: 'error'
+        });
+    }
 
     return Promise.reject(error);
 });

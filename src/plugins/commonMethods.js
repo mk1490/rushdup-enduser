@@ -1,6 +1,7 @@
 ﻿import {getCurrentInstance} from 'vue';
 import {addCommas, digitsEnToFa, digitsFaToEn, removeCommas} from "@persian-tools/persian-tools";
 import * as persianDate from 'persian-date';
+
 export default {
     init: (instance)=>{
         instance.appContext.config.globalProperties.getComma = (number) => {

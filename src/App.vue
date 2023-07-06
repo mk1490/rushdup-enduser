@@ -16,7 +16,7 @@ import common from '@/plugins/commonMethods';
 
 export default {
     setup() {
-        common.init(getCurrentInstance())
+
     },
     async beforeCreate() {
         // Generate random uuid for session.
@@ -27,7 +27,6 @@ export default {
 
         // }
     },
-
     async created() {
         // Vue.prototype.showLoader();
         await this.$store.commit('INITIAL_CART_ITEMS');
@@ -48,6 +47,7 @@ export default {
     name: 'App',
     components: {ProgressDialog, DeleteDialog},
     async mounted() {
+        common.init(getCurrentInstance());
         // Vue.prototype.deleteModal = this.$refs.deleteDialog;
         await this.$store.commit('INITIAL_CART_ITEMS');
     },
