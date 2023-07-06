@@ -1,5 +1,6 @@
 <template>
     <v-dialog
+
             class="edumall-popup"
             width="470">
         <v-card>

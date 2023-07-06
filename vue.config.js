@@ -1,5 +1,6 @@
 module.exports = {
-    lintOnSave: false,
+    lintOnSave: true,
+    // devServer: {},
     transpileDependencies: ['vuetify'],
     configureWebpack: {
         'resolve': {

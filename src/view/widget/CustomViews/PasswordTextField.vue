@@ -5,10 +5,9 @@
             value="value"
             v-model="model"
             hide-details
-            :label="title"
-            :type="passwordVisible? 'text':'password'"
-            :append-icon="passwordVisible? 'mdi-eye': 'mdi-eye-off'"
-            @click:append="passwordVisible = !passwordVisible"
+            :label="title + ' ' + passwordVisible"
+            :append-inner-icon="passwordVisible? 'mdi-eye': 'mdi-eye-off'"
+            @click:append-inner="passwordVisible = !passwordVisible"
     >
 
     </v-text-field>

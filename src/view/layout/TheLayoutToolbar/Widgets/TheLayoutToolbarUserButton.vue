@@ -8,8 +8,7 @@
                     class="tm-button-wrapper">
                 <a
                         @click="openLoginModal()"
-                        class="tm-button style-bottom-line-alt button-thin tm-button-sm open-popup-login"
-                        href="javascript:void(0)">
+                        class="tm-button style-bottom-line-alt button-thin tm-button-sm open-popup-login">
                     <div class="button-content-wrapper">
                         <span class="button-text">ورود</span>
 
@@ -21,8 +20,7 @@
                     class="tm-button-wrapper">
                 <a
                         @click="openRegisterModal()"
-                        class="tm-button style-flat tm-button-sm open-popup-register button-thin button-light-primary"
-                        href="javascript:void(0)">
+                        class="tm-button style-flat tm-button-sm open-popup-register button-thin button-light-primary">
                     <div class="button-content-wrapper">
                         <span class="button-text">ثبت نام</span>
                     </div>
@@ -34,7 +32,6 @@
                     class="tm-button-wrapper">
                 <a
                         class="tm-button style-bottom-line-alt tm-button-sm"
-                        href="javascript:void(0)"
                         @click="toDashboard()">
                     <div class="button-content-wrapper">
                         <span class="button-text">داشبورد</span>
@@ -53,22 +50,26 @@
                 </a>
             </div>
         </div>
-        <register-modal
-                @loginClick="openLoginModal"
-                :visible.sync="modal.register.visible">
-        </register-modal>
+
         <login-modal
+                v-if="modal.login.visible"
                 @registerClick="openRegisterModal"
                 @lostPasswordClick="openLostPasswordModal"
                 @onLoginSuccess="loginSuccess"
                 :visible.sync="modal.login.visible">
         </login-modal>
         <lost-password-modal
+                v-if="modal.lostPassword.visible"
                 @loginClick="openLoginModal"
                 @resetSended="resetSended()"
                 :visible.sync="modal.lostPassword.visible">
         </lost-password-modal>
     </div>
+    <register-modal
+            v-if="modal.register.visible"
+            :visible.sync="modal.register.visible"
+            @loginClick="openLoginModal">
+    </register-modal>
 </template>
 <script>
 import RegisterModal from "@/view/layout/TheLayoutToolbar/Widgets/RegisterModal.vue";
@@ -99,8 +100,9 @@ export default {
     },
     methods: {
         openRegisterModal() {
-            this.modal.login.visible = false;
             this.modal.register.visible = true;
+            this.modal.login.visible = false;
+            console.log(this.modal.register.visible)
         },
         openLoginModal() {
             this.modal.lostPassword.visible = false;

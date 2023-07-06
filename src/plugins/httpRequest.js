@@ -3,7 +3,6 @@ import axios from "axios";
 import i18n from '@/locale'; // Internationalization
 let lastRequest;
 axios.interceptors.request.use(async (req) => {
-    console.log("SALAMMMMMMMMMMMMMMMM 1")
     if (req.loader !== false) {
         // app.appContext.config.globalProperties.showLoader();
     }
