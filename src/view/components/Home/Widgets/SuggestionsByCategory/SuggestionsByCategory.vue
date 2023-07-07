@@ -38,9 +38,9 @@
                                                         </div>
                                                         <div class="category-info">
                                                             <h6 class="category-name">{{ gridButtonItem.title }}</h6>
-<!--                                                            <div class="category-description">-->
-<!--                                                                خلق هنر بکر-->
-<!--                                                            </div>-->
+                                                            <!--                                                            <div class="category-description">-->
+                                                            <!--                                                                خلق هنر بکر-->
+                                                            <!--                                                            </div>-->
                                                         </div>
                                                     </a>
                                                 </div>
@@ -52,6 +52,9 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div v-if="item.type == 2">
+
             </div>
         </template>
     </section>
@@ -66,7 +69,6 @@ export default {
         ...mapGetters(['homeItems']),
     },
     created() {
-        console.log(this.homeItems)
     },
 }
 </script>

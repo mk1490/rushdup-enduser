@@ -13,7 +13,7 @@
 
                                         <div class="heading-primary-wrap">
                                             <h3 class="heading-primary elementor-heading-title">
-                                                دوره های ویژه را مشاهده کنید
+                                                {{ title }}
                                             </h3>
                                         </div>
                                     </div>
@@ -26,7 +26,7 @@
                                     <div class="edumall-tabpanel edumall-tabpanel-horizontal course-tabs-style-01">
                                         <ul class="edumall-nav-tabs">
                                             <li role="tab" class="active">
-                                                <a href="javascript:void(0);">
+                                                <a>
                                                     <span class="nav-tab-title">همه</span>
                                                 </a>
                                             </li>
@@ -50,7 +50,7 @@
                                                             @navigation-prev="nextNavigation"
                                                     >
                                                         <swiper-slide v-for="item in items">
-                                                            <swiper-slide-course-item>
+                                                            <swiper-slide-course-item :item="item">
                                                             </swiper-slide-course-item>
                                                         </swiper-slide>
                                                     </swiper>
@@ -76,18 +76,17 @@ import SwiperSlideCourseItem from "@/view/components/Home/Widgets/Carousel/Swipe
 import {Navigation} from "swiper/modules";
 
 export default {
-    name: "Carousel",
+    name: "SwiperView",
     components: {
         SwiperSlideCourseItem,
         Swiper,
         SwiperSlide,
     },
+    props: {
+        title: String,
+        items: Array,
+    },
     setup() {
-        const items = [];
-        for (let i = 0; i < 10; i++) {
-            items.push({})
-        }
-
         const onSwiper = (swiper) => {
             console.log(swiper);
         };
@@ -101,7 +100,6 @@ export default {
             onSwiper,
             onSlideChange,
             nextNavigation,
-            items,
             modules: [Navigation]
 
         };

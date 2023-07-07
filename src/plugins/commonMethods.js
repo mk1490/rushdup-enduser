@@ -1,6 +1,7 @@
 ﻿import {getCurrentInstance} from 'vue';
 import {addCommas, digitsEnToFa, digitsFaToEn, removeCommas} from "@persian-tools/persian-tools";
 import * as persianDate from 'persian-date';
+import i18n from "@/locale";
 
 export default {
     init: (instance) => {
@@ -52,6 +53,14 @@ export default {
             } else {
                 return total;
             }
+        }
+        instance.appContext.config.globalProperties.convertToIRR = (data) => {
+            if (!!data) {
+                return instance.appContext.config.globalProperties.convertAmount(data) + ' ' + 'ریال'
+            } else {
+                return 'رایگان'
+            }
+
         }
 
 

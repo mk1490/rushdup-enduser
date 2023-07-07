@@ -105,18 +105,23 @@
                                                         @mouseenter="mouseEnter($event, menuIndex)"
                                                         @mouseleave="mouseLeave($event, menuIndex)"
                                                         :class="`menu-item menu-item-type-custom menu-item-object-custom menu-item level-1 ${menuItem.childrenItems.length > 0 ? 'menu-item-has-children' : ''}` ">
-                                                    <a :href="menuItem.targetExtra"
-                                                       onclick="return true"
-                                                       class="has-submenu" aria-expanded="true">
-                                                        <div class="menu-item-wrap">
-                                                            <span class="menu-item-title">{{ menuItem.title }}</span>
-                                                            <span
-                                                                    v-if="menuItem.childrenItems.length > 0"
-                                                                    class="toggle-sub-menu">
+
+                                                    <router-link :to="'/'">
+                                                        <a
+                                                                onclick="return true"
+                                                                class="has-submenu" aria-expanded="true">
+                                                            <div class="menu-item-wrap">
+                                                                <span class="menu-item-title">{{
+                                                                    menuItem.title
+                                                                    }}</span>
+                                                                <span
+                                                                        v-if="menuItem.childrenItems.length > 0"
+                                                                        class="toggle-sub-menu">
                                                         </span>
-                                                        </div>
-                                                        <span class="sub-arrow"></span>
-                                                    </a>
+                                                            </div>
+                                                            <span class="sub-arrow"></span>
+                                                        </a>
+                                                    </router-link>
                                                     <ul
                                                             v-if="menuItem.childrenItems.length > 0"
                                                             v-for="(childItem,childIndex) in menuItem.childrenItems"
@@ -125,14 +130,16 @@
                                                             style="width: auto; top: auto; z-index: 10001; min-width: 10em; max-width: 20em;">
                                                         <li
                                                                 class="menu-item menu-item-type-custom menu-item-object-custom menu-item-236">
-                                                            <a :href="childItem.targetExtra"
-                                                               onclick="return true">
-                                                                <div class="menu-item-wrap"><span
-                                                                        class="menu-item-title">{{
-                                                                    childItem.title
-                                                                    }}</span>
-                                                                </div>
-                                                            </a>
+                                                            <router-link to="/">
+                                                                <a
+                                                                        onclick="return true">
+                                                                    <div class="menu-item-wrap"><span
+                                                                            class="menu-item-title">{{
+                                                                        childItem.title
+                                                                        }}</span>
+                                                                    </div>
+                                                                </a>
+                                                            </router-link>
                                                         </li>
                                                     </ul>
                                                 </li>

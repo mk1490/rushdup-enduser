@@ -73,9 +73,10 @@ const baseData = {
         initializeSessionId: ({state}) => {
             let id = sessionStorage.getItem('id');
             if (!id) {
-                id = app.config.globalProperties.randomUUID();
+                if (!!app) {
+                    id = app.config.globalProperties.randomUUID();
+                }
                 sessionStorage.setItem('id', id);
-                console.log('id', id)
             }
             state.sessionId = id;
         },

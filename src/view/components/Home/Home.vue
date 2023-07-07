@@ -474,7 +474,18 @@
                 <!--                    </div>-->
                 <!--                </section>-->
                 <!--                <suggestions-by-category></suggestions-by-category>-->
-                <carousel></carousel>
+
+
+                <template v-for="item in homeItems">
+                    <swiper-view
+                            v-if="item.type == 2"
+                            :title="item.title"
+                            :items="item.items"
+                    >
+                    </swiper-view>
+
+                </template>
+
 
             </div>
         </div>
@@ -485,11 +496,12 @@
 import Landing from "@/view/components/Home/Landing.vue";
 import {mapGetters} from "vuex";
 import SuggestionsByCategory from "@/view/components/Home/Widgets/SuggestionsByCategory/SuggestionsByCategory.vue";
-import Carousel from "@/view/components/Home/Widgets/Carousel/Carousel.vue";
+import Carousel from "@/view/components/Home/Widgets/Carousel/SwiperView.vue";
+import SwiperView from "@/view/components/Home/Widgets/Carousel/SwiperView.vue";
 
 export default {
     name: "Home",
-    components: {Carousel, SuggestionsByCategory, Landing,},
+    components: {SwiperView, Carousel, SuggestionsByCategory, Landing,},
     async created() {
         try {
             console.log(this.serverAddress)
@@ -1490,16 +1502,6 @@ body.rtl .elementor-437 .elementor-element.elementor-element-c3a0611 {
 
 .elementor-437 .elementor-element.elementor-element-eaa82c8 .tm-button:hover .button-content-wrapper .stop-b {
     stop-color: #FFFFFF;
-}
-
-.elementor-437 .elementor-element.elementor-element-b6a4943 .swiper-nav-buttons {
-    justify-content: space-between;
-    align-items: center;
-}
-
-.elementor-437 .elementor-element.elementor-element-b6a4943 .swiper-pagination-wrap {
-    justify-content: center;
-    align-items: flex-end;
 }
 
 .elementor-437 .elementor-element.elementor-element-268e99d > .elementor-container > .elementor-row {
