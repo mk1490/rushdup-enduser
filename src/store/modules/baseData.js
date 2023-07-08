@@ -36,6 +36,7 @@ const baseData = {
         profileNavbarShow: (state) => state.profileNavbarShow,
         homeItems: (state) => state.homeItems,
         pageTitle: (state) => state.pageTitle,
+        pageTitleType: (state) => state.pageTitleType || 1,
         loading: (state) => state.loading,
     },
     mutations: {
@@ -82,6 +83,9 @@ const baseData = {
         },
         setPageTitle({state}, pageTitle) {
             state.pageTitle = pageTitle;
+        },
+        pageTitleType({state}, pageTitleType) {
+            state.pageTitleType = pageTitleType;
         },
         clearBreadcrumb({state}, payload) {
             state.breadCrumb = []

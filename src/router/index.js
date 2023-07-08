@@ -131,7 +131,10 @@ export const constantRoutes = [
                 path: '/teacher-request',
                 name: 'teacher-request',
                 component: () => import('@/view/components/Teacher/TeacherRequestForm.vue'),
-                meta: {},
+                meta: {
+                    pageTitle: 'فرم درخواست تدریس',
+                    pageTitleType: 1,
+                },
                 children: []
             },
             {

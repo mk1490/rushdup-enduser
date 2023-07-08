@@ -44,8 +44,14 @@ const user = {
         }, LOGOUT: () => {
         }, REMOVE_PHOTO: (state) => {
             state.avatar = '';
-        }, LOGIN_STATE: (state, payload) => {
+        },
+        LOGIN_STATE: (state, payload) => {
             state.isLogin = payload;
+        },
+        PROFILE_STATE: (state, payload) => {
+            state.name = payload.name;
+            state.family = payload.family;
+            state.avatar = payload.avatar;
         },
         ADD_TO_CART: (state, payload) => {
             let items = localStorage.getItem('cart');
@@ -114,9 +120,14 @@ const user = {
             await commit('REMOVE_PHOTO');
         }, isAuth: async () => {
             return !!localStorage.getItem('Authorization');
-        }, setLoginState: async ({commit}, payload) => {
+        },
+        setLoginState: async ({commit}, payload) => {
             await commit('LOGIN_STATE', payload);
-        }, addToCartLocally: async ({commit}, payload) => {
+        },
+        setProfileInformation: async ({commit}, payload) => {
+            await commit('PROFILE_STATE', payload);
+        },
+        addToCartLocally: async ({commit}, payload) => {
             await commit('ADD_TO_CART', payload);
         },
         removeCartItem: async ({commit}, index) => {
