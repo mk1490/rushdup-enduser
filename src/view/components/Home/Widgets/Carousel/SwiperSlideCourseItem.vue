@@ -5,8 +5,9 @@
             <div class="course-thumbnail edumall-image">
                 <router-link :to="'/cd/'+item['slug']">
                     <a>
+
+                        <!--                        todo-->
                         <img
-                                src="https://dana-team.com/products/edumall/wp-content/uploads/2020/11/zoom-meeting-thumbnail-06-1-480x304.jpg"
                                 alt="zoom-meeting-thumbnail-06"
                                 width="480"></a>
                 </router-link>
