@@ -51,8 +51,11 @@
                         class="col-md-4 col-lg-4 col-sm-12 mt-sm-5">
                     <div
                             class="course-loop-wrapper edumall-box edumall-tooltip">
-                        <div class="tutor-course-header">
-                            <div class="course-thumbnail edumall-image">
+                        <div
+                                v-if="!!item.cover"
+                                class="tutor-course-header">
+                            <div
+                                    class="course-thumbnail edumall-image">
                                 <router-link :to="`/cd/${item.slug}`">
                                     <a>
                                         <v-img
@@ -191,18 +194,18 @@
             <!--      List view     -->
             <div
                     v-if="viewSelectionType == 2"
-                    class="row">
+                    class="row" style="width: 100%">
                 <div
-                        class="col-12">
+                        class="col-md-12">
                     <v-list>
                         <v-list-item v-for="item in items">
                             <v-card
                                     :to="`/cd/${item.slug}`"
-                                    flat
+                                    flat="true"
                                     style="width: 100%">
                                 <v-card-text style="padding: 0px">
                                     <div class="d-inline-flex">
-                                        <div>
+                                        <div v-if="!!item.cover">
                                             <v-img
                                                     style="border-radius: 8px"
                                                     :aspect-ratio="1.58/1"
@@ -388,7 +391,7 @@ export default {
     data() {
         return {
             purchaseStatus: -1,
-            viewSelectionType: 1,
+            viewSelectionType: 2,
             tooltipYPosition: 0,
             tooltipXPosition: 0,
         }
