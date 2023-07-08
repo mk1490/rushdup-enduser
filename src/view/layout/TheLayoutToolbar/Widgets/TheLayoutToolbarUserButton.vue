@@ -19,7 +19,7 @@
                     v-if="!isLogin"
                     class="tm-button-wrapper">
                 <a
-                        @click="openRegisterModal()"
+                        @click="openRegisterModal"
                         class="tm-button style-flat tm-button-sm open-popup-register button-thin button-light-primary">
                     <div class="button-content-wrapper">
                         <span class="button-text">ثبت نام</span>
@@ -42,6 +42,7 @@
                     v-if="isLogin"
                     class="tm-button-wrapper">
                 <a
+                        @click="logout"
                         class="tm-button style-flat tm-button-sm button-thin button-secondary-white">
                     <div class="button-content-wrapper">
                         <span class="button-text">خروج</span>
@@ -105,7 +106,6 @@ export default {
         openRegisterModal() {
             this.modal.register.visible = true;
             this.modal.login.visible = false;
-            console.log(this.modal.register.visible)
         },
         openLoginModal() {
             this.modal.lostPassword.visible = false;
@@ -118,6 +118,7 @@ export default {
         },
         loginSuccess() {
             this.modal.login = false;
+            this.$store.dispatch('setLoginState', true);
         },
         resetSended() {
             this.modal.lostPassword.visible = false;
@@ -126,6 +127,10 @@ export default {
             this.$router.push({
                 name: 'dashboard'
             })
+        },
+        logout() {
+            localStorage.removeItem('Authorization');
+            this.$store.dispatch('setLoginState', false);
         }
     }
 }

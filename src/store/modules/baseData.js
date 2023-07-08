@@ -1,4 +1,5 @@
 import app from '@/main'
+import {v4 as uuidv4} from "uuid";
 
 const baseData = {
     state: {
@@ -72,10 +73,9 @@ const baseData = {
         },
         initializeSessionId: ({state}) => {
             let id = sessionStorage.getItem('id');
+            console.log('id', id, !id)
             if (!id) {
-                if (!!app) {
-                    id = app.config.globalProperties.randomUUID();
-                }
+                id = uuidv4();
                 sessionStorage.setItem('id', id);
             }
             state.sessionId = id;

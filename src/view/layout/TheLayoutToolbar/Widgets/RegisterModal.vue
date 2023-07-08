@@ -48,7 +48,7 @@
                     </div>
                     <div class="col-md-6">
                         <password-text-field
-                                type="password"
+                                name="password"
                                 v-model="model.password"
                                 label="رمز عبور">
 
@@ -56,9 +56,9 @@
                     </div>
                     <div class="col-md-6">
                         <password-text-field
+                                name="submitPassword"
                                 label="رمز عبور را دوباره وارد کنید"
-                                v-model="model.submitPassword"
-                                type="password">
+                                v-model="model.submitPassword">
                         </password-text-field>
                     </div>
                 </div>
@@ -137,7 +137,11 @@ export default {
                 submitPassword: this.model.submitPassword
             }));
             if (!err) {
-                
+
+                this.$swal.fire({
+                    icon: 'success',
+                    text: 'لینک لینک فعال‌سازی به نشانی پست الکترونیک ' + this.model.emailAddress + ' ' + 'ارسال گردید.'
+                })
             } else {
                 this.hasError = true;
             }
