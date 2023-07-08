@@ -1,6 +1,6 @@
 <template>
     <v-dialog
-            @click:outside="$emit('close')"
+            @click:outside="clickOutside"
             :model-value="visible"
             @update:modelValue="updateModelValue"
             :width="670">
@@ -113,6 +113,7 @@ export default {
     },
     data() {
         return {
+            hasError: false,
             tempVisible: true,
             model: {
                 name: null,
@@ -126,6 +127,7 @@ export default {
     },
     methods: {
         async register() {
+            this.hasError = false;
             const [err, data] = await this.to(this.http.post(`/user/register`, {
                 name: this.model.name,
                 family: this.model.family,
@@ -135,11 +137,18 @@ export default {
                 submitPassword: this.model.submitPassword
             }));
             if (!err) {
-
+                
+            } else {
+                this.hasError = true;
             }
         },
         updateModelValue(event) {
             this.$emit('update:visible', event)
+        },
+        clickOutside() {
+            if (!!this.hasError)
+                return;
+            this.$emit('close')
         }
     },
     watch: {

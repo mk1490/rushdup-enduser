@@ -1,6 +1,6 @@
 <template>
     <v-dialog
-            @click:outside="$emit('close')"
+            @click:outside="onClickOutside"
             :model-value="visible"
             :close-on-back="true"
             @update:model-value="$emit('update:visible', $event)"
@@ -60,6 +60,7 @@ export default {
     },
     data() {
         return {
+            hasError: false,
             model: {
                 username: null,
             }
@@ -74,7 +75,8 @@ export default {
     },
     methods: {
         async sendDataToServer() {
-            const [err, data] = await this.to(thisF.http.post(`/user/lostPassword`, {
+            this.hasError = false;
+            const [err, data] = await this.to(this.http.post(`/user/lostPassword`, {
                 usernameOrEmail: this.model.username
             }));
             if (!err) {
@@ -84,7 +86,15 @@ export default {
                 }).then(res => {
                     this.$emit('resetSended')
                 })
+            } else {
+                this.hasError = true;
             }
+        },
+        onClickOutside() {
+            if (!this.hasError) {
+                this.$emit('close')
+            }
+
         }
     }
 }

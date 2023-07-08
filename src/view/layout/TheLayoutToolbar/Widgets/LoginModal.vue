@@ -1,6 +1,6 @@
 <template>
     <v-dialog
-            @click:outside="$emit('close')"
+            @click:outside="clickOutside"
             :model-value="visible"
             @update:modelValue="$emit('update:visible', $event)"
             width="470">
@@ -84,6 +84,7 @@ export default {
     },
     data() {
         return {
+            hasError: false,
             model: {
                 username: null,
                 password: null,
@@ -100,6 +101,7 @@ export default {
     },
     methods: {
         async login() {
+            this.hasError = false;
             const [err, data] = await this.to(this.http.post(`${this.serverAddress}/api/auth/login`, {
                 username: this.model.username,
                 password: this.model.password,
@@ -109,8 +111,13 @@ export default {
                 localStorage.setItem('Authorization', data.access_token)
                 this.$emit('onLoginSuccess')
             } else {
-                console.log("Has error")
+                this.hasError = true;
             }
+        },
+        clickOutside() {
+            if (!!this.hasError)
+                return;
+            this.$emit('close')
         }
     }
 }

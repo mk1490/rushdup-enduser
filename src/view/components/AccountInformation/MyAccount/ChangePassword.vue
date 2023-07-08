@@ -1,7 +1,8 @@
 <template>
     <v-container
-            fluid class="container--fluid fill-height">
-        <v-layout align-center justify-center>
+            fluid="true"
+            class="container--fluid fill-height">
+        <v-layout class="align-center justify-center">
             <div class="d-inline-block justify-center">
                 <h2 class="d-flex white--text justify-center">بازنشانی کلمۀ عبور</h2>
                 <div class="d-flex justify-center mt-8">
@@ -22,21 +23,23 @@
                                     ref="form"
                                     lazy-validation>
                                 <div class="row">
-                                    <div class="col-12">
+                                    <div class="v-col-12">
                                         <v-text-field
                                                 class="text-center"
                                                 dense
                                                 maxlength="50"
                                                 outlined
+                                                dir="ltr"
                                                 hide-details="auto"
                                                 v-model="model.password"
                                                 label="کلمۀ عبور جدید"
                                         />
                                     </div>
-                                    <div class="col-12">
+                                    <div class="v-col-12">
                                         <v-text-field
                                                 class="text-center"
                                                 dense
+                                                dir="ltr"
                                                 maxlength="50"
                                                 outlined
                                                 hide-details="auto"
