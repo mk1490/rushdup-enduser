@@ -40,6 +40,7 @@ export default {
         this.items.push({title: 'پیشخوان', icon: 'index', to: '/dashboard'});
         this.items.push({title: 'پروفایل من', icon: 'my-profile', to: '/myProfile'});
         this.items.push({title: 'دوره‌های ثبت‌نام شده', icon: 'enrolled-courses', to: '/enrolledCourses'});
+        this.items.push({title: 'تیکت پشتیبانی', icon: 'ticket', to: '/supportTicket'});
         this.items.push({title: 'تنظیمات', icon: 'settings', to: '/settings'});
         this.checkActiveRoute();
     },

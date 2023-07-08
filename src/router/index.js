@@ -176,6 +176,12 @@ export const constantRoutes = [
                 meta: {},
             },
             {
+                path: '/supportTicket',
+                name: 'supportTicket',
+                component: () => import('@/view/components/Profile/Tickets/SupportTicket.vue'),
+                meta: {},
+            },
+            {
                 path: '/MyAccountInformation',
                 name: 'MyAccountInformation',
                 component: () => import('@/view/components/Profile/MyAccountInformation.vue'),
