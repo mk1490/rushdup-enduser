@@ -48,20 +48,20 @@ export const constantRoutes = [
                 meta: {},
             },
             {
-                path: 'MyAccount',
+                path: '/MyAccount',
                 name: 'MyAccount',
                 component: () => import('@/view/components/AccountInformation/MyAccount/MyAccount.vue'),
                 meta: {},
             },
             {
-                path: 'AccountInformation',
+                path: '/AccountInformation',
                 name: 'AccountInformation',
                 component: () => import('@/view/components/AccountInformation/AccountInformation.vue'),
                 meta: {
                     title: 'route.myCourses', icon: 'mdi-book-education'
                 },
             }, {
-                path: 'course-details/:slugOrId',
+                path: '/course-details/:slugOrId',
                 name: 'CourseDetails',
                 component: () => import('@/view/components/Course/CourseDetails/CourseDetails.vue'),
                 meta: {
@@ -69,14 +69,14 @@ export const constantRoutes = [
                 },
             },
             {
-                path: 'course-details/:slugOrId/:courseGroupId',
+                path: '/course-details/:slugOrId/:courseGroupId',
                 name: 'CourseEpisode',
                 component: () => import('@/view/components/Course/CourseDetails/CourseEpisode/CourseEpisode.vue'),
                 hidden: true,
                 meta: {},
             },
             {
-                path: 'CourseDetailsVideo/:id',
+                path: '/CourseDetailsVideo/:id',
                 name: 'CourseDetailsVideo',
                 component: () => import('@/view/components/Course/CourseDetails/CourseDetailsVideo.vue'),
                 meta: {

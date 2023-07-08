@@ -18,6 +18,7 @@ export default {
     },
     ui: {
         changeFile: 'تغییر فایل',
+        submitRequest: 'ثبت درخواست',
         removeFile: 'حذف فایل',
         IRR: 'ریال',
         row: 'ردیف',

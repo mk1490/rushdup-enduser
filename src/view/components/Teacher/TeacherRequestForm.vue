@@ -58,8 +58,8 @@
                 <v-card-actions>
                     <v-spacer/>
                     <v-btn
-                            @click="submit"
-                            color="primary">
+                            flat="false"
+                            @click="submit">
                         {{ $t('ui.submitRequest') }}
                     </v-btn>
                 </v-card-actions>

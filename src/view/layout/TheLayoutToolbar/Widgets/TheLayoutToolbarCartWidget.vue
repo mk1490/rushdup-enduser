@@ -1,11 +1,13 @@
 ﻿<template>
 
     <div id="mini-cart" class="mini-cart style-normal">
-        <a href="/Cart"
-           class="mini-cart__button header-icon"
-           title="سبد خرید خود را مشاهده کنید" style="opacity: 1;">
-            <span class="mini-cart-icon" :data-count="cartExistItems.length"></span>
-        </a>
+        <router-link to="/Cart">
+            <a
+                    class="mini-cart__button header-icon"
+                    title="سبد خرید خود را مشاهده کنید" style="opacity: 1;">
+                <span class="mini-cart-icon" :data-count="cartExistItems.length"></span>
+            </a>
+        </router-link>
         <div class="widget_shopping_cart_content" style="opacity: 1;">
             <div
                     v-if="cartExistItems.length === 0"

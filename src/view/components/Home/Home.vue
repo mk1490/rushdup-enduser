@@ -476,6 +476,10 @@
                 <!--                <suggestions-by-category></suggestions-by-category>-->
 
 
+
+
+
+
                 <template v-for="item in homeItems">
                     <swiper-view
                             v-if="item.type == 2"

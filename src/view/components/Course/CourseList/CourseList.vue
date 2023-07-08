@@ -56,13 +56,13 @@ export default {
         },
         async fetchData(event) {
             const slug = this.$route.params.categorySlug;
+            if (!slug) return;
             const queryParams = new URLSearchParams();
             this.selectedCategories.map((f) => {
                 queryParams.append('categoryIdOrIds', f.id);
             });
             queryParams.append('offset', (this.selectedPage - 1) * this.itemsPerPage);
             queryParams.append('viewType', event);
-            console.log(slug)
             if (!!slug) {
                 queryParams.append('categorySlug', slug);
             }
@@ -93,6 +93,13 @@ export default {
         },
         pagesLengthCalculate() {
             return Math.ceil(this.totalCounts / this.itemsPerPage);
+        }
+    },
+    watch: {
+        '$route.params.categorySlug': {
+            async handler() {
+                await this.fetchData();
+            }
         }
     }
 }

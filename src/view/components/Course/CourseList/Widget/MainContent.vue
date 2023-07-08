@@ -53,11 +53,13 @@
                             class="course-loop-wrapper edumall-box edumall-tooltip">
                         <div class="tutor-course-header">
                             <div class="course-thumbnail edumall-image">
-                                <a :href="`/cd/${item.slug}`">
-                                    <v-img
-                                            :aspect-ratio="30/19"
-                                            :src="item.cover"/>
-                                </a>
+                                <router-link :to="`/cd/${item.slug}`">
+                                    <a>
+                                        <v-img
+                                                :aspect-ratio="30/19"
+                                                :src="item.cover"/>
+                                    </a>
+                                </router-link>
                             </div>
                             <div class="course-loop-badges">
                                 <div class="tutor-course-badge hot">ویژه</div>

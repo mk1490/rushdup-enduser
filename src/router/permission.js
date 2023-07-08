@@ -14,7 +14,9 @@ router.beforeEach(async (toRoute, from, next) => {
     if (isAuthenticated) {
         next();
     } else {
-        app.config.globalProperties.$store.dispatch('setPageTitle', toRoute.meta.pageTitle);
+        const pageTitle = toRoute.meta.pageTitle;
+        console.log('title', pageTitle)
+        app.config.globalProperties.$store.dispatch('setPageTitle', pageTitle);
         app.config.globalProperties.$store.dispatch('setPageTitleType', toRoute.meta.pageTitleType);
         next();
     }

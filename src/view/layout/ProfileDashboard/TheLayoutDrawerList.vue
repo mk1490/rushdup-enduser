@@ -7,11 +7,13 @@
                 </div>
                 <div class="branding">
                     <div class="branding-logo-wrap">
-                        <a>
-                            <img
-                                    src="../../../assets/logo.png"
-                                    class="branding-logo dark-logo">
-                        </a>
+                        <router-link to="/">
+                            <a>
+                                <img
+                                        src="../../../assets/logo.png"
+                                        class="branding-logo dark-logo">
+                            </a>
+                        </router-link>
                     </div>
                 </div>
             </div>
