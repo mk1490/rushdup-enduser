@@ -1,7 +1,8 @@
 ﻿import {getCurrentInstance, provide} from 'vue';
 import axios from "axios";
-import i18n from '@/locale'; // Internationalization
 import app from '@/main'
+import i18n from "@/locale";
+
 
 let lastRequest;
 axios.interceptors.request.use(async (req) => {
@@ -54,7 +55,7 @@ axios.interceptors.response.use(async (response) => {
             break;
         }
         case 500: {
-            message = i18n.t('errors.serverError');
+            message = i18n.global.t('errors.serverError');
             break;
         }
 
@@ -68,18 +69,22 @@ axios.interceptors.response.use(async (response) => {
             }
             if (lastRequest.errorModal !== undefined && lastRequest.errorModal !== false) {
                 Vue.swal.fire({
-                    title: i18n.t('ui.error'), html: message, icon: 'error'
+                    title: i18n.global.t('ui.error'), html: message, icon: 'error'
                 });
             }
             break;
         }
     }
+
     if (lastRequest.errorModal != false) {
         app.config.globalProperties.$swal.fire({
-            title: i18n.t('ui.error'), html: message, icon: 'error'
+            title: i18n.global.t('ui.error'), html: message, icon: 'error'
+        }).then(res => {
+            
+        }).catch(e => {
+
         });
     }
-
     return Promise.reject(error);
 });
 export default axios;

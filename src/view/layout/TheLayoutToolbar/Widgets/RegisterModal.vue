@@ -1,5 +1,6 @@
 <template>
     <v-dialog
+            @click:outside="$emit('close')"
             :model-value="visible"
             @update:modelValue="updateModelValue"
             :width="670">
@@ -76,11 +77,23 @@
                 <div class="form-response-messages"></div>
 
                 <div class="form-group">
-                    <button
-                            @click="register"
-                            type="button" class="button form-submit v-btn--block">
-                        ثبت نام
-                    </button>
+                    <div class="d-block">
+                        <button
+                                @click="register"
+                                type="button" class="button form-submit v-btn--block">
+                            ثبت نام
+                        </button>
+
+                        <v-btn
+                                class="mt-2"
+                                @click="$emit('close')"
+                                :block="true"
+                                :text="true"
+                                :flat="true">
+                            بستن
+                        </v-btn>
+                    </div>
+
                 </div>
             </v-card-text>
         </v-card>
@@ -93,7 +106,7 @@ import PasswordTextField from "@/view/widget/CustomViews/PasswordTextField.vue";
 
 export default {
     name: "RegisterModal",
-    emits: ['loginClick', 'visible'],
+    emits: ['loginClick', 'visible', 'close'],
     components: {PasswordTextField, TextField},
     props: {
         visible: Boolean,

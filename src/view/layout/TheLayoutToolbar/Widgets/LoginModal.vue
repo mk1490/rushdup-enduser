@@ -1,5 +1,6 @@
 <template>
     <v-dialog
+            @click:outside="$emit('close')"
             :model-value="visible"
             @update:modelValue="$emit('update:visible', $event)"
             width="470">
@@ -77,7 +78,7 @@ import PasswordTextField from "@/view/widget/CustomViews/PasswordTextField.vue";
 
 export default {
     name: "LoginModal",
-    emits: ['registerClick', 'lostPasswordClick', 'onLoginSuccess'],
+    emits: ['registerClick', 'lostPasswordClick', 'onLoginSuccess', 'close'],
     props: {
         visible: Boolean
     },
@@ -107,6 +108,8 @@ export default {
             if (!err) {
                 localStorage.setItem('Authorization', data.access_token)
                 this.$emit('onLoginSuccess')
+            } else {
+                console.log("Has error")
             }
         }
     }

@@ -56,18 +56,21 @@
                 @registerClick="openRegisterModal"
                 @lostPasswordClick="openLostPasswordModal"
                 @onLoginSuccess="loginSuccess"
+                @close="modal.login.visible =false"
                 :visible.sync="modal.login.visible">
         </login-modal>
         <lost-password-modal
                 v-if="modal.lostPassword.visible"
                 @loginClick="openLoginModal"
                 @resetSended="resetSended()"
+                @close="modal.lostPassword.visible =false"
                 :visible.sync="modal.lostPassword.visible">
         </lost-password-modal>
     </div>
     <register-modal
             v-if="modal.register.visible"
             :visible.sync="modal.register.visible"
+            @close="modal.register.visible =false"
             @loginClick="openLoginModal">
     </register-modal>
 </template>
