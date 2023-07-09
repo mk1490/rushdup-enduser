@@ -1,8 +1,12 @@
 ﻿<template>
-    <div id="tutor-dashboard-left-menu" class="tutor-dashboard-left-menu">
-        <div id="dashboard-nav-wrapper" class="dashboard-nav-wrapper">
+    <div class="tutor-dashboard-left-menu">
+        <div
+                @click:outside="closeNavbar"
+                class="dashboard-nav-wrapper">
             <div class="dashboard-nav-header">
-                <div class="dashboard-header-toggle-menu dashboard-header-close-menu">
+                <div
+                        @click="closeNavbar"
+                        class="dashboard-header-toggle-menu dashboard-header-close-menu">
                     <span class="fal fa-times"></span>
                 </div>
                 <div class="branding">
@@ -38,6 +42,7 @@
 <script>
 export default {
     name: "TheLayoutDrawerList",
+    emits: ['closeNavbar'],
     created() {
         this.items.push({title: 'پیشخوان', icon: 'index', to: '/dashboard'});
         this.items.push({title: 'پروفایل من', icon: 'my-profile', to: '/myProfile'});
@@ -65,6 +70,9 @@ export default {
                 }
                 return f;
             });
+        },
+        closeNavbar() {
+            this.$emit('closeNavbar')
         }
 
     },

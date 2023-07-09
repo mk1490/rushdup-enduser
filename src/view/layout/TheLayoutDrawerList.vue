@@ -5,7 +5,6 @@
           solo
           light
           hide-details
-          clearable
           append-icon="mdi-magnify"
           :placeholder="$t('ui.searchCourse')">
       </v-text-field>
@@ -43,6 +42,7 @@ import {mapGetters} from "vuex";
 
 export default {
   name: 'TheLayoutDrawerList',
+    emits:[''],
   props: {
     dense: Boolean,
     iconShow: Boolean,

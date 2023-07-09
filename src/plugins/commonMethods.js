@@ -144,6 +144,14 @@ export default {
         instance.appContext.config.globalProperties.hideLoader = () => {
             instance.appContext.config.globalProperties.$store.dispatch('setLoadingState', false).then();
         }
+        instance.appContext.config.globalProperties.isMobile = () => {
+            const width = window.innerWidth;
+            console.log(width)
+            if (width < 768) {
+                return true;
+            }
+            return false;
+        }
     }
 }
 

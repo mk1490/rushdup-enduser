@@ -1,7 +1,7 @@
 <template>
   <!--  <div class="rtl page-template-default page woocommerce-js desktop desktop-menu">-->
     <div
-            id="main-layout-wrapper"
+            ref="mainWrapper"
             class="bp-nouveau rtl courses-template-default single single-courses postid-1990 wp-embed-responsive theme-edumall tutor-lms woocommerce-no-js desktop edumall-light-scheme mobile-menu-push-to-right woocommerce header-sticky-both wide page-has-sidebar title-bar-04 single-course-01 elementor-default elementor-kit-2492 no-js">
         <div class="content-wrapper">
             <the-layout-toolbar/>
@@ -63,11 +63,9 @@ export default {
     },
     methods: {
         prepareMenuOrDesktopMenuStyle() {
-
-            const isMobile = ((window.innerWidth <= 800) && (window.innerHeight <= 600));
-            const mainLayoutWrapper = document.getElementById('main-layout-wrapper');
-
-            if (isMobile) {
+            const mainLayoutWrapper = this.$refs.mainWrapper;
+            console.log(mainLayoutWrapper.classList)
+            if (this.isMobile()) {
                 mainLayoutWrapper.classList.remove('desktop-menu')
                 mainLayoutWrapper.classList.remove('dashboard-nav-fixed')
                 mainLayoutWrapper.classList.add('mobile-menu')
