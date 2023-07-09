@@ -1,11 +1,12 @@
 ﻿<template>
 
     <div id="mini-cart" class="mini-cart style-normal">
-        <router-link to="/Cart">
+        <router-link :to="{name: 'Cart'}">
             <a
                     class="mini-cart__button header-icon"
                     title="سبد خرید خود را مشاهده کنید" style="opacity: 1;">
-                <span class="mini-cart-icon" :data-count="cartExistItems.length"></span>
+                <span class="mini-cart-icon" :data-count="cartExistItems.length">
+                </span>
             </a>
         </router-link>
         <div class="widget_shopping_cart_content" style="opacity: 1;">
@@ -73,11 +74,11 @@
                 </div>
 
                 <div class="woocommerce-mini-cart__buttons buttons">
-                    <router-link to="Cart">
+                    <router-link to="/Cart">
                         <a class="button wc-forward">مشاهده سبد خرید</a>
                     </router-link>
 
-                    <router-link to="Cart">
+                    <router-link to="/Cart">
                         <a class="button checkout wc-forward">تسویه حساب</a>
                     </router-link>
 

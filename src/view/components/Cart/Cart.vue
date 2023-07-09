@@ -145,9 +145,10 @@
 
                                         <div class="wc-proceed-to-checkout">
                                             <a
-                                                @click=""
-                                               class="checkout-button button alt wc-forward">
-                                                تسویه حساب</a>
+                                                    @click="checkout"
+                                                    class="checkout-button button alt wc-forward">
+                                                تسویه حساب
+                                            </a>
                                         </div>
 
 
@@ -228,6 +229,12 @@ export default {
             const [err, data] = await this.to(this.http.delete(`/cart/deleteAll?sessionId=${this.$store.getters.sessionId}`));
             if (!err) {
                 this.courseItems.splice(index, 1);
+            }
+        },
+        async checkout() {
+            const [err, data] = await this.to(this.http.post(`/cart/prepare-payment`));
+            if (!err) {
+                window.location = data;
             }
         }
     }
