@@ -30,7 +30,7 @@ export default {
             return Number.parseFloat(irrAmountValue.toString().replaceAll(',', ''));
         }
         instance.appContext.config.globalProperties.getImageUrl = (suffix) => {
-            return instance.appContext.config.globalProperties.serverAddress + '/api' + suffix;
+            return instance.appContext.config.globalProperties.serverAddress + suffix;
         }
 
         instance.appContext.config.globalProperties.convertAmount = (event, vm, modelName) => {
