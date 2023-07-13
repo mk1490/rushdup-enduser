@@ -2,25 +2,35 @@
     <div class="container">
 
         <div class="row" style="margin-top: 60px">
-            <sidebar
-                    @onCategoriesChange="filterCategory($event)"
-                    :category-items="categoryItems"></sidebar>
-            <main-content
-                    :totalCounts="totalCounts"
-                    :items="items"
-                    @viewSelectionChange="fetchData($event)"
-            >
-            </main-content>
+            <template v-if="!noData">
+                <sidebar
+                        @onCategoriesChange="filterCategory($event)"
+                        :category-items="categoryItems"></sidebar>
+                <main-content
+                        :totalCounts="totalCounts"
+                        :items="items"
+                        @viewSelectionChange="fetchData($event)"
+                >
+                </main-content>
 
-            <div class="d-flex justify-center" style="width: 100%">
-                <v-pagination
-                        @previous="previousClick"
-                        @next="nextClick"
-                        @input="onSelectNumber"
-                        :length="pagesLengthCalculate()"
-                        :value="selectedPage" circle>
-                </v-pagination>
-            </div>
+                <div class="d-flex justify-center" style="width: 100%">
+                    <v-pagination
+                            @previous="previousClick"
+                            @next="nextClick"
+                            @input="onSelectNumber"
+                            :length="pagesLengthCalculate()"
+                            :value="selectedPage" circle>
+                    </v-pagination>
+                </div>
+            </template>
+            <template v-else>
+                <div class="col-md-12">
+                    <div class="course-no-result-title">
+                        <h3 class="primary-heading">با عرض پوزش ، ما نمی توانیم هیچ دوره ای برای این جستجو پیدا
+                            کنیم.</h3>
+                    </div>
+                </div>
+            </template>
         </div>
     </div>
 </template>
@@ -47,6 +57,7 @@ export default {
             itemsPerPage: 0,
             items: [],
             selectedCategories: [],
+            noData: false,
         }
     },
     methods: {
@@ -69,12 +80,17 @@ export default {
             queryParams.append('viewType', event);
             const [err, data] = await this.to(this.http.get(`/course/list?${queryParams}`));
             if (!err) {
+                if (data.items.length < 1) {
+                    this.noData = true;
+                } else {
+                    this.noData = false;
+                }
                 window.scrollTo({top: 0, behavior: 'smooth'});
                 await this.$store.dispatch('setPageTitle', data.title);
                 this.totalCounts = data.totalCounts;
                 this.itemsPerPage = data.itemsPerPage;
                 this.items = data.items.map(f => {
-                    f.cover = f.cover !== null ? this.serverAddress + '/api' + f.cover : null;
+                    f.cover = f.cover !== null ? this.serverAddress + f.cover : null;
                     return f;
                 });
             }
@@ -93,7 +109,8 @@ export default {
         },
         pagesLengthCalculate() {
             return Math.ceil(this.totalCounts / this.itemsPerPage);
-        }
+        },
+
     },
     watch: {
         '$route.params.categorySlug': {

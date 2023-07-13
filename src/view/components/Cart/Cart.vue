@@ -96,13 +96,15 @@
                                     <div class="coupon-description">
                                         کد کوپن خود را وارد کنید اگر شما آن را داشته باشید.
                                     </div>
-                                    <label for="coupon_code">کوپن:</label>
                                     <input
+                                            v-model="discountCode"
                                             type="text"
                                             class="edumall-input input-text"
                                             placeholder="کد کوپن">
 
-                                    <button type="submit" class="button" name="apply_coupon" value="کوپن را اعمال کنید">
+                                    <button
+                                            @click="applyDiscountCode"
+                                            class="button" name="apply_coupon" value="کوپن را اعمال کنید">
                                         کوپن را اعمال کنید
                                     </button>
 
@@ -114,24 +116,37 @@
                             <div class="cart-collaterals row">
                                 <div class="col-md-push-6 col-md-6 cart-total-wrap">
                                     <div class="cart_totals">
-                                        <h2>مجموع سبد خرید</h2>
-                                        <table cellspacing="0" class="shop_table shop_table_responsive">
+                                        <table class="shop_table shop_table_responsive">
                                             <tbody>
                                             <tr class="cart-subtotal">
-                                                <th>جمع جزء</th>
+                                                <th>مجموع</th>
                                                 <td data-title="جمع جزء"><span class="woocommerce-Price-amount amount"><bdi>
                                                     {{ getComma(totalAmount) }}
                                                     <span
-                                                            class="woocommerce-Price-currencySymbol">تومان</span></bdi></span>
+                                                            class="woocommerce-Price-currencySymbol">ریال</span>
+                                                </bdi>
+                                                </span>
+                                                </td>
+                                            </tr>
+
+
+                                            <tr
+                                                    v-if="appliedDiscount != -1"
+                                                    class="cart-subtotal">
+                                                <th>تخفیف</th>
+                                                <td><span class="woocommerce-Price-amount amount"><bdi>
+                                                    {{ getComma(appliedDiscount) }}
+                                                    <span
+                                                            class="woocommerce-Price-currencySymbol">ریال</span></bdi></span>
                                                 </td>
                                             </tr>
 
 
                                             <tr class="order-total">
-                                                <th>جمع</th>
+                                                <th>قابل پرداخت</th>
                                                 <td data-title="جمع"><strong><span
                                                         class="woocommerce-Price-amount amount"><bdi>
-                                                    {{ getComma(payableAmount) }}
+                                                    {{ appliedDiscount != -1 ? getComma(finalDeducatedPrice) : getComma(payableAmount)}}
                                                     <span
                                                             class="woocommerce-Price-currencySymbol">{{
                                                         $t('ui.IRR')
@@ -207,6 +222,8 @@ export default {
     components: {CartEmpty, ItemsList, SelectionPaymentTypes, SideTotalAmountAndPayButton, DiscountCode},
     data() {
         return {
+            appliedDiscount: -1,
+            finalDeducatedPrice: -1,
             selectedIpg: {},
             discountCode: null,
             totalAmount: 0,
@@ -232,10 +249,34 @@ export default {
             }
         },
         async checkout() {
+            if (!this.isLogin) {
+                this.$swal.fire({
+                    icon: 'warning',
+                    text: 'برای تسویه حساب نیازمند احراز هویت می‌باشید؛ آیا هم اکنون می‌خواهید وارد شوید؟',
+                    showCancelButton: true,
+                    confirmButtonText: 'بله',
+                    cancelButtonText: 'خیر، ادامۀ خرید'
+                }).then(({isConfirmed}) => {
+                    if (isConfirmed) {
+
+                    }
+                })
+                return;
+            }
+
             const [err, data] = await this.to(this.http.post(`/cart/prepare-payment`));
             if (!err) {
                 window.location = data;
             }
+        },
+        async applyDiscountCode() {
+            const [err, data] = await this.to(this.http.get(`/cart/checkDiscountCode?code=${this.discountCode}`));
+            this.appliedDiscount = -1;
+            if (!err) {
+                this.appliedDiscount = data['deducatedPrice'];
+                this.finalDeducatedPrice = data['finalDeducatedPrice'];
+            }
+
         }
     }
 }

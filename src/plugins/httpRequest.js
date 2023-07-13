@@ -2,6 +2,7 @@
 import axios from "axios";
 import app from '@/main'
 import i18n from "@/locale";
+import store from "@/store";
 
 
 let lastRequest;
@@ -17,6 +18,8 @@ axios.interceptors.request.use(async (req) => {
 
     if (!!authorization) {
         req.headers.Authorization = 'Bearer ' + authorization;
+    } else {
+        req.headers.sessionId = store.getters.sessionId;
     }
     lastRequest = req;
     return req;
@@ -80,7 +83,7 @@ axios.interceptors.response.use(async (response) => {
         app.config.globalProperties.$swal.fire({
             title: i18n.global.t('ui.error'), html: message, icon: 'error'
         }).then(res => {
-            
+
         }).catch(e => {
 
         });
