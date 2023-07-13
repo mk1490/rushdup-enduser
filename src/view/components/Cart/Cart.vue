@@ -146,7 +146,9 @@
                                                 <th>قابل پرداخت</th>
                                                 <td data-title="جمع"><strong><span
                                                         class="woocommerce-Price-amount amount"><bdi>
-                                                    {{ appliedDiscount != -1 ? getComma(finalDeducatedPrice) : getComma(payableAmount)}}
+                                                    {{
+                                                    appliedDiscount != -1 ? getComma(finalDeducatedPrice) : getComma(payableAmount)
+                                                    }}
                                                     <span
                                                             class="woocommerce-Price-currencySymbol">{{
                                                         $t('ui.IRR')
@@ -255,10 +257,11 @@ export default {
                     text: 'برای تسویه حساب نیازمند احراز هویت می‌باشید؛ آیا هم اکنون می‌خواهید وارد شوید؟',
                     showCancelButton: true,
                     confirmButtonText: 'بله',
-                    cancelButtonText: 'خیر، ادامۀ خرید'
+                    cancelButtonText: 'خیر، ادامۀ خرید',
+                    allowOutsideClick: false,
                 }).then(({isConfirmed}) => {
                     if (isConfirmed) {
-
+                        this.$store.dispatch('openLoginModal').then()
                     }
                 })
                 return;

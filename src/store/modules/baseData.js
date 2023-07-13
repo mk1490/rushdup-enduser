@@ -13,6 +13,7 @@ const baseData = {
         breadCrumb: [],
         battalionItems: [],
         loading: false,
+        loginModal: false,
         // timeRangeItems: [{
         //     text: i18n.t('timeRangeItems.recent12Hour'), value: 'recent12Hour'
         // }, {
@@ -38,6 +39,7 @@ const baseData = {
         pageTitle: (state) => state.pageTitle,
         pageTitleType: (state) => state.pageTitleType || 1,
         loading: (state) => state.loading,
+        loginModal: (state) => state.loading,
     },
     mutations: {
         SET_MENU_ITEMS: (state, payload) => {
@@ -54,6 +56,9 @@ const baseData = {
         },
         SHOW_LOADING: (state, showLoading) => {
             state.loading = showLoading;
+        },
+        SHOW_LOGIN: (state, showLogin) => {
+            state.loading = showLogin;
         },
     }, actions: {
         initMenuItems: async (context, payload) => {
@@ -95,6 +100,9 @@ const baseData = {
         },
         setLoadingState: ({commit}, payload) => {
             commit('SHOW_LOADING', payload);
+        },
+        openLoginModal: ({state}) => {
+            state.loginModal = true;
         },
     },
 };

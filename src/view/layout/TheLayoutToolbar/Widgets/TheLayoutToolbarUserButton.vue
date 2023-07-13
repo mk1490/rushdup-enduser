@@ -85,7 +85,14 @@ export default {
     name: "TheLayoutToolbarUserButton",
     components: {LostPasswordModal, LoginModal, RegisterModal},
     computed: {
-        ...mapGetters(['isLogin'])
+        ...mapGetters(['isLogin', 'loginModal'])
+    },
+    created() {
+        this.$store.subscribeAction(({type}, state) => {
+            if (type == 'openLoginModal') {
+                this.openLoginModal();
+            }
+        })
     },
     data() {
         return {
@@ -132,7 +139,7 @@ export default {
             localStorage.removeItem('Authorization');
             this.$store.dispatch('setLoginState', false);
         }
-    }
+    },
 }
 </script>
 
