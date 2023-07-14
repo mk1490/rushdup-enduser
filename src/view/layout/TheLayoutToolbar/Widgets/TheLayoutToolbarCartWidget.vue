@@ -33,12 +33,15 @@
                             @click="removeCartItem(cartIndex)"
                             class="remove remove_from_cart_button"
                             data-product_sku="">×</a>
-                    <div class="product-thumbnail">
+                    <div
+                            v-if="!!cartItem.cover"
+                            class="product-thumbnail">
                         <a>
-                            <img width="150" height="150"
-                                 class="attachment-thumbnail size-thumbnail"
-                                 alt="" decoding="async" loading="lazy"
-                                 sizes="(max-width: 150px) 100vw, 150px"> </a>
+                            <img
+                                    :src="getImageUrl(cartItem.cover)"
+                                    width="150" height="150"
+                                    class="attachment-thumbnail size-thumbnail">
+                        </a>
                     </div>
 
                     <div class="product-caption">

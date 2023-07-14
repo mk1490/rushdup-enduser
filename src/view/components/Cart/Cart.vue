@@ -1,5 +1,5 @@
 ﻿<template>
-    <v-container>
+    <div class="container">
         <div class="woocommerce">
             <div v-if="courseItems.length > 0">
                 <div class="woocommerce-notices-wrapper"></div>
@@ -192,7 +192,7 @@
             </div>
 
         </div>
-    </v-container>
+    </div>
 </template>
 
 <script>
@@ -209,17 +209,20 @@ export default {
         this.$store.dispatch('setPageTitle', this.$t('cart.title'))
     },
     async created() {
-        let url = '/cart/initialize/';
-        if (!this.isLogin) {
-            url += `?=${this.sessionId}`;
-        }
-        const [err, data] = await this.to(this.http.get(url));
+        const [err, data] = await this.to(this.http.get(`/cart/initialize/`));
         if (!err) {
             this.ipgItems = data['ipgItems'];
             this.totalAmount = data.totalAmount;
             this.payableAmount = data.payableAmount;
             this.courseItems = data.courseItems;
         }
+
+        this.$store.subscribeAction(async ({type}) => {
+            if (type === 'setLoginState') {
+                await this.$router.push('Checkout')
+            }
+        })
+
     },
     components: {CartEmpty, ItemsList, SelectionPaymentTypes, SideTotalAmountAndPayButton, DiscountCode},
     data() {
@@ -232,6 +235,7 @@ export default {
             payableAmount: 0,
             ipgItems: [],
             courseItems: [],
+            prepareToLogin: false,
         }
     },
     computed: {
@@ -262,15 +266,12 @@ export default {
                 }).then(({isConfirmed}) => {
                     if (isConfirmed) {
                         this.$store.dispatch('openLoginModal').then()
+                        this.prepareToLogin = true;
                     }
                 })
                 return;
             }
-
-            const [err, data] = await this.to(this.http.post(`/cart/prepare-payment`));
-            if (!err) {
-                window.location = data;
-            }
+            await this.$router.push('Checkout')
         },
         async applyDiscountCode() {
             const [err, data] = await this.to(this.http.get(`/cart/checkDiscountCode?code=${this.discountCode}`));

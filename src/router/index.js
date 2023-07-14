@@ -48,6 +48,12 @@ export const constantRoutes = [
                 meta: {},
             },
             {
+                path: '/Checkout',
+                name: 'Checkout',
+                component: () => import('@/view/components/Cart/Checkout.vue'),
+                meta: {},
+            },
+            {
                 path: '/MyAccount',
                 name: 'MyAccount',
                 component: () => import('@/view/components/AccountInformation/MyAccount/MyAccount.vue'),
