@@ -67,19 +67,25 @@
                                     </div>
 
                                     <div class="course-loop-buttons">
-                                        <div
-                                                @click="addToCartOrCompletePurchaseFlowOrViewCourse(item)"
-                                                class="course-loop-enrolled-button cart-notification">
-                                            <div
-                                                    class="tm-button-wrapper">
-                                                <a
-                                                        class="tutor-btn tutor-btn-outline-primary tutor-btn-md tutor-btn-block product_type_simple add_to_cart_button tutor-open-login-modal">
-                                                    <span class="tutor-icon-cart-line tutor-mr-8"></span>
-                                                    <span class="cart-text"
-                                                          style="color:white">افزودن به سبد خرید</span>
-                                                </a>
-                                            </div>
-                                        </div>
+                                        <v-btn
+                                                @click.prevent="addToCartOrCompletePurchaseFlowOrViewCourse(item.cartStatus, item.id, item)"
+                                                color="primary">
+                                            {{ getCartButtonTitle(item.cartStatus) }}
+                                        </v-btn>
+                                        <!--                                        <div-->
+                                        <!--                                                @click="addToCartOrCompletePurchaseFlowOrViewCourse(item)"-->
+                                        <!--                                                class="course-loop-enrolled-button cart-notification">-->
+                                        <!--                                            <div-->
+                                        <!--                                                    class="tm-button-wrapper">-->
+                                        <!--                                                <a-->
+                                        <!--                                                        href="#"-->
+                                        <!--                                                        class="tutor-btn tutor-btn-outline-primary tutor-btn-md tutor-btn-block product_type_simple add_to_cart_button tutor-open-login-modal">-->
+                                        <!--                                                    <span class="tutor-icon-cart-line tutor-mr-8"></span>-->
+                                        <!--                                                    <span class="cart-text"-->
+                                        <!--                                                          style="color:white">افزودن به سبد خرید</span>-->
+                                        <!--                                                </a>-->
+                                        <!--                                            </div>-->
+                                        <!--                                        </div>-->
                                         <div class="mr-2 tm-button-wrapper course-loop-wishlist-button hint--bounce hint--top hint--primary"
                                              aria-label="افزودن به علاقه مندی ها">
                                             <a
@@ -108,10 +114,18 @@
 </template>
 
 <script>
+import cart from "@/view/components/Cart/cart";
+
 export default {
     name: "List",
+    mixins: [cart],
     props: {
         items: Array
+    },
+    methods: {
+        clickToLink() {
+            console.log("Salam")
+        }
     }
 }
 </script>

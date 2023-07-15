@@ -4,6 +4,7 @@ export default {
     methods: {
         ...mapMutations(['ADD_TO_CART']),
         async addToCartOrCompletePurchaseFlowOrViewCourse(purchaseStatus, courseId, model) {
+            console.log(purchaseStatus, courseId, model)
             switch (purchaseStatus) {
                 case -1: {
                     const [err, data] = await this.to(this.http.post(`/cart`, {
@@ -18,7 +19,7 @@ export default {
                 }
                     break;
                 case 2: {
-                    await Vue.prototype.$router.push('/cart');
+                    await this.$router.push('/cart');
                     break;
                 }
             }
@@ -31,6 +32,8 @@ export default {
                     return this.$t('course.startLearning');
                 case 2:
                     return this.$t('course.completePurchaseFlow');
+                default:
+                    return this.$t('course.addToCard');
             }
         }
     },
