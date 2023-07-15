@@ -1,6 +1,6 @@
 <template>
     <section
-            class="elementor-section elementor-top-section elementor-element elementor-element-a26c369 elementor-section-content-middle elementor-section-boxed elementor-section-gap-beside-yes elementor-section-height-default elementor-section-height-default elementor-section-column-vertical-align-stretch">
+            class="elementor-section elementor-top-section elementor-element elementor-element-001 elementor-section-content-middle elementor-section-boxed elementor-section-gap-beside-yes elementor-section-height-default elementor-section-height-default elementor-section-column-vertical-align-stretch">
         <div class="elementor-container elementor-column-gap-extended">
             <div class="elementor-row">
                 <div
@@ -84,5 +84,20 @@ export default {
 </script>
 
 <style scoped>
+.elementor-element-001 {
 
+    background-color: #020101;
+    background-image: url(https://themes.wpnovin.com/EduMall/Main/wp-content/uploads/2020/09/home-education-center-hero-bg.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 200px !important;
+    transition: background 0.3s, border 0.3s, border-radius 0.3s, box-shadow 0.3s;
+    padding: 167px 0px 160px 0px
+}
+
+.elementor-container .elementor-column-gap-extended {
+    padding-left: 35px;
+    padding-right: 35px;
+}
 </style>

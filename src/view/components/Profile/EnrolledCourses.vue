@@ -20,37 +20,43 @@
                     شما در حال حاضر در هیچ دوره ای ثبت نام نکرده اید.
                 </div>
             </div>
-            <div
-                    v-else
-                    class="dashboard-enrolled-courses edumall-animation-zoom-in">
-                <a href="https://dana-team.com/products/edumall/courses/%d8%af%d9%88%d8%b1%d9%87-%d8%a2%d9%85%d9%88%d8%b2%d8%b4-%d9%85%d9%84%d8%b2%d9%88%d9%85%d8%a7%d8%aa-adobe-illustrator-cc/"
-                   class="edumall-box link-secret tutor-mycourse-wrap tutor-mycourse-203">
-                    <div class="edumall-image tutor-mycourse-thumbnail">
-                        <img src="https://dana-team.com/products/edumall/wp-content/uploads/2020/11/zoom-meeting-thumbnail-06-1-480x295.jpg"
-                             alt="zoom-meeting-thumbnail-06" width="480"></div>
-                    <div class="tutor-mycourse-content">
-                        <div class="tm-star-rating style-03 tutor-mycourse-rating"><span
-                                class="tm-star-full"></span><span class="tm-star-full"></span><span
-                                class="tm-star-full"></span><span class="tm-star-full"></span><span
-                                class="tm-star-empty"></span></div>
-                        <h3 class="course-title">دوره آموزش ملزومات – Adobe Illustrator CC</h3>
+            <template
+                    v-else>
 
-                        <div class="tutor-meta tutor-course-metadata">
-                            <ul class="course-meta">
-                                <li class="course-meta-lesson-count">
-                                    <span class="meta-label">مجموع دروس:</span>
-                                    <span class="meta-value">0</span>
-                                </li>
-                                <li class="course-meta-completed-lessons">
-                                    <span class="meta-label">درس های تکمیل شده:</span>
-                                    <span class="meta-value">0/0</span>
-                                </li>
-                            </ul>
+                <div
+                        v-for="item in tempViewItems"
+                        class="dashboard-enrolled-courses edumall-animation-zoom-in">
+                    <a href="https://dana-team.com/products/edumall/courses/%d8%af%d9%88%d8%b1%d9%87-%d8%a2%d9%85%d9%88%d8%b2%d8%b4-%d9%85%d9%84%d8%b2%d9%88%d9%85%d8%a7%d8%aa-adobe-illustrator-cc/"
+                       class="edumall-box link-secret tutor-mycourse-wrap tutor-mycourse-203">
+                        <div
+                                v-if="item.cover"
+                                class="edumall-image tutor-mycourse-thumbnail">
+                            <img :src="getImageUrl(item.cover)"
+                                 alt="zoom-meeting-thumbnail-06" width="480"></div>
+                        <div class="tutor-mycourse-content">
+                            <div class="tm-star-rating style-03 tutor-mycourse-rating"><span
+                                    class="tm-star-full"></span><span class="tm-star-full"></span><span
+                                    class="tm-star-full"></span><span class="tm-star-full"></span><span
+                                    class="tm-star-empty"></span></div>
+                            <h3 class="course-title">{{ item.title }}</h3>
+
+                            <!--                            <div class="tutor-meta tutor-course-metadata">-->
+                            <!--                                <ul class="course-meta">-->
+                            <!--                                    <li class="course-meta-lesson-count">-->
+                            <!--                                        <span class="meta-label">مجموع دروس:</span>-->
+                            <!--                                        <span class="meta-value">0</span>-->
+                            <!--                                    </li>-->
+                            <!--                                    <li class="course-meta-completed-lessons">-->
+                            <!--                                        <span class="meta-label">درس های تکمیل شده:</span>-->
+                            <!--                                        <span class="meta-value">0/0</span>-->
+                            <!--                                    </li>-->
+                            <!--                                </ul>-->
+                            <!--                            </div>-->
                         </div>
-                    </div>
 
-                </a>
-            </div>
+                    </a>
+                </div>
+            </template>
 
         </div>
     </div>
@@ -83,6 +89,7 @@ export default {
         const [err, data] = await this.to(this.http.get(`/profile/courses`));
         if (!err) {
             this.items = data;
+            this.tempViewItems = data;
         }
     },
     methods: {
@@ -99,6 +106,7 @@ export default {
             })
         },
         changeView(index) {
+            console.log(index)
             switch (index) {
                 case 1: {
                     this.tempViewItems = this.items;

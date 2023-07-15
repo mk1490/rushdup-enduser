@@ -51,7 +51,9 @@ export const constantRoutes = [
                 path: '/Checkout',
                 name: 'Checkout',
                 component: () => import('@/view/components/Cart/Checkout.vue'),
-                meta: {},
+                meta: {
+                    pageTitle: 'تسویه حساب'
+                },
             },
             {
                 path: '/MyAccount',

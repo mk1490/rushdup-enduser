@@ -73,16 +73,21 @@
                                     </div>
                                 </td>
                                 <td class="product-total">
-                                    <span class="woocommerce-Price-amount amount"><bdi>۹۹,۰۰۰<span
-                                            class="woocommerce-Price-currencySymbol">تومان</span></bdi></span></td>
+                                    <span class="woocommerce-Price-amount amount">
+                                        <bdi>{{ convertToIRR(item.financial.price) }}</bdi>
+                                    </span>
+                                </td>
                             </tr>
                             </tbody>
                             <tfoot>
 
                             <tr class="cart-subtotal">
                                 <th>جمع جزء</th>
-                                <td><span class="woocommerce-Price-amount amount"><bdi>۹۹,۰۰۰<span
-                                        class="woocommerce-Price-currencySymbol">تومان</span></bdi></span></td>
+                                <td>
+                                    <span class="woocommerce-Price-amount amount">
+                                    <bdi>{{ convertToIRR(finalPrice) }}</bdi>
+                                </span>
+                                </td>
                             </tr>
                             <tr class="order-total">
                                 <th>جمع</th>
@@ -90,7 +95,7 @@
                                     <strong>
                                         <span class="woocommerce-Price-amount amount">
                                     <bdi>
-                                    {{  }}
+                                    {{ finalPrice }}
                                     <span
                                             class="woocommerce-Price-currencySymbol">
 
@@ -121,6 +126,7 @@ export default {
         return {
             ipgItems: [],
             cartItems: [],
+            finalPrice: 0,
         }
     },
     async created() {
@@ -128,11 +134,16 @@ export default {
         if (!err) {
             this.cartItems = data.courseItems;
             this.ipgItems = data.ipgItems;
+            let total = 0;
+            data.courseItems.map(f => {
+                total += f.financial.price;
+            })
+            this.finalPrice = total;
         }
     },
     methods: {
         async submitRequest() {
-
+            const [err, data] = await this.to(this.http.post(`/cart/prepare-payment`))
         }
     }
 
