@@ -326,12 +326,13 @@ export default {
     name: "Header_Style2",
     mounted() {
         window.onmousemove = (e) => {
-
             const dots = this.$refs.dots;
-            dots.style.setProperty('--translateY', e.clientY / 20 + 'px');
-            dots.style.setProperty('--translateX', e.clientX / 20 + 'px');
-            this.$refs.circle_1.style.setProperty('--translateX', e.clientX / 20 + 'px');
-            this.$refs.circle_1.style.setProperty('--translateY', e.clientY / 20 + 'px');
+            if (dots != null) {
+                dots.style.setProperty('--translateY', e.clientY / 20 + 'px');
+                dots.style.setProperty('--translateX', e.clientX / 20 + 'px');
+                this.$refs.circle_1.style.setProperty('--translateX', e.clientX / 20 + 'px');
+                this.$refs.circle_1.style.setProperty('--translateY', e.clientY / 20 + 'px');
+            }
         }
     }
 }

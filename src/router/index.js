@@ -84,6 +84,14 @@ export const constantRoutes = [
                 meta: {},
             },
             {
+                path: '/course-learn/:courseSlug',
+                name: 'CourseLearn',
+                component: () => import('@/view/components/Course/CourseLearn/CourseLearn.vue'),
+                hidden: true,
+                meta: {},
+            },
+
+            {
                 path: '/CourseDetailsVideo/:id',
                 name: 'CourseDetailsVideo',
                 component: () => import('@/view/components/Course/CourseDetails/CourseDetailsVideo.vue'),

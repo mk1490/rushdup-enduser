@@ -11,15 +11,12 @@
 
                 <div class="elementor-container elementor-column-gap-extended">
                     <template v-for="item in homeItems">
-
-
                         <icon-button
                                 :title="item.title"
                                 :items="item.children"
                                 v-if="item.type === 0">
 
                         </icon-button>
-
                         <swiper-view
                                 v-if="item.type == 2"
                                 :title="item.title"
@@ -61,12 +58,6 @@ export default {
         Header_Style1, ImageButton, IconButton, SwiperView, Carousel, SuggestionsByCategory, Landing,
     },
     async created() {
-        try {
-            console.log(this.serverAddress)
-            // this.http.get(`/api`).then()
-        } catch (e) {
-            console.error(e)
-        }
         const action = this.$route.query.action;
         if (!!action) {
             switch (action) {
