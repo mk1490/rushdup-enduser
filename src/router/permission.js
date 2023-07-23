@@ -16,7 +16,7 @@ router.beforeEach(async (toRoute, from, next) => {
     } else {
         const pageTitle = toRoute.meta.pageTitle;
         app.config.globalProperties.$store.dispatch('setPageTitle', pageTitle);
-        app.config.globalProperties.$store.dispatch('setPageTitleType', toRoute.meta.pageTitleType);
+        // app.config.globalProperties.$store.dispatch('setPageTitleType', toRoute.meta.pageTitleType);
         next();
     }
 

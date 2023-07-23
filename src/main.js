@@ -9,6 +9,7 @@ import store from './store';
 import ToastPlugin from 'vue-toast-notification';
 import VueSweetalert2 from 'vue-sweetalert2';
 import "@/assets/styles/main.scss";
+import 'video.js/dist/video-js.css'
 // Import Swiper styles
 // import jQuery from 'jquery';
 // Vue.prototype.jQuery = jQuery

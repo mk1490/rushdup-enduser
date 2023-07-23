@@ -84,7 +84,7 @@ export const constantRoutes = [
                 meta: {},
             },
             {
-                path: '/course-learn/:courseSlug',
+                path: '/course-learn/:courseSlug?/:courseItemSlug?/',
                 name: 'CourseLearn',
                 component: () => import('@/view/components/Course/CourseLearn/CourseLearn.vue'),
                 hidden: true,
