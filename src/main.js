@@ -10,6 +10,7 @@ import ToastPlugin from 'vue-toast-notification';
 import VueSweetalert2 from 'vue-sweetalert2';
 import "@/assets/styles/main.scss";
 import 'video.js/dist/video-js.css'
+import VDataTable from 'vuetify/lib/labs/VDataTable';
 // Import Swiper styles
 // import jQuery from 'jquery';
 // Vue.prototype.jQuery = jQuery
@@ -52,6 +53,7 @@ import axios from '@/plugins/httpRequest';
 // import '@/plugins/toastMessageProvider';
 const serverAddress = process.env.VUE_APP_SERVER_ADDRESS;
 
+
 const app = createApp(App)
     .use(VueSweetalert2)
     .use(vuetify)
@@ -61,6 +63,8 @@ const app = createApp(App)
         position: 'bottom-left'
     })
     .use(locale);
+
+app.component('v-data-table', VDataTable)
 app.config.globalProperties.serverAddress = serverAddress;
 app.config.globalProperties.baseUrl = serverAddress + '/api' + '/enduser';
 app.config.globalProperties.to = to;

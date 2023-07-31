@@ -21,29 +21,30 @@
                         :items-per-page="5"
                         class="elevation-1"
                 >
-                    <!--                    <template v-slot:item.row="{ item }">-->
-                    <!--                        <div>{{ table.contents.indexOf(item) + 1 }}</div>-->
-                    <!--                    </template>-->
+                    <template v-slot:item.row="{ item }">
+                        <div>{{ table.contents.indexOf(item) + 1 }}</div>
+                    </template>
 
-                    <!--                    <template v-slot:item.status="{ item }">-->
-                    <!--                        <v-chip-->
-                    <!--                                class="white&#45;&#45;text"-->
-                    <!--                                :color="getChipsStatusColor(item)"> {{ getChipsStatusTitle(item) }}-->
-                    <!--                        </v-chip>-->
-                    <!--                    </template>-->
-                    <!--                    <template v-slot:item.creationTime="{ item }">-->
-                    <!--            <span>-->
-                    <!--              {{ getPersianTime(item.creationTime) }}-->
-                    <!--            </span>-->
-                    <!--                    </template>-->
-                    <!--                    <template v-slot:item.actions="{ item }">-->
-                    <!--                        <v-btn-->
-                    <!--                                :to="`/ticketDetails/${item.id}`"-->
-                    <!--                                link-->
-                    <!--                                color="primary">-->
-                    <!--                            جزئیات-->
-                    <!--                        </v-btn>-->
-                    <!--                    </template>-->
+                    <template v-slot:item.status="{ item }">
+                        <v-chip
+                                class="white--text"
+                                :color="getChipsStatusColor(item)"> {{ getChipsStatusTitle(item) }}
+                        </v-chip>
+                    </template>
+                    <template v-slot:item.creationTime="{ item }">
+                                <span>
+                                  {{ getPersianTime(item.creationTime) }}
+                                </span>
+                    </template>
+
+                    <template v-slot:item.actions="{ item }">
+                        <v-btn
+                                :to="`/ticketDetails/${item.key}`"
+                                link
+                                color="primary">
+                            جزئیات
+                        </v-btn>
+                    </template>
 
                 </v-data-table>
             </template>
