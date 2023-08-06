@@ -9,6 +9,7 @@ import store from './store';
 import ToastPlugin from 'vue-toast-notification';
 import VueSweetalert2 from 'vue-sweetalert2';
 import "@/assets/styles/main.scss";
+import HttpRequest from '@/plugins/httpRequest'
 // Import Swiper styles
 // import jQuery from 'jquery';
 // Vue.prototype.jQuery = jQuery
@@ -64,9 +65,10 @@ app.config.globalProperties.serverAddress = serverAddress;
 app.config.globalProperties.baseUrl = serverAddress + '/api' + '/enduser';
 app.config.globalProperties.to = to;
 app.config.globalProperties.$globalVar = 'globalVar'
-app.config.globalProperties.http = axios;
-app.config.globalProperties.http.defaults.baseURL = app.config.globalProperties.baseUrl;
+// app.config.globalProperties.http = axios;
+// app.config.globalProperties.http.defaults.baseURL = app.config.globalProperties.baseUrl;
 window.Swal = app.config.globalProperties.$swal;
+app.use(HttpRequest);
 
 app.mount('#app');
 export default app;

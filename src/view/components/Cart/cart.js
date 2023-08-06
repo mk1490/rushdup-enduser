@@ -21,7 +21,7 @@ export default {
                 }
                     break;
                 case 2: {
-                    await Vue.prototype.$router.push('/cart');
+                    await this.$router.push('/cart');
                     break;
                 }
             }
