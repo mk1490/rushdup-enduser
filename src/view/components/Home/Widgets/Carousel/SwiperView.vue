@@ -7,18 +7,9 @@
                 <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-827f611">
                     <div class="elementor-column-wrap elementor-element-populated">
                         <div class="elementor-widget-wrap">
-                            <div class="elementor-element elementor-element-91b29e2 edumall-modern-heading-style-01 elementor-widget__width-auto elementor-widget elementor-widget-tm-heading animated edumallFadeInUp">
-                                <div class="elementor-widget-container">
-                                    <div class="tm-modern-heading">
-
-                                        <div class="heading-primary-wrap">
-                                            <h3 class="heading-primary elementor-heading-title">
-                                                {{ title }}
-                                            </h3>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <elementor-title>
+                                {{ title}}
+                            </elementor-title>
 
 
                             <div class="elementor-element elementor-element-599cdb7 edumall-animation-zoom-in course-title-collapse-yes course-tabs-style-01 elementor-widget elementor-widget-tm-course-tabs animated edumallFadeInUp">
@@ -74,10 +65,12 @@ import {Swiper, SwiperSlide,} from "swiper/vue";
 
 import SwiperSlideCourseItem from "@/view/components/Home/Widgets/Carousel/SwiperSlideCourseItem.vue";
 import {Navigation} from "swiper/modules";
+import ElementorTitle from "@/view/components/Home/Widgets/ElementorTitle.vue";
 
 export default {
     name: "SwiperView",
     components: {
+        ElementorTitle,
         SwiperSlideCourseItem,
         Swiper,
         SwiperSlide,

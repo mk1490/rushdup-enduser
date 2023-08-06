@@ -1,5 +1,6 @@
 <template>
     <v-dialog
+            @click:outside="onClickOutside"
             :model-value="visible"
             :close-on-back="true"
             @update:model-value="$emit('update:visible', $event)"
@@ -53,12 +54,13 @@ import PasswordTextField from "@/view/widget/CustomViews/PasswordTextField.vue";
 export default {
     name: "LostPasswordModal",
     components: {PasswordTextField},
-    emits: ['loginClick', 'resetSended'],
+    emits: ['loginClick', 'resetSended', 'close'],
     props: {
         visible: Boolean
     },
     data() {
         return {
+            hasError: false,
             model: {
                 username: null,
             }
@@ -73,6 +75,7 @@ export default {
     },
     methods: {
         async sendDataToServer() {
+            this.hasError = false;
             const [err, data] = await this.to(this.http.post(`/user/lostPassword`, {
                 usernameOrEmail: this.model.username
             }));
@@ -83,7 +86,15 @@ export default {
                 }).then(res => {
                     this.$emit('resetSended')
                 })
+            } else {
+                this.hasError = true;
             }
+        },
+        onClickOutside() {
+            if (!this.hasError) {
+                this.$emit('close')
+            }
+
         }
     }
 }

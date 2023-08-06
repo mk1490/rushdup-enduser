@@ -23,8 +23,7 @@
                                 <div class="elementor-element elementor-element-0001 elementor-widget elementor-widget-tm-course-category-cards animated edumallFadeInUp">
                                     <div class="elementor-widget-container">
                                         <div class="edumall-grid-wrapper edumall-course-category-cards style-02">
-                                            <div class="loaded row"
-                                            >
+                                            <div class="loaded row">
                                                 <div
                                                         v-for="gridButtonItem in item.children"
                                                         class="grid-item animate col-sm-12 col-md-3 col-lg-3">

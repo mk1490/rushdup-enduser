@@ -2,7 +2,7 @@
     <header id="page-header"
             :class="'page-header header-01 header-dark nav-links-hover-style-01 header-sticky-dark-logo headroom headroom--not-bottom headroom--pinned headroom--top ' + (headerIsOpen ? 'header-more-tools-opened': '')">
         <div class="page-header-place-holder"></div>
-        <div id="page-header-inner" class="page-header-inner" data-sticky="1">
+        <div id="page-header-inner" class="page-header-inner">
             <div class="container">
                 <div class="header-wrap">
                     <div class="header-left">

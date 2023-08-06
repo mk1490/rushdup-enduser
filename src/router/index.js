@@ -48,20 +48,28 @@ export const constantRoutes = [
                 meta: {},
             },
             {
-                path: 'MyAccount',
+                path: '/Checkout',
+                name: 'Checkout',
+                component: () => import('@/view/components/Cart/Checkout.vue'),
+                meta: {
+                    pageTitle: 'تسویه حساب'
+                },
+            },
+            {
+                path: '/MyAccount',
                 name: 'MyAccount',
                 component: () => import('@/view/components/AccountInformation/MyAccount/MyAccount.vue'),
                 meta: {},
             },
             {
-                path: 'AccountInformation',
+                path: '/AccountInformation',
                 name: 'AccountInformation',
                 component: () => import('@/view/components/AccountInformation/AccountInformation.vue'),
                 meta: {
                     title: 'route.myCourses', icon: 'mdi-book-education'
                 },
             }, {
-                path: 'course-details/:slugOrId',
+                path: '/course-details/:slugOrId',
                 name: 'CourseDetails',
                 component: () => import('@/view/components/Course/CourseDetails/CourseDetails.vue'),
                 meta: {
@@ -69,14 +77,22 @@ export const constantRoutes = [
                 },
             },
             {
-                path: 'course-details/:slugOrId/:courseGroupId',
+                path: '/course-details/:slugOrId/:courseGroupId',
                 name: 'CourseEpisode',
                 component: () => import('@/view/components/Course/CourseDetails/CourseEpisode/CourseEpisode.vue'),
                 hidden: true,
                 meta: {},
             },
             {
-                path: 'CourseDetailsVideo/:id',
+                path: '/course-learn/:courseSlug?/:courseItemSlug?/',
+                name: 'CourseLearn',
+                component: () => import('@/view/components/Course/CourseLearn/CourseLearn.vue'),
+                hidden: true,
+                meta: {},
+            },
+
+            {
+                path: '/CourseDetailsVideo/:id',
                 name: 'CourseDetailsVideo',
                 component: () => import('@/view/components/Course/CourseDetails/CourseDetailsVideo.vue'),
                 meta: {
@@ -131,7 +147,10 @@ export const constantRoutes = [
                 path: '/teacher-request',
                 name: 'teacher-request',
                 component: () => import('@/view/components/Teacher/TeacherRequestForm.vue'),
-                meta: {},
+                meta: {
+                    pageTitle: 'فرم درخواست تدریس',
+                    pageTitleType: 1,
+                },
                 children: []
             },
             {

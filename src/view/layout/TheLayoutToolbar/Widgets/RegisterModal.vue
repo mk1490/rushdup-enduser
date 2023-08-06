@@ -1,5 +1,6 @@
 <template>
     <v-dialog
+            @click:outside="clickOutside"
             :model-value="visible"
             @update:modelValue="updateModelValue"
             :width="670">
@@ -47,7 +48,7 @@
                     </div>
                     <div class="col-md-6">
                         <password-text-field
-                                type="password"
+                                name="password"
                                 v-model="model.password"
                                 label="رمز عبور">
 
@@ -55,9 +56,9 @@
                     </div>
                     <div class="col-md-6">
                         <password-text-field
+                                name="submitPassword"
                                 label="رمز عبور را دوباره وارد کنید"
-                                v-model="model.submitPassword"
-                                type="password">
+                                v-model="model.submitPassword">
                         </password-text-field>
                     </div>
                 </div>
@@ -76,11 +77,23 @@
                 <div class="form-response-messages"></div>
 
                 <div class="form-group">
-                    <button
-                            @click="register"
-                            type="button" class="button form-submit v-btn--block">
-                        ثبت نام
-                    </button>
+                    <div class="d-block">
+                        <button
+                                @click="register"
+                                type="button" class="button form-submit v-btn--block">
+                            ثبت نام
+                        </button>
+
+                        <v-btn
+                                class="mt-2"
+                                @click="$emit('close')"
+                                :block="true"
+                                :text="true"
+                                :flat="true">
+                            بستن
+                        </v-btn>
+                    </div>
+
                 </div>
             </v-card-text>
         </v-card>
@@ -93,13 +106,14 @@ import PasswordTextField from "@/view/widget/CustomViews/PasswordTextField.vue";
 
 export default {
     name: "RegisterModal",
-    emits: ['loginClick', 'visible'],
+    emits: ['loginClick', 'visible', 'close'],
     components: {PasswordTextField, TextField},
     props: {
         visible: Boolean,
     },
     data() {
         return {
+            hasError: false,
             tempVisible: true,
             model: {
                 name: null,
@@ -113,6 +127,7 @@ export default {
     },
     methods: {
         async register() {
+            this.hasError = false;
             const [err, data] = await this.to(this.http.post(`/user/register`, {
                 name: this.model.name,
                 family: this.model.family,
@@ -123,10 +138,21 @@ export default {
             }));
             if (!err) {
 
+                this.$swal.fire({
+                    icon: 'success',
+                    text: 'لینک لینک فعال‌سازی به نشانی پست الکترونیک ' + this.model.emailAddress + ' ' + 'ارسال گردید.'
+                })
+            } else {
+                this.hasError = true;
             }
         },
         updateModelValue(event) {
             this.$emit('update:visible', event)
+        },
+        clickOutside() {
+            if (!!this.hasError)
+                return;
+            this.$emit('close')
         }
     },
     watch: {

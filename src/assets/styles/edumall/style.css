@@ -4483,14 +4483,13 @@ dd {
 }
 
 
-
 .edumall-input input[type="email"],
 .edumall-input input[type="number"],
 .edumall-input input[type="password"],
 .edumall-input input[type="search"],
 .edumall-input input[type="tel"],
 .edumall-input,
-.edumall-input input[type="url"]{
+.edumall-input input[type="url"] {
     width: 100%;
     outline: none;
     border: 1px solid #f5f5f5;
@@ -14847,8 +14846,8 @@ body.elementor-page.page-has-no-sidebar .page-content {
     mask-repeat: no-repeat;
     -webkit-mask-size: contain;
     mask-size: contain;
-    -webkit-mask-image: /*savepage-url=assets/svg/headline-curve.svg*/ var(--savepage-url-73);
-    mask-image: /*savepage-url=assets/svg/headline-curve.svg*/ var(--savepage-url-73);
+    -webkit-mask-image: url('../../svg/headline-curve.svg');
+    mask-image: url('../../svg/headline-curve.svg');
 }
 
 .archive-tabs-section.edumall-tabpanel {
@@ -21819,8 +21818,8 @@ input[type="submit"] {
     mask-repeat: no-repeat;
     -webkit-mask-size: contain;
     mask-size: contain;
-    -webkit-mask-image: /*savepage-url=assets/svg/headline-curve.svg*/ var(--savepage-url-73);
-    mask-image: /*savepage-url=assets/svg/headline-curve.svg*/ var(--savepage-url-73);
+    -webkit-mask-image: url('../../svg/headline-curve.svg');
+    mask-image: url('../../svg/headline-curve.svg');
 }
 
 .edumall-modern-heading-style-02 .heading-primary mark {
@@ -30619,6 +30618,7 @@ form.isw-swatches.isw-swatches--in-single .isw-swatch--isw_text .isw-term.isw-di
 .wc-block-price-filter .wc-block-price-filter__controls .wc-block-price-filter__amount {
     min-height: 40px;
 }
+
 .mfp-bg {
     top: 0;
     left: 0;
@@ -31051,6 +31051,7 @@ img.mfp-img {
         padding-right: 6px
     }
 }
+
 .flatpickr-month {
     height: 34px !important;
 }
@@ -31074,6 +31075,7 @@ img.mfp-img {
 pre.highlight-height {
     direction: ltr;
 }
+
 @font-face {
     font-family: 'efaicons';
     font-weight: normal;
@@ -31255,6 +31257,7 @@ pre.highlight-height {
 .efa-Afzal-toos:before {
     content: "\ea13";
 }
+
 @font-face {
     font-family: eicons;
     font-weight: 400;
@@ -33050,6 +33053,7 @@ pre.highlight-height {
 .eicon-elementor-square:before {
     content: '\e813';
 }
+
 /*! elementor - v3.6.7 - 03-07-2022 */
 .elementor-bc-flex-widget .elementor-section-content-top > .elementor-container > .elementor-row > .elementor-column > .elementor-column-wrap {
     -webkit-box-align: start;

@@ -1,11 +1,14 @@
 ﻿<template>
 
     <div id="mini-cart" class="mini-cart style-normal">
-        <a href="/Cart"
-           class="mini-cart__button header-icon"
-           title="سبد خرید خود را مشاهده کنید" style="opacity: 1;">
-            <span class="mini-cart-icon" :data-count="cartExistItems.length"></span>
-        </a>
+        <router-link :to="{name: 'Cart'}">
+            <a
+                    class="mini-cart__button header-icon"
+                    title="سبد خرید خود را مشاهده کنید" style="opacity: 1;">
+                <span class="mini-cart-icon" :data-count="cartExistItems.length">
+                </span>
+            </a>
+        </router-link>
         <div class="widget_shopping_cart_content" style="opacity: 1;">
             <div
                     v-if="cartExistItems.length === 0"
@@ -30,12 +33,15 @@
                             @click="removeCartItem(cartIndex)"
                             class="remove remove_from_cart_button"
                             data-product_sku="">×</a>
-                    <div class="product-thumbnail">
+                    <div
+                            v-if="!!cartItem.cover"
+                            class="product-thumbnail">
                         <a>
-                            <img width="150" height="150"
-                                 class="attachment-thumbnail size-thumbnail"
-                                 alt="" decoding="async" loading="lazy"
-                                 sizes="(max-width: 150px) 100vw, 150px"> </a>
+                            <img
+                                    :src="getImageUrl(cartItem.cover)"
+                                    width="150" height="150"
+                                    class="attachment-thumbnail size-thumbnail">
+                        </a>
                     </div>
 
                     <div class="product-caption">
@@ -71,11 +77,11 @@
                 </div>
 
                 <div class="woocommerce-mini-cart__buttons buttons">
-                    <router-link to="Cart">
+                    <router-link to="/Cart">
                         <a class="button wc-forward">مشاهده سبد خرید</a>
                     </router-link>
 
-                    <router-link to="Cart">
+                    <router-link to="/Cart">
                         <a class="button checkout wc-forward">تسویه حساب</a>
                     </router-link>
 

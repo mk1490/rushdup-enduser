@@ -19,7 +19,7 @@
                     v-if="!isLogin"
                     class="tm-button-wrapper">
                 <a
-                        @click="openRegisterModal()"
+                        @click="openRegisterModal"
                         class="tm-button style-flat tm-button-sm open-popup-register button-thin button-light-primary">
                     <div class="button-content-wrapper">
                         <span class="button-text">ثبت نام</span>
@@ -42,6 +42,7 @@
                     v-if="isLogin"
                     class="tm-button-wrapper">
                 <a
+                        @click="logout"
                         class="tm-button style-flat tm-button-sm button-thin button-secondary-white">
                     <div class="button-content-wrapper">
                         <span class="button-text">خروج</span>
@@ -56,18 +57,21 @@
                 @registerClick="openRegisterModal"
                 @lostPasswordClick="openLostPasswordModal"
                 @onLoginSuccess="loginSuccess"
+                @close="modal.login.visible =false"
                 :visible.sync="modal.login.visible">
         </login-modal>
         <lost-password-modal
                 v-if="modal.lostPassword.visible"
                 @loginClick="openLoginModal"
                 @resetSended="resetSended()"
+                @close="modal.lostPassword.visible =false"
                 :visible.sync="modal.lostPassword.visible">
         </lost-password-modal>
     </div>
     <register-modal
             v-if="modal.register.visible"
             :visible.sync="modal.register.visible"
+            @close="modal.register.visible =false"
             @loginClick="openLoginModal">
     </register-modal>
 </template>
@@ -81,7 +85,14 @@ export default {
     name: "TheLayoutToolbarUserButton",
     components: {LostPasswordModal, LoginModal, RegisterModal},
     computed: {
-        ...mapGetters(['isLogin'])
+        ...mapGetters(['isLogin', 'loginModal'])
+    },
+    created() {
+        this.$store.subscribeAction(({type}, state) => {
+            if (type == 'openLoginModal') {
+                this.openLoginModal();
+            }
+        })
     },
     data() {
         return {
@@ -102,7 +113,6 @@ export default {
         openRegisterModal() {
             this.modal.register.visible = true;
             this.modal.login.visible = false;
-            console.log(this.modal.register.visible)
         },
         openLoginModal() {
             this.modal.lostPassword.visible = false;
@@ -115,6 +125,7 @@ export default {
         },
         loginSuccess() {
             this.modal.login = false;
+            this.$store.dispatch('setLoginState', true);
         },
         resetSended() {
             this.modal.lostPassword.visible = false;
@@ -123,8 +134,12 @@ export default {
             this.$router.push({
                 name: 'dashboard'
             })
+        },
+        logout() {
+            localStorage.removeItem('Authorization');
+            this.$store.dispatch('setLoginState', false);
         }
-    }
+    },
 }
 </script>
 

@@ -90,10 +90,11 @@
                                     <!--                                    </Requirements>-->
 
 
-                                    <!--                                    <Topics-->
-                                    <!--                                            v-if="model.courseItems.length > 0"-->
-                                    <!--                                            :items="model.courseItems">-->
-                                    <!--                                    </Topics>-->
+                                    <Topics
+                                            v-if="model.courseItems.length > 0"
+                                            :items="model.courseItems"
+                                            :slug="model.subjectSlug">
+                                    </Topics>
 
 
                                     <Teachers
@@ -350,6 +351,8 @@ export default {
         const courseSlug = this.$route.params.courseSlug;
         const [err, data] = await this.to(this.http.get(`/course/course-details/${courseSlug}`));
         if (!err) {
+            this.model.subjectSlug = courseSlug;
+            this.model.purchaseStatus = data.financial.cartStatus;
             this.model.id = data.id;
             this.model.title = data.title;
             this.model.studentCounts = data.studentCounts;
@@ -360,7 +363,6 @@ export default {
             this.model.deducationValue = data.financial.deducationValue;
             this.model.courseIsFree = data.financial.courseIsFree;
             this.model.hasDiscount = data.financial.hasDiscount;
-            this.model.purchaseStatus = data.financial.cartStatus;
             if (!!data.subject) {
                 this.model.subjectTitle = data.subject.title;
                 this.model.subjectSlug = data.subject.slug;

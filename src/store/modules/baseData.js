@@ -1,4 +1,5 @@
 import app from '@/main'
+import {v4 as uuidv4} from "uuid";
 
 const baseData = {
     state: {
@@ -12,6 +13,7 @@ const baseData = {
         breadCrumb: [],
         battalionItems: [],
         loading: false,
+        loginModal: false,
         // timeRangeItems: [{
         //     text: i18n.t('timeRangeItems.recent12Hour'), value: 'recent12Hour'
         // }, {
@@ -35,7 +37,9 @@ const baseData = {
         profileNavbarShow: (state) => state.profileNavbarShow,
         homeItems: (state) => state.homeItems,
         pageTitle: (state) => state.pageTitle,
+        pageTitleType: (state) => state.pageTitleType || 1,
         loading: (state) => state.loading,
+        loginModal: (state) => state.loading,
     },
     mutations: {
         SET_MENU_ITEMS: (state, payload) => {
@@ -52,6 +56,9 @@ const baseData = {
         },
         SHOW_LOADING: (state, showLoading) => {
             state.loading = showLoading;
+        },
+        SHOW_LOGIN: (state, showLogin) => {
+            state.loading = showLogin;
         },
     }, actions: {
         initMenuItems: async (context, payload) => {
@@ -72,16 +79,18 @@ const baseData = {
         },
         initializeSessionId: ({state}) => {
             let id = sessionStorage.getItem('id');
+            console.log('id', id, !id)
             if (!id) {
-                if (!!app) {
-                    id = app.config.globalProperties.randomUUID();
-                }
+                id = uuidv4();
                 sessionStorage.setItem('id', id);
             }
             state.sessionId = id;
         },
         setPageTitle({state}, pageTitle) {
             state.pageTitle = pageTitle;
+        },
+        pageTitleType({state}, pageTitleType) {
+            state.pageTitleType = pageTitleType;
         },
         clearBreadcrumb({state}, payload) {
             state.breadCrumb = []
@@ -91,6 +100,9 @@ const baseData = {
         },
         setLoadingState: ({commit}, payload) => {
             commit('SHOW_LOADING', payload);
+        },
+        openLoginModal: ({state}) => {
+            state.loginModal = true;
         },
     },
 };

@@ -1,5 +1,7 @@
 ﻿<template>
-    <div id="page-title-bar" class="page-title-bar page-title-bar-02">
+    <div id="page-title-bar"
+
+         :class="`page-title-bar page-title-bar-0${pageTitleType}`">
         <div class="page-title-bar-inner">
             <app-breadcrumb></app-breadcrumb>
             <div
@@ -27,7 +29,7 @@ export default {
     name: "AppTitleBar",
     components: {AppBreadcrumb},
     computed: {
-        ...mapGetters(['pageTitle'])
+        ...mapGetters(['pageTitle', 'pageTitleType'])
     },
 }
 </script>

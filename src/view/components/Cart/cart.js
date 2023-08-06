@@ -1,9 +1,6 @@
 import {mapActions, mapGetters, mapMutations} from 'vuex'
 
 export default {
-    created() {
-        console.log('Salam mixin')
-    },
     methods: {
         ...mapMutations(['ADD_TO_CART']),
         async addToCartOrCompletePurchaseFlowOrViewCourse(purchaseStatus, courseId, model) {
@@ -26,14 +23,16 @@ export default {
                 }
             }
         },
-        getCartButtonTitle(purchaseStatus) {
-            switch (purchaseStatus) {
+        getCartButtonTitle(status) {
+            switch (status) {
                 case -1:
                     return this.$t('course.addToCard');
                 case 1:
                     return this.$t('course.startLearning');
                 case 2:
                     return this.$t('course.completePurchaseFlow');
+                default:
+                    return this.$t('course.addToCard');
             }
         }
     },

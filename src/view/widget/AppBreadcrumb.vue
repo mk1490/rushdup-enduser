@@ -6,20 +6,14 @@
                 class="page-breadcrumb">
             <div class="page-breadcrumb-inner container">
                 <ul class="insight_core_breadcrumb">
-                    <!--                <li class="level-1 top">-->
-                    <!--                    <a-->
-                    <!--                            href="/"-->
-                    <!--                            to="home">خانه</a>-->
-                    <!--                </li>-->
-
                     <li
                             v-for="(item, index) in items"
                             :class="`level-${index + 2} ${(index+ 1) === items.length? 'current' : 'sub'}`">
-                        <a
-                                :href="item.path"
-                                :to="item.path">
-                            {{ item.title }}
-                        </a>
+                        <router-link :to="item.path">
+                            <a>
+                                {{ item.title }}
+                            </a>
+                        </router-link>
                     </li>
                 </ul>
             </div>
