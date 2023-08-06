@@ -94,6 +94,13 @@ export default {
         pagesLengthCalculate() {
             return Math.ceil(this.totalCounts / this.itemsPerPage);
         }
+    },
+    watch: {
+        '$route': {
+            async handler() {
+                await this.fetchData();
+            }
+        }
     }
 }
 </script>
