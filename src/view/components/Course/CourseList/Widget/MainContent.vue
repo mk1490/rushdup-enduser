@@ -44,145 +44,147 @@
             <div class="edumall-main-post edumall-grid-wrapper edumall-courses edumall-animation-zoom-in style-grid-01"
                  style="display: flex; flex-wrap: wrap;width: 100%"
                  v-if="viewSelectionType == 1">
-                <div
-                        :id="'grid_' + index"
-                        @mouseenter="mouseEnterForShowTooltip(index)"
-                        v-for="(item, index) in items"
-                        class="col-md-4 col-lg-4 col-sm-12 mt-sm-5">
-                    <div
-                            class="course-loop-wrapper edumall-box edumall-tooltip">
-                        <div class="tutor-course-header">
-                            <div class="course-thumbnail edumall-image">
-                                <a :href="`/cd/${item.slug}`">
-                                    <v-img
-                                            :aspect-ratio="30/19"
-                                            :src="item.cover"/>
-                                </a>
-                            </div>
-                            <div class="course-loop-badges">
-                                <div class="tutor-course-badge hot">ویژه</div>
-                                <div class="tutor-course-badge onsale">-34%</div>
-                            </div>
-                        </div>
-
-                        <div class="course-loop-info">
-                            <!--                            <div class="course-loop-badge-level expert">-->
-                            <!--                                <span class="badge-text">پیشرفته</span>-->
-                            <!--                            </div>-->
-                            <h2 class="course-loop-title course-loop-title-collapse-2-rows">
-                                <a href="#">
-                                    {{ item.title }}
-                                </a>
-                            </h2>
-                            <div class="course-loop-excerpt course-loop-excerpt-collapse-2-rows">
-                                <div v-html="item['shortDescription']">
+                <v-menu open-on-hover
+                        location="end">
+                    <template v-slot:activator="{props}">
+                        <div
+                                v-bind="props"
+                                :id="'grid_' + index"
+                                @mouseenter="mouseEnterForShowTooltip(index)"
+                                v-for="(item, index) in items"
+                                class="col-md-4 col-lg-4 col-sm-12 mt-sm-5">
+                            <div
+                                    class="course-loop-wrapper edumall-box edumall-tooltip">
+                                <div class="tutor-course-header">
+                                    <div class="course-thumbnail edumall-image">
+                                        <a :href="`/cd/${item.slug}`">
+                                            <v-img
+                                                    :aspect-ratio="30/19"
+                                                    :src="item.cover"/>
+                                        </a>
+                                    </div>
+                                    <div class="course-loop-badges">
+                                        <div class="tutor-course-badge hot">ویژه</div>
+                                        <div class="tutor-course-badge onsale">-34%</div>
+                                    </div>
                                 </div>
-                                <!--                                <p>{{ item.shortDescription }}</p>-->
-                            </div>
-                            <div class="course-loop-price">
-                                <div class="tutor-price">
-                                    <div class="price">
-                                        <p class="price">
+
+                                <div class="course-loop-info">
+                                    <!--                            <div class="course-loop-badge-level expert">-->
+                                    <!--                                <span class="badge-text">پیشرفته</span>-->
+                                    <!--                            </div>-->
+                                    <h2 class="course-loop-title course-loop-title-collapse-2-rows">
+                                        <a href="#">
+                                            {{ item.title }}
+                                        </a>
+                                    </h2>
+                                    <div class="course-loop-excerpt course-loop-excerpt-collapse-2-rows">
+                                        <div v-html="item['shortDescription']">
+                                        </div>
+                                        <!--                                <p>{{ item.shortDescription }}</p>-->
+                                    </div>
+                                    <div class="course-loop-price">
+                                        <div class="tutor-price">
+                                            <div class="price">
+                                                <p class="price">
 
 
-                                            <template v-if="!item.courseIsFree">
+                                                    <template v-if="!item.courseIsFree">
 
-                                                <template v-if="item.deducatedPrice != item.price">
-                                                    <ins>
+                                                        <template v-if="item.deducatedPrice != item.price">
+                                                            <ins>
                                                 <span class="woocommerce-Price-amount amount"><bdi>{{
                                                     getComma(item.deducatedPrice)
                                                     }}&nbsp;
                                                     <span class="woocommerce-Price-currencySymbol">
                                                         {{ $t('ui.IRR') }}
                                                     </span></bdi></span>
-                                                    </ins>
-                                                    <del>
+                                                            </ins>
+                                                            <del>
                                                 <span class="woocommerce-Price-amount amount"><bdi>
                                                     {{ getComma(item.price) }}
                                                     &nbsp;<span
                                                         class="woocommerce-Price-currencySymbol">{{
                                                     $t('ui.IRR')
                                                     }}</span></bdi></span>
-                                                    </del>
-                                                </template>
-                                                <template v-else>
-                                                    <bdi>
-                                                        {{ getComma(item.deducatedPrice) }}
-                                                        <span class="woocommerce-Price-currencySymbol">{{
-                                                            $t('ui.IRR')
-                                                            }}</span>
-                                                    </bdi>
-                                                </template>
+                                                            </del>
+                                                        </template>
+                                                        <template v-else>
+                                                            <bdi>
+                                                                {{ getComma(item.deducatedPrice) }}
+                                                                <span class="woocommerce-Price-currencySymbol">{{
+                                                                    $t('ui.IRR')
+                                                                    }}</span>
+                                                            </bdi>
+                                                        </template>
 
-                                            </template>
-                                            <template v-else>
-                                                رایگان
-                                            </template>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="course-loop-quick-view">
-                            <div class="course-loop-category">
-                                <a href="https://dana-team.com/products/edumall/course-category/advertising/">تبلیغات</a>
-                            </div>
-                            <h2 class="course-loop-title course-loop-title-collapse-2-rows"><a
-                                    href="https://dana-team.com/products/edumall/courses/the-creative-journey-of-branding/">سفر
-                                خلاقانه نام تجاری</a></h2>
-                            <div class="course-loop-meta style-01">
-                                <div class="course-loop-meta-list">
-
-                                    <div class="course-loop-meta-item course-loop-meta-duration">
-                                        <div class="meta-value">9.8 ساعت</div>
-                                    </div>
-
-                                    <div class="course-loop-meta-item course-loop-meta-level">
-                                        <div class="meta-value">
-                                            پیشرفته
+                                                    </template>
+                                                    <template v-else>
+                                                        رایگان
+                                                    </template>
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="course-loop-benefits">
-                                <h6 class="course-loop-benefits-heading">آنچه یاد خواهید گرفت</h6>
-                                <div class="course-loop-benefits-list">
-                                    <div class="course-loop-benefit">می تواند یک ارزش پیشنهادی برای یک نام تجاری ایجاد
-                                        کند
-                                    </div>
-                                    <div class="course-loop-benefit">بیاموزید که چگونه محتوای معنی دار و جذاب تولید
-                                        کنید.
-                                    </div>
-                                    <div class="course-loop-benefit">یک زمین خلاق کامل ایجاد کنید.</div>
-                                    <div class="course-loop-benefit">فعالیت های برند را از طریق لنز تجربه مشتری بررسی
-                                        کنید.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="course-loop-enrolled-button cart-notification"
-                                 data-notification="{&quot;image&quot;:&quot;https:\/\/dana-team.com\/products\/edumall\/wp-content\/uploads\/2020\/11\/course-thumbnail-11-1-80x80.jpg&quot;,&quot;title&quot;:&quot;\u0633\u0641\u0631 \u062e\u0644\u0627\u0642\u0627\u0646\u0647 \u0646\u0627\u0645 \u062a\u062c\u0627\u0631\u06cc&quot;}">
-                                <a href="?add-to-cart=1879" data-quantity="1"
-                                   class="tutor-btn tutor-btn-outline-primary tutor-btn-md tutor-btn-block  product_type_simple add_to_cart_button  ajax_add_to_cart"
-                                   data-product_id="1879" data-product_sku=""
-                                   aria-label="افزودن “سفر خلاقانه نام تجاری - محصول” به سبد" rel="nofollow"><span
-                                        class="tutor-icon-cart-line tutor-mr-8"></span><span class="cart-text">افزودن به سبد خرید</span></a>
-                            </div>
-                            <div class="tm-button-wrapper course-loop-wishlist-button"><a data-course-id="1862"
-                                                                                          class="tm-button style-text tm-button-nm edumall-course-wishlist-btn icon-left"
-                                                                                          href="javascript:void(0);">
-                                <div class="button-content-wrapper">
-
-                                    <span class="button-icon"><i class="far fa-heart"></i></span>
-
-                                    <span class="button-text">افزودن به علاقه مندی ها</span>
 
                                 </div>
-                            </a></div>
+                                <div class="course-loop-quick-view">
+                                    <div class="course-loop-category">
+                                        <a href="https://dana-team.com/products/edumall/course-category/advertising/">تبلیغات</a>
+                                    </div>
+                                    <h2 class="course-loop-title course-loop-title-collapse-2-rows"><a
+                                            href="https://dana-team.com/products/edumall/courses/the-creative-journey-of-branding/">سفر
+                                        خلاقانه نام تجاری</a></h2>
+                                    <div class="course-loop-meta style-01">
+                                        <div class="course-loop-meta-list">
+
+                                            <div class="course-loop-meta-item course-loop-meta-duration">
+                                                <div class="meta-value">9.8 ساعت</div>
+                                            </div>
+
+                                            <div class="course-loop-meta-item course-loop-meta-level">
+                                                <div class="meta-value">
+                                                    پیشرفته
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tm-button-wrapper course-loop-wishlist-button">
+                                        <a data-course-id="1862"
+                                           class="tm-button style-text tm-button-nm edumall-course-wishlist-btn icon-left"
+                                           href="javascript:void(0);">
+                                            <div class="button-content-wrapper">
+
+                                                <span class="button-icon"><i class="far fa-heart"></i></span>
+
+                                                <span class="button-text">افزودن به علاقه مندی ها</span>
+
+                                            </div>
+                                        </a></div>
+                                </div>
+
+                            </div>
                         </div>
-
-                    </div>
-                </div>
+                    </template>
+                    <v-card
+                            width="300"
+                            :disabled="loading.benefit == true"
+                            :loading="loading.benefit"
+                            style="padding: 25px; 30px">
+                        <div
+                                v-if="loading.benefit == false"
+                                class="course-loop-benefits">
+                            <h6 class="course-loop-benefits-heading">آنچه یاد خواهید گرفت</h6>
+                            <div class="course-loop-benefits-list">
+                                <div
+                                        v-for="benefitItem in benefitItems"
+                                        class="course-loop-benefit">
+                                    {{ benefitItem }}
+                                </div>
+                            </div>
+                        </div>
+                    </v-card>
+                </v-menu>
             </div>
 
 
@@ -385,10 +387,14 @@ export default {
     },
     data() {
         return {
+            loading: {
+                benefit: false,
+            },
             purchaseStatus: -1,
             viewSelectionType: 1,
             tooltipYPosition: 0,
             tooltipXPosition: 0,
+            benefitItems: [],
         }
     },
     methods: {
@@ -411,14 +417,15 @@ export default {
                     await this.$router.push('/cart');
                     break;
                 }
-
             }
         },
-        mouseEnterForShowTooltip(index) {
-            const gridElement = document.getElementById('grid_' + index);
-            const boundingRect = gridElement.getBoundingClientRect()
-            // this.tooltipXPosition = boundingRect.x + 110;
-            // this.tooltipYPosition = boundingRect.y - 500;
+        async mouseEnterForShowTooltip(index) {
+            this.loading.benefit = true;
+            const [err, data] = await this.to(this.http.get(`/course/benefit/${this.items[index].id}`, {loader: false}));
+            this.loading.benefit = false;
+            if (!err) {
+                this.benefitItems = data;
+            }
         }
     },
     watch: {
