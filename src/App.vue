@@ -12,7 +12,6 @@ import {getCurrentInstance} from 'vue'
 import {mapActions, mapGetters} from "vuex";
 import DeleteDialog from "./view/widget/DeleteDialog";
 import ProgressDialog from "@/view/widget/ProgressDialog";
-import common from '@/plugins/commonMethods';
 
 export default {
     setup() {
@@ -38,7 +37,6 @@ export default {
     name: 'App',
     components: {ProgressDialog, DeleteDialog},
     async mounted() {
-        common.init(getCurrentInstance());
         await this.$store.dispatch('initializeSessionId');
         // Vue.prototype.deleteModal = this.$refs.deleteDialog;
         await this.$store.commit('INITIAL_CART_ITEMS');
