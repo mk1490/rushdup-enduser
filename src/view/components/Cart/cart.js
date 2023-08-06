@@ -26,6 +26,16 @@ export default {
                 }
             }
         },
+        getCartButtonTitle(purchaseStatus) {
+            switch (purchaseStatus) {
+                case -1:
+                    return this.$t('course.addToCard');
+                case 1:
+                    return this.$t('course.startLearning');
+                case 2:
+                    return this.$t('course.completePurchaseFlow');
+            }
+        }
     },
     computed: {
         ...mapGetters(['sessionId'])

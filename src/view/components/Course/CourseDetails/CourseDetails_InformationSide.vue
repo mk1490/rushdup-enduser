@@ -34,7 +34,6 @@
                     <v-btn
                             @click="addToCartOrCompletePurchaseFlowOrViewCourse"
                             height="50"
-                            block
                             class="white--text"
                             color="#3949AB">
                         {{ getCartButtonTitle() }}

@@ -225,7 +225,7 @@
                                                             @click="addToCart"
                                                             class="single_add_to_cart_button ajax_add_to_cart tutor-button alt">
                                                         <i class="far fa-shopping-cart"></i>
-                                                        افزودن به سبد خرید
+                                                        {{ getCartButtonTitle(model.purchaseStatus) }}
                                                     </button>
                                                 </div>
                                             </div>
