@@ -118,6 +118,13 @@ export default {
                 await this.fetchData();
             }
         }
+    },
+    watch: {
+        '$route': {
+            async handler() {
+                await this.fetchData();
+            }
+        }
     }
 }
 </script>

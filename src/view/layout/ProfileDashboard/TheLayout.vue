@@ -30,17 +30,19 @@ export default {
     },
     methods: {
         prepareMenuOrDesktopMenuStyle() {
-            console.log(this.isMobile())
-            const mainLayoutWrapper = this.$refs.mainWrapper;
-            if (this.isMobile()) {
-                mainLayoutWrapper.classList.remove('desktop-menu')
-                mainLayoutWrapper.classList.remove('dashboard-nav-fixed')
-                mainLayoutWrapper.classList.add('mobile-menu')
-            } else {
-                mainLayoutWrapper.classList.add('desktop-menu')
-                mainLayoutWrapper.classList.add('dashboard-nav-fixed')
-                mainLayoutWrapper.classList.remove('mobile-menu')
-            }
+
+            // TODO
+            // console.log(this.isMobile())
+            // const mainLayoutWrapper = this.$refs.mainWrapper;
+            // if (this.isMobile()) {
+            //     mainLayoutWrapper.classList.remove('desktop-menu')
+            //     mainLayoutWrapper.classList.remove('dashboard-nav-fixed')
+            //     mainLayoutWrapper.classList.add('mobile-menu')
+            // } else {
+            //     mainLayoutWrapper.classList.add('desktop-menu')
+            //     mainLayoutWrapper.classList.add('dashboard-nav-fixed')
+            //     mainLayoutWrapper.classList.remove('mobile-menu')
+            // }
         },
         toggleNavbar() {
             const mainWrapper = this.$refs.mainWrapper;

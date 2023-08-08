@@ -65,15 +65,16 @@ export default {
         prepareMenuOrDesktopMenuStyle() {
             const mainLayoutWrapper = this.$refs.mainWrapper;
             console.log(mainLayoutWrapper.classList)
-            if (this.isMobile()) {
-                mainLayoutWrapper.classList.remove('desktop-menu')
-                mainLayoutWrapper.classList.remove('dashboard-nav-fixed')
-                mainLayoutWrapper.classList.add('mobile-menu')
-            } else {
-                mainLayoutWrapper.classList.add('desktop-menu')
-                mainLayoutWrapper.classList.add('dashboard-nav-fixed')
-                mainLayoutWrapper.classList.remove('mobile-menu')
-            }
+            // TODO
+            // if (this.isMobile()) {
+            //     mainLayoutWrapper.classList.remove('desktop-menu')
+            //     mainLayoutWrapper.classList.remove('dashboard-nav-fixed')
+            //     mainLayoutWrapper.classList.add('mobile-menu')
+            // } else {
+            //     mainLayoutWrapper.classList.add('desktop-menu')
+            //     mainLayoutWrapper.classList.add('dashboard-nav-fixed')
+            //     mainLayoutWrapper.classList.remove('mobile-menu')
+            // }
 
 
         },

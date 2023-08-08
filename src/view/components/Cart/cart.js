@@ -4,7 +4,6 @@ export default {
     methods: {
         ...mapMutations(['ADD_TO_CART']),
         async addToCartOrCompletePurchaseFlowOrViewCourse(purchaseStatus, courseId, model) {
-            console.log(purchaseStatus, courseId, model)
             switch (purchaseStatus) {
                 case -1: {
                     const [err, data] = await this.to(this.http.post(`/cart`, {
