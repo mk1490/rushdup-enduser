@@ -35,13 +35,21 @@
                     </ul>
                 </div>
             </div>
+            <div class="dashboard-nav-content">
+                <div class="dashboard-nav-content-inner ps-container ps-theme-default ps-active-y">
+                    <wallet></wallet>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+import Wallet from "./Widgets/Wallet.vue";
+
 export default {
     name: "TheLayoutDrawerList",
+    components: {Wallet},
     emits: ['closeNavbar'],
     created() {
         this.items.push({title: 'پیشخوان', icon: 'index', to: '/dashboard'});
