@@ -148,39 +148,25 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                                <div class="elementor-element elementor-element-4fefe05 elementor-widget__width-initial style-01 elementor-widget edumall-widget-course-search-form animated edumallFadeInUp"
-                                                                     data-id="4fefe05"
-                                                                     data-element_type="widget"
-                                                                     data-settings="{&quot;_animation&quot;:&quot;edumallFadeInUp&quot;}"
-                                                                     data-widget_type="tm-course-search-form.default">
+                                                                <div class="elementor-element elementor-element-4fefe05 elementor-widget__width-initial style-01 elementor-widget edumall-widget-course-search-form animated edumallFadeInUp">
                                                                     <div
                                                                             class="elementor-widget-container">
-                                                                        <form
-                                                                                class="course-search-form"
-                                                                                role="search"
-                                                                                method="get"
-                                                                                action="https://dana-team.com/products/edumall/courses/">
-                                                                            <label
-                                                                                    class="screen-reader-text">جستجو
-                                                                                برای:</label>
-                                                                            <input
-                                                                                    placeholder="چه چیزی می خوای یاد بگیری؟"
-                                                                                    class="search-field form-input"
-                                                                                    type="search"
-                                                                                    name="filter_name"
-                                                                                    title="جستجو"
-                                                                                    value="">
-                                                                            <button
-                                                                                    type="submit"
-                                                                                    class="search-submit">
-																											<span
-                                                              class="search-btn-icon far fa-search"></span>
-                                                                                <span
-                                                                                        class="search-btn-text">
-																												جستجو
-																											</span>
-                                                                            </button>
-                                                                        </form>
+                                                                        <label
+                                                                                class="screen-reader-text">جستجو
+                                                                            برای:</label>
+
+                                                                        <input
+                                                                                id="searchInputElement"
+                                                                                placeholder="چه چیزی می خوای یاد بگیری؟"
+                                                                                class="search-field form-input"
+                                                                                title="جستجو">
+                                                                        <button
+                                                                                @click="submitSearch"
+                                                                                class="search-submit"><span
+                                                                                class="search-btn-icon far fa-search">
+                                                                        </span>
+                                                                            <span class="search-btn-text">جستجو</span>
+                                                                        </button>
                                                                     </div>
                                                                 </div>
                                                                 <div class="elementor-element elementor-element-33f45e8 elementor-widget elementor-widget-spacer"
@@ -334,6 +320,14 @@ export default {
                 this.$refs.circle_1.style.setProperty('--translateY', e.clientY / 20 + 'px');
             }
         }
+    },
+    methods: {
+        submitSearch() {
+            const s = this.$refs.searchInputElement;
+            console.log(s)
+            return;
+            window.alert(s)
+        }
     }
 }
 </script>
@@ -355,5 +349,9 @@ export default {
 
 .elementor-element.elementor-element-af8ff11 > .elementor-background-overlay {
     transition: background 0.3s, border-radius 0.3s, opacity 0.3s;
+}
+
+.search-field {
+    width: 100% !important;
 }
 </style>

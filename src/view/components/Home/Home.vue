@@ -5,9 +5,9 @@
             <div class="elementor-section-wrap">
 
 
+                <header_-style2></header_-style2>
                 <header_-style1></header_-style1>
 
-                <header_-style2></header_-style2>
 
                 <div class="elementor-container elementor-column-gap-extended">
                     <template v-for="item in homeItems">

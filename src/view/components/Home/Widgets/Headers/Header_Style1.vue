@@ -42,9 +42,8 @@
                                     class="elementor-element elementor-element-f1feac2 elementor-tablet-align-center elementor-widget elementor-widget-tm-button animated edumallFadeInUp">
                                 <div class="elementor-widget-container">
                                     <div class="tm-button-wrapper">
-                                        <a href="https://dana-team.com/products/edumall/courses/"
-                                           class="tm-button-link tm-button style-flat tm-button-xl"
-                                           role="button">
+                                        <a
+                                                class="tm-button-link tm-button style-flat tm-button-xl" role="button">
                                             <div class="button-content-wrapper">
 
                                                 <span class="button-text">دوره ها را پیدا کنید</span>
