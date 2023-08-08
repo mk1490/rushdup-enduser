@@ -21,7 +21,9 @@
                         </div>
                     </div>
 
-                    <div class="header-category-menu">
+                    <div
+                            v-if="categoryItems.length > 0"
+                            class="header-category-menu">
                         <router-link to="/cl">
                             <a class="header-icon category-menu-toggle">
                                 <div class="category-toggle-icon">
@@ -152,6 +154,13 @@
                                     </the-layout-toolbar-cart-widget>
                                     <the-layout-toolbar-user-button>
                                     </the-layout-toolbar-user-button>
+
+
+                                    <v-btn :ripple="false">
+                                        درخواست همکاری
+                                    </v-btn>
+
+
                                 </div>
                             </div>
                             <div
