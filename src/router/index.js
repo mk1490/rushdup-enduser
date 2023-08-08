@@ -21,8 +21,12 @@ export const constantRoutes = [
         meta: {
             noCache: true,
             affix: true,
-            title: 'route.Management'
         }, children: [
+            {
+                path: '/cooperationRequest',
+                name: 'cooperationRequest',
+                component: () => import('@/view/components/CooperationRequest/CooperationRequest.vue'),
+            },
             {
                 path: 'home',
                 name: 'Home',
@@ -245,7 +249,6 @@ export const constantRoutes = [
                 name: 'transactions',
                 component: () => import('@/view/components/Profile/Order/OrderDetails.vue'),
             },
-
         ]
     },
     {
@@ -255,6 +258,7 @@ export const constantRoutes = [
         meta: {},
         children: []
     },
+
 ];
 
 export default createRouter({

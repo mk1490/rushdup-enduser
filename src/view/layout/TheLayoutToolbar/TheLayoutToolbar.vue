@@ -156,7 +156,9 @@
                                     </the-layout-toolbar-user-button>
 
 
-                                    <v-btn :ripple="false">
+                                    <v-btn
+                                        to="/cooperationRequest"
+                                        :ripple="false">
                                         درخواست همکاری
                                         <v-icon>
                                             mdi-handshake
