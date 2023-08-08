@@ -1,7 +1,7 @@
 <template>
     <v-text-field
-            :value="value"
-            @update="$emit('update:value', $event)"
+            :value="modelValue"
+            @update:modelValue="$emit('update:modelValue', $event)"
             :label="label"
             hide-details
             dense>
@@ -11,9 +11,16 @@
 <script>
 export default {
     name: "BaseTextField",
+    created() {
+    },
     props: {
-        value: String,
+        modelValue: String,
         label: String,
+    },
+    data() {
+        return {
+            model: null,
+        }
     }
 }
 </script>
