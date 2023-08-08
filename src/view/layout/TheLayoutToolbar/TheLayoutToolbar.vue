@@ -158,6 +158,9 @@
 
                                     <v-btn :ripple="false">
                                         درخواست همکاری
+                                        <v-icon>
+                                            mdi-handshake
+                                        </v-icon>
                                     </v-btn>
 
 
