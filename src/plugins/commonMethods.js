@@ -29,7 +29,7 @@ export default {
             return Number.parseFloat(irrAmountValue.toString().replaceAll(',', ''));
         }
         app.config.globalProperties.getImageUrl = (suffix) => {
-            return app.config.globalProperties.serverAddress + '/api' + suffix;
+            return app.config.globalProperties.serverAddress + suffix;
         }
 
         app.config.globalProperties.convertAmount = (event, vm, modelName) => {

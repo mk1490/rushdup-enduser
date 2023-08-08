@@ -156,7 +156,7 @@
                                                                             برای:</label>
 
                                                                         <input
-                                                                                id="searchInputElement"
+                                                                                v-model="model.searchValue"
                                                                                 placeholder="چه چیزی می خوای یاد بگیری؟"
                                                                                 class="search-field form-input"
                                                                                 title="جستجو">
@@ -323,10 +323,14 @@ export default {
     },
     methods: {
         submitSearch() {
-            const s = this.$refs.searchInputElement;
-            console.log(s)
-            return;
-            window.alert(s)
+            this.$router.push(`/search?q=${this.model.searchValue}`);
+        }
+    },
+    data() {
+        return {
+            model: {
+                searchValue: null,
+            }
         }
     }
 }

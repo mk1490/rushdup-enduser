@@ -7,49 +7,51 @@
             <v-card-text>
                 <div class="row">
                     <div
-                            v-for="item in tempItems"
+                            v-for="item in items"
                             class="col-md-4">
                         <v-card
-
+                                :ripple="false"
+                                :to="`/cd/${item.slug}`"
                                 class="ma-4">
                             <v-card-text class="pa-0">
                                 <div
-                                        class="grid-item post-item post-619 page type-page status-publish hentry post-no-thumbnail animate">
+                                        class="grid-item post-item post-203 courses type-courses status-publish has-post-thumbnail hentry course-language-persian course-category-design-tools course-category-search-engine-optimization course-category-advertising course-category-public-relations course-tag-design course-tag-graphic animate">
                                     <div class="post-wrapper edumall-box">
-
-                                        <div class="post-feature post-thumbnail edumall-image">
-                                            <a href="https://dana-team.com/products/edumall/courses/%d8%af%d9%88%d8%b1%d9%87-%d8%a2%d9%85%d9%88%d8%b2%d8%b4-%d9%85%d9%84%d8%b2%d9%88%d9%85%d8%a7%d8%aa-adobe-illustrator-cc/">
-                                                <img src="https://dana-team.com/products/edumall/wp-content/uploads/2020/11/zoom-meeting-thumbnail-06-1-480x260.jpg"
-                                                     alt="zoom-meeting-thumbnail-06" width="480"> </a>
+                                        <div
+                                                v-if="!!item.cover"
+                                                class="post-feature post-thumbnail edumall-image">
+                                            <a>
+                                                <img
+                                                        :src="getImageUrl(item.cover)"
+                                                        :alt="item.title"
+                                                        width="480"/>
+                                            </a>
                                         </div>
                                         <div class="post-caption">
                                             <div class="post-meta">
                                                 <div class="inner">
-                                                    <div class="post-date">
-                                                        <span class="meta-icon"><i class="far fa-calendar"></i></span>
-                                                        <span class="meta-value">شهریور 6, 1399</span>
-                                                    </div>
+                                                    <!--                                                    <div class="post-date">-->
+                                                    <!--                                                        <span class="meta-icon"><i class="far fa-calendar"></i></span>-->
+                                                    <!--                                                        <span class="meta-value">شهریور 6, 1399</span>-->
+                                                    <!--                                                    </div>-->
                                                     <div class="post-view">
                                                         <span class="meta-icon"><i class="far fa-eye"></i></span>
-                                                        <span class="meta-value">248 بازدید</span>
+                                                        <span class="meta-value">{{ item.viewsCount }} بازدید</span>
                                                     </div>
                                                 </div>
                                             </div>
 
                                             <h3 class="post-title">
-                                                <a href="https://dana-team.com/products/edumall/course-hub/">دموی دوره
-                                                    آنلاین</a>
+                                                <a>{{ item.title }}</a>
                                             </h3>
 
                                             <div class="post-excerpt">
-                                                <p>به یادگیری ادامه دهید ارتباط با مدرسین ما دانش کسب کنید …</p></div>
+                                                <p>{{ item.summary }}</p>
+                                            </div>
 
                                             <div class="tm-button-wrapper post-read-more"><a
-                                                    class="tm-button style-flat tm-button-xs button-grey-white icon-right"
-                                                    href="https://dana-team.com/products/edumall/course-hub/">
+                                                    class="tm-button style-flat tm-button-xs button-grey-white icon-right">
                                                 <div class="button-content-wrapper">
-
-
                                                     <span class="button-text">ادامه مطلب</span>
 
                                                     <span class="button-icon"><i
@@ -78,7 +80,6 @@ export default {
     data() {
         return {
             items: [],
-            tempItems: [],
         }
     },
     methods: {
@@ -90,12 +91,7 @@ export default {
         }
     },
     async created() {
-        for (let i = 0; i < 10; i++) {
-            this.tempItems.push({})
-        }
-        console.log(this.tempItems)
-
-        this.search().then();
+        await this.search();
     },
     watch: {
         '$route.query.q': {
@@ -108,5 +104,15 @@ export default {
 </script>
 
 <style scoped>
+.post-title {
+    font-size: 16px !important;
+}
 
+.post-caption {
+    padding: 15px 30px 30px !important;
+}
+
+.post-view {
+    color: #7e7e7e !important;
+}
 </style>
