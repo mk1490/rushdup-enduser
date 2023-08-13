@@ -92,6 +92,7 @@
                                 v-if="contentShowingState == 3 && questionIndex !=  -1"
                                 :question-index="questionIndex"
                                 :question-title="questionItems[questionIndex].title"
+                                :question-type="questionItems[questionIndex].type"
                                 :answer-items="questionItems[questionIndex].answerItems"
                         />
                     </v-card-text>

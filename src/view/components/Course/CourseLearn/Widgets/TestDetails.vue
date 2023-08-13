@@ -12,7 +12,6 @@
         <div class="quiz-question-ans-choice-area tutor-mt-40 question-type-multiple_choice quiz-answer-required">
             <div id="tutor-quiz-single-multiple-choice" class=" tutor-quiz-wrap">
                 <div class="tutor-row">
-
                     <div
                             v-for="(answerItem, answerIndex) in answerItems"
                             class="tutor-col-6 tutor-col-lg-6 tutor-mb-16 tutor-quiz-answer-single">
@@ -52,6 +51,7 @@ export default {
     emits: ['nextOrSubmitClick'],
     props: {
         questionIndex: Number,
+        questionType: Number,
         questionTitle: String,
         answerItems: Array,
     }
