@@ -92,8 +92,10 @@
                                 v-if="contentShowingState == 3 && questionIndex !=  -1"
                                 :question-index="questionIndex"
                                 :question-title="questionItems[questionIndex].title"
-                                :question-type="questionItems[questionIndex].type"
+                                :question-type="questionItems[questionIndex].answerType"
                                 :answer-items="questionItems[questionIndex].answerItems"
+                                @backClick="backQuestion"
+                                @nextOrSubmitClick="nextQuestion"
                         />
                     </v-card-text>
                     <v-card-actions>
@@ -205,6 +207,12 @@ export default {
                 this.questionItems = data.items;
                 this.questionIndex = 0;
             }
+        },
+        backQuestion() {
+            this.questionIndex--;
+        },
+        nextQuestion() {
+            this.questionIndex++;
         }
     },
     watch: {

@@ -12,14 +12,55 @@
         <div class="quiz-question-ans-choice-area tutor-mt-40 question-type-multiple_choice quiz-answer-required">
             <div id="tutor-quiz-single-multiple-choice" class=" tutor-quiz-wrap">
                 <div class="tutor-row">
-                    <div
-                            v-for="(answerItem, answerIndex) in answerItems"
-                            class="tutor-col-6 tutor-col-lg-6 tutor-mb-16 tutor-quiz-answer-single">
+
+                    <template v-if="questionType == 1">
+                        <div class="tutor-col-6 tutor-col-lg-6 tutor-mb-16 tutor-quiz-answer-single">
+                            <label for="0" class="tutor-quiz-question-item">
+                                <div class="tutor-card tutor-px-16 tutor-py-12">
+                                    <div class="tutor-d-flex tutor-align-center">
+                                        <input
+                                                name="correctOrInCorrect"
+                                                class="tutor-form-check-input"
+                                                id="0"
+                                                :value="true"
+                                                type="radio">
+                                        <span class="tutor-fs-6 tutor-color-black tutor-ml-8">صحیح</span>
+                                    </div>
+                                </div>
+                            </label>
+
+                        </div>
+
+                        <div class="tutor-col-6 tutor-col-lg-6 tutor-mb-16 tutor-quiz-answer-single">
+                            <label for="1" class="tutor-quiz-question-item">
+                                <div class="tutor-card tutor-px-16 tutor-py-12">
+                                    <div class="tutor-d-flex tutor-align-center">
+                                        <input
+                                                name="correctOrInCorrect"
+                                                class="tutor-form-check-input"
+                                                id="1"
+                                                :value="false"
+                                                type="radio">
+                                        <span class="tutor-fs-6 tutor-color-black tutor-ml-8">غلط</span>
+                                    </div>
+                                </div>
+                            </label>
+
+                        </div>
+                    </template>
+
+
+                    <div v-if="[2,3].includes(questionType)"
+                         v-for="(answerItem, answerIndex) in answerItems"
+                         class="tutor-col-6 tutor-col-lg-6 tutor-mb-16 tutor-quiz-answer-single">
                         <label :for="answerIndex" class="tutor-quiz-question-item">
                             <div class="tutor-card tutor-px-16 tutor-py-12">
                                 <div class="tutor-d-flex tutor-align-center">
-                                    <input class="tutor-form-check-input" :id="answerIndex"
-                                           type="checkbox" :value="answerIndex">
+                                    <input
+                                            class="tutor-form-check-input"
+                                            :id="answerIndex"
+                                            name="singleOrMultipleInput"
+                                            :type="questionType == 3?'checkbox': 'radio'" :value="answerIndex">
                                     <span class="tutor-fs-6 tutor-color-black tutor-ml-8">{{ answerItem.title }}</span>
                                 </div>
                             </div>
@@ -31,7 +72,8 @@
 
         <div class="answer-help-block"></div>
         <div class="tutor-quiz-btn-group tutor-mt-60 tutor-d-flex">
-            <button type="button"
+            <button
+                    @click="$emit('backClick')"
                     class="tutor-btn tutor-btn-outline-primary tutor-btn-md tutor-quiz-answer-previous-btn tutor-mr-20">
                 <span class="tutor-icon-previous tutor-mr-8"></span>
                 بازگشت
@@ -48,7 +90,7 @@
 <script>
 export default {
     name: "TestDetails",
-    emits: ['nextOrSubmitClick'],
+    emits: ['backClick', 'nextOrSubmitClick'],
     props: {
         questionIndex: Number,
         questionType: Number,
