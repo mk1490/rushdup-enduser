@@ -15,8 +15,8 @@ export default {
                         this.purchaseStatus = 2;
                         await this.ADD_TO_CART(model);
                     }
-                }
                     break;
+                }
                 case 2: {
                     await this.$router.push('/cart');
                     break;

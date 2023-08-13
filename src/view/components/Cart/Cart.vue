@@ -145,14 +145,15 @@
                                             <tr class="order-total">
                                                 <th>قابل پرداخت</th>
                                                 <td data-title="جمع"><strong><span
-                                                        class="woocommerce-Price-amount amount"><bdi>
+                                                        class="woocommerce-Price-amount amount">
+                                                    <bdi>
                                                     {{
-                                                    appliedDiscount != -1 ? getComma(finalDeducatedPrice) : getComma(payableAmount)
-                                                    }}
-                                                    <span
-                                                            class="woocommerce-Price-currencySymbol">{{
-                                                        $t('ui.IRR')
-                                                        }}</span></bdi></span></strong>
+                                                        appliedDiscount != -1 ? getComma(finalDeducatedPrice) : getComma(payableAmount)
+                                                        }}
+                                                    <span class="woocommerce-Price-currencySymbol"></span>
+                                                </bdi>
+                                                </span>
+                                                </strong>
                                                 </td>
                                             </tr>
 
@@ -206,7 +207,7 @@ import CartEmpty from "@/view/components/Cart/Widgets/CartEmpty.vue";
 export default {
     name: "Cart",
     mounted() {
-        this.$store.dispatch('setPageTitle', this.$t('cart.title'))
+        // this.$store.dispatch('setPageTitle', this.$t('cart.title'))
     },
     async created() {
         const [err, data] = await this.to(this.http.get(`/cart/initialize/`));

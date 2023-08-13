@@ -72,20 +72,6 @@ export const constantRoutes = [
                 meta: {
                     title: 'route.myCourses', icon: 'mdi-book-education'
                 },
-            }, {
-                path: '/course-details/:slugOrId',
-                name: 'CourseDetails',
-                component: () => import('@/view/components/Course/CourseDetails/CourseDetails.vue'),
-                meta: {
-                    title: 'route.myCourses', icon: 'mdi-book-education'
-                },
-            },
-            {
-                path: '/course-details/:slugOrId/:courseGroupId',
-                name: 'CourseEpisode',
-                component: () => import('@/view/components/Course/CourseDetails/CourseEpisode/CourseEpisode.vue'),
-                hidden: true,
-                meta: {},
             },
             {
                 path: '/course-learn/:courseSlug?/:courseItemSlug?/',
@@ -93,15 +79,6 @@ export const constantRoutes = [
                 component: () => import('@/view/components/Course/CourseLearn/CourseLearn.vue'),
                 hidden: true,
                 meta: {},
-            },
-
-            {
-                path: '/CourseDetailsVideo/:id',
-                name: 'CourseDetailsVideo',
-                component: () => import('@/view/components/Course/CourseDetails/CourseDetailsVideo.vue'),
-                meta: {
-                    title: 'route.myCourses', icon: 'mdi-book-education'
-                },
             },
             {
                 path: '/cd/:courseSlug',
@@ -119,19 +96,6 @@ export const constantRoutes = [
                 meta: {
                     title: 'route.courses'
                 },
-            },
-            {
-                path: 'explore',
-                name: 'AllCoursesExplore',
-                component: () => import('@/view/components/Course/AllCourses/CoursesList.vue'),
-                meta: {},
-                children: [{
-                    path: 'course-details/:slug',
-                    name: 'CourseDetails',
-                    component: () => import('@/view/components/Course/CourseDetails/CourseDetailsVideo.vue'),
-                    hidden: true,
-                    meta: {}
-                }]
             },
             {
                 path: '/category/:slug',
