@@ -222,12 +222,15 @@
 
                                             <div class="tutor-course-purchase-box">
                                                 <div class="cart-notification">
-                                                    <button
-                                                            @click="addToCart"
-                                                            class="single_add_to_cart_button ajax_add_to_cart tutor-button alt">
-                                                        <i class="far fa-shopping-cart"></i>
-                                                        {{ getCartButtonTitle(model.purchaseStatus) }}
-                                                    </button>
+                                                    <router-link
+                                                            :to="model.purchaseStatus === 1?`/course-learn/${model.slug}`: '#'">
+                                                        <button
+                                                                @click="addToCart"
+                                                                class="single_add_to_cart_button ajax_add_to_cart tutor-button alt">
+                                                            <i class="far fa-shopping-cart"></i>
+                                                            {{ getCartButtonTitle(model.purchaseStatus) }}
+                                                        </button>
+                                                    </router-link>
                                                 </div>
                                             </div>
 
