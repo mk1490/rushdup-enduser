@@ -27,7 +27,7 @@
                                         <v-list>
                                             <v-list-item
                                                     @click="selectedCourseItemId = courseEpisodeItem.id;"
-                                                    :to="getVideoUrl(courseEpisodeItem)"
+                                                    :to="getVideoOrTestDetails(courseEpisodeItem)"
                                                     v-for="courseEpisodeItem in item['courseEpisodeItems']">
                                                 <v-list-item-title>
                                                     {{ courseEpisodeItem.title }}
@@ -81,30 +81,13 @@
                         flat="true">
 
                     <v-card-text>
-                        <!--                    <div class="r1_iframe_embed">-->
-                        <!--                        &lt;!&ndash;                        <iframe src="https://player.arvancloud.ir/index.html?config=https://matink1490.arvanvod.ir/LgZYRMK5NB/oXZyE7WQPe/origin_config.json&skin=shaka"&ndash;&gt;-->
-                        <!--                        &lt;!&ndash;                                style="border:0 #ffffff none;"&ndash;&gt;-->
-                        <!--                        &lt;!&ndash;                                name="ForBiggerFun"&ndash;&gt;-->
-                        <!--                        &lt;!&ndash;                                frameborder="0"&ndash;&gt;-->
-                        <!--                        &lt;!&ndash;                                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"&ndash;&gt;-->
-                        <!--                        &lt;!&ndash;                                allowFullScreen="true">&ndash;&gt;-->
-                        <!--                        &lt;!&ndash;                        </iframe>&ndash;&gt;-->
-                        <!--                        &lt;!&ndash;                        <iframe&ndash;&gt;-->
-                        <!--                        &lt;!&ndash;                                :src="`https://player.arvancloud.ir/index.html?config=${currentVideoConfig}&skin=shaka`"&ndash;&gt;-->
-                        <!--                        &lt;!&ndash;                                style="width: 100%;border:0 #ffffff none;"&ndash;&gt;-->
-                        <!--                        &lt;!&ndash;                                name="ForBiggerFun"&ndash;&gt;-->
-                        <!--                        &lt;!&ndash;                                frameborder="0"&ndash;&gt;-->
-                        <!--                        &lt;!&ndash;                                allow="accelerometer; autoplay; encrypted-media; gyroscope"&ndash;&gt;-->
-                        <!--                        &lt;!&ndash;                                allowFullScreen="true"&ndash;&gt;-->
-                        <!--                        &lt;!&ndash;                                webkitallowfullscreen="true"&ndash;&gt;-->
-                        <!--                        &lt;!&ndash;                                mozallowfullscreen="true"></iframe>&ndash;&gt;-->
-
-                        <!--                    </div>-->
-
-
-                        <videoplayer :options="videoOptions">
-
+                        <videoplayer
+                                v-if="contentShowingState == 1"
+                                :options="videoOptions">
                         </videoplayer>
+                        <test-overview
+                                @onStartTestClick="startTestItem()"
+                                v-if="contentShowingState == 2"/>
                     </v-card-text>
                     <v-card-actions>
                         <div class="tutor-next-previous-pagination-wrap">
@@ -142,12 +125,14 @@
 
 <script>
 import Videoplayer from "@/view/widget/Videoplayer.vue";
+import TestOverview from "@/view/components/Course/CourseLearn/Widgets/TestOverview.vue";
 
 export default {
     name: "CourseLearn",
-    components: {Videoplayer},
+    components: {TestOverview, Videoplayer},
     data() {
         return {
+            contentShowingState: 0,
             selectedTab: 0,
             items: [],
             currentVideoConfig: null,
@@ -173,11 +158,22 @@ export default {
         await this.getCourseItem(courseSlug, courseItemSlug);
     },
     methods: {
-        getVideoUrl(item) {
-            return '/course-learn/' + this.$route.params.courseSlug + '/' + item.title;
+        getVideoOrTestDetails(item) {
+            return '/course-learn/' + this.$route.params.courseSlug + `/${item.title}/${item.type}`;
         },
         async getCourseItem(courseSlug, courseItemTitleOrId) {
-            const [err, data] = await this.to(this.http.get(`/course/course-learn/${courseSlug}/${courseItemTitleOrId}`));
+            let requestUrl = `/course/course-learn/${courseSlug}/${courseItemTitleOrId}`;
+            const type = parseInt(this.$route.params.itemType)
+            switch (type) {
+                case 1:
+                    this.contentShowingState = 1;
+                    break;
+                case 2:
+                    this.contentShowingState = 2;
+                    break;
+            }
+            console.log(this.contentShowingState)
+            const [err, data] = await this.to(this.http.get(requestUrl));
             if (!err) {
                 this.courseItemTitle = data.courseItemTitle;
                 this.items = data.items;
@@ -188,6 +184,12 @@ export default {
             const [err, data] = await this.to(this.http.post(`/course/course-approve-completed/${selectedCourseItemId}`));
             if (!err) {
                 this.courseItemIsCompleted = true;
+            }
+        },
+        async startTestItem() {
+            const [err, data] = await this.to(this.http.get(`/`));
+            if (!err) {
+
             }
         }
     },
