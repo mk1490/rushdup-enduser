@@ -56,9 +56,11 @@
                                     </router-link>
                                     <ul
                                             v-if="categoryItem.children"
-                                            v-for="childItem in categoryItem.children"
+
                                             class="children sub-categories">
-                                        <li data-id="191" class="cat-item">
+                                        <li
+                                                v-for="childItem in categoryItem.children"
+                                                data-id="191" class="cat-item">
                                             <router-link :to="`/cl/${childItem.slug}`">
                                                 <a>
                                                     {{ childItem.title }}
@@ -157,8 +159,8 @@
 
 
                                     <v-btn
-                                        to="/cooperationRequest"
-                                        :ripple="false">
+                                            to="/cooperationRequest"
+                                            :ripple="false">
                                         درخواست همکاری
                                         <v-icon>
                                             mdi-handshake
