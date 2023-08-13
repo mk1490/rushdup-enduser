@@ -88,6 +88,12 @@
                         <test-overview
                                 @onStartTestClick="startTestItem()"
                                 v-if="contentShowingState == 2"/>
+                        <test-details
+                                v-if="contentShowingState == 3 && questionIndex !=  -1"
+                                :question-index="questionIndex"
+                                :question-title="questionItems[questionIndex].title"
+                                :answer-items="questionItems[questionIndex].answerItems"
+                        />
                     </v-card-text>
                     <v-card-actions>
                         <div class="tutor-next-previous-pagination-wrap">
@@ -126,10 +132,11 @@
 <script>
 import Videoplayer from "@/view/widget/Videoplayer.vue";
 import TestOverview from "@/view/components/Course/CourseLearn/Widgets/TestOverview.vue";
+import TestDetails from "@/view/components/Course/CourseLearn/Widgets/TestDetails.vue";
 
 export default {
     name: "CourseLearn",
-    components: {TestOverview, Videoplayer},
+    components: {TestDetails, TestOverview, Videoplayer},
     data() {
         return {
             contentShowingState: 0,
@@ -137,6 +144,7 @@ export default {
             items: [],
             currentVideoConfig: null,
             courseItemTitle: null,
+            courseItemId: null,
             selectedCourseItemId: null,
             courseItemIsCompleted: false,
             videoOptions: {
@@ -149,7 +157,9 @@ export default {
                         type: 'application/x-mpegURL'
                     }
                 ]
-            }
+            },
+            questionItems: [],
+            questionIndex: -1,
         }
     },
     async created() {
@@ -176,6 +186,7 @@ export default {
             const [err, data] = await this.to(this.http.get(requestUrl));
             if (!err) {
                 this.courseItemTitle = data.courseItemTitle;
+                this.courseItemId = data.courseItemId;
                 this.items = data.items;
                 this.courseItemIsCompleted = data.courseItemIsCompleted;
             }
@@ -187,9 +198,11 @@ export default {
             }
         },
         async startTestItem() {
-            const [err, data] = await this.to(this.http.get(`/`));
+            const [err, data] = await this.to(this.http.get(`/course/getTestQuestions/${this.courseItemId}`));
             if (!err) {
-
+                this.contentShowingState = 3;
+                this.questionItems = data.items;
+                this.questionIndex = 0;
             }
         }
     },
