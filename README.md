@@ -1,4 +1,4 @@
-# shool-attendance-school-side
+# Rushdup enduser website.
 
 ## Project setup
 ```

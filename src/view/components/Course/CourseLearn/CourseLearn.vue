@@ -81,10 +81,10 @@
                         flat="true">
 
                     <v-card-text>
-                        <videoplayer
-                                v-if="contentShowingState == 1"
-                                :options="videoOptions">
-                        </videoplayer>
+                        <custom-video-player
+                                v-if="video && contentShowingState == 1"
+                                :src="video.url"
+                        />
                         <test-overview
                                 @onStartTestClick="startTestItem()"
                                 v-if="contentShowingState == 2"/>
@@ -133,13 +133,14 @@
 </template>
 
 <script>
-import Videoplayer from "@/view/widget/Videoplayer.vue";
 import TestOverview from "@/view/components/Course/CourseLearn/Widgets/TestOverview.vue";
 import TestDetails from "@/view/components/Course/CourseLearn/Widgets/TestDetails.vue";
+import Vue from 'vue';
+import CustomVideoPlayer from "@/view/widget/CustomViews/CustomVideoPlayer.vue";
 
 export default {
     name: "CourseLearn",
-    components: {TestDetails, TestOverview, Videoplayer},
+    components: {CustomVideoPlayer, TestDetails, TestOverview},
     data() {
         return {
             contentShowingState: 0,
@@ -150,16 +151,8 @@ export default {
             courseItemId: null,
             selectedCourseItemId: null,
             courseItemIsCompleted: false,
-            videoOptions: {
-                autoplay: true,
-                controls: true,
-                sources: [
-                    {
-                        src:
-                            'http://127.0.0.1:1935/Rushdup/mp4:sample.mp4/playlist.m3u8',
-                        type: 'application/x-mpegURL'
-                    }
-                ]
+            video: {
+                url: null,
             },
             questionItems: [],
             questionIndex: -1,
@@ -177,21 +170,22 @@ export default {
         async getCourseItem(courseSlug, courseItemTitleOrId) {
             let requestUrl = `/course/course-learn/${courseSlug}/${courseItemTitleOrId}`;
             const type = parseInt(this.$route.params.itemType)
-            switch (type) {
-                case 1:
-                    this.contentShowingState = 1;
-                    break;
-                case 2:
-                    this.contentShowingState = 2;
-                    break;
-            }
-            console.log(this.contentShowingState)
             const [err, data] = await this.to(this.http.get(requestUrl));
             if (!err) {
                 this.courseItemTitle = data.courseItemTitle;
                 this.courseItemId = data.courseItemId;
                 this.items = data.items;
                 this.courseItemIsCompleted = data.courseItemIsCompleted;
+
+                switch (type) {
+                    case 1:
+                        this.contentShowingState = 1;
+                        this.video = data.courseVideo;
+                        break;
+                    case 2:
+                        this.contentShowingState = 2;
+                        break;
+                }
             }
         },
         async courseEpisodeItemApproveCompleted(selectedCourseItemId) {

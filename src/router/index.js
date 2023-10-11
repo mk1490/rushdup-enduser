@@ -5,7 +5,7 @@ import Layout from '../view/layout/TheLayout.vue';
 
 export const constantRoutes = [
     {
-        path: '/:catchAll(.*)', hidden: true, redirect: 'Home',
+        path: '/:catchAll(.*)', hidden: true, redirect: '/',
     },
     {
         path: '/lostPassword',
@@ -89,7 +89,7 @@ export const constantRoutes = [
                 },
             },
             {
-                path: '/cl/:categorySlug/',
+                path: '/course-list/:categorySlug/',
                 alias: '/cl/:categorySlug',
                 name: 'cl',
                 component: () => import('@/view/components/Course/CourseList/CourseList.vue'),
@@ -214,6 +214,13 @@ export const constantRoutes = [
                 component: () => import('@/view/components/Profile/Order/OrderDetails.vue'),
             },
         ]
+    },
+    {
+        path: '/Test',
+        name: 'Test',
+        component: () => import('@/view/components/Home/Test.vue'),
+        meta: {},
+        children: []
     },
     {
         path: '/Login',

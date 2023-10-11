@@ -4,27 +4,22 @@
         <div class="inner">
 
             <div
-                    v-if="!isLogin"
-                    class="tm-button-wrapper">
-                <a
-                        @click="openLoginModal()"
-                        class="tm-button style-bottom-line-alt button-thin tm-button-sm open-popup-login">
-                    <div class="button-content-wrapper">
-                        <span class="button-text">ورود</span>
-
-                    </div>
-                </a>
+                    v-if="!isLogin">
+                <v-btn
+                        variant="text"
+                        color="primary"
+                        @click="openLoginModal()">
+                    ورود
+                </v-btn>
             </div>
             <div
-                    v-if="!isLogin"
-                    class="tm-button-wrapper">
-                <a
-                        @click="openRegisterModal"
-                        class="tm-button style-flat tm-button-sm open-popup-register button-thin button-light-primary">
-                    <div class="button-content-wrapper">
-                        <span class="button-text">ثبت نام</span>
-                    </div>
-                </a></div>
+                    v-if="!isLogin">
+                <v-btn
+                        color="primary"
+                        @click="openRegisterModal">
+                    ثبت نام
+                </v-btn>
+            </div>
 
 
             <div

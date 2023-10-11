@@ -117,26 +117,17 @@
                                 <div class="tutor-single-course-sidebar tm-sticky-column">
 
 
-                                    <div class="tutor-price-preview-box box-has-media">
-
-                                        <div class="tutor-price-box-thumbnail">
-                                            <div class="tutor-video-player">
-                                                <input type="hidden"
-                                                       value="null">
-                                                <div class="loading-spinner" area-hidden="true"></div>
-                                                <div class="tutor-ratio tutor-ratio-16x9">
-                                                    <div class="r1_iframe_embed">
-                                                        <iframe
-                                                                :src="`https://player.arvancloud.ir/index.html?config=${model.demoVideoUrl}&skin=shaka`"
-                                                                style="width: 100%;border:0 #ffffff none;"
-                                                                name="ForBiggerFun"
-                                                                frameborder="0"
-                                                                allow="accelerometer; autoplay; encrypted-media; gyroscope"
-                                                                allowFullScreen="true"
-                                                                webkitallowfullscreen="true"
-                                                                mozallowfullscreen="true"></iframe>
-                                                    </div>
-                                                </div>
+                                    <div
+                                            class="tutor-price-preview-box box-has-media">
+                                        <div
+                                                class="tutor-price-box-thumbnail">
+                                            <div
+                                                    class="tutor-video-player">
+                                                <custom-video-player
+                                                        v-if="model.demoVideo"
+                                                        :src="model.demoVideo.url"
+                                                        :type="model.demoVideo.type"
+                                                />
                                             </div>
 
                                         </div>
@@ -301,12 +292,15 @@ import Topics from "@/view/components/Course/Course_Details/Widget/Topics.vue";
 import CommentModal from "@/view/components/Course/Course_Details/Widget/Comment/CommentModal.vue";
 import {mapGetters} from "vuex";
 import {inject} from "vue";
+import videojs from "video.js";
+import CustomVideoPlayer from "@/view/widget/CustomViews/CustomVideoPlayer.vue";
 
 export default {
     name: "Course",
     setup() {
     },
     components: {
+        CustomVideoPlayer,
         CommentModal,
         Topics,
         RelatedCourses,
@@ -329,7 +323,7 @@ export default {
                 deducatedPrice: 0,
                 price: 0,
                 deducationType: 0,
-                demoVideoUrl: 0,
+                demoVideo: null,
                 deducationValue: 0,
                 teacherAvatar: null,
                 teacherName: null,
@@ -347,10 +341,7 @@ export default {
             }
         }
     },
-    mounted() {
-
-    },
-    async created() {
+    async mounted() {
         const courseSlug = this.$route.params.courseSlug;
         const [err, data] = await this.to(this.http.get(`/course/course-details/${courseSlug}`));
         if (!err) {
@@ -360,7 +351,7 @@ export default {
             this.model.title = data.title;
             this.model.studentCounts = data.studentCounts;
             this.model.deducatedPrice = data.financial.deducatedPrice;
-            this.model.demoVideoUrl = data.demoVideoUrl;
+            this.model.demoVideo = data.demoVideo;
             this.model.price = data.financial.price;
             this.model.deducationType = data.financial.deducationType;
             this.model.deducationValue = data.financial.deducationValue;
@@ -370,7 +361,6 @@ export default {
                 this.model.subjectTitle = data.subject.title;
                 this.model.subjectSlug = data.subject.slug;
             }
-
             this.model.slug = data.slug;
             this.model.courseCategories = data.categories;
             this.model.learningGoalItems = data.learningGoalItems;
@@ -384,7 +374,10 @@ export default {
                 }
                 this.model.teacherName = teacher.fullName;
             }
+            console.log(this.model.demoVideo)
             document.title = `${this.model.title} - رشدآپ`;
+
+
         }
     },
     methods: {
@@ -410,8 +403,8 @@ export default {
             } else {
                 this.modal.visible = true;
             }
+        },
 
-        }
     }
 }
 </script>
@@ -424,5 +417,9 @@ export default {
 .tutor-price-preview-box .price del, .tutor-price-preview-box .price del .amount {
     font-size: 15px !important;
     font-weight: 500 !important;
+}
+
+::v-deep .video-js {
+    position: absolute !important;
 }
 </style>

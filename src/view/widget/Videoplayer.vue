@@ -15,6 +15,9 @@ import videojs from 'video.js';
 
 export default {
     name: "Videoplayer",
+    props:{
+        options: Object,
+    },
     data() {
         return {
             player: null

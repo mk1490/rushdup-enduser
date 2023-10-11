@@ -14,9 +14,12 @@ export default {
             // if (accessToken) {
             //     localStorage.setItem('accessToken', accessToken)
             // }
-            const authorization = localStorage.getItem('Authorization');
+            let authorization = localStorage.getItem('Authorization');
+
             if (!!authorization) {
-                req.headers.Authorization = 'Bearer ' + authorization;
+                authorization = 'Bearer ' + authorization;
+                app.config.globalProperties.Authorization = authorization;
+                req.headers.Authorization = authorization;
             } else {
                 req.headers.sessionId = store.getters.sessionId;
             }
