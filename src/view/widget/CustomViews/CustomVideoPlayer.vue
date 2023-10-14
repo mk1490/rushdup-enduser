@@ -279,7 +279,4 @@ export default {
     position: absolute;
 }
 
-.videoContainer {
-    border-radius: 25px !important;
-}
 </style>

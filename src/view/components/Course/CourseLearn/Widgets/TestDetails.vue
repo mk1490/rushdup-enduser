@@ -13,12 +13,15 @@
             <div id="tutor-quiz-single-multiple-choice" class=" tutor-quiz-wrap">
                 <div class="tutor-row">
 
+
+                    <!-- if answer type is true or false selection -->
                     <template v-if="questionType == 1">
                         <div class="tutor-col-6 tutor-col-lg-6 tutor-mb-16 tutor-quiz-answer-single">
                             <label for="0" class="tutor-quiz-question-item">
                                 <div class="tutor-card tutor-px-16 tutor-py-12">
                                     <div class="tutor-d-flex tutor-align-center">
                                         <input
+                                                v-model="answerOrAnswers"
                                                 name="correctOrInCorrect"
                                                 class="tutor-form-check-input"
                                                 id="0"
@@ -28,7 +31,6 @@
                                     </div>
                                 </div>
                             </label>
-
                         </div>
 
                         <div class="tutor-col-6 tutor-col-lg-6 tutor-mb-16 tutor-quiz-answer-single">
@@ -36,6 +38,7 @@
                                 <div class="tutor-card tutor-px-16 tutor-py-12">
                                     <div class="tutor-d-flex tutor-align-center">
                                         <input
+                                                v-model="answerOrAnswers"
                                                 name="correctOrInCorrect"
                                                 class="tutor-form-check-input"
                                                 id="1"
@@ -45,11 +48,11 @@
                                     </div>
                                 </div>
                             </label>
-
                         </div>
                     </template>
 
 
+                    <!-- if answer type single or multi selection -->
                     <div v-if="[2,3].includes(questionType)"
                          v-for="(answerItem, answerIndex) in answerItems"
                          class="tutor-col-6 tutor-col-lg-6 tutor-mb-16 tutor-quiz-answer-single">
@@ -57,10 +60,11 @@
                             <div class="tutor-card tutor-px-16 tutor-py-12">
                                 <div class="tutor-d-flex tutor-align-center">
                                     <input
+                                            v-model="answerOrAnswers"
                                             class="tutor-form-check-input"
                                             :id="answerIndex"
                                             name="singleOrMultipleInput"
-                                            :type="questionType == 3?'checkbox': 'radio'" :value="answerIndex">
+                                            :type="questionType == 3?'checkbox': 'radio'" :value="answerItem.id">
                                     <span class="tutor-fs-6 tutor-color-black tutor-ml-8">{{ answerItem.title }}</span>
                                 </div>
                             </div>
@@ -96,6 +100,27 @@ export default {
         questionType: Number,
         questionTitle: String,
         answerItems: Array,
+        answeredQuestions: Array,
+    },
+    data() {
+        return {
+            answerOrAnswers: null
+        }
+    },
+    watch: {
+        'answerOrAnswers': {
+            handler() {
+                console.log(this.answerOrAnswers)
+            }
+        },
+        'questionIndex': {
+            handler(val) {
+                const answeredQuestionInCurrentIndex = this.answeredQuestions[val];
+                if (answeredQuestionInCurrentIndex) {
+                    this.answerOrAnswers = answeredQuestionInCurrentIndex.answerOrAnswers;
+                }
+            }
+        }
     }
 }
 </script>

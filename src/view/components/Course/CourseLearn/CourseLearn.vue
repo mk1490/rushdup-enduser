@@ -90,10 +90,12 @@
                                 v-if="contentShowingState == 2"/>
                         <test-details
                                 v-if="contentShowingState == 3 && questionIndex !=  -1"
+                                ref="testDetails"
                                 :question-index="questionIndex"
                                 :question-title="questionItems[questionIndex].title"
                                 :question-type="questionItems[questionIndex].answerType"
                                 :answer-items="questionItems[questionIndex].answerItems"
+                                :answered-questions="answeredQuestions"
                                 @backClick="backQuestion"
                                 @nextOrSubmitClick="nextQuestion"
                         />
@@ -156,6 +158,7 @@ export default {
             },
             questionItems: [],
             questionIndex: -1,
+            answeredQuestions: []
         }
     },
     async created() {
@@ -206,7 +209,19 @@ export default {
             this.questionIndex--;
         },
         nextQuestion() {
+            const answerOrAnswers = this.$refs.testDetails.$data.answerOrAnswers;
+            const answerIndex = this.questionIndex;
+            const payload = {
+                questionId: this.questionItems[this.questionIndex].id,
+                answerOrAnswers: answerOrAnswers,
+            };
+            if (answerIndex == -1) {
+                this.answeredQuestions.push(payload)
+            } else {
+                this.answeredQuestions.splice(answerIndex, 1, payload);
+            }
             this.questionIndex++;
+            console.log(JSON.parse(JSON.stringify(this.answeredQuestions)))
         }
     },
     watch: {
