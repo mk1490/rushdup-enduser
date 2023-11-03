@@ -5,9 +5,6 @@ export default {
         return {
             lastAction: null, // Last action == Post comment, Add to cart or?
             lastActionData: null,
-            commentModal: {
-                visible: false,
-            },
         }
     },
     methods: {
@@ -52,10 +49,10 @@ export default {
             }
         },
         async openCommentModal() {
-            if (!await this.checkOrOpenAuthModal(true)) {
+            if (!this.checkOrOpenAuthModal(true)) {
                 this.lastAction = 2;
             } else {
-                this.commentModal.visible = true;
+                this.$store.dispatch('showCommentModal', true);
             }
         }
     },
@@ -73,7 +70,6 @@ export default {
                 case 2: { // Add comment
 
                 }
-
             }
         })
     },

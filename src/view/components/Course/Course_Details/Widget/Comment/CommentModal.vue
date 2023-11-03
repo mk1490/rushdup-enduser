@@ -1,5 +1,7 @@
 <template>
     <v-dialog
+            :model-value="visible"
+            @update:modelValue="$emit('update:visible', $event)"
             width="500">
         <v-card>
             <v-card-title>
@@ -9,14 +11,14 @@
             </v-card-title>
             <v-card-text>
                 <v-rating
-                    v-model="model.rate"
-                    small
-                    :length="5">
+                        v-model="model.rate"
+                        small
+                        :length="5">
                 </v-rating>
                 <div class="tutor-form-group">
                             <textarea
-                                v-model="model.comment"
-                                placeholder="یک نظر بنویسید">
+                                    v-model="model.comment"
+                                    placeholder="یک نظر بنویسید">
                             </textarea>
                 </div>
             </v-card-text>
@@ -26,8 +28,8 @@
                         <div class="button-group">
                             <div class="tm-button-wrapper">
                                 <a
-                                    class="tm-button style-flat tm-button-nm button-grey"
-                                    @click="$emit('update:visible', false)">
+                                        class="tm-button style-flat tm-button-nm button-grey"
+                                        @click="$emit('update:visible', false)">
                                     <div class="button-content-wrapper">
                                         <span class="button-text">لغو</span>
                                     </div>

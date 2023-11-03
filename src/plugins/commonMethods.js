@@ -144,11 +144,11 @@ export default {
         app.config.globalProperties.hideLoader = () => {
             app.config.globalProperties.$store.dispatch('setLoadingState', false).then();
         }
-        app.config.globalProperties.checkOrOpenAuthModal = async (openModal) => {
+        app.config.globalProperties.checkOrOpenAuthModal = (openModal) => {
             const status = store.getters.isLogin;
             if (!status) {
                 if (openModal) {
-                    await store.dispatch('openLoginModal');
+                    store.dispatch('openLoginModal');
                 }
             }
             return status;

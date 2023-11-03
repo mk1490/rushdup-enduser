@@ -113,7 +113,7 @@ export default {
             this.loading = false;
             if (!err) {
                 localStorage.setItem('Authorization', data.access_token)
-                this.authSubscriber.next(data);
+                this.authSubscriber.success.next(data);
                 this.$emit('onLoginSuccess')
             } else {
                 this.hasError = true;

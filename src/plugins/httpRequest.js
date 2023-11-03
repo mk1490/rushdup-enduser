@@ -31,7 +31,6 @@ export default {
             const errorObject = error.response.data;
             let message = null;
             switch (status) {
-
                 case 400: {
                     message = errorObject.message;
                     break;
@@ -76,7 +75,9 @@ export default {
             }
             if (lastRequest.errorModal != false) {
                 app.config.globalProperties.$swal.fire({
-                    title: i18n.t('ui.error'), html: message, icon: 'error'
+                    // title: i18n.t('ui.error'),
+                    html: message,
+                    icon: 'error'
                 });
             }
 

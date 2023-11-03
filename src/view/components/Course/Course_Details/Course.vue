@@ -260,14 +260,12 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
+
         <comment-modal
-                v-if="commentModal.visible"
-                :visible.sync="commentModal.visible"
-                :course-id="model.id"
-        >
+                v-if="commentModalVisible"
+                :visible.sync="commentModalVisible"
+                :course-id="model.id">
 
         </comment-modal>
     </div>
@@ -306,7 +304,7 @@ export default {
         Comment, Teachers, Requirements, AudienceItems, Benefits, Content, Tags, PreQuisites, AppTitleBar
     },
     computed: {
-        ...mapGetters(['isLogin'])
+        ...mapGetters(['isLogin', 'commentModalVisible'])
     },
     mixins: [cart],
     data() {
@@ -369,11 +367,8 @@ export default {
                 }
                 this.model.teacherName = teacher.fullName;
             }
-            console.log(this.model.demoVideo)
             document.title = `${this.model.title} - رشدآپ`;
-
-
-        }0
+        }
     },
     methods: {
         calculateDedcuationValue() {
