@@ -11,11 +11,7 @@ export default {
             if (req.loader !== false) {
                 app.config.globalProperties.showLoader();
             }
-            // if (accessToken) {
-            //     localStorage.setItem('accessToken', accessToken)
-            // }
             let authorization = localStorage.getItem('Authorization');
-
             if (!!authorization) {
                 authorization = 'Bearer ' + authorization;
                 app.config.globalProperties.Authorization = authorization;
@@ -28,15 +24,9 @@ export default {
         });
         axios.interceptors.response.use(async (response) => {
             app.config.globalProperties.hideLoader();
-            // if (lastRequest.method.toString() === 'delete') {
-            // Vue.prototype.$toast.success(i18n.t('ui.deleteItemSuccess'));
-            // }
             return response.data;
         }, async error => {
             app.config.globalProperties.hideLoader();
-            // if (lastRequest.method.toString() === 'delete') {
-            // Vue.prototype.$toast.error(i18n.t('ui.deleteItemFailed'));
-            // }
             const status = error.response['status'];
             const errorObject = error.response.data;
             let message = null;

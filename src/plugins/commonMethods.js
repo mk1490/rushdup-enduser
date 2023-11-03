@@ -1,6 +1,7 @@
-﻿
-import {addCommas, digitsEnToFa, digitsFaToEn, removeCommas} from "@persian-tools/persian-tools";
+﻿import {addCommas, digitsEnToFa, digitsFaToEn, removeCommas} from "@persian-tools/persian-tools";
 import * as persianDate from 'persian-date';
+import store from "@/store";
+import {Subject} from 'rxjs'
 
 export default {
     install(app) {
@@ -142,6 +143,19 @@ export default {
         }
         app.config.globalProperties.hideLoader = () => {
             app.config.globalProperties.$store.dispatch('setLoadingState', false).then();
+        }
+        app.config.globalProperties.checkOrOpenAuthModal = async (openModal) => {
+            const status = store.getters.isLogin;
+            if (!status) {
+                if (openModal) {
+                    await store.dispatch('openLoginModal');
+                }
+            }
+            return status;
+        }
+        app.config.globalProperties.authSubscriber = {
+            success: new Subject(),
+            unSuccess: new Subject()
         }
     },
 }

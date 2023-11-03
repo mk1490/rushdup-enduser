@@ -59,11 +59,12 @@
 
 
                             <div class="form-group">
-                                <button
-                                        @click="login"
-                                        type="button" class="button form-submit v-btn--block">
+                                <v-btn
+                                        :loading="loading"
+                                        block="true"
+                                        @click="login" class="button form-submit v-btn--block">
                                     ورود
-                                </button>
+                                </v-btn>
                             </div>
                         </div>
                     </div>
@@ -85,6 +86,7 @@ export default {
     data() {
         return {
             hasError: false,
+            loading: false,
             model: {
                 username: null,
                 password: null,
@@ -102,13 +104,16 @@ export default {
     methods: {
         async login() {
             this.hasError = false;
+            this.loading = true;
             const [err, data] = await this.to(this.http.post(`${this.serverAddress}/api/auth/login`, {
                 username: this.model.username,
                 password: this.model.password,
                 sessionId: this.$store.getters.sessionId
             }));
+            this.loading = false;
             if (!err) {
                 localStorage.setItem('Authorization', data.access_token)
+                this.authSubscriber.next(data);
                 this.$emit('onLoginSuccess')
             } else {
                 this.hasError = true;
