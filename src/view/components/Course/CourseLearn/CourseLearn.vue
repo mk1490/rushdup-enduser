@@ -87,10 +87,17 @@
                         />
                         <test-overview
                                 @onStartTestClick="startTestItem()"
-                                v-if="contentShowingState == 2"/>
+                                v-if="contentShowingState == 2"
+                                :user-attempts="model.test.userAttempts"
+                                :maximum-attempts="model.test.maximumAttemps"
+                                :questions-count="model.test.questionCount"
+                                :remaining-attempts="model.test.remainingAttempts"
+                                :test-time="model.test.testTime"
+
+                        />
                         <test-details
-                                v-if="contentShowingState == 3 && questionIndex !=  -1"
                                 ref="testDetails"
+                                v-if="contentShowingState == 3 && questionIndex !=  -1"
                                 :question-index="questionIndex"
                                 :question-title="questionItems[questionIndex].title"
                                 :question-type="questionItems[questionIndex].answerType"
@@ -137,8 +144,9 @@
 <script>
 import TestOverview from "@/view/components/Course/CourseLearn/Widgets/TestOverview.vue";
 import TestDetails from "@/view/components/Course/CourseLearn/Widgets/TestDetails.vue";
-import Vue from 'vue';
+import {ref, onMounted, getCurrentInstance} from 'vue'
 import CustomVideoPlayer from "@/view/widget/CustomViews/CustomVideoPlayer.vue";
+import {mapGetters} from "vuex";
 
 export default {
     name: "CourseLearn",
@@ -150,15 +158,24 @@ export default {
             items: [],
             currentVideoConfig: null,
             courseItemTitle: null,
-            courseItemId: null,
-            selectedCourseItemId: null,
+            episodeItemId: null,
+            selectedCourseEpisodeItemId: null,
             courseItemIsCompleted: false,
             video: {
                 url: null,
             },
             questionItems: [],
             questionIndex: -1,
-            answeredQuestions: []
+            answeredQuestions: [],
+            model: {
+                test: {
+                    userAttempts: 0,
+                    maximumAttemps: 0,
+                    questionCount: 0,
+                    remainingAttempts: 0,
+                    testTime: 0,
+                }
+            }
         }
     },
     async created() {
@@ -176,7 +193,7 @@ export default {
             const [err, data] = await this.to(this.http.get(requestUrl));
             if (!err) {
                 this.courseItemTitle = data.courseItemTitle;
-                this.courseItemId = data.courseItemId;
+                this.selectedCourseEpisodeItemId = data.courseItemId;
                 this.items = data.items;
                 this.courseItemIsCompleted = data.courseItemIsCompleted;
 
@@ -198,7 +215,14 @@ export default {
             }
         },
         async startTestItem() {
-            const [err, data] = await this.to(this.http.get(`/course/getTestQuestions/${this.courseItemId}`));
+            if (!this.isLogin) {
+                this.$swal.fire({
+                    text: 'برای شرکت در آزمون، ورود و احراز هویت الزامی است!'
+                })
+            }
+
+
+            const [err, data] = await this.to(this.http.get(`/course/getTestQuestions/${this.selectedCourseEpisodeItemId}`));
             if (!err) {
                 this.contentShowingState = 3;
                 this.questionItems = data.items;
@@ -208,8 +232,18 @@ export default {
         backQuestion() {
             this.questionIndex--;
         },
-        nextQuestion() {
-            const answerOrAnswers = this.$refs.testDetails.$data.answerOrAnswers;
+        async nextQuestion() {
+            let answerOrAnswers = this.$refs.testDetails.getAnswerData();
+            if (answerOrAnswers == null) {
+                this.$swal.fire({
+                    title: 'خطا!',
+                    text: 'سؤال نمی‌تواند بدون پاسخ باشد!'
+                }).then()
+
+                return;
+            }
+
+
             const answerIndex = this.questionIndex;
             const payload = {
                 questionId: this.questionItems[this.questionIndex].id,
@@ -220,16 +254,35 @@ export default {
             } else {
                 this.answeredQuestions.splice(answerIndex, 1, payload);
             }
-            this.questionIndex++;
-            console.log(JSON.parse(JSON.stringify(this.answeredQuestions)))
-        }
+            if (this.questionIndex != this.questionItems.length - 1) {
+                this.questionIndex++;
+                this.$refs.testDetails.resetAnswer()
+            } else {
+                const [err, data] = await this.to(this.http.post(`/test/submit`, {
+                    parentTestEpisodeId: this.selectedCourseEpisodeItemId,
+                    userSubmitTestDtoItems: this.answeredQuestions,
+                }));
+                if (!err) {
+                    this.$swal.fire({
+                        text: 'ارسال آزمون با موفقیت انجام شد!',
+                        allowOutsideClick: false,
+                    }).then(result => {
+
+                    })
+                }
+            }
+        },
+
     },
     watch: {
         '$route': {
             async handler(val) {
-                await this.getCourseItem(val.params.courseSlug, this.selectedCourseItemId)
+                await this.getCourseItem(val.params.courseSlug, this.selectedCourseEpisodeItemId)
             }
         }
+    },
+    computed: {
+        ...mapGetters(['isLogin'])
     }
 }
 </script>

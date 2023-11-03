@@ -121,6 +121,14 @@ export default {
                 }
             }
         }
+    },
+    methods: {
+        getAnswerData() {
+            return this.answerOrAnswers
+        },
+        resetAnswer() {
+            this.answerOrAnswers = null;
+        }
     }
 }
 </script>

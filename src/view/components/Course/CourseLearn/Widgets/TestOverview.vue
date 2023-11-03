@@ -3,6 +3,7 @@
         <input type="hidden" name="tutor_quiz_id" id="tutor_quiz_id" value="227">
 
         <div class="tutor-quiz-header">
+            <h2 class="entry-quiz-title">اولین مسابقه</h2>
             <ul class="tutor-quiz-meta">
 
                 <li>
@@ -42,7 +43,7 @@
         </div>
         <div id="tutor-quiz-image-matching-choice" class="tutor-quiz-wrap tutor-quiz-wrap-227">
 
-<!--            <h4 class="tutor-quiz-attempt-history-title">تلاش های قبلی</h4>-->
+            <!--            <h4 class="tutor-quiz-attempt-history-title">تلاش های قبلی</h4>-->
             <!--            <div class="tutor-quiz-attempt-history-table-wrap single-quiz-page dashboard-table-wrapper dashboard-table-responsive">-->
             <!--                <div class="dashboard-table-container">-->
             <!--                    <table class="dashboard-table">-->
@@ -119,14 +120,15 @@
 export default {
     name: "TestOverview",
     emits: ['onStartTestClick'],
+    props: {
+        questionsCount: 0,
+        testTime: 0,
+        remainingAttempts: 0,
+        userAttempts: 0,
+        maximumAttempts: 0,
+    },
     data() {
-        return {
-            questionsCount: 0,
-            testTime: 0,
-            remainingAttempts: 0,
-            userAttempts: 0,
-            maximumAttempts: 0,
-        }
+        return {}
     }
 }
 </script>
