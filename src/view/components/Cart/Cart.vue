@@ -28,7 +28,8 @@
                                             height="150"
                                             class="attachment-thumbnail size-thumbnail wp-post-image"
                                             sizes="(max-width: 150px) 100vw, 150px"
-                                            :src="getPublicUrl(item.image)">
+                                            :src="getPublicUrl(item.image)"
+                                            alt="">
                                 </a>
                             </td>
 
@@ -210,12 +211,14 @@ export default {
         // this.$store.dispatch('setPageTitle', this.$t('cart.title'))
     },
     async created() {
+
         const [err, data] = await this.to(this.http.get(`/cart/initialize/`));
         if (!err) {
             this.ipgItems = data['ipgItems'];
             this.totalAmount = data.totalAmount;
             this.payableAmount = data.payableAmount;
             this.courseItems = data.courseItems;
+            this.$store.dispatch('setPageTitle', 'سبد خرید');
         }
 
         this.$store.subscribeAction(async ({type}) => {
@@ -298,6 +301,9 @@ export default {
     color: #d31819;
 }
 
+.woocommerce-cart .shop_table tr {
+    border-bottom: 1px solid var(--edumall-color-box-border) !important;
+}
 
 .woocommerce-cart-form .cart_totals {
     background: var(--edumall-color-box-white-background);

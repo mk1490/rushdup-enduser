@@ -95,7 +95,7 @@
                                     <strong>
                                         <span class="woocommerce-Price-amount amount">
                                     <bdi>
-                                    {{ finalPrice }}
+                                    {{ convertToIRR(finalPrice) }}
                                     <span
                                             class="woocommerce-Price-currencySymbol">
 
@@ -151,5 +151,11 @@ export default {
 </script>
 
 <style scoped>
+.payment_box {
+    margin-top: 20px !important;
+}
 
+.form-row {
+    margin-top: 20px !important;
+}
 </style>

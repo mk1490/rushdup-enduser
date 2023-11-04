@@ -3,7 +3,7 @@
 
          :class="`page-title-bar page-title-bar-0${pageTitleType}`">
         <div class="page-title-bar-inner">
-            <app-breadcrumb></app-breadcrumb>
+<!--            <app-breadcrumb></app-breadcrumb>-->
             <div
                     v-if="!!pageTitle"
                     class="container">

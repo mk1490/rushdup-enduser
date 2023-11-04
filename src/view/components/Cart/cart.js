@@ -30,8 +30,16 @@ export default {
                     }
                     break;
                 }
+                case 1: {
+                    this.$router.push(`/course-learn/${model.slug}`)
+                    break;
+                }
                 case 2: {
-                    await this.$router.push('/cart');
+                    this.$router.push('/Cart');
+                    break;
+                }
+                case 3: {
+
                     break;
                 }
             }

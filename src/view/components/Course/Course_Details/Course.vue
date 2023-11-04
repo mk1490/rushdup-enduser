@@ -213,15 +213,12 @@
 
                                             <div class="tutor-course-purchase-box">
                                                 <div class="cart-notification">
-                                                    <router-link
-                                                            :to="model.purchaseStatus === 1?`/course-learn/${model.slug}`: '#'">
-                                                        <button
-                                                                @click="addToCart"
-                                                                class="single_add_to_cart_button ajax_add_to_cart tutor-button alt">
-                                                            <i class="far fa-shopping-cart"></i>
-                                                            {{ getCartButtonTitle(model.purchaseStatus) }}
-                                                        </button>
-                                                    </router-link>
+                                                    <button
+                                                            @click="prepareSubmitButton"
+                                                            class="single_add_to_cart_button ajax_add_to_cart tutor-button alt">
+                                                        <i class="far fa-shopping-cart"></i>
+                                                        {{ getCartButtonTitle(model.purchaseStatus) }}
+                                                    </button>
                                                 </div>
                                             </div>
 
@@ -381,7 +378,7 @@ export default {
                 return this.model.deducationValue + ' ' + '% تخفیف'
             }
         },
-        async addToCart() {
+        async prepareSubmitButton() {
             await this.addToCartOrCompletePurchaseFlowOrViewCourse(this.model.purchaseStatus, this.model.id, this.model)
         },
         onComment() {
