@@ -52,7 +52,7 @@
 <script>
 export default {
     name: "CommentModal",
-    emits: ['onPostComment'],
+    emits: ['onPostComment', 'update:visible'],
     props: {
         visible: Boolean,
         courseId: String,

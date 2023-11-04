@@ -264,7 +264,9 @@
 
         <comment-modal
                 v-if="commentModalVisible"
-                :visible.sync="commentModalVisible"
+                :visible="commentModalVisible"
+                @update:visible="$store.dispatch('showCommentModal', $event)"
+                @onPostComment="onComment"
                 :course-id="model.id">
 
         </comment-modal>
@@ -382,6 +384,10 @@ export default {
         async addToCart() {
             await this.addToCartOrCompletePurchaseFlowOrViewCourse(this.model.purchaseStatus, this.model.id, this.model)
         },
+        onComment() {
+            this.$toast.success('ثبت کامنت با موفقیت انجام شد.');
+            this.$store.dispatch('showCommentModal', false);
+        }
     }
 }
 </script>

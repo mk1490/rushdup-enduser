@@ -48,6 +48,11 @@ export default {
                     lastRequest.errorModal = false;
                     break;
                 }
+                case 406: {
+                    console.log(errorObject)
+                    message = errorObject.message;
+                    break;
+                }
                 case 500: {
                     message = i18n.t('errors.serverError');
                     break;
