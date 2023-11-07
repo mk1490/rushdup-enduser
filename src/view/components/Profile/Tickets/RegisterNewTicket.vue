@@ -19,6 +19,7 @@
                                     hide-detailse
                                     dense
                                     outlined
+                                    variant="outlined"
                             >
                             </v-text-field>
                         </div>
@@ -32,6 +33,7 @@
                                     hide-detailse
                                     dense
                                     outlined
+                                    variant="outlined"
                             >
                             </v-select>
                         </div>
@@ -44,7 +46,7 @@
                                     :items="departmentItems"
                                     hide-detailse
                                     dense
-                                    outlined>
+                                    variant="outlined">
                             </v-select>
                         </div>
                         <div class="col-md-6">
@@ -55,7 +57,7 @@
                                     :items="courseItems"
                                     hide-detailse
                                     dense
-                                    outlined>
+                                    variant="outlined">
                             </v-select>
                         </div>
                         <div class="col-md-12">
@@ -64,7 +66,7 @@
                                     label="متن تیکت"
                                     hide-detailse
                                     dense
-                                    outlined>
+                                    variant="outlined">
                             </v-textarea>
                         </div>
                         <div
