@@ -1,8 +1,8 @@
 ﻿<template>
     <v-container>
         <v-card
-            color="transparent"
-            :flat="true">
+                color="transparent"
+                :flat="true">
             <template v-slot:title>
                 <div class="v-row mb-3">
                     <div class="v-col">
@@ -19,11 +19,11 @@
             </template>
             <template v-slot:text>
                 <v-data-table
+                        dir="rtl"
                         :headers="table.headers"
                         :items="table.contents"
                         :items-per-page="5"
-                        class="elevation-1"
-                >
+                        class="elevation-1">
                     <template v-slot:item.row="{ item }">
                         <div>{{ table.contents.indexOf(item) + 1 }}</div>
                     </template>
