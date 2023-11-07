@@ -162,12 +162,7 @@ export const constantRoutes = [
                 component: () => import('@/view/components/Profile/Settings/Settings.vue'),
                 meta: {},
             },
-            {
-                path: '/supportTicket',
-                name: 'supportTicket',
-                component: () => import('@/view/components/Profile/Tickets/SupportTicket.vue'),
-                meta: {},
-            },
+
             {
                 path: '/MyAccountInformation',
                 name: 'MyAccountInformation',
@@ -184,12 +179,13 @@ export const constantRoutes = [
                 component: () => import('@/view/components/Profile/MyLicenses.vue'),
             },
             {
-                path: '/tickets',
-                name: 'Tickets',
+                path: '/supportTicket',
+                name: 'supportTicket',
                 component: () => import('@/view/components/Profile/Tickets/SupportTicket.vue'),
+                meta: {},
             },
             {
-                path: '/registerNewTicket',
+                path: '/supportTicket/registerNewTicket',
                 name: 'RegisterNewTicket',
                 component: () => import('@/view/components/Profile/Tickets/RegisterNewTicket.vue'),
             },

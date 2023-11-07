@@ -9,7 +9,7 @@
                 <div class="v-col-auto">
                     <v-btn
                             color="primary"
-                            to="/registerNewTicket">
+                            to="/supportTicket/registerNewTicket">
                         ثبت تیکت جدید
                     </v-btn>
                 </div>
