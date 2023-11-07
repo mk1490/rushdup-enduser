@@ -190,7 +190,7 @@ export const constantRoutes = [
                 component: () => import('@/view/components/Profile/Tickets/RegisterNewTicket.vue'),
             },
             {
-                path: '/ticketDetails/:ticketId',
+                path: '/supportTicket/details/:ticketId',
                 name: 'ticketDetails',
                 component: () => import('@/view/components/Profile/Tickets/TicketDetails.vue'),
             },

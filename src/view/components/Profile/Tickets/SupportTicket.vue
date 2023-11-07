@@ -1,17 +1,20 @@
 ﻿<template>
     <v-container>
-        <v-card>
-
+        <v-card
+            color="transparent"
+            :flat="true">
             <template v-slot:title>
-                <div class="v-col-9">
-                    تیکت پشتیبانی
-                </div>
-                <div class="v-col-auto">
-                    <v-btn
-                            color="primary"
-                            to="/supportTicket/registerNewTicket">
-                        ثبت تیکت جدید
-                    </v-btn>
+                <div class="v-row mb-3">
+                    <div class="v-col">
+                        تیکت پشتیبانی
+                    </div>
+                    <div class="v-col-auto">
+                        <v-btn
+                                color="primary"
+                                to="/supportTicket/registerNewTicket">
+                            ثبت تیکت جدید
+                        </v-btn>
+                    </div>
                 </div>
             </template>
             <template v-slot:text>
@@ -39,7 +42,7 @@
 
                     <template v-slot:item.actions="{ item }">
                         <v-btn
-                                :to="`/ticketDetails/${item.key}`"
+                                :to="`/supportTicket/details/${item.key}`"
                                 link
                                 color="primary">
                             جزئیات
