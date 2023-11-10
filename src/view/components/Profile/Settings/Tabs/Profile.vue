@@ -8,88 +8,76 @@
                     <div class="dashboard-content-box">
                         <h4 class="dashboard-content-box-title">اطلاعات تماس</h4>
                         <p>برای ایجاد نمایه حساب خود ، جزئیات خود را در زیر ارائه دهید</p>
-
                         <div class="row">
                             <div class="v-col-md-6">
-
                                 <v-text-field
-                                    variant="outlined"
-                                    label="نام"
-                                    hide-details
-                                    v-model="model.name"
+                                        variant="outlined"
+                                        label="نام"
+                                        hide-details
+                                        v-model="model.name"
                                 />
                             </div>
                             <div class="v-col-md-6">
                                 <v-text-field
-                                    label="نام خانوادگی"
-                                    variant="outlined"
-                                    hide-details
-                                    v-model="model.family">
+                                        label="نام خانوادگی"
+                                        variant="outlined"
+                                        hide-details
+                                        v-model="model.family">
                                 </v-text-field>
                             </div>
                             <div class="v-col-md-6">
                                 <v-text-field
-                                    variant="outlined"
-                                    outlined
-                                    dense
-                                    hide-details
-                                    label="کد ملّی"
-                                    v-model="model.nationalityCode">
+                                        variant="outlined"
+                                        outlined
+                                        dense
+                                        hide-details
+                                        label="کد ملّی"
+                                        v-model="model.nationalityCode">
                                 </v-text-field>
                             </div>
                             <div class="v-col-md-6">
-                                <div class="tutor-form-group">
-                                    <label for="tutor_profile_national_code">جنسیت</label>
-                                    <v-select
-                                            name="tutor_profile_national_code"
-                                            id="tutor_profile_national_code"
-                                            outlined
-                                            hide-details
-                                            dense
-                                            :items="items.sex"
-                                            v-model="model.sex">
-                                    </v-select>
-                                </div>
+                                <v-select
+                                        variant="outlined"
+                                        outlined
+                                        hide-details
+                                        dense
+                                        label="جنسیت"
+                                        item-title="text"
+                                        item-value="value"
+                                        :items="items.sex"
+                                        v-model="model.sex">
+                                </v-select>
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="v-col-md-6">
-                                <div class="tutor-form-group">
-                                    <label for="tutor_profile_job_title">عنوان شغل</label>
-                                    <v-text-field
-                                            name="tutor_profile_job_title"
-                                            id="tutor_profile_job_title"
-                                            outlined
-                                            hide-details
-                                            v-model="model.jobTitle">
-                                    </v-text-field>
-                                </div>
+                                <v-text-field
+                                        label="عنوان شغل"
+                                        variant="outlined"
+                                        hide-details
+                                        v-model="model.jobTitle">
+                                </v-text-field>
                             </div>
                             <div class="v-col-md-6">
-                                <div class="tutor-form-group">
-                                    <label for="tutor_profile_phone_number">شماره تلفن</label>
-                                    <v-text-field
-                                            name="tutor_profile_phone_number"
-                                            id="tutor_profile_phone_number"
-                                            outlined
-                                            hide-details
-                                            v-model="model.phoneNumber">
-                                    </v-text-field>
-                                </div>
+                                <v-text-field
+                                        label="شماره تلفن"
+                                        variant="outlined"
+                                        hide-details
+                                        v-model="model.phoneNumber">
+                                </v-text-field>
+                            </div>
+                            <div class="v-col-12">
+                                <v-textarea
+                                        v-model="model.bio"
+                                        hide-details
+                                        label="بیوگرافی"
+                                        variant="outlined">
+                                </v-textarea>
                             </div>
                         </div>
 
-                        <div class="tutor-form-group">
-                            <label for="tutor_profile_bio">
-                                بیوگرافی </label>
-                            <v-textarea
-                                    v-model="model.bio"
-                                    hide-details
-                                    name="tutor_profile_bio"
-                                    id="tutor_profile_bio">
-                            </v-textarea>
-                        </div>
+
                     </div>
                 </div>
                 <div class="col-md-12 col-lg-6">
@@ -108,8 +96,8 @@
 						            </span>
                                         <div class="tutor_overlay">
                                             <v-btn
-                                                class="tutor_cover_uploader"
-                                                @click="openFilePicker('cover')">
+                                                    class="tutor_cover_uploader"
+                                                    @click="openFilePicker('cover')">
                                                 <i class="far fa-camera"></i>
                                                 <span>آپلود تصویر کاور</span>
                                             </v-btn>
@@ -174,11 +162,13 @@
                         type="file" accept=".png,.jpg,.jpeg">
             </div>
 
-            <div class="tutor-form-group tutor-profile-form-btn-wrap form-submit-wrap">
-                <button
-                        @click="updateProfileAndSendDataToServer"
-                        class="tutor-button tutor-profile-settings-save">بروزرسانی پروفایل
-                </button>
+            <div class="row">
+                <div class="v-col-12">
+                    <button
+                            @click="updateProfileAndSendDataToServer"
+                            class="tutor-button tutor-profile-settings-save">بروزرسانی پروفایل
+                    </button>
+                </div>
             </div>
 
 
@@ -197,7 +187,15 @@ export default {
             this.model.jobTitle = data.personalInformation.jobTitle;
             this.model.phoneNumber = data.personalInformation.phoneNumber;
             this.model.nationalityCode = data.personalInformation.nationalityCode;
+            this.model.sex = data.personalInformation.sex;
+            this.model.bio = data.personalInformation.bio;
             this.items.sex = data.sexItems;
+            if (data.coverUrl){
+                this.setCoverPhoto(this.serverAddress + data.coverUrl);
+            }
+            if (data.avatar){
+                this.setAvatarPhoto(this.serverAddress +data.avatar);
+            }
         }
     },
     async mounted() {
