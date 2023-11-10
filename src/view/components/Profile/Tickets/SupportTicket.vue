@@ -27,8 +27,7 @@
                     <template v-slot:item.row="{ item }">
                         <div>{{ table.contents.indexOf(item) + 1 }}</div>
                     </template>
-
-                    <template v-slot:item.status="{ item }">
+                    <template v-slot:item.ticketStatus="{ item, index }">
                         <v-chip
                                 class="white--text"
                                 :color="getChipsStatusColor(item)"> {{ getChipsStatusTitle(item) }}
@@ -36,7 +35,7 @@
                     </template>
                     <template v-slot:item.creationTime="{ item }">
                                 <span>
-                                  {{ getPersianTime(item.creationTime) }}
+                                  {{ getPersianTime(item.raw.creationTime) }}
                                 </span>
                     </template>
 
@@ -73,13 +72,13 @@ export default {
     },
     methods: {
         getChipsStatusTitle(item) {
-            switch (item.status) {
+            switch (item.raw.ticketStatus) {
                 case 0:
                     return 'در انتظار پاسخ پشتیبان';
             }
         },
         getChipsStatusColor(item) {
-            switch (item.status) {
+            switch (item.raw.ticketStatus) {
                 case 0:
                     return 'orange';
             }
@@ -95,7 +94,7 @@ export default {
                 headers: [
                     {title: '#', key: 'row', sortable: false, align: 'center',},
                     {title: 'موضوع', key: 'subject', sortable: true, align: 'center'},
-                    {title: 'وضعیت', key: 'status', sortable: true, align: 'center'},
+                    {title: 'وضعیت', key: 'ticketStatus', sortable: true, align: 'center'},
                     {title: 'تاریخ ثبت', key: 'creationTime', sortable: true, align: 'center'},
                     {title: 'عملیات', key: 'actions', sortable: false, align: 'center'},
                 ],
