@@ -141,11 +141,14 @@
                                 <div class="tutor-form-group">
                                     <div class="tutor-form-group">
                                         <label for="display_name">نمایش نام عمومی به عنوان</label>
-                                        <select name="display_name" id="display_name">
-                                            <option selected="selected">متین</option>
-                                            <option>matink1490</option>
-                                        </select>
-                                        <p class="form-description">
+
+                                        <v-select
+                                                variant="outlined"
+                                                hide-details
+                                                :items="items.displayNameItems"
+                                                v-model="model.publicDisplayName"
+                                        />
+                                        <p class="form-description mt-3">
                                             نام نمایش داده شده در همه فیلدهای عمومی مانند نام نویسنده، نام مدرس، نام
                                             دانشجو و نامی که روی گواهی پرینت می شود قرار می گیرد. </p>
                                     </div>
@@ -189,12 +192,14 @@ export default {
             this.model.nationalityCode = data.personalInformation.nationalityCode;
             this.model.sex = data.personalInformation.sex;
             this.model.bio = data.personalInformation.bio;
+            this.model.publicDisplayName = data.personalInformation.publicDisplayName;
             this.items.sex = data.sexItems;
-            if (data.coverUrl){
+            this.items.displayNameItems = data.userDisplayNames;
+            if (data.coverUrl) {
                 this.setCoverPhoto(this.serverAddress + data.coverUrl);
             }
-            if (data.avatar){
-                this.setAvatarPhoto(this.serverAddress +data.avatar);
+            if (data.avatar) {
+                this.setAvatarPhoto(this.serverAddress + data.avatar);
             }
         }
     },
@@ -280,6 +285,7 @@ export default {
                     bio: this.model.bio,
                     nationalityCode: this.model.nationalityCode,
                     sex: this.model.sex,
+                    publicDisplayName: this.model.publicDisplayName,
                 }
             }));
             if (!err) {
@@ -293,6 +299,7 @@ export default {
             uploadTarget: null,
             items: {
                 sex: [],
+                displayNameItems: [],
             },
             model: {
                 name: null,
@@ -302,6 +309,7 @@ export default {
                 bio: null,
                 nationalityCode: null,
                 sex: null,
+                publicDisplayName: null,
             },
             avatar: null,
         }
