@@ -10,8 +10,9 @@
                             <label> رمز عبور فعلی </label>
                             <v-text-field
                                     v-model="model.oldPassword"
-                                    outlined
+                                    variant="outlined"
                                     hide-details
+                                    density="true"
                                     type="password"
                                     name="previous_password">
                             </v-text-field>
@@ -22,8 +23,9 @@
                                     <label>رمز عبور جدید</label>
                                     <v-text-field
                                             v-model="model.newPassword"
-                                            outlined
+                                            variant="outlined"
                                             hide-details
+                                            density="true"
                                             type="password"
                                             name="new_password">
                                     </v-text-field>
@@ -34,8 +36,9 @@
                                     <label>تأیید رمز جدید</label>
                                     <v-text-field
                                             v-model="model.submitNewPassword"
-                                            outlined
+                                            variant="outlined"
                                             hide-details
+                                            density="true"
                                             type="password"
                                             name="confirm_new_password">
                                     </v-text-field>
