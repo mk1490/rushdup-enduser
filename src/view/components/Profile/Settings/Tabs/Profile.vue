@@ -10,46 +10,34 @@
                         <p>برای ایجاد نمایه حساب خود ، جزئیات خود را در زیر ارائه دهید</p>
 
                         <div class="row">
-                            <div class="col-md-6">
-                                <div class="tutor-form-group">
-                                    <label for="tutor_profile_first_name">نام</label>
-                                    <v-text-field
-                                            name="tutor_profile_first_name"
-                                            id="tutor_profile_first_name"
-                                            outlined
-                                            hide-details
-                                            dense
-                                            v-model="model.name">
-                                    </v-text-field>
-                                </div>
+                            <div class="v-col-md-6">
+
+                                <v-text-field
+                                    variant="outlined"
+                                    label="نام"
+                                    hide-details
+                                    v-model="model.name"
+                                />
                             </div>
-                            <div class="col-md-6">
-                                <div class="tutor-form-group">
-                                    <label for="tutor_profile_last_name">نام خانوادگی</label>
-                                    <v-text-field
-                                            name="tutor_profile_last_name"
-                                            id="tutor_profile_last_name"
-                                            outlined
-                                            dense
-                                            hide-details
-                                            v-model="model.family">
-                                    </v-text-field>
-                                </div>
+                            <div class="v-col-md-6">
+                                <v-text-field
+                                    label="نام خانوادگی"
+                                    variant="outlined"
+                                    hide-details
+                                    v-model="model.family">
+                                </v-text-field>
                             </div>
-                            <div class="col-md-6">
-                                <div class="tutor-form-group">
-                                    <label for="tutor_profile_national_code">کد ملّی</label>
-                                    <v-text-field
-                                            name="tutor_profile_national_code"
-                                            id="tutor_profile_national_code"
-                                            outlined
-                                            dense
-                                            hide-details
-                                            v-model="model.nationalityCode">
-                                    </v-text-field>
-                                </div>
+                            <div class="v-col-md-6">
+                                <v-text-field
+                                    variant="outlined"
+                                    outlined
+                                    dense
+                                    hide-details
+                                    label="کد ملّی"
+                                    v-model="model.nationalityCode">
+                                </v-text-field>
                             </div>
-                            <div class="col-md-6">
+                            <div class="v-col-md-6">
                                 <div class="tutor-form-group">
                                     <label for="tutor_profile_national_code">جنسیت</label>
                                     <v-select
@@ -66,7 +54,7 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="v-col-md-6">
                                 <div class="tutor-form-group">
                                     <label for="tutor_profile_job_title">عنوان شغل</label>
                                     <v-text-field
@@ -78,7 +66,7 @@
                                     </v-text-field>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="v-col-md-6">
                                 <div class="tutor-form-group">
                                     <label for="tutor_profile_phone_number">شماره تلفن</label>
                                     <v-text-field
@@ -119,12 +107,12 @@
 						                <i class="far fa-trash-alt"></i>
 						            </span>
                                         <div class="tutor_overlay">
-                                            <button
-                                                    @click="openFilePicker('cover')"
-                                                    class="tutor_cover_uploader" type="button">
+                                            <v-btn
+                                                class="tutor_cover_uploader"
+                                                @click="openFilePicker('cover')">
                                                 <i class="far fa-camera"></i>
                                                 <span>آپلود تصویر کاور</span>
-                                            </button>
+                                            </v-btn>
                                         </div>
                                     </div>
                                     <div id="tutor_photo_meta_area">

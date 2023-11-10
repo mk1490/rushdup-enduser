@@ -48,7 +48,7 @@
             <div class="col-md-8">
                 <div class="tutor-course-topic-single-header tutor-single-page-top-bar">
                     <div>
-                        <router-link to="/">
+                        <router-link :to="`/cd/${this.$route.params.courseSlug}`">
                             <a
                                     class="tutor-topbar-home-btn">
                                 <i class="far fa-home"></i>
@@ -105,7 +105,9 @@
                         />
                     </v-card-text>
                     <v-card-actions>
-                        <div class="tutor-next-previous-pagination-wrap">
+                        <div
+                                v-if="contentShowingState == 3 && questionIndex !=  -1"
+                                class="tutor-next-previous-pagination-wrap">
                             <div class="tutor-previous-link-wrap">
                                 <a class="tm-button style-flat tm-button-nm button-grey tutor-previous-link tutor-previous-link-3260 icon-left">
                                     <div class="button-content-wrapper">
@@ -114,15 +116,13 @@
                                         <span class="button-text">قبل</span>
 
                                     </div>
-                                </a></div>
+                                </a>
 
+                            </div>
                             <div class="tutor-next-link-wrap">
                                 <a class="tm-button style-flat tm-button-nm button-grey tutor-next-link tutor-next-link-3268 icon-right">
                                     <div class="button-content-wrapper">
-
-
                                         <span class="button-text">بعد</span>
-
                                         <span class="button-icon"><i class="far fa-angle-right"></i></span>
                                     </div>
                                 </a></div>

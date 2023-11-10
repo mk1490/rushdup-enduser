@@ -5,7 +5,7 @@
                 hidden="hidden"
                 @change="onFileSelected"
                 type="file"/>
-        <v-card color="#F5F5F5">
+        <v-card>
             <v-card-title>
                 ثبت تیکت جدید
             </v-card-title>

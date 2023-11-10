@@ -40,6 +40,24 @@
                     <span class="meta-value">{{ minimumPercentGrade }}</span>
                 </li>
             </ul>
+
+
+            <div class="d-block">
+                <h4>
+                    تلاش‌های قبلی
+                </h4>
+            </div>
+
+            <div class="d-block">
+                <v-data-table
+                        :items="table.previousAttempts.contents"
+                        :headers="table.previousAttempts.headers">
+
+                    <template v-slot:item.row="{ item }">
+                        <div>{{ table.previousAttempts.contents.indexOf(item) + 1 }}</div>
+                    </template>
+                </v-data-table>
+            </div>
         </div>
         <div id="tutor-quiz-image-matching-choice" class="tutor-quiz-wrap tutor-quiz-wrap-227">
 
@@ -128,7 +146,57 @@ export default {
         maximumAttempts: 0,
     },
     data() {
-        return {}
+        return {
+            table: {
+                previousAttempts: {
+                    headers: [
+                        {
+                            text: '#',
+                            value: 'row',
+                            align: 'center',
+                            sortable: false,
+                        },
+                        {
+                            text: 'زمان',
+                            value: 'title',
+                            align: 'center',
+                            sortable: false,
+                        },
+                        {
+                            text: 'سؤالات',
+                            value: 'questionsCount',
+                            align: 'center',
+                            sortable: false,
+                        },
+                        {
+                            text: 'مجموع نمرات',
+                            value: 'totalScores',
+                            align: 'center',
+                            sortable: false,
+                        },
+                        {
+                            text: 'نمرات کسب شده',
+                            value: 'receivedScores',
+                            align: 'center',
+                            sortable: false,
+                        },
+                        {
+                            text: 'نمره قبولی',
+                            value: 'minimumScore',
+                            align: 'center',
+                            sortable: false,
+                        },
+                        {
+                            text: 'نتیجه',
+                            value: 'result',
+                            align: 'center',
+                            sortable: false,
+                        },
+                    ],
+                    contents: [],
+                }
+            }
+        }
     }
 }
 </script>
