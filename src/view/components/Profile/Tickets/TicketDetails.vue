@@ -24,7 +24,7 @@
                         class="flex-grow-1 overflow-y-auto">
 
                     <template v-for="item in ticketItems">
-                        <div :class="{'d-flex flex-row-reverse': item.me}">
+                        <div :class="{'d-flex flex-row-reverse': !item.me}">
                             <v-card
                                     max-width="400"
                                     dark
