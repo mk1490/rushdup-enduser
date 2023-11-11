@@ -7,7 +7,13 @@
                 type="file"/>
         <v-card>
             <v-card-title>
-                ثبت تیکت جدید
+                <div class="d-inline-flex">
+                    <app-back-button back-route="./"/>
+                    <div class="align-self-center mr-3">
+                        ثبت تیکت جدید
+                    </div>
+
+                </div>
             </v-card-title>
             <v-card-text>
                 <v-container>
@@ -118,8 +124,11 @@
 </template>
 
 <script>
+import AppBackButton from "@/view/widget/AppBackButton.vue";
+
 export default {
     name: "RegisterNewTicket",
+    components: {AppBackButton},
     async created() {
         const [err, data] = await this.to(this.http.get(`/ticket/initialize`));
         if (!err) {

@@ -3,16 +3,24 @@
         <v-responsive class="overflow-y-hidden fill-height">
             <v-card class="fill-height">
                 <v-card-title>
-                    {{ ticketTitle }}
-                    <v-spacer/>
-                    <span>{{
-                        getPersianTime(ticketCreationTime)
-                        }}</span>
+
+                    <div class="d-inline-flex">
+
+                        <div class="align-self-center">
+                            <app-back-button back-route="../"/>
+                        </div>
+
+                        <div class="mr-3">
+                            {{ ticketTitle }}
+                            <v-spacer/>
+                            <span class="ticket-time">{{ getPersianTime(ticketCreationTime) }}</span>
+                        </div>
+                    </div>
                 </v-card-title>
                 <v-card-text
                         id="scrollContainer"
                         ref="scrollContainer"
-                        style="height: calc(100vh - 400px)"
+                        style="height: calc(100vh - 480px)"
                         class="flex-grow-1 overflow-y-auto">
 
                     <template v-for="item in ticketItems">
@@ -81,8 +89,11 @@
 </template>
 
 <script>
+import AppBackButton from "@/view/widget/AppBackButton.vue";
+
 export default {
     name: "TicketDetails",
+    components: {AppBackButton},
     async mounted() {
         this.ticketId = this.$route.params.ticketId;
         const [err, data] = await this.to(this.http.get(`ticket/ticket-details/${this.ticketId}`));
@@ -130,5 +141,10 @@ export default {
 .message__content {
     font-family: "IRAN Sans" !important;
     font-size: 1.2rem !important;
+}
+
+
+.ticket-time {
+    font-size: 0.8rem !important;
 }
 </style>

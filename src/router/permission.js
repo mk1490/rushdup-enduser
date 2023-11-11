@@ -12,7 +12,6 @@ function isAuth() {
 router.beforeEach(async (toRoute, from, next) => {
     const isAuthenticated = isAuth();
     const pageTitle = toRoute.meta.pageTitle ?? null;
-    console.log('pageTitle', pageTitle)
     app.config.globalProperties.$store.dispatch('setPageTitle', pageTitle)
     if (isAuthenticated) {
         next();
