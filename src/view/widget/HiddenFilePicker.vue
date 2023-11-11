@@ -1,5 +1,5 @@
 <template>
-    <form ref="form">
+    <form ref="file_picker_form">
         <input
                 ref="filePicker"
                 hidden="hidden"
@@ -15,7 +15,7 @@ export default {
     methods: {
         onFileSelected(event) {
             this.$emit('onFileSelected', event.target.files[0])
-            this.$refs.form.reset();
+            this.$refs.file_picker_form.reset();
         },
         openFilePicker() {
             this.$refs.filePicker.click();

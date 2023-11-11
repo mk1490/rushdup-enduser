@@ -44,10 +44,15 @@
                                     </div>
                                 </v-card-text>
                                 <v-card-actions>
+                                    <a
+                                            v-if="item.ticketAttachmentUrl"
+                                            class="ticket-attachment ml-5"
+                                            href="javascript:void(0)"
+                                            @click="downloadAttachment(item)">دانلود پیوست</a>
                                     <v-spacer/>
-                                    <span :style="'color:' +item.me? 'white' : 'black'">
-                    {{ getPersianTime(item.creationTime, 'HH:mm') }}
-                  </span>
+                                    <span :style="'color:' +item.me? 'white' : 'black'">{{
+                                        getPersianTime(item.creationTime, 'HH:mm')
+                                        }}</span>
                                 </v-card-actions>
                             </v-card>
                         </div>
@@ -64,6 +69,7 @@
                                 <v-textarea
                                         no-resize
                                         v-model="model.content"
+                                        :rules="rules.content"
                                         outlined
                                         hide-details
                                         dense
@@ -123,6 +129,9 @@ export default {
             this.ticketItems = data.ticketItems;
             this.ticketCreationTime = data.creationTime;
         }
+        // this.$refs.form.oninvalid = ()=>{
+        //     console.log("INvalid")
+        // }
     },
     data() {
         return {
@@ -133,15 +142,22 @@ export default {
             model: {
                 content: null,
             },
+            rules: {
+                content: [v => !!v || this.$t('errors.requiredThisField')],
+            },
             selectedFile: null,
         }
     },
     methods: {
         async sendMessage() {
+            if (!this.$refs.form.isValid) {
+                this.$toast.warning('پیام نمی‌تواند خالی باشد.')
+                return;
+            }
             const fd = new FormData();
             fd.append('content', this.model.content);
-            fd.append('attachment', null);
-            const [err, data] = await this.to(this.http.post(`ticket/send-message/${this.ticketId}`, fd));
+            fd.append('attachment', this.selectedFile);
+            const [err, data] = await this.to(this.http.post(`/ticket/send-message/${this.ticketId}`, fd));
             if (!err) {
                 this.ticketItems.push({
                     content: data.content,
@@ -158,9 +174,19 @@ export default {
         },
         openFilePicker() {
             this.$refs.filePicker.openFilePicker()
+        },
+        downloadAttachment(item) {
+            const url = this.serverAddress + item.ticketAttachmentUrl;
+            const a = document.createElement('a');
+            a.style.display = 'none';
+            a.href = url;
+            a.target = '_blank';
+            a.download = '';
+            document.body.appendChild(a);
+            a.click();
         }
-
-    }
+    },
+    watch: {}
 }
 </script>
 
@@ -172,6 +198,9 @@ export default {
     font-size: 1.2rem !important;
 }
 
+.ticket-attachment {
+    color: white;
+}
 
 .ticket-time {
     font-size: 0.8rem !important;
