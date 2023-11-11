@@ -74,13 +74,19 @@ export default {
         getChipsStatusTitle(item) {
             switch (item.raw.ticketStatus) {
                 case 0:
+                case 1:
                     return 'در انتظار پاسخ پشتیبان';
+                case 2:
+                    return 'پاسخ داده شده';
             }
         },
         getChipsStatusColor(item) {
             switch (item.raw.ticketStatus) {
                 case 0:
+                case 1:
                     return 'orange';
+                case 2:
+                    return 'success'
             }
         },
         async itemClick(item) {
