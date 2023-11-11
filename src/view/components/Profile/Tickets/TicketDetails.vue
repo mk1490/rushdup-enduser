@@ -59,8 +59,8 @@
                     <v-form
                             ref="form"
                             lazy-validation>
-                        <div class="row">
-                            <div class="col-md-12">
+                        <div class="v-row">
+                            <div class="v-col-md-12">
                                 <v-textarea
                                         no-resize
                                         v-model="model.content"
@@ -70,13 +70,28 @@
                                         placeholder="پیام خود را بنویسید...">
                                 </v-textarea>
                             </div>
-                            <div class="col-md-12 mt-2">
-                                <div>
+
+                            <div class="v-col-md-12">
+                                <attachment-for-upload
+                                        :file="selectedFile"
+                                        @onDeleteFile="selectedFile = null"
+                                />
+                            </div>
+
+                            <div class="v-col-md-12 mt-2">
+                                <div class="d-inline-flex">
                                     <v-btn
                                             @click="sendMessage"
                                             class="white--text"
                                             color="primary">
                                         ارسال پیام
+                                    </v-btn>
+                                    <v-btn
+                                            class="mr-2"
+                                            @click="openFilePicker()"
+                                            variant="text"
+                                            color="primary">
+                                        افزودن پیوست
                                     </v-btn>
                                 </div>
                             </div>
@@ -85,15 +100,21 @@
                 </v-card-text>
             </v-card>
         </v-responsive>
+        <hidden-file-picker
+                ref="filePicker"
+                @onFileSelected="fileSelection"
+        />
     </v-container>
 </template>
 
 <script>
 import AppBackButton from "@/view/widget/AppBackButton.vue";
+import AttachmentForUpload from "@/view/components/Profile/Tickets/Widgets/AttachmentForUpload.vue";
+import HiddenFilePicker from "@/view/widget/HiddenFilePicker.vue";
 
 export default {
     name: "TicketDetails",
-    components: {AppBackButton},
+    components: {HiddenFilePicker, AttachmentForUpload, AppBackButton},
     async mounted() {
         this.ticketId = this.$route.params.ticketId;
         const [err, data] = await this.to(this.http.get(`ticket/ticket-details/${this.ticketId}`));
@@ -111,7 +132,8 @@ export default {
             ticketItems: [],
             model: {
                 content: null,
-            }
+            },
+            selectedFile: null,
         }
     },
     methods: {
@@ -130,7 +152,14 @@ export default {
                 let container = document.getElementById('scrollContainer');
                 container.scrollTo(0, container.scrollHeight + 1000)
             }
+        },
+        fileSelection(file) {
+            this.selectedFile = file;
+        },
+        openFilePicker() {
+            this.$refs.filePicker.openFilePicker()
         }
+
     }
 }
 </script>

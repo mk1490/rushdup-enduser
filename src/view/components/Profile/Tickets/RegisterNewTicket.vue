@@ -1,10 +1,5 @@
 ﻿<template>
     <v-container>
-        <input
-                ref="filePicker"
-                hidden="hidden"
-                @change="onFileSelected"
-                type="file"/>
         <v-card>
             <v-card-title>
                 <div class="d-inline-flex">
@@ -75,29 +70,12 @@
                                     variant="outlined">
                             </v-textarea>
                         </div>
-                        <div
-                                v-if="!!selectedFile"
-                                class="v-col-auto">
-                            <v-card min-width="200">
-                                <v-card-text>
-                                    <div class="d-inline-flex align-center">
-                    <span>
-                      <strong>
-                        نام فایل:
-                        
-                      </strong>
-                      {{ selectedFileName }}
-                    </span>
-                                        <v-btn
-                                                @click="deleteFile"
-                                                icon>
-                                            <v-icon color="red">
-                                                mdi-close
-                                            </v-icon>
-                                        </v-btn>
-                                    </div>
-                                </v-card-text>
-                            </v-card>
+                        <div class="v-col-md-12">
+                            <attachment-for-upload
+                                    v-if="selectedFile"
+                                    :file="selectedFile"
+                                    @onDeleteFile="deleteFile"
+                            />
                         </div>
                     </div>
                 </v-container>
@@ -105,30 +83,36 @@
             <v-card-actions>
                 <div class="d-inline-flex">
                     <v-btn
-                            @click="selectAttachment"
-                            color="primary"
-                            outlined>
-                        افزودن پیوست
-                    </v-btn>
-                    <v-btn
-                            class="mx-4"
                             @click="sendToServer"
                             color="primary"
+                            variant="flat"
                     >
                         ارسال تیکت
+                    </v-btn>
+                    <v-btn
+                        class="mr-3"
+                            @click="selectAttachment"
+                            color="primary">
+                        افزودن پیوست
                     </v-btn>
                 </div>
             </v-card-actions>
         </v-card>
+        <hidden-file-picker
+                ref="filePicker"
+                @onFileSelected="onFileSelected"
+        />
     </v-container>
 </template>
 
 <script>
 import AppBackButton from "@/view/widget/AppBackButton.vue";
+import AttachmentForUpload from "@/view/components/Profile/Tickets/Widgets/AttachmentForUpload.vue";
+import HiddenFilePicker from "@/view/widget/HiddenFilePicker.vue";
 
 export default {
     name: "RegisterNewTicket",
-    components: {AppBackButton},
+    components: {HiddenFilePicker, AttachmentForUpload, AppBackButton},
     async created() {
         const [err, data] = await this.to(this.http.get(`/ticket/initialize`));
         if (!err) {
@@ -148,7 +132,6 @@ export default {
             ],
             courseItems: [],
             selectedFile: null,
-            selectedFileName: null,
             model: {
                 subject: null,
                 selectedCourse: null,
@@ -160,15 +143,13 @@ export default {
     },
     methods: {
         selectAttachment() {
-            this.$refs.filePicker.click();
+            this.$refs.filePicker.openFilePicker();
         },
         deleteFile() {
             this.selectedFile = null;
         },
-        async onFileSelected(event) {
-            const file = event.target.files[0];
+        async onFileSelected(file) {
             this.selectedFile = file;
-            this.selectedFileName = file.name;
         },
         async sendToServer() {
             const fd = new FormData();
