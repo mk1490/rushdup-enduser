@@ -25,7 +25,7 @@
                         :items-per-page="5"
                         class="elevation-1">
                     <template v-slot:item.row="{ item }">
-                        <div>{{ table.contents.indexOf(item) + 1 }}</div>
+                        <div>{{ table.contents.indexOf(item.raw) + 1 }}</div>
                     </template>
                     <template v-slot:item.ticketStatus="{ item, index }">
                         <v-chip
