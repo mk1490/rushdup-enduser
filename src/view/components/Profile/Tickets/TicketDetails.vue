@@ -49,6 +49,20 @@
                                             class="ticket-attachment ml-5"
                                             href="javascript:void(0)"
                                             @click="downloadAttachment(item)">دانلود پیوست</a>
+
+                                    <div
+                                        v-if="item.userAvatar || item.userName || item.userFamily"
+                                        class="text--profile">
+                                        <v-avatar
+                                            v-if="item.userAvatar"
+                                            size="32">
+                                            <v-img
+                                                :src="item.userAvatar? serverAddress + item.userAvatar : null"
+                                            />
+                                        </v-avatar>
+                                        <span class="text--username">{{ item.userName + ' ' + item.userFamily }}</span>
+
+                                    </div>
                                     <v-spacer/>
                                     <span :style="'color:' +item.me? 'white' : 'black'">{{
                                         getPersianTime(item.creationTime, 'HH:mm')
@@ -204,5 +218,17 @@ export default {
 
 .ticket-time {
     font-size: 0.8rem !important;
+}
+
+
+.text--profile {
+    align-items: center;
+    display: inline-flex;
+    margin-left: 16px;
+}
+
+.text--username {
+    font-family: "IRAN Sans";
+    margin-right: 5px!important;
 }
 </style>
