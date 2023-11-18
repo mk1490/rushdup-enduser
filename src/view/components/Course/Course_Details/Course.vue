@@ -107,6 +107,7 @@
                                     </Teachers>
 
                                     <Comment
+                                        :comment-items="model.commentItems"
                                             @showModalClick="openCommentModal">
                                     </Comment>
 
@@ -330,6 +331,7 @@ export default {
                 preRequirementItems: [],
                 courseItems: [],
                 labels: [],
+                commentItems: [],
             }
         }
     },
@@ -359,6 +361,7 @@ export default {
             this.model.preRequirementItems = data.preRequirementItems;
             this.model.labels = data.labels;
             this.model.courseItems = data.courseItems;
+            this.model.commentItems = data.commentItems;
             const teacher = data.teacher;
             if (teacher != null) {
                 if (!!teacher.avatar) {
