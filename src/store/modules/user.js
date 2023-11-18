@@ -2,9 +2,18 @@ import Vue from 'vue';
 
 const user = {
     state: {
-        id: null, name: '', family: '', avatar: '', phoneNumber: '', personnelCode: '', roles: [], deleteDialog: {
+        id: null,
+        name: '',
+        family: '',
+        avatar: '',
+        phoneNumber: '',
+        personnelCode: '',
+        roles: [],
+        deleteDialog: {
             visible: false, index: 0,
-        }, submitDelete: -1,
+        },
+        walletAmount: 0,
+        submitDelete: -1,
         isLogin: false,
         cartItems: [],
         cartExistItems: [],
@@ -21,15 +30,13 @@ const user = {
         isLogin: (state) => state.isLogin,
         cartItems: (state) => state.cartItems,
         cartExistItems: (state) => state.cartExistItems,
+        walletAmount: (state) => state.walletAmount,
     }, mutations: {
         SET_USER_INFO: (state, payload) => {
-            state.id = payload.id || null;
-            state.name = payload.name || state.name;
-            state.family = payload.family || state.family;
-            state.avatar = payload.avatar || state.avatar;
-            state.phoneNumber = payload.phoneNumber || state.phoneNumber;
-            state.personnelCode = payload.username || state.personnelCode;
-            state.roles = payload.roles;
+            state.name = payload.name;
+            state.family = payload.family;
+            state.avatar = payload.avatar;
+            state.walletAmount = payload.walletAmount;
         }, SET_PHOTO: (state, payload) => {
             state.avatar = payload;
         }, SET_TOKEN: (state, token) => {
@@ -47,11 +54,6 @@ const user = {
         },
         LOGIN_STATE: (state, payload) => {
             state.isLogin = payload;
-        },
-        PROFILE_STATE: (state, payload) => {
-            state.name = payload.name;
-            state.family = payload.family;
-            state.avatar = payload.avatar;
         },
         ADD_TO_CART: (state, payload) => {
             let items = localStorage.getItem('cart');
@@ -123,9 +125,6 @@ const user = {
         },
         setLoginState: async ({commit}, payload) => {
             await commit('LOGIN_STATE', payload);
-        },
-        setProfileInformation: async ({commit}, payload) => {
-            await commit('PROFILE_STATE', payload);
         },
         addToCartLocally: async ({commit}, payload) => {
             await commit('ADD_TO_CART', payload);

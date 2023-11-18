@@ -5,7 +5,7 @@
                 <div class="d-inline-block">
                     <div>
                         <span>موجودی کیف پول:</span>
-                        <strong class="currency-value">{{ getComma(walletValue) }}</strong>
+                        <strong class="currency-value">{{ getComma(walletAmount) }}</strong>
                         <small>ریال</small>
                     </div>
                     <v-btn
@@ -21,13 +21,12 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
     name: "Wallet",
-    props: {
-        walletValue: {
-            type: Number,
-            default: 0,
-        },
+    computed:{
+        ...mapGetters(['walletAmount'])
     }
 }
 </script>
