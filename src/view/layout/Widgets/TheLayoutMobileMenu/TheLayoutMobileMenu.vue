@@ -1,14 +1,14 @@
 <template>
-    <div id="page-mobile-main-menu" class="page-mobile-main-menu rendered" data-background="">
+    <div id="page-mobile-main-menu" class="page-mobile-main-menu rendered">
         <div
                 id="inner-page-mobile-main-menu"
                 class="inner">
             <div class="page-mobile-menu-header">
                 <div class="page-mobile-popup-logo page-mobile-menu-logo">
-                    <a href="/">
-                        <img src="@/assets/logo.png"
-                             width="148">
-                    </a>
+                    <router-link to="/">
+                        <img src="../../../../assets/logo.png"
+                             width="148" alt="">
+                    </router-link>
                 </div>
                 <div @click="closeMenu" class="page-close-mobile-menu">
                     <div class="burger-icon burger-icon-close">
@@ -19,41 +19,76 @@
             </div>
 
             <div class="page-mobile-menu-content">
-                <ul id="mobile-menu-primary" class="menu__container">
-                    <li
-                            v-for="(menuItem, menuIndex) in menuItems"
-                            :key="menuIndex"
-                            :id="`mobile_menu_${menuIndex}`"
-                            :class="`menu-item menu-item-type-post_type menu-item-object-page menu-item-1718 level-1 ${menuItem.childrenItems.length > 0 ? 'has-mega-menu': ''}` ">
-                        <a
-                                @click="menuClick($event, menuIndex)"
-                                href="#">
-                            <div class="menu-item-wrap">
-                                <span class="menu-item-title">{{ menuItem.title }}</span>
-                                <span
-                                        v-if="menuItem.childrenItems.length > 0"
-                                        class="toggle-sub-menu"></span>
-                            </div>
-                        </a>
-                        <ul
-                                :id="`child_menu_${menuIndex}`"
-                                class="sub-menu children simple-menu"
-                                style="display: none">
-                            <li
-                                    v-for="childItem in menuItem.childrenItems"
-                                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-236">
-                                <a
-                                        :href="childItem.targetExtra"
-                                        onclick="return true">
-                                    <div class="menu-item-wrap">
-                                        <span class="menu-item-title">{{ childItem.title }}</span>
-                                    </div>
-                                </a>
-                            </li>
-                        </ul>
+                <v-list
+                        class="drawer-list"
+                        v-model:opened="open">
+                    <v-list-group
+                            v-for="item in categoryItems"
+                            :value="item.id">
+                        <template v-slot:activator="{ props }">
+                            <v-list-item
+                                    v-bind="props"
+                                    :title="item.title"
+                            ></v-list-item>
+                        </template>
+                        <v-list-group
+                                class="two-level-list"
+                                v-for="childItem in item.children"
+                                :value="childItem.id">
+                            <template
+                                    v-slot:activator="{ props }">
+                                <v-list-item
+                                        v-bind="props"
+                                        :title="childItem.title"
+                                        :value="childItem.id"
+                                ></v-list-item>
+                            </template>
 
-                    </li>
-                </ul>
+                            <v-list-item
+                                class="three-level-list"
+                                    v-for="childItemThreeLevel in childItem.children"
+                                    :title="childItemThreeLevel.title"
+                                    :value="childItemThreeLevel.id"
+                            ></v-list-item>
+                        </v-list-group>
+                    </v-list-group>
+                </v-list>
+
+                <!--                <ul id="mobile-menu-primary" class="menu__container">-->
+                <!--                    <li-->
+                <!--                            v-for="(categoryItem, categoryIndex) in categoryItems"-->
+                <!--                            :key="categoryIndex"-->
+                <!--                            :id="`mobile_menu_${categoryIndex}`"-->
+                <!--                            :class="`menu-item menu-item-type-post_type menu-item-object-page menu-item-1718 level-1 ${categoryItem.children.length > 0 ? 'has-mega-menu': ''}` ">-->
+                <!--                        <a-->
+                <!--                                @click="menuClick($event, categoryIndex)"-->
+                <!--                                href="#">-->
+                <!--                            <div class="menu-item-wrap">-->
+                <!--                                <span class="menu-item-title">{{ categoryItem.title }}</span>-->
+                <!--                                <span-->
+                <!--                                        v-if="categoryItem.children.length > 0"-->
+                <!--                                        class="toggle-sub-menu"></span>-->
+                <!--                            </div>-->
+                <!--                        </a>-->
+                <!--                        <ul-->
+                <!--                                :id="`child_menu_${categoryIndex}`"-->
+                <!--                                class="sub-menu children simple-menu"-->
+                <!--                                style="display: none">-->
+                <!--                            <li-->
+                <!--                                    v-for="childItem in categoryItem.children"-->
+                <!--                                    class="menu-item menu-item-type-custom menu-item-object-custom menu-item-236">-->
+                <!--                                <a-->
+                <!--                                        :href="childItem.targetExtra"-->
+                <!--                                        onclick="return true">-->
+                <!--                                    <div class="menu-item-wrap">-->
+                <!--                                        <span class="menu-item-title">{{ childItem.title }}</span>-->
+                <!--                                    </div>-->
+                <!--                                </a>-->
+                <!--                            </li>-->
+                <!--                        </ul>-->
+
+                <!--                    </li>-->
+                <!--                </ul>-->
             </div>
         </div>
     </div>
@@ -65,7 +100,25 @@ import {mapGetters} from "vuex";
 export default {
     name: "TheLayoutMobileMenu",
     computed: {
-        ...mapGetters(['menuItems'])
+        ...mapGetters(['menuItems', 'categoryItems'])
+    },
+    data() {
+        return {
+            open: ['Users'],
+            admins: [
+                ['Management', 'mdi-account-multiple-outline'],
+                ['Settings', 'mdi-cog-outline'],
+            ],
+            cruds: [
+                ['Create', 'mdi-plus-outline'],
+                ['Read', 'mdi-file-outline'],
+                ['Update', 'mdi-update'],
+                ['Delete', 'mdi-delete'],
+            ],
+        }
+    },
+    created() {
+        console.log(this.menuItems)
     },
     mounted() {
         let mouseOutsidedForMenu = false;
@@ -95,7 +148,7 @@ export default {
                 menuElement.classList.remove('opened');
                 childElement.style.display = 'none';
             } else {
-                if (this.menuItems[index].childrenItems.length > 0) {
+                if (this.categoryItems[index].children.length > 0) {
                     menuElement.classList.add('opened');
                     childElement.style.display = 'block';
                 }
@@ -246,5 +299,24 @@ export default {
 
 .page-mobile-main-menu {
     cursor: url(@/assets/images/light-close.png) 16 16, pointer;
+}
+
+.drawer-list {
+    background-color: #FFFFFF00 !important;
+}
+
+.two-level-list {
+    padding-left: 12px;
+}
+
+.three-level-list {
+    padding-left: 90px!important;
+}
+
+:deep(.v-list-item-title){
+    color: white!important;
+}
+:deep(.v-list-item__append){
+    color: white!important;
 }
 </style>
